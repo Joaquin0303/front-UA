@@ -2,6 +2,8 @@ import { Routes, Route, Link  } from "react-router-dom";
 import {Home} from './components/Home';
 import {AdminUsers} from './components/AdminUsers';
 import Users from './components/Users';
+import {Permisos} from './components/Permisos';
+
 import logoempresa from './img/logo-empresa.png';
 import logoout from './img/logout.png';
 import './styles/header_and_nav.css';
@@ -32,6 +34,7 @@ function App() {
       <Route path="/" element={<Home/>}/>
       <Route path="/Administración usuarios" element={<AdminUsers/>}/>
       <Route path="/Administración usuarios/Usuarios" element={<Users/>}/>
+      <Route path="/Administración usuarios/Permisos" element={<Permisos/>}/>
     </Routes>
     </>
   )

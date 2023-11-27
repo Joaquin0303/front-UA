@@ -10,7 +10,7 @@ export const AdminUsers = () =>
     <h2>Alta, baja y Modificacion</h2>
     <div className='div-cards'>
         <Card img={logoGrupo} title={'Usuarios'} path={'/Administración usuarios/Usuarios'}/>
-        <Card img={logoRoles} title={'Roles'}/>
-        <Card img={logoPermisos} title={'Permisos'}/>
+        <Card img={logoRoles} title={'Roles'} path={'/Administración usuarios/Roles'}/>
+        <Card img={logoPermisos} title={'Permisos'} path={'/Administración usuarios/Permisos'}/>
     </div>
 </div>
