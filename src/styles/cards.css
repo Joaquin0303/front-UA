@@ -1,0 +1,12 @@
+.cards{
+    border-radius: 8px;
+    background: rgb(255, 255, 255);
+    padding: 50px;
+    transition: 0.5s;
+    box-shadow: -5px 3px 20px 0px  rgba(0, 0, 0, 0.45);
+    color: rgb(0, 0, 0);
+}
+.cards:hover{
+    background: linear-gradient(121deg, #00528F 54.61%, #008091 80.09%);
+    color: rgb(255, 255, 255);
+}

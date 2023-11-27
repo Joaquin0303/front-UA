@@ -1,0 +1,155 @@
+.bloque-principal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bloque-secundario{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    border-bottom: solid black 1px;
+    width: 80%;
+}
+
+.bloque-secundario a{
+    text-decoration: none;
+    color: black;
+    margin-right: 3px;
+}
+
+.table-wrapper{
+    width: 100%;
+}
+
+.table{
+    display: block;
+    overflow: hidden;
+    table-layout: auto;
+    border-collapse: collapse;
+    box-shadow: 0px 10px 10px #ccc;
+    border-radius: 10px;
+    white-space: nowrap;
+    width: 80%;
+    margin: auto;
+    overflow-x: auto;
+    margin-bottom: 50px;
+}
+
+.table thead{
+    background-color: #00C4DF;
+    color: #ffffff;
+}
+
+.table th, .table td{
+    padding: 0.8rem;
+}
+
+.table td{
+    border-top: 0.5px solid #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table tbody tr:hover{
+    background-color: #eee;
+}
+
+.expand{
+    width: 100%;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-around;
+    margin-right: 10px;
+    font-size: 21px;
+}
+
+.actions svg{
+    cursor: pointer;
+    color: #00528F;
+}
+
+.btns{
+    margin-top: 1rem;
+    border: none;
+    background-color: #00C4DF;
+    color: #fff;
+    padding: 10px 20px;
+    color: #FFF;
+    font-family: Ubuntu;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.btns-add{
+    color: rgb(255, 255, 255);
+    background-color: #00C4DF;
+    border: none;
+    font-family: 'Ubuntu';
+    border-radius: 56px;
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+}
+
+.btns-add svg{
+    margin-right: 7px;
+}
+
+.btns-close{
+    margin-top: 1rem;
+    border: none;
+    background-color:#FC5959;
+    color: #fff;
+    padding: 10px 20px;
+    color: #FFF;
+    font-family: Ubuntu;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+.bloque-search{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+
+.search{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input{
+    padding: 15px 15px 15px 30px;
+    border: 1.4px solid #00528F;
+    border-radius: 50px;
+    height: 40px;
+    width: 450px;
+    color: #00528F;
+}
+
+.icon{
+    position: absolute;
+    left: 10px;
+}
+
