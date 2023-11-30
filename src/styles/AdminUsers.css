@@ -6,14 +6,19 @@
 }
 
 h2{
-    margin: 50px 0px;
+    margin: 50px 0px 10px 0px
+}
+
+h4{
+    margin: 20px 0px 50px 0px
 }
 
 .div-cards{
     width: 80%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .div-cards img{

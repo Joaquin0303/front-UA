@@ -1,8 +1,9 @@
 import { Routes, Route, Link  } from "react-router-dom";
-import {Home} from './components/Home';
-import {AdminUsers} from './components/AdminUsers';
-import Users from './components/Users';
-import {Permisos} from './components/Permisos';
+import {Home} from './pages/Home';
+import {AdminUsers} from './components/AdminPages';
+import {AdminParam} from './components/AdminPages';
+import Users from './pages/Users';
+import {Permisos} from './pages/Permisos';
 
 import logoempresa from './img/logo-empresa.png';
 import logoout from './img/logout.png';
@@ -32,9 +33,21 @@ function App() {
     </nav>
     <Routes>
       <Route path="/" element={<Home/>}/>
+      {/* Administracion de Usuarios */}
+      {/* -------------------------- */}
       <Route path="/Administración usuarios" element={<AdminUsers/>}/>
       <Route path="/Administración usuarios/Usuarios" element={<Users/>}/>
       <Route path="/Administración usuarios/Permisos" element={<Permisos/>}/>
+      {/*<Route path="/Administración usuarios/Roles" element={<Roles/>}/>*/}
+
+      {/* Administracion de Usuarios */}
+      {/* -------------------------- */}
+      <Route path="/Administración Parámetros" element={<AdminParam/>}/>
+      {/*<Route path="/Administración Parámetros/Tipo de Parametros" element={<TipoParametros/>}/>*/}
+      {/*<Route path="/Administración Parámetros/Parametros" element={<Parametros/>}/>*/}
+      {/*<Route path="/Administración Parámetros/Secuenciador" element={<Secuenciador/>}/>*/}
+      {/*<Route path="/Administración Parámetros/Puestos" element={<Puestos/>}/>*/}
+      {/*<Route path="/Administración Parámetros/Pais" element={<Pais/>}/>*/}
     </Routes>
     </>
   )

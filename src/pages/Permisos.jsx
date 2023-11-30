@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import ModalAddSwitch from '../components/Modal-add-switch'
 
-import '../styles/abm.css'
+import '../styles/abm.css';
 
-import { FaPlus } from "react-icons/fa";
+import { FaPlus } from 'react-icons/fa';
 
 export const Permisos = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [roles, setRoles] = useState([]);
+
+    const handleModalSubmit = (nombreRol) => {
+        // Agrega el nuevo rol al estado de roles
+        setRoles([...roles, nombreRol]);
+    };
+
     return (
         <div className='bloque-principal'>
             <div className="bloque-secundario">
@@ -22,19 +31,18 @@ export const Permisos = () => {
                         <select name="Select" className='form-select form-select-lg mb-3' id="">
                             <option value="1">Administrador Empleados</option>
                             <option value="2">Reportes RRHH</option>
-                            <option value="2">Reportes Directores</option>
-                            <option value="2">Administrador Tablas Parametricas</option>
-                            <option value="2">Administrador Usuarios</option>
+                            <option value="3">Reportes Directores</option>
+                            <option value="4">Administrador Tablas Parametricas</option>
+                            <option value="5">Administrador Usuarios</option>
                         </select>
                         <i></i>
                     </div>
-                    <button className='btns-add'><FaPlus/>Agregar Rol</button>
+                    <button className='btns-add' onClick={() => setModalOpen(true)}><FaPlus/>Agregar Rol</button>
                 </div>
             </div>
 
             <div className='switches'>
-
-                <div className='form-check form-switch'>
+            <div className='form-check form-switch'>
                     <p>Alta de Empleados</p>
                     <input type="checkbox" className='form-check-input' value="" id="check1" />
                 </div>
@@ -63,8 +71,17 @@ export const Permisos = () => {
                     <input type="checkbox" className='form-check-input' value="" id="check1" />
                 </div>
 
+                {/* Mapea sobre los roles y crea los elementos correspondientes */}
+                {roles.map((rol, index) => (
+                    <div key={index} className='form-check form-switch'>
+                        <p>{rol}</p>
+                        <input type='checkbox' className='form-check-input' value='' id={`check${index}`} />
+                    </div>
+                ))}
             </div>
             
+            {modalOpen && <ModalAddSwitch closeModal={() => setModalOpen(false)} onSubmit={handleModalSubmit} />}
+
         </div>
-    )
-}
+    );
+};

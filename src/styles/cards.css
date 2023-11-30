@@ -5,8 +5,16 @@
     transition: 0.5s;
     box-shadow: -5px 3px 20px 0px  rgba(0, 0, 0, 0.45);
     color: rgb(0, 0, 0);
+    margin-bottom: 30px;
+    margin-right: 30px;
+    width: min-content;
+    height: 290px;
 }
 .cards:hover{
     background: linear-gradient(121deg, #00528F 54.61%, #008091 80.09%);
     color: rgb(255, 255, 255);
+}
+
+p{
+    margin-top: 1rem !important;
 }

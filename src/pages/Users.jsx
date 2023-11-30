@@ -8,10 +8,10 @@ import { BsFillPencilFill } from 'react-icons/bs'
 import { FaArrowDown } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
 
-import Modal from './Modal-add';
-import ModalView from './Modal-view'
-import ModalEdit from './Modal-edit';
-import ModalDelete from './Modal-delete'
+import Modal from '../components/Modal-add';
+import ModalView from '../components/Modal-view'
+import ModalEdit from '../components/Modal-edit';
+import ModalDelete from '../components/Modal-delete'
 
 const Users = () => {
     const [modalOpen, setModalOpen] = useState(false)
@@ -142,3 +142,4 @@ const Users = () => {
 }
 
 export default Users
+
