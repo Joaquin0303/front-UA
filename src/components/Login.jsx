@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Login.css';
 import axios from 'axios';
+import logoempresa from '../img/logo-empresa.png';
 
 const loginUser = async (credentials) => {
     const response = await axios({
@@ -46,24 +47,29 @@ const Login = ({ setToken }) => {
     }
 
     return (
-        <div className="login-wrapper">
-            <h1>{errorMessage}</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <p>Usuario</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    <p>Password</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
-                </label>
-                <br />
-                <div>
-                    <button type="submit">Submit</button>
+        <>
+            <header>
+                <div className="header">
+                    <img src={logoempresa} id="logo-empresa" alt="" />
                 </div>
-            </form>
-        </div>
+            </header>
+            <div className="login-wrapper">
+
+                <h1>{errorMessage}</h1>
+
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="login-user">Nombre de usuario</label>
+                        <input type="text" className="form-control" id="login-user" placeholder="Nombre de usuario" onChange={e => setUserName(e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password-user">Password</label>
+                        <input type="password" className="form-control" id="password-user" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </>
     )
 }
 

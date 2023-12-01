@@ -1,5 +1,14 @@
 .login-wrapper {
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.login-wrapper .form-group {
+    margin-right: 0;
+}
+
+.login-wrapper .form-group input {
+    margin-right: 0;
 }
