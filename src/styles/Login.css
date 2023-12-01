@@ -12,3 +12,7 @@
 .login-wrapper .form-group input {
     margin-right: 0;
 }
+
+.authFail {
+    color: red;
+}

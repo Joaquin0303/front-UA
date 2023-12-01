@@ -6,7 +6,7 @@ import logoempresa from '../img/logo-empresa.png';
 const loginUser = async (credentials) => {
     const response = await axios({
         method: 'post',
-        url: 'http://localhost:8080/ua/login',
+        url: '/ua/login',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -54,9 +54,6 @@ const Login = ({ setToken }) => {
                 </div>
             </header>
             <div className="login-wrapper">
-
-                <h1>{errorMessage}</h1>
-
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="login-user">Nombre de usuario</label>
@@ -66,6 +63,9 @@ const Login = ({ setToken }) => {
                         <label htmlFor="password-user">Password</label>
                         <input type="password" className="form-control" id="password-user" placeholder="Password" onChange={e => setPassword(e.target.value)} />
                     </div>
+                    <p className="authFail">
+                        {errorMessage}
+                    </p>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
