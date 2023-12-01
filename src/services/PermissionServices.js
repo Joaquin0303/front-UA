@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const context = 'http://localhost:8080';
 
-export const getPermission = async () => {
+export const getPermissions = async () => {
     const result = await axios({
         method: 'get',
         url: context + '/ua/permiso'
