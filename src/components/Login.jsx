@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/Login.css';
 import axios from 'axios';
 import logoempresa from '../img/logo-empresa.png';
+import gifWork from '../img/work-team.gif';
 
 const loginUser = async (credentials) => {
     const response = await axios({
@@ -54,7 +55,9 @@ const Login = ({ setToken }) => {
                 </div>
             </header>
             <div className="login-wrapper">
+                <img src={gifWork} alt="gif-work" />
                 <form onSubmit={handleSubmit}>
+                    <h2>Iniciar Sesión</h2>
                     <div className="form-group">
                         <label htmlFor="login-user">Nombre de usuario</label>
                         <input type="text" className="form-control" id="login-user" placeholder="Nombre de usuario" onChange={e => setUserName(e.target.value)} />
@@ -66,7 +69,7 @@ const Login = ({ setToken }) => {
                     <p className="authFail">
                         {errorMessage}
                     </p>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn-login">Submit</button>
                 </form>
             </div>
         </>
