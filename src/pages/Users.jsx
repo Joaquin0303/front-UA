@@ -1,3 +1,53 @@
+import React, { useState, useEffect } from 'react';
+import { getUsers, addUser, editUser, removeUser } from '../services/UserServices';
+import ABMPage from './ABMPage';
+
+const UserModel = {
+    numeroLegajo: '',
+    nombreUsuario: '',
+    activo: true,
+}
+
+const Users = () => {
+    const [userList, setUserList] = useState([]);
+
+    useEffect(() => {
+        loadUsers();
+    }, []);
+
+    const loadUsers = () => {
+        getUsers().then(result => {
+            setUserList(result.list);
+        });
+    }
+
+    const onAdd = (data) => {
+        addUser(data.numeroLegajo, data.nombreUsuario, data.activo).then(result => {
+            console.log('saved=', result);
+            loadUsers();
+        });
+    }
+
+    const onEdit = (data) => {
+        editUser(data.id, data.numeroLegajo, data.nombreUsuario, data.activo).then(result => {
+            console.log('edited=', result);
+            loadUsers();
+        });
+    }
+
+    const onRemove = (data) => {
+        removeUser(data.id).then(result => {
+            console.log('removed=', result);
+            loadUsers();
+        });
+    }
+
+    return (
+        <ABMPage pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='nombreUsuario' />
+    );
+}
+
+/*
 import '../styles/abm.css'
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
@@ -82,14 +132,12 @@ const Users = () => {
                 <Link to="/">Inicio</Link><p>/ Usuarios</p>
             </div>
             <div className='bloque-search'>
-{/*Aca va el buscador y el boton agregar usuario */}
                 <div className='search'>
                     <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                     <i class="fa-solid fa-magnifying-glass icon"></i>
                 </div>
                 <button className='btns-add' onClick={() => setModalOpen(true)}><FaUserPlus />Alta Usuario</button>
             </div>
-{/*Aca va la tabla*/}
             <div className='table-wrapper'>
                 <table className='table'>
                     <thead >
@@ -140,6 +188,7 @@ const Users = () => {
 
     )
 }
+*/
 
-export default Users
+export default Users;
 

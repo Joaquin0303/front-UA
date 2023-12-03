@@ -4,18 +4,18 @@ import { IoEyeSharp } from "react-icons/io5";
 import { BsFillPencilFill } from 'react-icons/bs'
 import { FaArrowDown } from "react-icons/fa";
 
-const CellAction = ({ data, edit, view, remove }) => {
+const CellAction = ({ data, setModal }) => {
 
     return (
         <td className='expand'>
             <span className='actions'>
-                <div title="Ver" onClick={() => { setSelectedUser(data); setViewModalOpen(true) }}>
+                <div title="Ver" onClick={(e) => { e.stopPropagation(); setModal(true, 'see', data) }}>
                     <IoEyeSharp />
                 </div>
                 <div title="Editar">
-                    <BsFillPencilFill onClick={() => { setSelectedUser(data); setEditModalOpen(true) }} />
+                    <BsFillPencilFill onClick={(e) => { e.stopPropagation(); setModal(true, 'edit', data) }} />
                 </div>
-                <div title="Dar de Baja" onClick={() => { setSelectedUser(data); setDeleteModalOpen(true) }}>
+                <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal(true, 'remove', data) }}>
                     <FaArrowDown />
                 </div>
             </span>
@@ -23,6 +23,4 @@ const CellAction = ({ data, edit, view, remove }) => {
     );
 };
 
-
 export default CellAction;
-

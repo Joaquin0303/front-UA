@@ -1,11 +1,11 @@
-.bloque-principal{
+.bloque-principal {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.bloque-secundario{
+.bloque-secundario {
     margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
@@ -14,17 +14,17 @@
     width: 80%;
 }
 
-.bloque-secundario a{
+.bloque-secundario a {
     text-decoration: none;
     color: black;
     margin-right: 3px;
 }
 
-.table-wrapper{
+.table-wrapper {
     width: 100%;
 }
 
-.table{
+.table {
     display: block;
     overflow: hidden;
     table-layout: auto;
@@ -33,47 +33,56 @@
     border-radius: 10px;
     white-space: nowrap;
     width: 80%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     overflow-x: auto;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
-.table thead{
+.table thead {
     background-color: #00C4DF;
     color: #ffffff;
 }
 
-.table th, .table td{
+.table th,
+.table td {
     padding: 0.8rem;
 }
 
-.table td{
+.table td {
     border-top: 0.5px solid #ddd;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.table tbody tr:hover{
+.table tbody tr:hover {
     background-color: #eee;
 }
 
-.expand{
+.expand {
     width: 100%;
 }
 
-.actions{
+.actions {
     display: flex;
     justify-content: space-around;
     margin-right: 10px;
     font-size: 21px;
 }
 
-.actions svg{
+.actions svg {
     cursor: pointer;
     color: #00528F;
 }
 
-.btns{
+.btns-table {
+    display: flex;
+    justify-content: right;
+    margin-right: 130px;
+    margin-bottom: 50px;
+}
+
+.btns {
     margin-top: 1rem;
     border: none;
     background-color: #00C4DF;
@@ -89,7 +98,7 @@
     margin-bottom: 30px;
 }
 
-.btns-add{
+.btns-add {
     color: rgb(255, 255, 255);
     background-color: #00C4DF;
     border: none;
@@ -101,14 +110,14 @@
     font-weight: bold;
 }
 
-.btns-add svg{
+.btns-add svg {
     margin-right: 7px;
 }
 
-.btns-close{
+.btns-close {
     margin-top: 1rem;
     border: none;
-    background-color:#FC5959;
+    background-color: #FC5959;
     color: #fff;
     padding: 10px 20px;
     color: #FFF;
@@ -122,7 +131,7 @@
     margin-left: 10px;
 }
 
-.bloque-search{
+.bloque-search {
     width: 80%;
     display: flex;
     align-items: center;
@@ -133,13 +142,13 @@
 }
 
 
-.search{
+.search {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.search-input{
+.search-input {
     padding: 15px 15px 15px 30px;
     border: 1.4px solid #00528F;
     border-radius: 50px;
@@ -148,12 +157,12 @@
     color: #00528F;
 }
 
-.icon{
+.icon {
     position: absolute;
     left: 10px;
 }
 
-.switches{
+.switches {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -161,7 +170,7 @@
     justify-content: flex-start;
 }
 
-.form-check{
+.form-check {
     display: flex;
     flex-direction: column;
     align-items: baseline;
@@ -169,18 +178,18 @@
     margin-right: 50px;
 }
 
-.form-switch .form-check-input{
+.form-switch .form-check-input {
     width: 4em;
     height: 2em;
 }
 
-.p-parraf{
+.p-parraf {
     display: flex;
     justify-content: flex-start;
     width: 80%;
 }
 
-.select-input-container{
+.select-input-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -188,17 +197,17 @@
     margin-bottom: 20px;
 }
 
-.mb-3{
-    margin-bottom: 0rem!important;
+.mb-3 {
+    margin-bottom: 0rem !important;
 }
 
-.input-and-btn{
-   display: flex;
-   justify-content: space-between;
-   width: 80%;
+.input-and-btn {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
 }
 
-.input-and-btn select{
+.input-and-btn select {
     width: 400px;
     padding: 10px;
     border-radius: 50px;
@@ -207,6 +216,7 @@
 .form-check-input:checked[type=checkbox] {
     background-color: #00C4DF;
 }
+
 .form-check-input[type=checkbox] {
     background-color: rgb(255, 255, 255);
 }

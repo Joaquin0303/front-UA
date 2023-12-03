@@ -1,4 +1,4 @@
-.modal-container{
+.modal-container {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -11,7 +11,7 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-label{
+label {
     font-family: 'Ubuntu';
     font-size: 15px;
     font-weight: bold;
@@ -23,7 +23,7 @@ label{
     border-radius: 5px;
     padding: 2rem;
     background-color: #00528F;
-    width: 90%;
+    width: 31%;
     margin: auto;
     color: white;
 }
@@ -33,7 +33,7 @@ label{
     margin: auto;
 }
 
-.form-group{
+.form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
@@ -52,24 +52,25 @@ label{
     margin-right: 50px;
 }
 
-.form-group label{
+.form-group label {
     margin-bottom: 0.2rem;
+    text-align: left;
 }
 
-.form{
+.form {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 50px;
     width: 80%;
 }
 
-.botones-conf-close{
+.botones-conf-close {
     position: absolute;
     bottom: 0;
     left: 0;
     padding: 0 2rem;
 }
 
-.form-p{
+.form-p {
     color: rgb(197, 197, 197);
 }
