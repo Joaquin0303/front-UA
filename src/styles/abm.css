@@ -22,10 +22,11 @@
 
 .table-wrapper {
     width: 100%;
+    display: flex;
 }
 
 .table {
-    display: block;
+    display: inline-table;
     overflow: hidden;
     table-layout: auto;
     border-collapse: collapse;
