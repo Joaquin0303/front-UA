@@ -5,6 +5,7 @@ import { AdminUsers } from './components/AdminPages';
 import { AdminParam } from './components/AdminPages';
 import Users from './pages/Users';
 import { Permisos } from './pages/Permisos';
+import Roles from './pages/Roles';
 
 import logoempresa from './img/logo-empresa.png';
 import logoout from './img/logout.png';
@@ -49,7 +50,7 @@ function App() {
         <Route path="/Administración usuarios" element={<AdminUsers />} />
         <Route path="/Administración usuarios/Usuarios" element={<Users />} />
         <Route path="/Administración usuarios/Permisos" element={<Permisos />} />
-        {/*<Route path="/Administración usuarios/Roles" element={<Roles/>}/>*/}
+        <Route path="/Administración usuarios/Roles" element={<Roles/>}/>
 
         {/* Administracion de Usuarios */}
         {/* -------------------------- */}
