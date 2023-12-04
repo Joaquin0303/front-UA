@@ -3,10 +3,10 @@ import axios from 'axios'
 const context = 'http://localhost:8080';
 //const context = '';
 
-export const getPermissions = async () => {
+export const getParameters = async () => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/permiso'
+        url: context + '/ua/parametro'
     }).then(response => {
         return response;
     }).catch(error => {
@@ -15,38 +15,10 @@ export const getPermissions = async () => {
     return result.data;
 }
 
-export const addPermission = async (descripcion, activo) => {
-    const result = await axios({
-        method: 'post',
-        url: context + '/ua/permiso',
-        data: {
-            'descripcion': descripcion,
-            'activo': activo
-        }
-    }).then(response => {
-        return response;
-    }).catch(error => {
-        throw error;
-    })
-    return result.data;
-}
-
-export const removePermission = async (permissionId) => {
-    const result = await axios({
-        method: 'delete',
-        url: context + '/ua/permiso/' + permissionId
-    }).then(response => {
-        return response;
-    }).catch(error => {
-        throw error;
-    })
-    return result.data;
-}
-
-export const getPermissionById = async (permissionId) => {
+export const getParameterById = async (parameterId) => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/permiso/' + permissionId
+        url: context + '/ua/parametro/' + parameterId
     }).then(response => {
         return response;
     }).catch(error => {
@@ -55,12 +27,15 @@ export const getPermissionById = async (permissionId) => {
     return result.data;
 }
 
-export const editPermission = async (permissionId, descripcion, activo) => {
+export const updateParameter = async (parameterId, codigo, descripcion, texto1, texto2, activo) => {
     const result = await axios({
         method: 'put',
-        url: context + '/ua/permiso/' + permissionId,
+        url: context + '/ua/parameter/' + parameterId,
         data: {
+            'codigo': codigo,
             'descripcion': descripcion,
+            'texto1': texto1,
+            'texto2': texto2,
             'activo': activo
         }
     }).then(response => {
@@ -71,10 +46,29 @@ export const editPermission = async (permissionId, descripcion, activo) => {
     return result.data;
 }
 
-export const SearchPermission = async () => {
+export const addParameter = async (codigo, descripcion, texto1, texto2, activo) => {
     const result = await axios({
-        method: 'get',
-        url: context + '/ua/permiso/buscar?'
+        method: 'post',
+        url: context + '/ua/parametro',
+        data: {
+            'codigo': codigo,
+            'descripcion': descripcion,
+            'texto1': texto1,
+            'texto2': texto2,
+            'activo': activo
+        }
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}
+
+export const removeParameter = async (parameterId) => {
+    const result = await axios({
+        method: 'delete',
+        url: context + '/ua/parameter/' + parameterId
     }).then(response => {
         return response;
     }).catch(error => {

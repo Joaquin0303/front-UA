@@ -3,30 +3,7 @@ import '../styles/Login.css';
 import axios from 'axios';
 import logoempresa from '../img/logo-empresa.png';
 import gifWork from '../img/work-team.gif';
-
-const loginUser = async (credentials) => {
-    const response = await axios({
-        method: 'post',
-        url: '/ua/login',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: JSON.stringify(credentials)
-    }).then(function (response) {
-        if (response.data.codigo == 200) {
-            return response.data.model;
-        } else {
-            throw response.data.mensajes[0];
-        }
-
-    }).catch(function (error) {
-        console.error(error);
-        throw error;
-    }).finally(function () {
-        // nothing
-    });
-    return response;
-}
+import { loginUser } from '../services/UserServices';
 
 const Login = ({ setToken }) => {
     const [username, setUserName] = useState();
@@ -55,7 +32,7 @@ const Login = ({ setToken }) => {
                 </div>
             </header>
             <div className="login-wrapper">
-                <img src={gifWork} alt="gif-work" id='gif'/>
+                <img src={gifWork} alt="gif-work" id='gif' />
                 <form onSubmit={handleSubmit}>
                     <h2>Iniciar Sesión</h2>
                     <div className="form-group-login">

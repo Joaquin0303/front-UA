@@ -50,16 +50,16 @@ function App() {
         <Route path="/Administración usuarios" element={<AdminUsers />} />
         <Route path="/Administración usuarios/Usuarios" element={<Users />} />
         <Route path="/Administración usuarios/Permisos" element={<Permisos />} />
-        <Route path="/Administración usuarios/Roles" element={<Roles/>}/>
+        <Route path="/Administración usuarios/Roles" element={<Roles />} />
 
         {/* Administracion de Usuarios */}
         {/* -------------------------- */}
         <Route path="/Administración Parámetros" element={<AdminParam />} />
-        {/*<Route path="/Administración Parámetros/Tipo de Parametros" element={<TipoParametros/>}/>*/}
-        {/*<Route path="/Administración Parámetros/Parametros" element={<Parametros/>}/>*/}
-        {/*<Route path="/Administración Parámetros/Secuenciador" element={<Secuenciador/>}/>*/}
-        {/*<Route path="/Administración Parámetros/Puestos" element={<Puestos/>}/>*/}
-        {/*<Route path="/Administración Parámetros/Pais" element={<Pais/>}/>*/}
+        {<Route path="/Administración Parámetros/Tipo de Parametros" element={<ParameterTypesPage />} />}
+        {<Route path="/Administración Parámetros/Parametros" element={<ParametersPage />} />}
+        {<Route path="/Administración Parámetros/Secuenciador" element={<SequencersPage />} />}
+        {<Route path="/Administración Parámetros/Puestos" element={<PositionsPage />} />}
+        {<Route path="/Administración Parámetros/Pais" element={<CountriesPage />} />}
       </Routes>
     </>
   )

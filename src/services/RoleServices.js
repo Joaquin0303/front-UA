@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const context = 'http://localhost:8080';
+//const context = '';
 
 export const getRoles = async () => {
     const result = await axios({

@@ -1,6 +1,29 @@
 import axios from 'axios'
 
 const context = 'http://localhost:8080';
+//const context = '';
+
+export const loginUser = async (credentials) => {
+    const result = await axios({
+        method: 'post',
+        url: context + '/ua/login',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(credentials)
+    }).then(response => {
+        if (response.data.codigo == 200) {
+            return response.data.model;
+        } else {
+            throw response.data.mensajes[0];
+        }
+
+    }).catch(error => {
+        console.error(error);
+        throw error;
+    })
+    return result;
+}
 
 export const getUsers = async () => {
     const result = await axios({

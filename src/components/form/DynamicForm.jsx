@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import i18n from "../../localization/i18n";
+import InputText from './InputText';
+import InputSwitch from './InputSwitch';
+import InputSequencer from './InputSequencer';
+import InputParameterType from './InputParameterType';
 
 const DynamicForm = ({ data, setModal, disabled, onSubmitForm }) => {
 
@@ -21,19 +25,19 @@ const DynamicForm = ({ data, setModal, disabled, onSubmitForm }) => {
     const createInputFields = () => {
         const cells = Object.keys(data).map((key, i) => {
             const value = data[key];
-            if (!Array.isArray(value) && key != 'id' && key != 'activo' && !key.startsWith('fecha')) {
-                if (typeof value == 'boolean') {
-                    return <div key={i} className='form-check form-switch'>
-                        <label className='label' htmlFor="id">{i18n.t(key)}</label>
-                        <input disabled={disabled} type='checkbox' className='form-check-input' value='' checked={formData[key]} onChange={(e) => updateFormData(key, e.target.checked)} />
-                    </div>
-                } else if (typeof value == 'string') {
-                    return <div className='form-group' key={i}>
-                        <label className='label' htmlFor="id">{i18n.t(key)}</label>
-                        <input disabled={disabled} type="text" name={key} value={formData[key]} onChange={(e) => updateFormData(key, e.target.value)} />
-                    </div>
-                }
-
+            switch (key) {
+                case 'secuenciador':
+                    return <InputSequencer key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                case 'tipoParametro':
+                    return <InputParameterType key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                default:
+                    if (!Array.isArray(value) && key != 'id' && key != 'activo' && !key.startsWith('fecha')) {
+                        if (typeof value == 'boolean') {
+                            return <InputSwitch key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                        } else if (typeof value == 'string') {
+                            return <InputText key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                        }
+                    }
             }
         });
         return cells;
