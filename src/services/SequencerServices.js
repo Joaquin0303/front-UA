@@ -1,12 +1,10 @@
 import axios from 'axios'
-
-const context = 'http://localhost:8080';
-//const context = '';
+import { host } from '../Configs';
 
 export const getSequencers = async () => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/secuenciador'
+        url: host + '/ua/secuenciador'
     }).then(response => {
         return response;
     }).catch(error => {
@@ -18,7 +16,7 @@ export const getSequencers = async () => {
 export const getSequencerById = async (sequencerId) => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/secuenciador/' + sequencerId
+        url: host + '/ua/secuenciador/' + sequencerId
     }).then(response => {
         return response;
     }).catch(error => {
@@ -30,7 +28,7 @@ export const getSequencerById = async (sequencerId) => {
 export const updateSequencer = async (sequencerId, codigo, rangoDesde, rangoHasta, secuencia, activo) => {
     const result = await axios({
         method: 'put',
-        url: context + '/ua/secuenciador/' + sequencerId,
+        url: host + '/ua/secuenciador/' + sequencerId,
         data: {
             'codigo': codigo,
             'rangoDesde': rangoDesde,
@@ -49,7 +47,7 @@ export const updateSequencer = async (sequencerId, codigo, rangoDesde, rangoHast
 export const removeSequencer = async (sequencerId) => {
     const result = await axios({
         method: 'delete',
-        url: context + '/ua/secuenciador/' + sequencerId
+        url: host + '/ua/secuenciador/' + sequencerId
     }).then(response => {
         return response;
     }).catch(error => {

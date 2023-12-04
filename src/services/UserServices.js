@@ -1,12 +1,10 @@
 import axios from 'axios'
-
-const context = 'http://localhost:8080';
-//const context = '';
+import { host } from '../Configs';
 
 export const loginUser = async (credentials) => {
     const result = await axios({
         method: 'post',
-        url: context + '/ua/login',
+        url: host + '/ua/login',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -28,7 +26,7 @@ export const loginUser = async (credentials) => {
 export const getUsers = async () => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/usuario'
+        url: host + '/ua/usuario'
     }).then(response => {
         return response;
     }).catch(error => {
@@ -40,7 +38,7 @@ export const getUsers = async () => {
 export const removeUser = async (userId) => {
     const result = await axios({
         method: 'delete',
-        url: context + '/ua/usuario/' + userId
+        url: host + '/ua/usuario/' + userId
     }).then(response => {
         return response;
     }).catch(error => {
@@ -52,7 +50,7 @@ export const removeUser = async (userId) => {
 export const getUserById = async (userId) => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/usuario/' + userId
+        url: host + '/ua/usuario/' + userId
     }).then(response => {
         return response;
     }).catch(error => {
@@ -64,7 +62,7 @@ export const getUserById = async (userId) => {
 export const editUser = async (userId, numeroLegajo, nombreUsuario) => {
     const result = await axios({
         method: 'put',
-        url: context + '/ua/usuario/' + userId,
+        url: host + '/ua/usuario/' + userId,
         data: {
             'numeroLegajo': numeroLegajo,
             'nombreUsuario': nombreUsuario
@@ -80,7 +78,7 @@ export const editUser = async (userId, numeroLegajo, nombreUsuario) => {
 export const addUser = async (numeroLegajo, nombreUsuario, activo) => {
     const result = await axios({
         method: 'post',
-        url: context + '/ua/usuario',
+        url: host + '/ua/usuario',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -100,7 +98,7 @@ export const addUser = async (numeroLegajo, nombreUsuario, activo) => {
 export const SearchUser = async () => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/usuario/buscar?'
+        url: host + '/ua/usuario/buscar?'
     }).then(response => {
         return response;
     }).catch(error => {

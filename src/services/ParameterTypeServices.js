@@ -1,12 +1,10 @@
 import axios from 'axios'
-
-const context = 'http://localhost:8080';
-//const context = '';
+import { host } from '../Configs';
 
 export const getParameterTypes = async () => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/tipoparametro'
+        url: host + '/ua/tipoparametro'
     }).then(response => {
         return response;
     }).catch(error => {
@@ -18,7 +16,7 @@ export const getParameterTypes = async () => {
 export const getParameterTypeById = async (parameterTypeId) => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/tipoparametro/' + parameterTypeId
+        url: host + '/ua/tipoparametro/' + parameterTypeId
     }).then(response => {
         return response;
     }).catch(error => {
@@ -31,7 +29,7 @@ export const getParameterTypeById = async (parameterTypeId) => {
 export const updateParameterType = async (parameterTypeId, codigo, descripcion, activo) => {
     const result = await axios({
         method: 'put',
-        url: context + '/ua/tipoparametro/' + parameterTypeId,
+        url: host + '/ua/tipoparametro/' + parameterTypeId,
         data: {
             'descripcion': descripcion,
             'activo': activo,
@@ -48,7 +46,7 @@ export const updateParameterType = async (parameterTypeId, codigo, descripcion, 
 export const addParameterType = async (codigo, descripcion, activo) => {
     const result = await axios({
         method: 'post',
-        url: context + '/ua/tipoparametro',
+        url: host + '/ua/tipoparametro',
         data: {
             'descripcion': descripcion,
             'activo': activo,
@@ -65,7 +63,7 @@ export const addParameterType = async (codigo, descripcion, activo) => {
 export const removeParameterType = async (parameterTypeId) => {
     const result = await axios({
         method: 'delete',
-        url: context + '/ua/tipoparametro/' + parameterTypeId
+        url: host + '/ua/tipoparametro/' + parameterTypeId
     }).then(response => {
         return response;
     }).catch(error => {

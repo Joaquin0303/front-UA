@@ -1,12 +1,10 @@
 import axios from 'axios'
-
-const context = 'http://localhost:8080';
-//const context = '';
+import { host } from '../Configs';
 
 export const getRoles = async () => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/rol'
+        url: host + '/ua/rol'
     }).then(response => {
         return response;
     }).catch(error => {
@@ -18,7 +16,7 @@ export const getRoles = async () => {
 export const updateRole = async (roleId, descripcion, activo, permisos, usuarios) => {
     const result = await axios({
         method: 'put',
-        url: context + '/ua/rol/' + roleId,
+        url: host + '/ua/rol/' + roleId,
         data: {
             'descripcion': descripcion,
             'activo': activo,
@@ -36,7 +34,7 @@ export const updateRole = async (roleId, descripcion, activo, permisos, usuarios
 export const addRole = async (descripcion, activo) => {
     const result = await axios({
         method: 'post',
-        url: context + '/ua/rol',
+        url: host + '/ua/rol',
         data: {
             'descripcion': descripcion,
             'activo': activo,
@@ -54,7 +52,7 @@ export const addRole = async (descripcion, activo) => {
 export const assignRoleToUser = async (codigo, userId) => {
     const result = await axios({
         method: 'post',
-        url: context + '/ua/rol/usuario',
+        url: host + '/ua/rol/usuario',
         data: {
             'codigo': codigo,
             'id': userId
@@ -70,7 +68,7 @@ export const assignRoleToUser = async (codigo, userId) => {
 export const assignPermissionToRole = async (codigoRol, codigoPermiso) => {
     const result = await axios({
         method: 'post',
-        url: context + '/ua/rol/permiso',
+        url: host + '/ua/rol/permiso',
         data: {
             'codigoRol': codigoRol,
             'codigoPermiso': codigoPermiso
@@ -86,7 +84,7 @@ export const assignPermissionToRole = async (codigoRol, codigoPermiso) => {
 export const getRoleById = async (roleId) => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/rol/' + roleId
+        url: host + '/ua/rol/' + roleId
     }).then(response => {
         return response;
     }).catch(error => {
@@ -98,7 +96,7 @@ export const getRoleById = async (roleId) => {
 export const removeRole = async (roleId) => {
     const result = await axios({
         method: 'delete',
-        url: context + '/ua/rol/' + roleId
+        url: host + '/ua/rol/' + roleId
     }).then(response => {
         return response;
     }).catch(error => {

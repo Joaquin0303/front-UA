@@ -1,12 +1,10 @@
 import axios from 'axios'
-
-const context = 'http://localhost:8080';
-//const context = '';
+import { host } from '../Configs';
 
 export const getCountries = async () => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/pais'
+        url: host + '/ua/pais'
     }).then(response => {
         return response;
     }).catch(error => {
@@ -18,7 +16,7 @@ export const getCountries = async () => {
 export const getCountryById = async (countryId) => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/pais/' + countryId
+        url: host + '/ua/pais/' + countryId
     }).then(response => {
         return response;
     }).catch(error => {
@@ -30,7 +28,7 @@ export const getCountryById = async (countryId) => {
 export const updateCountry = async (countryId, codigo, secuenciador, activo) => {
     const result = await axios({
         method: 'put',
-        url: context + '/ua/pais/' + countryId,
+        url: host + '/ua/pais/' + countryId,
         data: {
             'codigo': codigo,
             'activo': activo,
@@ -47,7 +45,7 @@ export const updateCountry = async (countryId, codigo, secuenciador, activo) => 
 export const addCountry = async (codigo, secuenciador, activo) => {
     const result = await axios({
         method: 'post',
-        url: context + '/ua/pais',
+        url: host + '/ua/pais',
         data: {
             'codigo': codigo,
             'activo': activo,
@@ -64,7 +62,7 @@ export const addCountry = async (codigo, secuenciador, activo) => {
 export const removeCountry = async (countryId) => {
     const result = await axios({
         method: 'delete',
-        url: context + '/ua/pais/' + countryId
+        url: host + '/ua/pais/' + countryId
     }).then(response => {
         return response;
     }).catch(error => {

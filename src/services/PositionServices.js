@@ -1,12 +1,10 @@
 import axios from 'axios'
-
-const context = 'http://localhost:8080';
-//const context = '';
+import { host } from '../Configs';
 
 export const getPositions = async () => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/puesto'
+        url: host + '/ua/puesto'
     }).then(response => {
         return response;
     }).catch(error => {
@@ -18,7 +16,7 @@ export const getPositions = async () => {
 export const getPositionById = async (positionId) => {
     const result = await axios({
         method: 'get',
-        url: context + '/ua/puesto/' + positionId
+        url: host + '/ua/puesto/' + positionId
     }).then(response => {
         return response;
     }).catch(error => {
@@ -30,7 +28,7 @@ export const getPositionById = async (positionId) => {
 export const updatePosition = async (positionId, codigo, descripcion, codigoDireccion, codigoGerencia, codigoJefatura, codigoCategoria, codigoPuestoAlQueReporta, activo) => {
     const result = await axios({
         method: 'put',
-        url: context + '/ua/puesto/' + positionId,
+        url: host + '/ua/puesto/' + positionId,
         data: {
             'codigo': codigo,
             'descripcion': descripcion,
@@ -52,7 +50,7 @@ export const updatePosition = async (positionId, codigo, descripcion, codigoDire
 export const addPosition = async (codigo, descripcion, codigoDireccion, codigoGerencia, codigoJefatura, codigoCategoria, codigoPuestoAlQueReporta, activo) => {
     const result = await axios({
         method: 'post',
-        url: context + '/ua/puesto',
+        url: host + '/ua/puesto',
         data: {
             'codigo': codigo,
             'descripcion': descripcion,
@@ -74,7 +72,7 @@ export const addPosition = async (codigo, descripcion, codigoDireccion, codigoGe
 export const removePosition = async (positionId) => {
     const result = await axios({
         method: 'delete',
-        url: context + '/ua/puesto/' + positionId
+        url: host + '/ua/puesto/' + positionId
     }).then(response => {
         return response;
     }).catch(error => {
