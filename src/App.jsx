@@ -14,6 +14,11 @@ import './index.css';
 import './App.css';
 import Login from './components/Login';
 import useToken from './useToken';
+import ParameterTypesPage from './pages/ParametersAdmin/ParameterTypesPage';
+import ParametersPage from './pages/ParametersAdmin/ParametersPage';
+import CountriesPage from './pages/ParametersAdmin/CountriesPage';
+import PositionsPage from './pages/ParametersAdmin/PositionsPage';
+import SequencersPage from './pages/ParametersAdmin/SequencersPage';
 
 function App() {
 
@@ -21,7 +26,7 @@ function App() {
 
   if (!token) {
     // Uncomment to enable Login
-    // return <Login setToken={setToken} />
+    return <Login setToken={setToken} />
   }
 
   return (

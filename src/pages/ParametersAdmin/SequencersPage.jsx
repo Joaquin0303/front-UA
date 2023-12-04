@@ -4,10 +4,9 @@ import ABMPage from '../ABMPage';
 
 const SequencerModel = {
     codigo: '',
-    fechaRangoDesde: '',
-    fechaRangoHasta: '',
+    rangoDesde: '',
+    rangoHasta: '',
     secuencia: '',
-    estado: '',
     activo: true
 }
 
@@ -34,7 +33,7 @@ const SequencersPage = () => {
     }
 
     const onEdit = (data) => {
-        updateSequencer(data.id, data.codigo, data.fechaRangoDesde, data.fechaRangoHasta, data.secuencia, data.estado, data.activo).then(result => {
+        updateSequencer(data.id, data.codigo, data.rangoDesde, data.rangoHasta, data.secuencia, data.activo).then(result => {
             console.log('edited=', result);
             loadSequencers();
         });

@@ -27,14 +27,14 @@ const ParametersPage = () => {
     }
 
     const onAdd = (data) => {
-        addParameter(data.codigo, data.descripcion, data.texto1, data.texto2, data.activo).then(result => {
+        addParameter(data.codigo, data.tipoParametro, data.descripcion, data.texto1, data.texto2, data.activo).then(result => {
             console.log('saved=', result);
             loadParameters();
         });
     }
 
     const onEdit = (data) => {
-        updateParameter(data.id, data.codigo, data.descripcion, data.texto1, data.texto2, data.activo).then(result => {
+        updateParameter(data.id, data.tipoParametro, data.codigo, data.descripcion, data.texto1, data.texto2, data.activo).then(result => {
             console.log('edited=', result);
             loadParameters();
         });

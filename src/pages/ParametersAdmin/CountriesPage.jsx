@@ -31,7 +31,7 @@ const CountriesPage = () => {
     }
 
     const onEdit = (data) => {
-        updateCountry(data.id, data.codigo, data.sequencer, data.activo).then(result => {
+        updateCountry(data.id, data.codigo, data.secuenciador, data.activo).then(result => {
             console.log('edited=', result);
             loadCountries();
         });

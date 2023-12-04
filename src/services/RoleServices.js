@@ -39,7 +39,9 @@ export const addRole = async (descripcion, activo) => {
         url: context + '/ua/rol',
         data: {
             'descripcion': descripcion,
-            'activo': activo
+            'activo': activo,
+            'permisos': [],
+            'usuarios': []
         }
     }).then(response => {
         return response;

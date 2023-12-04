@@ -24,21 +24,21 @@ const Roles = () => {
     }
 
     const onAdd = (data) => {
-        addRole(data.codigo, data.descripcion, data.activo, data.permisos, data.usuarios).then(result => {
+        addRole(data.descripcion, data.activo).then(result => {
             console.log('saved=', result);
             loadRoles();
         });
     }
 
     const onEdit = (data) => {
-        updateRole(data.id, data.codigo, data.descripcion, data.activo, data.permisos, data.usuarios).then(result => {
+        updateRole(data.codigo, data.descripcion, data.activo, data.permisos, data.usuarios).then(result => {
             console.log('edited=', result);
             loadRoles();
         });
     }
 
     const onRemove = (data) => {
-        removeRole(data.id).then(result => {
+        removeRole(data.codigo).then(result => {
             console.log('removed=', result);
             loadRoles();
         });

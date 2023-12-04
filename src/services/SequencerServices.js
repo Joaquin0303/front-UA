@@ -27,16 +27,15 @@ export const getSequencerById = async (sequencerId) => {
     return result.data;
 }
 
-export const updateSequencer = async (sequencerId, codigo, fechaRangoDesde, fechaRangoHasta, secuencia, estado, activo) => {
+export const updateSequencer = async (sequencerId, codigo, rangoDesde, rangoHasta, secuencia, activo) => {
     const result = await axios({
         method: 'put',
         url: context + '/ua/secuenciador/' + sequencerId,
         data: {
             'codigo': codigo,
-            'fechaRangoDesde': fechaRangoDesde,
-            'fechaRangoHasta': fechaRangoHasta,
+            'rangoDesde': rangoDesde,
+            'rangoHasta': rangoHasta,
             'secuencia': secuencia,
-            'estado': estado,
             'activo': activo
         }
     }).then(response => {
