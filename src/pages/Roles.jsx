@@ -14,17 +14,38 @@ const Roles = () => {
     const [roleList, setRoleList] = useState([]);
 
     useEffect(() => {
-        loadUsers();
+        loadRoles();
     }, []);
 
-    const loadUsers = () => {
+    const loadRoles = () => {
         getRoles().then(result => {
             setRoleList(result.list);
         });
     }
 
+    const onAdd = (data) => {
+        addRole(data.codigo, data.descripcion, data.activo, data.permisos, data.usuarios).then(result => {
+            console.log('saved=', result);
+            loadRoles();
+        });
+    }
+
+    const onEdit = (data) => {
+        updateRole(data.id, data.codigo, data.descripcion, data.activo, data.permisos, data.usuarios).then(result => {
+            console.log('edited=', result);
+            loadRoles();
+        });
+    }
+
+    const onRemove = (data) => {
+        removeRole(data.id).then(result => {
+            console.log('removed=', result);
+            loadRoles();
+        });
+    }
+
     return (
-        <ABMPage pageName="Roles" dataList={roleList} dataModel={UserModel} searchKey='descripcion' />
+        <ABMPage pageName="Roles" dataList={roleList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
     );
 }
 
