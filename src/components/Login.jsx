@@ -55,14 +55,14 @@ const Login = ({ setToken }) => {
                 </div>
             </header>
             <div className="login-wrapper">
-                <img src={gifWork} alt="gif-work" />
+                <img src={gifWork} alt="gif-work" id='gif'/>
                 <form onSubmit={handleSubmit}>
                     <h2>Iniciar Sesión</h2>
-                    <div className="form-group">
+                    <div className="form-group-login">
                         <label htmlFor="login-user">Nombre de usuario</label>
                         <input type="text" className="form-control" id="login-user" placeholder="Nombre de usuario" onChange={e => setUserName(e.target.value)} />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group-login">
                         <label htmlFor="password-user">Password</label>
                         <input type="password" className="form-control" id="password-user" placeholder="Password" onChange={e => setPassword(e.target.value)} />
                     </div>

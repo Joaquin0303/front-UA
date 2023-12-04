@@ -2,6 +2,7 @@ body{
     padding: 0;
     margin: 0;
     font-family: 'Ubuntu';
+    background-color: white;
 }
 
 .header{
@@ -24,6 +25,7 @@ body{
     margin-top: 5%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 #gif{
@@ -50,7 +52,7 @@ form h2{
 }
 
 
-.login-wrapper .form-group {
+.login-wrapper .form-group-login {
     margin-right: 0;
     display: flex;
     flex-direction: column;
@@ -71,7 +73,7 @@ form h2{
     outline:none;
 } 
 
-.login-wrapper .form-group input {
+.login-wrapper .form-group-login input {
     margin-right: 0;
 }
 
