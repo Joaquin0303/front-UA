@@ -28,7 +28,7 @@ const Users = () => {
     }
 
     const onAdd = (data) => {
-        addUser(data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
+        addUser(data.numeroLegajo, data.nombreUsuario, data.activo, data.roles, data.fechaAlta).then(result => {
             console.log('user saved=', result);
             data.roles && data.roles.forEach(userRole => {
                 assignRoleToUser(userRole.codigo, result.model.id).then(result => {
@@ -36,6 +36,9 @@ const Users = () => {
                     loadUsers();
                 });
             });
+            if (!data.roles || data.roles.length == 0) {
+                loadUsers();
+            }
         });
     }
 
@@ -48,6 +51,9 @@ const Users = () => {
                     loadUsers();
                 });
             });
+            if (!data.roles || data.roles.length == 0) {
+                loadUsers();
+            }
         });
     }
 

@@ -9,6 +9,7 @@ import { getParameters } from '../../services/ParameterServices';
 import InputRole from './InputRole';
 import InputPermission from './InputPermission';
 import InputPositionCode from './InputPositionCode';
+import InputDate from './InputDate';
 
 const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
 
@@ -61,7 +62,9 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
                     return <InputPositionCode key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 default:
                     if (key != 'id' && key != 'activo') {
-                        if (typeof value == 'boolean') {
+                        if (key.startsWith('fecha')) {
+                            return <InputDate key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                        } else if (typeof value == 'boolean') {
                             return <InputSwitch key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'string') {
                             return <InputText key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />

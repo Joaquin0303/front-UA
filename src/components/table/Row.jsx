@@ -6,6 +6,7 @@ import CellParameterType from './CellParameterType';
 import CellRole from './CellRole';
 import CellPermission from './CellPermission';
 import CellParameter from './CellParameter';
+import CellDate from './CellDate';
 
 const Row = ({ pageName, data, setModal }) => {
 
@@ -31,8 +32,11 @@ const Row = ({ pageName, data, setModal }) => {
                 case 'codigoCategoria':
                     return <CellParameter key={i} parameterId={data[key]} />
                 default:
-                    if (!Array.isArray(data[key]) && key != 'id' && key != 'activo' && key != 'usuarios')
-                        return <Cell key={i} value={data[key]} />
+                    if (key.startsWith('fecha'))
+                        return <CellDate key={i} value={data[key]} />
+                    else
+                        if (!Array.isArray(data[key]) && key != 'id' && key != 'activo' && key != 'usuarios')
+                            return <Cell key={i} value={data[key]} />
             }
         });
         return cells;
