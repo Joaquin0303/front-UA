@@ -23,6 +23,7 @@
 .table-wrapper {
     width: 100%;
     display: flex;
+    margin-bottom: 50px;
 }
 
 .table {
@@ -173,6 +174,7 @@
     align-items: baseline;
     margin-bottom: 25px;
     margin-right: 50px;
+    padding: 0;
 }
 
 .form-switch .form-check-input {
@@ -216,4 +218,8 @@
 
 .form-check-input[type=checkbox] {
     background-color: rgb(255, 255, 255);
+}
+
+.active-users{
+    width: 80%;
 }

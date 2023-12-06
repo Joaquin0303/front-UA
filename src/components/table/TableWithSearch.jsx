@@ -57,11 +57,13 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
                 </div>
                 <button className='btns-add' onClick={(e) => { e.stopPropagation(); setModal(true, 'add', dataModel) }}><FaPlus />Agregar</button>
             </div>
-
-            {setActive && <div className='form-check form-switch'>
+            <div className='active-users'>
+                {setActive && <div className='form-check form-switch'>
                 Activos
                 <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />
             </div>}
+            </div>
+            
             <Table pageName={pageName} dataList={filteredDataList} setModal={setModal} />
             {showModalForm && <ModalForm pageName={pageName} data={formData} setModal={setModal} formDisabled={formDisabled} onSubmitForm={onSubmitForm} />}
         </>
