@@ -3,7 +3,7 @@ import Row from './Row'
 import '../../styles/abm.css'
 import i18n from '../../localization/i18n'
 
-const Table = ({ dataList, setModal }) => {
+const Table = ({ pageName, dataList, setModal }) => {
 
     return (
         <>
@@ -14,7 +14,7 @@ const Table = ({ dataList, setModal }) => {
                             <tr>
                                 {
                                     Object.keys(dataList[0]).map((k, i) => {
-                                        if (!Array.isArray(dataList[0][k]) && k != 'id')
+                                        if (k != 'id' && k != 'activo' && k != 'usuarios' && (pageName != 'Permisos' || k != 'roles'))
                                             return <th key={i}>{i18n.t(k)}</th>
                                     })
                                 }
@@ -23,7 +23,7 @@ const Table = ({ dataList, setModal }) => {
                         </thead>
                         <tbody>
                             {dataList.map((d, i) => {
-                                return <Row key={i} data={d} setModal={setModal} />
+                                return <Row pageName={pageName} key={i} data={d} setModal={setModal} />
                             })}
                         </tbody>
                     </table>

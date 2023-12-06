@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getRoles, updateRole, addRole, assignRoleToUser, assignPermissionToRole, getRoleById, removeRole } from '../services/RoleServices';
+import { getRoles, updateRole, addRole, assignPermissionToRole, getRoleById, removeRole } from '../services/RoleServices';
 import ABMPage from './ABMPage';
 
 const UserModel = {
-    codigo: '',
     descripcion: '',
     activo: true,
     permisos: null,
@@ -19,21 +18,33 @@ const Roles = () => {
 
     const loadRoles = () => {
         getRoles().then(result => {
-            setRoleList(result.list);
+            if (result.list)
+                setRoleList(result.list.filter(d => d.activo == true));
         });
     }
 
     const onAdd = (data) => {
         addRole(data.descripcion, data.activo).then(result => {
-            console.log('saved=', result);
-            loadRoles();
+            console.log('role saved=', result);
+            data.permisos && data.permisos.forEach(permissionRole => {
+                assignPermissionToRole(result.model.codigo, permissionRole.id).then(result => {
+                    console.log('role permission saved=', result);
+                    loadRoles();
+                });
+            });
+
         });
     }
 
     const onEdit = (data) => {
-        updateRole(data.codigo, data.descripcion, data.activo, data.permisos, data.usuarios).then(result => {
-            console.log('edited=', result);
-            loadRoles();
+        updateRole(data.codigo, data.descripcion, data.activo).then(result => {
+            console.log('role edited=', result);
+            data.permisos && data.permisos.forEach(permissionRole => {
+                assignPermissionToRole(result.model.codigo, permissionRole.id).then(result => {
+                    console.log('role permission saved=', result);
+                    loadRoles();
+                });
+            });
         });
     }
 

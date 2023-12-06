@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import i18n from "../../localization/i18n";
 import InputText from './InputText';
 import InputSwitch from './InputSwitch';
 import InputSequencer from './InputSequencer';
 import InputParameterType from './InputParameterType';
+import InputParameter from './InputParameter';
+import { getParameters } from '../../services/ParameterServices';
+import InputRole from './InputRole';
+import InputPermission from './InputPermission';
+import InputPositionCode from './InputPositionCode';
 
-const DynamicForm = ({ data, setModal, disabled, onSubmitForm }) => {
+const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
 
     const [formData, setFormData] = useState(data);
+    const [parameterList, setParameterList] = useState([]);
 
     console.log('formData=', formData);
 
@@ -22,6 +28,13 @@ const DynamicForm = ({ data, setModal, disabled, onSubmitForm }) => {
         setModal(false);
     }
 
+    useEffect(() => {
+        getParameters().then(result => {
+            console.log('params=', result.list);
+            setParameterList(result.list);
+        });
+    }, []);
+
     const createInputFields = () => {
         const cells = Object.keys(data).map((key, i) => {
             const value = data[key];
@@ -30,8 +43,24 @@ const DynamicForm = ({ data, setModal, disabled, onSubmitForm }) => {
                     return <InputSequencer key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 case 'tipoParametro':
                     return <InputParameterType key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                case 'codigoDireccion':
+                    return <InputParameter key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
+                case 'codigoGerencia':
+                    return <InputParameter key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 12)} updateFormData={updateFormData} />
+                case 'codigoJefatura':
+                    return <InputParameter key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 14)} updateFormData={updateFormData} />
+                case 'codigoCategoria':
+                    return <InputParameter key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 3)} updateFormData={updateFormData} />
+                case 'roles':
+                    if (pageName != 'Permisos')
+                        return <InputRole key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                    break;
+                case 'permisos':
+                    return <InputPermission key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                case 'codigoPuestoAlQueReporta':
+                    return <InputPositionCode key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 default:
-                    if (!Array.isArray(value) && key != 'id' && key != 'activo' && !key.startsWith('fecha')) {
+                    if (key != 'id' && key != 'activo') {
                         if (typeof value == 'boolean') {
                             return <InputSwitch key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'string') {

@@ -26,6 +26,7 @@ export const getPositionById = async (positionId) => {
 }
 
 export const updatePosition = async (positionId, codigo, descripcion, codigoDireccion, codigoGerencia, codigoJefatura, codigoCategoria, codigoPuestoAlQueReporta, activo) => {
+    console.log('codigoDireccion', codigoDireccion)
     const result = await axios({
         method: 'put',
         url: host + '/ua/puesto/' + positionId,

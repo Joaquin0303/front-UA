@@ -22,7 +22,8 @@ const ParametersPage = () => {
 
     const loadParameters = () => {
         getParameters().then(result => {
-            setParameterList(result.list);
+            if (result.list)
+                setParameterList(result.list.filter(d => d.activo == true));
         });
     }
 

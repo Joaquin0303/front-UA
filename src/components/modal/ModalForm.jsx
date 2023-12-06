@@ -2,12 +2,12 @@ import React from 'react'
 import DynamicForm from '../form/DynamicForm';
 import '../../styles/Modal.css'
 
-const ModalForm = ({ data, setModal, formDisabled, onSubmitForm }) => {
+const ModalForm = ({ pageName, data, setModal, formDisabled, onSubmitForm }) => {
 
     return (
         <div className='modal-container' >
             <div className='modals'>
-                <DynamicForm data={data} setModal={setModal} disabled={formDisabled} onSubmitForm={onSubmitForm} />
+                <DynamicForm pageName={pageName} data={data} setModal={setModal} disabled={formDisabled} onSubmitForm={onSubmitForm} />
             </div>
         </div >
     )

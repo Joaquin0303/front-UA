@@ -13,15 +13,15 @@ export const getRoles = async () => {
     return result.data;
 }
 
-export const updateRole = async (roleId, descripcion, activo, permisos, usuarios) => {
+export const updateRole = async (roleId, descripcion, activo) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/rol/' + roleId,
         data: {
             'descripcion': descripcion,
             'activo': activo,
-            'permisos': permisos,
-            'usuarios': usuarios
+            'permisos': [],
+            'usuarios': []
         }
     }).then(response => {
         return response;

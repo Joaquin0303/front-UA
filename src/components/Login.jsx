@@ -46,7 +46,7 @@ const Login = ({ setToken }) => {
                     <p className="authFail">
                         {errorMessage}
                     </p>
-                    <button type="submit" className="btn-login">Submit</button>
+                    <button type="submit" className="btn-login">Ingresar</button>
                 </form>
             </div>
         </>

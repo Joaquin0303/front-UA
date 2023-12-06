@@ -19,7 +19,8 @@ const CountriesPage = () => {
 
     const loadCountries = () => {
         getCountries().then(result => {
-            setCountryList(result.list);
+            if (result.list)
+                setCountryList(result.list.filter(d => d.activo == true));
         });
     }
 

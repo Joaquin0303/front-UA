@@ -19,7 +19,8 @@ const SequencersPage = () => {
 
     const loadSequencers = () => {
         getSequencers().then(result => {
-            setSequencerList(result.list);
+            if (result.list)
+                setSequencerList(result.list.filter(d => d.activo == true));
         });
     }
 

@@ -22,7 +22,8 @@ const PositionsPage = () => {
 
     const loadPositions = () => {
         getPositions().then(result => {
-            setPositionList(result.list);
+            if (result.list)
+                setPositionList(result.list.filter(d => d.activo == true));
         });
     }
 

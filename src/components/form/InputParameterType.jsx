@@ -14,12 +14,13 @@ const InputParameterType = ({ name, value, disabled, updateFormData }) => {
 
     useEffect(() => {
         getParameterTypes().then(result => {
-            setParameterTypeList(result.list);
+            if (result.list)
+                setParameterTypeList(result.list.filter(d => d.activo == true));
         })
     }, []);
 
     return (
-        <div className='form-check form-switch'>
+        <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
             <select disabled={disabled} name={name} onChange={paramTypeSelectorChangeHandler}>
                 {parameterTypeList.map((s, i) => {

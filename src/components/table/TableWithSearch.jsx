@@ -4,13 +4,13 @@ import Table from './Table';
 import { FaPlus } from 'react-icons/fa';
 import ModalForm from '../modal/ModalForm';
 
-const TableWithSearch = ({ dataList, dataModel, onAdd, onEdit, onRemove, searchKey }) => {
+const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemove, searchKey, setActive }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [formData, setFormData] = useState();
     const [showModalForm, setShowModalForm] = useState(false);
     const [formDisabled, setFormDisabled] = useState();
     const [actionForm, setActionForm] = useState();
-
+    const [showActives, setShowActives] = useState(true);
     const [filteredDataList, setFilteredDataList] = useState(dataList);
 
     const setModal = (open, action, data) => {
@@ -21,13 +21,21 @@ const TableWithSearch = ({ dataList, dataModel, onAdd, onEdit, onRemove, searchK
     }
 
     const onSubmitForm = (data) => {
+        console.log('data submited', data)
         switch (actionForm) {
             case 'add': onAdd(data); break;
             case 'edit': onEdit(data); break;
+            case 'activate': data.activo = true; onEdit(data); break;
+            case 'inactivate': data.activo = false; onEdit(data); break;
             case 'view': break;
             case 'remove': onRemove(data); break;
             default: ;
         }
+    }
+
+    const handleActiveChange = (e) => {
+        setShowActives(e.target.checked);
+        setActive(e.target.checked);
     }
 
     useEffect(() => {
@@ -49,8 +57,13 @@ const TableWithSearch = ({ dataList, dataModel, onAdd, onEdit, onRemove, searchK
                 </div>
                 <button className='btns-add' onClick={(e) => { e.stopPropagation(); setModal(true, 'add', dataModel) }}><FaPlus />Agregar</button>
             </div>
-            <Table dataList={filteredDataList} setModal={setModal} />
-            {showModalForm && <ModalForm data={formData} setModal={setModal} formDisabled={formDisabled} onSubmitForm={onSubmitForm} />}
+
+            {setActive && <div className='form-check form-switch'>
+                Activos
+                <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />
+            </div>}
+            <Table pageName={pageName} dataList={filteredDataList} setModal={setModal} />
+            {showModalForm && <ModalForm pageName={pageName} data={formData} setModal={setModal} formDisabled={formDisabled} onSubmitForm={onSubmitForm} />}
         </>
     );
 }

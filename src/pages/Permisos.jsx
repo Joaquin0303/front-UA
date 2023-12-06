@@ -16,7 +16,8 @@ export const Permisos = () => {
 
     const loadPermissions = () => {
         getPermissions().then(result => {
-            setPermissionList(result.list);
+            if (result.list)
+                setPermissionList(result.list.filter(d => d.activo == true));
         });
     }
 

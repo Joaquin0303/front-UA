@@ -21,7 +21,21 @@ i18n
           numeroLegajo: 'Numero de Legajo',
           fechaAlta: "Fecha de Alta",
           fechaBaja: "Fecha de Baja",
-          descripcion: "Descripción"
+          descripcion: "Descripción",
+          codigo: "Código",
+          tipoParametro: "Tipo de Parámetro",
+          texto1: "Texto 1",
+          texto2: "Texto 2",
+          rangoDesde: "Desde",
+          rangoHasta: "Hasta",
+          secuencia: "Secuencia",
+          codigoDireccion: "Dirección",
+          codigoGerencia: "Gerencia",
+          codigoJefatura: "Jefatura",
+          codigoCategoria: "Categoría",
+          codigoPuestoAlQueReporta: "Reporta a",
+          secuenciador: "Secuenciador",
+          permisos: 'Permisos'
         }
       }
     }

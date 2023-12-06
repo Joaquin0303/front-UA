@@ -17,7 +17,8 @@ const ParameterTypesPage = () => {
 
     const loadParameterTypes = () => {
         getParameterTypes().then(result => {
-            setParameterTypeList(result.list);
+            if (result.list)
+                setParameterTypeList(result.list.filter(d => d.activo == true));
         });
     }
 
@@ -43,7 +44,7 @@ const ParameterTypesPage = () => {
     }
 
     return (
-        <ABMPage pageName="Tipo de Parametros" dataList={parameterTypeList} dataModel={ParameterTypeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
+        <ABMPage pageName="Tipo de Parámetros" dataList={parameterTypeList} dataModel={ParameterTypeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
     );
 }
 

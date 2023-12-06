@@ -14,12 +14,13 @@ const InputSequencer = ({ name, value, disabled, updateFormData }) => {
 
     useEffect(() => {
         getSequencers().then(result => {
-            setSequencerList(result.list);
+            if (result.list)
+                setSequencerList(result.list.filter(d => d.activo == true));
         })
     }, []);
 
     return (
-        <div className='form-check form-switch'>
+        <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
             <select disabled={disabled} name={name} onChange={seqSelectorChangeHandler}>
                 {sequencerList.map((s, i) => {

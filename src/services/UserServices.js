@@ -59,13 +59,15 @@ export const getUserById = async (userId) => {
     return result.data;
 }
 
-export const editUser = async (userId, numeroLegajo, nombreUsuario) => {
+export const editUser = async (userId, numeroLegajo, nombreUsuario, activo, roles) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/usuario/' + userId,
         data: {
             'numeroLegajo': numeroLegajo,
-            'nombreUsuario': nombreUsuario
+            'nombreUsuario': nombreUsuario,
+            'activo': activo,
+            'roles': roles
         }
     }).then(response => {
         return response;
@@ -75,7 +77,7 @@ export const editUser = async (userId, numeroLegajo, nombreUsuario) => {
     return result.data;
 }
 
-export const addUser = async (numeroLegajo, nombreUsuario, activo) => {
+export const addUser = async (numeroLegajo, nombreUsuario, activo, roles) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/usuario',
@@ -85,7 +87,8 @@ export const addUser = async (numeroLegajo, nombreUsuario, activo) => {
         data: JSON.stringify({
             'numeroLegajo': numeroLegajo,
             'nombreUsuario': nombreUsuario,
-            'activo': activo
+            'activo': activo,
+            'roles': roles
         })
     }).then(response => {
         return response;
