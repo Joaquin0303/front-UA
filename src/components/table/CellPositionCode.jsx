@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { getPositionById } from "../../services/PositionServices";
 
 const CellPositionCode = ({ positionId }) => {
-    console.log(positionId);
     const [position, setPosition] = useState();
 
     useEffect(() => {

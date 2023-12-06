@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getSequencers, updateSequencer, removeSequencer } from '../../services/SequencerServices';
+import { getSequencers, updateSequencer, removeSequencer, addSequencer } from '../../services/SequencerServices';
 import ABMPage from '../ABMPage';
 
 const SequencerModel = {
@@ -25,12 +25,10 @@ const SequencersPage = () => {
     }
 
     const onAdd = (data) => {
-        /*
-        addSequenver().then(result => {
+        addSequencer(data.codigo, data.rangoDesde, data.rangoHasta, data.secuencia, data.activo).then(result => {
             console.log('saved=', result);
             loadSequencers();
         });
-        */
     }
 
     const onEdit = (data) => {

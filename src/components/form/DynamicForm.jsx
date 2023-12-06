@@ -32,7 +32,6 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
 
     useEffect(() => {
         getParameters().then(result => {
-            console.log('params=', result.list);
             setParameterList(result.list);
         });
     }, []);
@@ -65,7 +64,6 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
                 default:
                     if (key != 'id' && key != 'activo' && key != 'fechaAlta'
                         && (pageName != 'parameterType' || key != 'codigo')
-                        && (pageName != 'Puesto' || key != 'codigo')
                     ) {
                         if (key.startsWith('fechaBaja')) {
                             return <InputDate key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />

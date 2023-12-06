@@ -59,7 +59,7 @@ export const getUserById = async (userId) => {
     return result.data;
 }
 
-export const editUser = async (userId, numeroLegajo, nombreUsuario, activo, roles, fechaAlta) => {
+export const editUser = async (userId, numeroLegajo, nombreUsuario, activo, roles) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/usuario/' + userId,
@@ -67,8 +67,7 @@ export const editUser = async (userId, numeroLegajo, nombreUsuario, activo, role
             'numeroLegajo': numeroLegajo,
             'nombreUsuario': nombreUsuario,
             'activo': activo,
-            'roles': roles,
-            'fechaAlta': fechaAlta
+            'roles': roles
         }
     }).then(response => {
         return response;
