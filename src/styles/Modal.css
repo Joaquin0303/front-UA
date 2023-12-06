@@ -50,6 +50,13 @@ label {
     width: 400px;
     height: 30px;
     margin-right: 50px;
+    border: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
 }
 
 .form-group label {
