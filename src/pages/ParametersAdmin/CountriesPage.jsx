@@ -4,6 +4,7 @@ import ABMPage from '../ABMPage';
 
 const CountryModel = {
     codigo: '',
+    descripcion: '',
     secuenciador: {
         id: 1
     },
@@ -25,14 +26,14 @@ const CountriesPage = () => {
     }
 
     const onAdd = (data) => {
-        addCountry(data.codigo, data.secuenciador, data.activo).then(result => {
+        addCountry(data.codigo, data.descripcion, data.secuenciador, data.activo).then(result => {
             console.log('saved=', result);
             loadCountries();
         });
     }
 
     const onEdit = (data) => {
-        updateCountry(data.id, data.codigo, data.secuenciador, data.activo).then(result => {
+        updateCountry(data.id, data.descripcion, data.codigo, data.secuenciador, data.activo).then(result => {
             console.log('edited=', result);
             loadCountries();
         });
@@ -46,7 +47,7 @@ const CountriesPage = () => {
     }
 
     return (
-        <ABMPage pageName="Paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='codigo' />
+        <ABMPage pageName="Paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
     );
 }
 

@@ -44,7 +44,7 @@ const ParameterTypesPage = () => {
     }
 
     return (
-        <ABMPage pageName="Tipo de Parámetros" dataList={parameterTypeList} dataModel={ParameterTypeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
+        <ABMPage pageName="parameterType" dataList={parameterTypeList} dataModel={ParameterTypeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
     );
 }
 

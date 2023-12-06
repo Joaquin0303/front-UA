@@ -14,7 +14,7 @@ const InputParameter = ({ name, value, parameterList, disabled, updateFormData }
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
             <select disabled={disabled} value={value} name={name} onChange={paramSelectorChangeHandler}>
-                <option value={0}>Seleccione</option>
+                <option value={0}>(Seleccione)</option>
                 {parameterList && parameterList.map((p, i) => {
                     return <option key={i} value={p.id}>{p.descripcion}</option>
                 })}

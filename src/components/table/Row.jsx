@@ -7,6 +7,7 @@ import CellRole from './CellRole';
 import CellPermission from './CellPermission';
 import CellParameter from './CellParameter';
 import CellDate from './CellDate';
+import CellPositionCode from './CellPositionCode';
 
 const Row = ({ pageName, data, setModal }) => {
 
@@ -24,18 +25,24 @@ const Row = ({ pageName, data, setModal }) => {
                 case 'permisos':
                     return <CellPermission key={i} permissionData={data[key]} />
                 case 'codigoDireccion':
-                    return <CellParameter key={i} parameterId={data[key]} />
+                    return <CellParameter key={i} parameter={data[key]} />
                 case 'codigoGerencia':
-                    return <CellParameter key={i} parameterId={data[key]} />
+                    return <CellParameter key={i} parameter={data[key]} />
                 case 'codigoJefatura':
-                    return <CellParameter key={i} parameterId={data[key]} />
+                    return <CellParameter key={i} parameter={data[key]} />
                 case 'codigoCategoria':
-                    return <CellParameter key={i} parameterId={data[key]} />
+                    return <CellParameter key={i} parameter={data[key]} />
+                case 'codigoPuestoAlQueReporta':
+                    return <CellPositionCode key={i} positionId={data[key]} />
                 default:
                     if (key.startsWith('fecha'))
                         return <CellDate key={i} value={data[key]} />
                     else
-                        if (!Array.isArray(data[key]) && key != 'id' && key != 'activo' && key != 'usuarios')
+                        if (!Array.isArray(data[key]) && key != 'id' && key != 'activo' && key != 'usuarios'
+                            && (pageName != 'Roles' || key != 'codigo')
+                            && (pageName != 'parameterType' || key != 'codigo')
+                            && (pageName != 'Puesto' || key != 'codigo')
+                        )
                             return <Cell key={i} value={data[key]} />
             }
         });

@@ -23,6 +23,7 @@ const InputParameterType = ({ name, value, disabled, updateFormData }) => {
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
             <select disabled={disabled} name={name} onChange={paramTypeSelectorChangeHandler}>
+                <option value={0}>(Seleccione)</option>
                 {parameterTypeList.map((s, i) => {
                     return <option key={i} selected={s.id == value.id} value={s.id}>{s.descripcion}</option>
                 })}
