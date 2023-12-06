@@ -25,12 +25,13 @@ export const getCountryById = async (countryId) => {
     return result.data;
 }
 
-export const updateCountry = async (countryId, codigo, secuenciador, activo) => {
+export const updateCountry = async (countryId, descripcion, codigo, secuenciador, activo) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/pais/' + countryId,
         data: {
             'codigo': codigo,
+            'descripcion': descripcion,
             'activo': activo,
             'secuenciador': secuenciador
         }
@@ -42,12 +43,13 @@ export const updateCountry = async (countryId, codigo, secuenciador, activo) => 
     return result.data;
 }
 
-export const addCountry = async (codigo, secuenciador, activo) => {
+export const addCountry = async (codigo, descripcion, secuenciador, activo) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/pais',
         data: {
             'codigo': codigo,
+            'descripcion': descripcion,
             'activo': activo,
             'secuenciador': secuenciador
         }

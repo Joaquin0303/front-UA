@@ -20,7 +20,7 @@ const InputPositionCode = ({ name, value, disabled, updateFormData }) => {
     return (
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
-            <select disabled={disabled} value={value.id} name={name} onChange={posSelectorChangeHandler}>
+            <select disabled={disabled} value={value ? value.id : 0} name={name} onChange={posSelectorChangeHandler}>
                 <option value={0}>No</option>
                 {positionList.map((s, i) => {
                     return <option key={i} value={s.id}>{s.codigo}</option>

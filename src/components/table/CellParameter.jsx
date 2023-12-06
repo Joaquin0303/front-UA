@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { getParameterById } from "../../services/ParameterServices";
-const CellParameter = ({ parameterId }) => {
+const CellParameter = ({ parameter }) => {
 
-    const [parameter, setParameter] = useState();
-
-    useEffect(() => {
-        getParameterById(parameterId).then(result => {
-            setParameter(result);
-        })
-    }, []);
+    console.log(parameter);
     return (
-        <td>{parameter && parameter.model.descripcion}</td>
+        <td>{parameter && parameter.descripcion}</td>
     );
 }
 

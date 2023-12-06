@@ -35,7 +35,8 @@ i18n
           codigoCategoria: "Categoría",
           codigoPuestoAlQueReporta: "Reporta a",
           secuenciador: "Secuenciador",
-          permisos: 'Permisos'
+          permisos: 'Permisos',
+          parameterType: "Tipo de parametro"
         }
       }
     }

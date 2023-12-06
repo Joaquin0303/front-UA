@@ -9,6 +9,8 @@ import { getParameters } from '../../services/ParameterServices';
 import InputRole from './InputRole';
 import InputPermission from './InputPermission';
 import InputPositionCode from './InputPositionCode';
+import InputDate from './InputDate';
+import InputNumber from './InputNumber';
 
 const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
 
@@ -38,6 +40,7 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
     const createInputFields = () => {
         const cells = Object.keys(data).map((key, i) => {
             const value = data[key];
+
             switch (key) {
                 case 'secuenciador':
                     return <InputSequencer key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
@@ -60,11 +63,18 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
                 case 'codigoPuestoAlQueReporta':
                     return <InputPositionCode key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 default:
-                    if (key != 'id' && key != 'activo') {
-                        if (typeof value == 'boolean') {
+                    if (key != 'id' && key != 'activo' && key != 'fechaAlta'
+                        && (pageName != 'parameterType' || key != 'codigo')
+                        && (pageName != 'Puesto' || key != 'codigo')
+                    ) {
+                        if (key.startsWith('fechaBaja')) {
+                            return <InputDate key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                        } else if (typeof value == 'boolean') {
                             return <InputSwitch key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'string') {
                             return <InputText key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                        } else if (typeof value == 'number') {
+                            return <InputNumber key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
                         }
                     }
             }
