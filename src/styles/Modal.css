@@ -21,7 +21,7 @@ label {
     display: flex;
     position: relative;
     border-radius: 5px;
-    padding: 2rem;
+    padding: 2rem 2rem 0rem 2rem;
     background-color: #00528F;
     width: min-content;
     height: 450px;
@@ -74,8 +74,16 @@ label {
 }
 
 .botones-conf-close {
-    bottom: 0;
-    left: 0;
+    /* bottom: 0; */
+    /* left: 0; */
+    position: relative;
+    display: flex;
+    width: 90%;
+    /* height: 0px; */
+    padding: 1px 100px 27px 2px;
+    margin-bottom: 0 !important;
+    background: #00528f;
+    align-items: flex-end;
 }
 
 .form-p {
