@@ -69,7 +69,6 @@ label {
 .form {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 50px;
     width: 80%;
 }
 
