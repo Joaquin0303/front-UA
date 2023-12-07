@@ -13,15 +13,16 @@ const CountryModel = {
 
 const CountriesPage = () => {
     const [countryList, setCountryList] = useState([]);
+    const [statusActive, setStatusActive] = useState(true);
 
     useEffect(() => {
         loadCountries();
-    }, []);
+    }, [statusActive]);
 
     const loadCountries = () => {
         getCountries().then(result => {
             if (result.list)
-                setCountryList(result.list.filter(d => d.activo == true));
+                setCountryList(result.list.filter(d => d.activo == statusActive));
         });
     }
 
@@ -47,7 +48,7 @@ const CountriesPage = () => {
     }
 
     return (
-        <ABMPage pageName="paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
+        <ABMPage pageName="paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' setActive={setStatusActive} />
     );
 }
 

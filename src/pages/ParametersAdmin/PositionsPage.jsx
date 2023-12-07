@@ -15,15 +15,16 @@ const PositionModel = {
 
 const PositionsPage = () => {
     const [positionList, setPositionList] = useState([]);
+    const [statusActive, setStatusActive] = useState(true);
 
     useEffect(() => {
         loadPositions();
-    }, []);
+    }, [statusActive]);
 
     const loadPositions = () => {
         getPositions().then(result => {
             if (result.list)
-                setPositionList(result.list.filter(d => d.activo == true));
+                setPositionList(result.list.filter(d => d.activo == statusActive));
         });
     }
 
@@ -49,7 +50,7 @@ const PositionsPage = () => {
     }
 
     return (
-        <ABMPage pageName="Puesto" dataList={positionList} dataModel={PositionModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
+        <ABMPage pageName="Puesto" dataList={positionList} dataModel={PositionModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' setActive={setStatusActive} />
     );
 }
 

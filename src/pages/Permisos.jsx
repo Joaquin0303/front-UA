@@ -9,15 +9,16 @@ const PermissionModel = {
 
 export const Permisos = () => {
     const [permissionList, setPermissionList] = useState([]);
+    const [statusActive, setStatusActive] = useState(true);
 
     useEffect(() => {
         loadPermissions();
-    }, []);
+    }, [statusActive]);
 
     const loadPermissions = () => {
         getPermissions().then(result => {
             if (result.list)
-                setPermissionList(result.list.filter(d => d.activo == true));
+                setPermissionList(result.list.filter(d => d.activo == statusActive));
         });
     }
 
@@ -43,6 +44,6 @@ export const Permisos = () => {
     }
 
     return (
-        <ABMPage pageName="Permisos" dataList={permissionList} dataModel={PermissionModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
+        <ABMPage pageName="Permisos" dataList={permissionList} dataModel={PermissionModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' setActive={setStatusActive} />
     );
 };
