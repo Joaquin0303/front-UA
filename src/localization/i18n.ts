@@ -24,6 +24,7 @@ i18n
           descripcion: "Descripción",
           codigo: "Código",
           tipoParametro: "Tipo de Parámetro",
+          parameterType: "Tipo de Parámetro",
           texto1: "Texto 1",
           texto2: "Texto 2",
           rangoDesde: "Desde",
@@ -36,7 +37,8 @@ i18n
           codigoPuestoAlQueReporta: "Reporta a",
           secuenciador: "Secuenciador",
           permisos: 'Permisos',
-          parameterType: "Tipo de parametro"
+          roles: "Roles",
+          paises: 'Países'
         }
       }
     }

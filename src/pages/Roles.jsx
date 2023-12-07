@@ -11,15 +11,16 @@ const UserModel = {
 
 const Roles = () => {
     const [roleList, setRoleList] = useState([]);
+    const [statusActive, setStatusActive] = useState(true);
 
     useEffect(() => {
         loadRoles();
-    }, []);
+    }, [statusActive]);
 
     const loadRoles = () => {
         getRoles().then(result => {
             if (result.list)
-                setRoleList(result.list.filter(d => d.activo == true));
+                setRoleList(result.list.filter(d => d.activo == statusActive));
         });
     }
 
@@ -56,7 +57,7 @@ const Roles = () => {
     }
 
     return (
-        <ABMPage pageName="Roles" dataList={roleList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
+        <ABMPage pageName="Roles" dataList={roleList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' setActive={setStatusActive} />
     );
 }
 

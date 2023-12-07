@@ -12,15 +12,16 @@ const SequencerModel = {
 
 const SequencersPage = () => {
     const [sequencerList, setSequencerList] = useState([]);
+    const [statusActive, setStatusActive] = useState(true);
 
     useEffect(() => {
         loadSequencers();
-    }, []);
+    }, [statusActive]);
 
     const loadSequencers = () => {
         getSequencers().then(result => {
             if (result.list)
-                setSequencerList(result.list.filter(d => d.activo == true));
+                setSequencerList(result.list.filter(d => d.activo == statusActive));
         });
     }
 
@@ -46,7 +47,7 @@ const SequencersPage = () => {
     }
 
     return (
-        <ABMPage pageName="Secuenciador" dataList={sequencerList} dataModel={SequencerModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='codigo' />
+        <ABMPage pageName="Secuenciador" dataList={sequencerList} dataModel={SequencerModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='codigo' setActive={setStatusActive} />
     );
 }
 

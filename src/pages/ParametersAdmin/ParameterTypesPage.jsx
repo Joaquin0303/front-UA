@@ -8,17 +8,28 @@ const ParameterTypeModel = {
     activo: true
 }
 
+const compare = (a, b) => {
+    if (a.descripcion < b.descripcion) {
+        return -1;
+    }
+    if (a.descripcion > b.descripcion) {
+        return 1;
+    }
+    return 0;
+}
+
 const ParameterTypesPage = () => {
     const [parameterTypeList, setParameterTypeList] = useState([]);
+    const [statusActive, setStatusActive] = useState(true);
 
     useEffect(() => {
         loadParameterTypes();
-    }, []);
+    }, [statusActive]);
 
     const loadParameterTypes = () => {
         getParameterTypes().then(result => {
             if (result.list)
-                setParameterTypeList(result.list.filter(d => d.activo == true));
+                setParameterTypeList(result.list.filter(d => d.activo == statusActive).sort(compare));
         });
     }
 
@@ -44,7 +55,7 @@ const ParameterTypesPage = () => {
     }
 
     return (
-        <ABMPage pageName="parameterType" dataList={parameterTypeList} dataModel={ParameterTypeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
+        <ABMPage pageName="parameterType" dataList={parameterTypeList} dataModel={ParameterTypeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' setActive={setStatusActive} />
     );
 }
 
