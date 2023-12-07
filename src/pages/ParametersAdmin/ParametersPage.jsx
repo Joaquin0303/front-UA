@@ -13,6 +13,16 @@ const ParameterModel = {
     activo: true
 }
 
+const compare = (a, b) => {
+    if (a.descripcion < b.descripcion) {
+        return -1;
+    }
+    if (a.descripcion > b.descripcion) {
+        return 1;
+    }
+    return 0;
+}
+
 const ParametersPage = () => {
     const [parameterList, setParameterList] = useState([]);
 
@@ -23,7 +33,7 @@ const ParametersPage = () => {
     const loadParameters = () => {
         getParameters().then(result => {
             if (result.list)
-                setParameterList(result.list.filter(d => d.activo == true));
+                setParameterList(result.list.sort(compare));
         });
     }
 

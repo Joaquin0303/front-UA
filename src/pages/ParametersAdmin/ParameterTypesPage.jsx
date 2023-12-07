@@ -8,6 +8,16 @@ const ParameterTypeModel = {
     activo: true
 }
 
+const compare = (a, b) => {
+    if (a.descripcion < b.descripcion) {
+        return -1;
+    }
+    if (a.descripcion > b.descripcion) {
+        return 1;
+    }
+    return 0;
+}
+
 const ParameterTypesPage = () => {
     const [parameterTypeList, setParameterTypeList] = useState([]);
 
@@ -18,7 +28,7 @@ const ParameterTypesPage = () => {
     const loadParameterTypes = () => {
         getParameterTypes().then(result => {
             if (result.list)
-                setParameterTypeList(result.list.filter(d => d.activo == true));
+                setParameterTypeList(result.list.sort(compare));
         });
     }
 

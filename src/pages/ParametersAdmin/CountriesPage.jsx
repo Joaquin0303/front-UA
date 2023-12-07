@@ -47,7 +47,7 @@ const CountriesPage = () => {
     }
 
     return (
-        <ABMPage pageName="Paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
+        <ABMPage pageName="paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' />
     );
 }
 
