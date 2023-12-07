@@ -32,12 +32,15 @@ const InputPermission = ({ name, value, disabled, updateFormData }) => {
         <>
             <div className='form-group'>
                 <label className='label' htmlFor="id">Permisos</label>
-                {permissionList.map((p, i) => {
+                <div className="switch-wrap">
+                   {permissionList.map((p, i) => {
                     return <div key={i} className='form-check form-switch'>
                         <label className='label' htmlFor="id">{i18n.t(p.descripcion)}</label>
                         <input disabled={disabled} type='checkbox' className='form-check-input' value='' defaultChecked={permissionsSelected.find(s => s.id == p.id)} onChange={(e) => { handlePermissionChange(e, p.id) }} />
                     </div>
-                })}
+                })} 
+                </div>
+                
             </div>
 
         </>
