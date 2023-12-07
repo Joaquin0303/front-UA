@@ -23,9 +23,11 @@ label {
     border-radius: 5px;
     padding: 2rem;
     background-color: #00528F;
-    width: 31%;
+    width: min-content;
+    height: 450px;
     margin: auto;
     color: white;
+    overflow-y: scroll;
 }
 
 .modal .btns {
@@ -72,12 +74,17 @@ label {
 }
 
 .botones-conf-close {
-    position: absolute;
     bottom: 0;
     left: 0;
-    padding: 0 2rem;
 }
 
 .form-p {
     color: rgb(197, 197, 197);
+}
+
+.switch-wrap{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    flex-wrap: wrap;
 }
