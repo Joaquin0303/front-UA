@@ -42,29 +42,29 @@ function App() {
       <nav>
         <div className="nav-links">
           <Link to="/">Inicio</Link>
-          <Link to="/Administración usuarios">Administración Usuarios</Link>
-          <Link to="/Administración Parámetros">Administración Parámetros</Link>
-          <Link to="/Administración Empleados">Administración Empleados</Link>
-          <Link to="/Reportes">Reportes</Link>
+          <Link to="/administracion-usuarios">Administración Usuarios</Link>
+          <Link to="/administracion-parametros">Administración Parámetros</Link>
+          <Link to="/administracion-empleados">Administración Empleados</Link>
+          <Link to="/reportes">Reportes</Link>
         </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         {/* Administracion de Usuarios */}
         {/* -------------------------- */}
-        <Route path="/Administración usuarios" element={<AdminUsers />} />
-        <Route path="/Administración usuarios/Usuarios" element={<Users />} />
-        <Route path="/Administración usuarios/Permisos" element={<Permisos />} />
-        <Route path="/Administración usuarios/Roles" element={<Roles />} />
+        <Route path="/administracion-usuarios" element={<AdminUsers />} />
+        <Route path="/administracion-usuarios/usuarios" element={<Users />} />
+        <Route path="/administracion-usuarios/permisos" element={<Permisos />} />
+        <Route path="/administracion-usuarios/roles" element={<Roles />} />
 
         {/* Administracion de Usuarios */}
         {/* -------------------------- */}
-        <Route path="/Administración Parámetros" element={<AdminParam />} />
-        {<Route path="/Administración Parámetros/Tipo de Parametros" element={<ParameterTypesPage />} />}
-        {<Route path="/Administración Parámetros/Parametros" element={<ParametersPage />} />}
-        {<Route path="/Administración Parámetros/Secuenciador" element={<SequencersPage />} />}
-        {<Route path="/Administración Parámetros/Puestos" element={<PositionsPage />} />}
-        {<Route path="/Administración Parámetros/Pais" element={<CountriesPage />} />}
+        <Route path="/administracion-parametros" element={<AdminParam />} />
+        {<Route path="/administracion-parametros/tipo-de-parametros" element={<ParameterTypesPage />} />}
+        {<Route path="/administracion-parametros/parametros" element={<ParametersPage />} />}
+        {<Route path="/administracion-parametros/secuenciador" element={<SequencersPage />} />}
+        {<Route path="/administracion-parametros/puestos" element={<PositionsPage />} />}
+        {<Route path="/administracion-parametros/pais" element={<CountriesPage />} />}
       </Routes>
     </>
   )
