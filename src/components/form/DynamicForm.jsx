@@ -60,7 +60,7 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
                 case 'permisos':
                     return <InputPermission key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 case 'codigoPuestoAlQueReporta':
-                    return <InputPositionCode key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                    return <InputPositionCode key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} />
                 default:
                     if (key != 'id' && key != 'activo' && key != 'fechaAlta'
                         && (pageName != 'parameterType' || key != 'codigo')
