@@ -4,7 +4,7 @@ import Table from './Table';
 import { FaPlus } from 'react-icons/fa';
 import ModalForm from '../modal/ModalForm';
 
-const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemove, searchKey, setActive }) => {
+const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemove, searchKey, setActive, matchHandler }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [formData, setFormData] = useState();
     const [showModalForm, setShowModalForm] = useState(false);
@@ -39,13 +39,7 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
     }
 
     useEffect(() => {
-        const filtered = dataList.filter((data) => {
-            const lowerCaseSearchTerm = searchTerm.toLowerCase();
-            return (
-                data[searchKey]?.toLowerCase().includes(lowerCaseSearchTerm)
-            );
-        });
-        setFilteredDataList(filtered);
+        setFilteredDataList(dataList.filter((data) => matchHandler(data, searchTerm)));
     }, [searchTerm, dataList]);
 
     return (

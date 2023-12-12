@@ -14,13 +14,19 @@ const ParameterModel = {
 }
 
 const compare = (a, b) => {
-    if (a.descripcion < b.descripcion) {
-        return -1;
-    }
-    if (a.descripcion > b.descripcion) {
+    if (a.tipoParametro.descripcion < b.tipoParametro.descripcion) {
+        return -1
+    } else if (a.tipoParametro.descripcion > b.tipoParametro.descripcion) {
         return 1;
+    } else {
+        if (a.descripcion < b.descripcion) {
+            return -1;
+        }
+        if (a.descripcion > b.descripcion) {
+            return 1;
+        }
+        return 0;
     }
-    return 0;
 }
 
 const ParametersPage = () => {
@@ -59,8 +65,14 @@ const ParametersPage = () => {
         });
     }
 
+    const matchHandler = (data, searchTerm) => {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        return data.tipoParametro?.descripcion?.toLowerCase().includes(lowerCaseSearchTerm) ||
+            data.descripcion?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
     return (
-        <ABMPage pageName="Parametros" dataList={parameterList} dataModel={ParameterModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' setActive={setStatusActive} />
+        <ABMPage pageName="Parametros" dataList={parameterList} dataModel={ParameterModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} setActive={setStatusActive} matchHandler={matchHandler} />
     );
 }
 

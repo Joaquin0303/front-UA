@@ -46,8 +46,13 @@ const SequencersPage = () => {
         });
     }
 
+    const matchHandler = (data, searchTerm) => {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        return data.codigo?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
     return (
-        <ABMPage pageName="Secuenciador" dataList={sequencerList} dataModel={SequencerModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='codigo' setActive={setStatusActive} />
+        <ABMPage pageName="Secuenciador" dataList={sequencerList} dataModel={SequencerModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} />
     );
 }
 

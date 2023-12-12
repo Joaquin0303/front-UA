@@ -56,8 +56,13 @@ const Roles = () => {
         });
     }
 
+    const matchHandler = (data, searchTerm) => {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        return data.descripcion?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
     return (
-        <ABMPage pageName="Roles" dataList={roleList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' setActive={setStatusActive} />
+        <ABMPage pageName="Roles" dataList={roleList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} />
     );
 }
 

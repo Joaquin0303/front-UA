@@ -63,8 +63,13 @@ const Users = () => {
         });
     }
 
+    const matchHandler = (data, searchTerm) => {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        return data.nombreUsuario?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
     return (
-        <ABMPage pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='nombreUsuario' setActive={setStatusActive} />
+        <ABMPage pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} />
     );
 }
 

@@ -47,8 +47,15 @@ const CountriesPage = () => {
         });
     }
 
+    const matchHandler = (data, searchTerm) => {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        return data.descripcion?.toLowerCase().includes(lowerCaseSearchTerm) ||
+            data.pais?.toLowerCase().includes(lowerCaseSearchTerm) ||
+            data.secuenciador?.codigo?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
     return (
-        <ABMPage pageName="paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} searchKey='descripcion' setActive={setStatusActive} />
+        <ABMPage pageName="paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} />
     );
 }
 
