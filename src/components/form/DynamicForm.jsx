@@ -16,6 +16,7 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
 
     const [formData, setFormData] = useState(data);
     const [parameterList, setParameterList] = useState([]);
+    const [validation, setValidation] = useState();
 
     console.log('formData=', formData);
 
@@ -26,8 +27,14 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
 
     const submitForm = () => {
         console.log('Submit=', formData);
-        onSubmitForm(formData);
-        setModal(false);
+        try {
+            onSubmitForm(formData);
+            setModal(false);
+        } catch (error) {
+            console.error('error', error);
+            if (error.validation)
+                setValidation(error.validation);
+        }
     }
 
     useEffect(() => {
@@ -70,7 +77,7 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
                         } else if (typeof value == 'boolean') {
                             return <InputSwitch key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'string') {
-                            return <InputText key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                            return <InputText validation={validation} key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'number') {
                             return <InputNumber key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
                         }
