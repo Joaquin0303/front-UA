@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import '../styles/Modal.css'
 
-const Modal = ({ closeModal, onSubmit  }) => {
+const Modal = ({ closeModal, onSubmit }) => {
 
     const [formData, setFormData] = useState({
         id: '',
@@ -11,7 +11,7 @@ const Modal = ({ closeModal, onSubmit  }) => {
         address: { street: '' },
         phone: '',
         website: '',
-        company: { name: ''},
+        company: { name: '' },
     });
 
     return <div className='modal-container' onClick={(e) => {
@@ -23,15 +23,15 @@ const Modal = ({ closeModal, onSubmit  }) => {
                 <br />
                 <div className='form'>
                     <div className='form-group'>
-                        <label className='label' htmlFor="id">Id</label>
+                        <label className='label' htmlFor="id">ID</label>
                         <input name='id' value={formData.id} onChange={(e) => setFormData({ ...formData, id: e.target.value })} />
                     </div>
                     <div className='form-group'>
-                        <label className='label' htmlFor="name">Name</label>
+                        <label className='label' htmlFor="name">Nombre</label>
                         <input name='name' value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                     </div>
                     <div className='form-group'>
-                        <label className='label' htmlFor="username">Username</label>
+                        <label className='label' htmlFor="username">Nombre de Usuario</label>
                         <input name='username' value={formData.username} onChange={(e) => setFormData({ ...formData, username: e.target.value })} />
                     </div>
                     <div className='form-group'>
@@ -39,19 +39,19 @@ const Modal = ({ closeModal, onSubmit  }) => {
                         <input name='email' value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                     </div>
                     <div className='form-group'>
-                        <label className='label' htmlFor="address">Direccion</label>
+                        <label className='label' htmlFor="address">Dirección</label>
                         <input name='address' value={formData.address.street} onChange={(e) => setFormData({ ...formData, address: { street: e.target.value } })} />
                     </div>
                     <div className='form-group'>
-                        <label className='label' htmlFor="phone">Phone</label>
+                        <label className='label' htmlFor="phone">Teléfono</label>
                         <input name='phone' value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
                     </div>
                     <div className='form-group'>
-                        <label htmlFor="website">WebSite</label>
+                        <label htmlFor="website">Sitio Web</label>
                         <input name='website' value={formData.website} onChange={(e) => setFormData({ ...formData, website: e.target.value })} />
                     </div>
                     <div className='form-group'>
-                        <label htmlFor="company">Compania</label>
+                        <label htmlFor="company">Compañía</label>
                         <input name='company' value={formData.company.name} onChange={(e) => setFormData({ ...formData, company: { name: e.target.value } })} />
                     </div>
                 </div>

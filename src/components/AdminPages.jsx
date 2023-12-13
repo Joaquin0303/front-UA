@@ -12,7 +12,7 @@ import Card from "./cards";
 
 export const AdminUsers = () =>
     <div className='bloque_principal'>
-        <h2>Alta, baja y Modificación</h2>
+        <h2>Alta, Baja y Modificación</h2>
         <h4>Administración de Usuarios</h4>
         <div className='div-cards'>
             <Card img={logoGrupo} title={'Usuarios'} path={'/administracion-usuarios/usuarios'} />
@@ -23,7 +23,7 @@ export const AdminUsers = () =>
 
 export const AdminParam = () =>
     <div className='bloque_principal'>
-        <h2>Alta, baja y Modificación</h2>
+        <h2>Alta, Baja y Modificación</h2>
         <h4>Administración de Parámetros</h4>
         <div className='div-cards'>
             <Card img={logoParam} title={'Tipo de Parámetros'} path={'/administracion-parametros/tipo-de-parametros'} />

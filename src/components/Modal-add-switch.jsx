@@ -26,7 +26,7 @@ const ModalAddSwitch = ({ closeModal, onSubmit }) => {
                     <br />
                     <div className='form'>
                         <div className='form-group'>
-                            <label className='label' htmlFor="rol-new">Nombre Rol</label>
+                            <label className='label' htmlFor="rol-new">Nombre de Rol</label>
                             <input
                                 type="text"
                                 placeholder='Ejemplo: Alta de Empleado'

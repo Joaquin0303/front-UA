@@ -35,7 +35,7 @@ function App() {
         <div className="header">
           <img src={logoempresa} id="logo-empresa" alt="" />
           <div className="close-sesion">
-            <a href="" onClick={() => setToken(null)}><img src={logoout} alt="" />Cerrar Sesion</a>
+            <a href="" onClick={() => setToken(null)}><img src={logoout} alt="" />Cerrar Sesión</a>
           </div>
         </div>
       </header>

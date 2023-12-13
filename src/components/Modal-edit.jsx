@@ -25,19 +25,19 @@ const ModalEdit = ({ user, closeModal, onSubmit }) => {
         }}>
             <div className='modals'>
                 <div>
-                    <h1 className='label'>Editar datos del Usuario</h1>
+                    <h1 className='label'>Editar Datos del Usuario</h1>
                     <br />
                     <div className='form'>
                         <div className='form-group'>
-                            <label className='label' htmlFor="id">Id</label>
+                            <label className='label' htmlFor="id">ID</label>
                             <input name='id' value={formData.id} onChange={(e) => setFormData({ ...formData, id: e.target.value })} />
                         </div>
                         <div className='form-group'>
-                            <label className='label' htmlFor="name">Name</label>
+                            <label className='label' htmlFor="name">Nombre</label>
                             <input name='name' value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                         </div>
                         <div className='form-group'>
-                            <label className='label' htmlFor="username">Username</label>
+                            <label className='label' htmlFor="username">Nombre de Usuario</label>
                             <input name='username' value={formData.username} onChange={(e) => setFormData({ ...formData, username: e.target.value })} />
                         </div>
                         <div className='form-group'>
@@ -45,20 +45,20 @@ const ModalEdit = ({ user, closeModal, onSubmit }) => {
                             <input name='email' value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                         </div>
                         <div className='form-group'>
-                            <label className='label' htmlFor="address">Address</label>
-                            <input name='address' value={formData.address.street} onChange={(e) => setFormData({...formData, address: {...formData.address, street: e.target.value }})} />
+                            <label className='label' htmlFor="address">Dirección de Usuario</label>
+                            <input name='address' value={formData.address.street} onChange={(e) => setFormData({ ...formData, address: { ...formData.address, street: e.target.value } })} />
                         </div>
                         <div className='form-group'>
-                            <label className='label' htmlFor="phone">Phone</label>
+                            <label className='label' htmlFor="phone">Teléfono</label>
                             <input name='phone' value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
                         </div>
                         <div className='form-group'>
-                            <label className='label' htmlFor="website">Website</label>
+                            <label className='label' htmlFor="website">Sitio Web</label>
                             <input name='website' value={formData.website} onChange={(e) => setFormData({ ...formData, website: e.target.value })} />
                         </div>
                         <div className='form-group'>
-                            <label className='label' htmlFor="company">Company</label>
-                            <input name='company' value={formData.company.name} onChange={(e) => setFormData({ ...formData, company: {...formData.company, name: e.target.value }})} />
+                            <label className='label' htmlFor="company">Compañía</label>
+                            <input name='company' value={formData.company.name} onChange={(e) => setFormData({ ...formData, company: { ...formData.company, name: e.target.value } })} />
                         </div>
                     </div>
                 </div>
