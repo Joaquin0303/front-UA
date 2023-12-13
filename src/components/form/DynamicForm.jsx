@@ -84,8 +84,10 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
         <div className='form'>
             {createInputFields()}
             <div className='botones-conf-close'>
-                {<button type='submit' className='btns' onClick={submitForm} >Confirmar</button>}
-                <button className='btns-close' onClick={() => { setModal(false) }} >Cerrar</button>
+                {!isViewAction && (  
+                    <button type='submit' className='btns' onClick={submitForm}>Confirmar</button>
+                )}
+                <button className='btns-close' onClick={() => { setModal(false) }}>Cerrar</button>
             </div>
         </div>
     )
