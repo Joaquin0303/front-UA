@@ -59,7 +59,7 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
             </div>
 
             <Table pageName={pageName} dataList={filteredDataList} setModal={setModal} />
-            {showModalForm && <ModalForm pageName={pageName} data={formData} setModal={setModal} formDisabled={formDisabled} onSubmitForm={onSubmitForm} />}
+            {showModalForm && <ModalForm pageName={pageName} data={formData} setModal={setModal} formDisabled={formDisabled} onSubmitForm={onSubmitForm} isViewAction={actionForm === 'see'}/>}
         </>
     );
 }
