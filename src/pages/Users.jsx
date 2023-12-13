@@ -27,6 +27,8 @@ const Users = () => {
     }
 
     const onAdd = (data) => {
+        const error = validate(data);
+        if (error) throw error;
         addUser(data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
             console.log('user saved=', result);
             data.roles && data.roles.forEach(userRole => {
@@ -66,6 +68,18 @@ const Users = () => {
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
         return data.nombreUsuario?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
+    const validate = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        };
+        if (!data.nombreUsuario?.trim()) {
+            result.error = true;
+            result.validation.nombreUsuario = "Nombre de usuario es requerido."
+        }
+        return result;
     }
 
     return (

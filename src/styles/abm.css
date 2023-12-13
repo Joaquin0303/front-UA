@@ -217,6 +217,12 @@
     background-color: rgb(255, 255, 255);
 }
 
-.active-users{
+.active-users {
     width: 80%;
+}
+
+.form-field-error-msg {
+    margin-left: 5px;
+    font-size: 80%;
+    color: rgb(255, 0, 0);
 }
