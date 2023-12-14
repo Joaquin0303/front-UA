@@ -3,6 +3,7 @@ import '../../styles/abm.css'
 import { IoEyeSharp } from "react-icons/io5";
 import { BsFillPencilFill } from 'react-icons/bs'
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { PiPencilSimpleSlashBold } from "react-icons/pi";
 
 const CellAction = ({ data, setModal }) => {
     
