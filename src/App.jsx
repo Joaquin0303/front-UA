@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
-import { Home } from './pages/Home';
 import { AdminUsers } from './components/AdminPages';
 import { AdminParam } from './components/AdminPages';
+import { AdminEmployees } from './components/AdminPages';
+import { Home } from './pages/Home';
 import Users from './pages/Users';
 import { Permisos } from './pages/Permisos';
 import Roles from './pages/Roles';
@@ -50,6 +51,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
+        
         {/* Administracion de Usuarios */}
         {/* -------------------------- */}
         <Route path="/administracion-usuarios" element={<AdminUsers />} />
@@ -57,7 +59,7 @@ function App() {
         <Route path="/administracion-usuarios/permisos" element={<Permisos />} />
         <Route path="/administracion-usuarios/roles" element={<Roles />} />
 
-        {/* Administracion de Usuarios */}
+        {/* Administracion de Parametros */}
         {/* -------------------------- */}
         <Route path="/administracion-parametros" element={<AdminParam />} />
         {<Route path="/administracion-parametros/tipo-de-parametros" element={<ParameterTypesPage />} />}
@@ -65,6 +67,16 @@ function App() {
         {<Route path="/administracion-parametros/secuenciador" element={<SequencersPage />} />}
         {<Route path="/administracion-parametros/puestos" element={<PositionsPage />} />}
         {<Route path="/administracion-parametros/pais" element={<CountriesPage />} />}
+
+        {/* Administracion de Empleados */}
+        {/* -------------------------- */}
+        <Route path="/administracion-empleados" element={<AdminEmployees />} />
+        {<Route path="/administracion-empleados/empleados" element={<ParameterTypesPage />} />}
+        {<Route path="/administracion-empleados/cargas-de-familia" element={<ParametersPage />} />}
+        {<Route path="/administracion-empleados/externos" element={<SequencersPage />} />}
+        {<Route path="/administracion-empleados/historial-licencias" element={<PositionsPage />} />}
+        {<Route path="/administracion-empleados/cambios-puestos" element={<CountriesPage />} />}
+        {<Route path="/administracion-empleados/ingreso-caido" element={<CountriesPage />} />}
       </Routes>
     </>
   )

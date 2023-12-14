@@ -7,6 +7,12 @@ import logoParamTipo from '../img/filtrar.png';
 import logoSecuen from '../img/secuencia.png';
 import logoPuestos from '../img/trabajo-remoto.png';
 import logoPais from '../img/paises.png';
+import logoEmpleados from '../img/empleado.png'
+import logoFamilia from '../img/familia.png'
+import logoExterno from '../img/externo.png'
+import logoLicencias from '../img/licencia.png'
+import logoHisPuesto from '../img/historial-puesto.png'
+import logoHisIngreso from '../img/historial-ingresos.png'
 import '../styles/AdminUsers.css';
 import Card from "./cards";
 
@@ -31,5 +37,19 @@ export const AdminParam = () =>
             <Card img={logoSecuen} title={'Secuenciador'} path={'/administracion-parametros/secuenciador'} />
             <Card img={logoPuestos} title={'Puestos'} path={'/administracion-parametros/puestos'} />
             <Card img={logoPais} title={'País'} path={'/administracion-parametros/pais'} />
+        </div>
+    </div>
+
+export const AdminEmployees = () =>
+    <div className='bloque_principal'>
+        <h2>Alta, Baja y Modificación</h2>
+        <h4>Administración de Empleados</h4>
+        <div className='div-cards'>
+            <Card img={logoEmpleados} title={'Empleados'} path={'/administracion-empleados/empleados'} />
+            <Card img={logoFamilia} title={'Cargas de Familia'} path={'/administracion-empleados/cargas-de-familia'} />
+            <Card img={logoExterno} title={'Externos'} path={'/administracion-empleados/externos'} />
+            <Card img={logoLicencias} title={'Historial Licencias'} path={'/administracion-empleados/historial-licencias'} />
+            <Card img={logoHisPuesto} title={'Historial Cambios de Puesto'} path={'/administracion-empleados/cambios-puestos'} />
+            <Card img={logoHisIngreso} title={'Historial Ingreso Caído'} path={'/administracion-empleados/ingreso-caido'} />
         </div>
     </div>
