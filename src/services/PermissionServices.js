@@ -53,7 +53,7 @@ export const getPermissionById = async (permissionId) => {
     return result.data;
 }
 
-export const editPermission = async (permissionId, descripcion, activo) => {
+export const updatePermission = async (permissionId, descripcion, activo) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/permiso/' + permissionId,

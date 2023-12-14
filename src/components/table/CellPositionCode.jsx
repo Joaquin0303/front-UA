@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { getPositionById } from "../../services/PositionServices";
 
-const CellPositionCode = ({ positionId }) => {
-    const [position, setPosition] = useState();
+const CellPositionCode = ({ position }) => {
 
-    useEffect(() => {
-        if (positionId)
-            getPositionById(positionId).then(result => {
-                setPosition(result);
-            })
-    }, []);
     return (
-        <td>{position && position.model && position.model.descripcion}</td>
+        <td>{position && position.descripcion}</td>
     );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getPermissions, editPermission, addPermission, removePermission } from '../services/PermissionServices';
+import { getPermissions, updatePermission, addPermission, removePermission } from '../services/PermissionServices';
 import ABMPage from './ABMPage';
 
 const PermissionModel = {
@@ -23,6 +23,8 @@ export const Permisos = () => {
     }
 
     const onAdd = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         addPermission(data.descripcion, data.activo).then(result => {
             console.log('saved=', result);
             loadPermissions();
@@ -30,7 +32,9 @@ export const Permisos = () => {
     }
 
     const onEdit = (data) => {
-        editPermission(data.id, data.descripcion, data.activo).then(result => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
+        updatePermission(data.id, data.descripcion, data.activo).then(result => {
             console.log('edited=', result);
             loadPermissions();
         });
@@ -46,6 +50,18 @@ export const Permisos = () => {
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
         return data.descripcion?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
+    const validate = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        };
+        if (!data.descripcion?.trim()) {
+            result.error = true;
+            result.validation.descripcion = "Ingrese descripción"
+        }
+        return result;
     }
 
     return (

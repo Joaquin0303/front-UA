@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getRoles, updateRole, addRole, assignPermissionToRole, getRoleById, removeRole } from '../services/RoleServices';
 import ABMPage from './ABMPage';
 
-const UserModel = {
+const RoleModel = {
     descripcion: '',
     activo: true,
     permisos: null,
@@ -25,6 +25,8 @@ const Roles = () => {
     }
 
     const onAdd = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         addRole(data.descripcion, data.activo).then(result => {
             console.log('role saved=', result);
             data.permisos && data.permisos.forEach(permissionRole => {
@@ -38,6 +40,8 @@ const Roles = () => {
     }
 
     const onEdit = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         updateRole(data.codigo, data.descripcion, data.activo).then(result => {
             console.log('role edited=', result);
             data.permisos && data.permisos.forEach(permissionRole => {
@@ -61,8 +65,20 @@ const Roles = () => {
         return data.descripcion?.toLowerCase().includes(lowerCaseSearchTerm);
     }
 
+    const validate = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        };
+        if (!data.descripcion?.trim()) {
+            result.error = true;
+            result.validation.descripcion = "Ingrese descripción"
+        }
+        return result;
+    }
+
     return (
-        <ABMPage pageName="Roles" dataList={roleList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} />
+        <ABMPage pageName="Roles" dataList={roleList} dataModel={RoleModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} />
     );
 }
 

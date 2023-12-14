@@ -6,7 +6,7 @@ const CountryModel = {
     codigo: '',
     descripcion: '',
     secuenciador: {
-        id: 1
+        id: 0
     },
     activo: true
 }
@@ -27,6 +27,8 @@ const CountriesPage = () => {
     }
 
     const onAdd = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         addCountry(data.codigo, data.descripcion, data.secuenciador, data.activo).then(result => {
             console.log('saved=', result);
             loadCountries();
@@ -34,6 +36,8 @@ const CountriesPage = () => {
     }
 
     const onEdit = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         updateCountry(data.id, data.descripcion, data.codigo, data.secuenciador, data.activo).then(result => {
             console.log('edited=', result);
             loadCountries();
@@ -52,6 +56,26 @@ const CountriesPage = () => {
         return data.descripcion?.toLowerCase().includes(lowerCaseSearchTerm) ||
             data.pais?.toLowerCase().includes(lowerCaseSearchTerm) ||
             data.secuenciador?.codigo?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
+    const validate = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        };
+        if (!data.codigo?.trim()) {
+            result.error = true;
+            result.validation.codigo = "Ingrese código"
+        }
+        if (!data.descripcion?.trim()) {
+            result.error = true;
+            result.validation.descripcion = "Ingrese descripción"
+        }
+        if (!data.secuenciador || data.secuenciador.id <= 0) {
+            result.error = true;
+            result.validation.secuenciador = "Seleccione secuenciador"
+        }
+        return result;
     }
 
     return (

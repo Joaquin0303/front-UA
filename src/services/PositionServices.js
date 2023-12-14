@@ -25,19 +25,19 @@ export const getPositionById = async (positionId) => {
     return result.data;
 }
 
-export const updatePosition = async (positionId, codigo, descripcion, codigoDireccion, codigoGerencia, codigoJefatura, codigoCategoria, codigoPuestoAlQueReporta, activo) => {
-    console.log('codigoDireccion', codigoDireccion)
+export const updatePosition = async (positionId, codigoPais, descripcion, codigoDireccion, codigoCentroDeCosto, codigoGerencia, codigoJefatura, codigoCategoria, codigoPuestoAlQueReporta, activo) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/puesto/' + positionId,
         data: {
-            'codigo': codigo,
             'descripcion': descripcion,
-            'codigoDireccion': codigoDireccion,
-            'codigoGerencia': codigoGerencia,
-            'codigoJefatura': codigoJefatura,
-            'codigoCategoria': codigoCategoria,
-            'codigoPuestoAlQueReporta': codigoPuestoAlQueReporta,
+            'codigoPais': codigoPais && codigoPais.id > 0 ? codigoPais : null,
+            'codigoDireccion': codigoDireccion && codigoDireccion.id > 0 ? codigoDireccion : null,
+            'codigoCentroDeCosto': codigoCentroDeCosto && codigoCentroDeCosto.id > 0 ? codigoCentroDeCosto : null,
+            'codigoGerencia': codigoGerencia && codigoGerencia.id > 0 ? codigoGerencia : null,
+            'codigoJefatura': codigoJefatura && codigoJefatura.id > 0 ? codigoJefatura : null,
+            'codigoCategoria': codigoCategoria && codigoCategoria.id > 0 ? codigoCategoria : null,
+            'codigoPuestoAlQueReporta': codigoPuestoAlQueReporta && codigoPuestoAlQueReporta.id > 0 ? codigoPuestoAlQueReporta : null,
             'activo': activo
         }
     }).then(response => {
@@ -48,18 +48,19 @@ export const updatePosition = async (positionId, codigo, descripcion, codigoDire
     return result.data;
 }
 
-export const addPosition = async (codigo, descripcion, codigoDireccion, codigoGerencia, codigoJefatura, codigoCategoria, codigoPuestoAlQueReporta, activo) => {
+export const addPosition = async (codigoPais, descripcion, codigoDireccion, codigoCentroDeCosto, codigoGerencia, codigoJefatura, codigoCategoria, codigoPuestoAlQueReporta, activo) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/puesto',
         data: {
-            'codigo': codigo,
             'descripcion': descripcion,
-            'codigoDireccion': codigoDireccion,
-            'codigoGerencia': codigoGerencia,
-            'codigoJefatura': codigoJefatura,
-            'codigoCategoria': codigoCategoria,
-            'codigoPuestoAlQueReporta': codigoPuestoAlQueReporta,
+            'codigoPais': codigoPais && codigoPais.id > 0 ? codigoPais : null,
+            'codigoDireccion': codigoDireccion && codigoDireccion.id > 0 ? codigoDireccion : null,
+            'codigoCentroDeCosto': codigoCentroDeCosto && codigoCentroDeCosto.id > 0 ? codigoCentroDeCosto : null,
+            'codigoGerencia': codigoGerencia && codigoGerencia.id > 0 ? codigoGerencia : null,
+            'codigoJefatura': codigoJefatura && codigoJefatura.id > 0 ? codigoJefatura : null,
+            'codigoCategoria': codigoCategoria && codigoCategoria.id > 0 ? codigoCategoria : null,
+            'codigoPuestoAlQueReporta': codigoPuestoAlQueReporta && codigoPuestoAlQueReporta.id > 0 ? codigoPuestoAlQueReporta : null,
             'activo': activo
         }
     }).then(response => {

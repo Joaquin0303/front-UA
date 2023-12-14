@@ -8,6 +8,7 @@ import CellPermission from './CellPermission';
 import CellParameter from './CellParameter';
 import CellDate from './CellDate';
 import CellPositionCode from './CellPositionCode';
+import CellCountry from './CellCountry';
 
 const Row = ({ pageName, data, setModal }) => {
 
@@ -32,8 +33,12 @@ const Row = ({ pageName, data, setModal }) => {
                     return <CellParameter key={i} parameter={data[key]} />
                 case 'codigoCategoria':
                     return <CellParameter key={i} parameter={data[key]} />
+                case 'codigoCentroDeCosto':
+                    return <CellParameter key={i} parameter={data[key]} />
+                case 'codigoPais':
+                    return <CellCountry key={i} country={data[key]} />
                 case 'codigoPuestoAlQueReporta':
-                    return <CellPositionCode key={i} positionId={data[key]} />
+                    return <CellPositionCode key={i} position={data[key]} />
                 default:
                     if (key.startsWith('fecha'))
                         return <CellDate key={i} value={data[key]} />

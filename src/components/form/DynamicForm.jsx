@@ -11,6 +11,7 @@ import InputPermission from './InputPermission';
 import InputPositionCode from './InputPositionCode';
 import InputDate from './InputDate';
 import InputNumber from './InputNumber';
+import InputCountry from './InputCountry';
 
 const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
 
@@ -49,28 +50,34 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
 
             switch (key) {
                 case 'secuenciador':
-                    return <InputSequencer key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                    return <InputSequencer validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 case 'tipoParametro':
-                    return <InputParameterType key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                    return <InputParameterType validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 case 'codigoDireccion':
-                    return <InputParameter key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
+                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
                 case 'codigoGerencia':
-                    return <InputParameter key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 12)} updateFormData={updateFormData} />
+                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 12)} updateFormData={updateFormData} />
                 case 'codigoJefatura':
-                    return <InputParameter key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 14)} updateFormData={updateFormData} />
+                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 14)} updateFormData={updateFormData} />
                 case 'codigoCategoria':
-                    return <InputParameter key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 3)} updateFormData={updateFormData} />
+                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 3)} updateFormData={updateFormData} />
+                case 'codigoCentroDeCosto':
+                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 4)} updateFormData={updateFormData} />
+                case "codigoPais":
+                    return <InputCountry key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />;
                 case 'roles':
-                    if (pageName != 'Permisos')
+                    if (pageName != 'Permisos') {
                         return <InputRole key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                    }
                     break;
                 case 'permisos':
                     return <InputPermission key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 case 'codigoPuestoAlQueReporta':
-                    return <InputPositionCode key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} />
+                    return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
                 default:
                     if (key != 'id' && key != 'activo' && key != 'fechaAlta'
                         && (pageName != 'parameterType' || key != 'codigo')
+                        && (pageName != 'Roles' || key != 'codigo')
                     ) {
                         if (key.startsWith('fechaBaja')) {
                             return <InputDate key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
@@ -79,9 +86,10 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
                         } else if (typeof value == 'string') {
                             return <InputText validation={validation} key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'number') {
-                            return <InputNumber key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                            return <InputNumber validation={validation} key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
                         }
                     }
+
             }
         });
         return cells;
@@ -91,7 +99,7 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
         <div className='form'>
             {createInputFields()}
             <div className='botones-conf-close'>
-                {!isViewAction && (  
+                {(
                     <button type='submit' className='btns' onClick={submitForm}>Confirmar</button>
                 )}
                 <button className='btns-close' onClick={() => { setModal(false) }}>Cerrar</button>

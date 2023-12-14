@@ -5,7 +5,7 @@ import ABMPage from '../ABMPage';
 const ParameterModel = {
     codigo: '',
     tipoParametro: {
-        id: 1
+        id: 0
     },
     descripcion: '',
     texto1: '',
@@ -45,6 +45,8 @@ const ParametersPage = () => {
     }
 
     const onAdd = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         addParameter(data.codigo, data.tipoParametro, data.descripcion, data.texto1, data.texto2, data.activo).then(result => {
             console.log('saved=', result);
             loadParameters();
@@ -52,6 +54,8 @@ const ParametersPage = () => {
     }
 
     const onEdit = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         updateParameter(data.id, data.tipoParametro, data.codigo, data.descripcion, data.texto1, data.texto2, data.activo).then(result => {
             console.log('edited=', result);
             loadParameters();
@@ -69,6 +73,26 @@ const ParametersPage = () => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
         return data.tipoParametro?.descripcion?.toLowerCase().includes(lowerCaseSearchTerm) ||
             data.descripcion?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
+    const validate = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        };
+        if (!data.codigo?.trim()) {
+            result.error = true;
+            result.validation.codigo = "Ingrese código"
+        }
+        if (!data.descripcion?.trim()) {
+            result.error = true;
+            result.validation.descripcion = "Ingrese descripción"
+        }
+        if (!data.tipoParametro || data.tipoParametro.id <= 0) {
+            result.error = true;
+            result.validation.tipoParametro = "Seleccione tipo de parámetro"
+        }
+        return result;
     }
 
     return (

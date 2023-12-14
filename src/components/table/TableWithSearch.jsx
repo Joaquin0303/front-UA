@@ -4,7 +4,7 @@ import Table from './Table';
 import { FaPlus } from 'react-icons/fa';
 import ModalForm from '../modal/ModalForm';
 
-const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemove, searchKey, setActive, matchHandler }) => {
+const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemove, setActive, matchHandler }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [formData, setFormData] = useState();
     const [showModalForm, setShowModalForm] = useState(false);
@@ -19,7 +19,6 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
         setShowModalForm(open);
         setFormDisabled(action != 'edit' && action != 'add');
     }
-
     const onSubmitForm = (data) => {
         console.log('data submited', data)
         switch (actionForm) {
@@ -59,7 +58,7 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
             </div>
 
             <Table pageName={pageName} dataList={filteredDataList} setModal={setModal} />
-            {showModalForm && <ModalForm pageName={pageName} data={formData} setModal={setModal} formDisabled={formDisabled} onSubmitForm={onSubmitForm} isViewAction={actionForm === 'see'}/>}
+            {showModalForm && <ModalForm pageName={pageName} data={formData} setModal={setModal} formDisabled={formDisabled} onSubmitForm={onSubmitForm} isViewAction={actionForm === 'see'} />}
         </>
     );
 }

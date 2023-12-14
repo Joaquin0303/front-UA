@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getSequencers } from "../../services/SequencerServices";
 
-const InputSequencer = ({ name, value, disabled, updateFormData }) => {
+const InputSequencer = ({ validation, name, value, disabled, updateFormData }) => {
 
     const [sequencerList, setSequencerList] = useState([]);
 
@@ -22,12 +22,13 @@ const InputSequencer = ({ name, value, disabled, updateFormData }) => {
     return (
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
-            <select disabled={disabled} name={name} onChange={seqSelectorChangeHandler}>
+            <select disabled={disabled} value={value ? value.id : 0} name={name} onChange={seqSelectorChangeHandler}>
                 <option value={0}>(Seleccione)</option>
                 {sequencerList.map((s, i) => {
-                    return <option key={i} selected={s.id == value.id} value={s.id}>{s.codigo}</option>
+                    return <option key={i} value={s.id}>{s.codigo}</option>
                 })}
             </select>
+            {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
         </div>
     );
 }

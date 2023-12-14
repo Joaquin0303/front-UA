@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import '../../styles/Modal.css';
 
-const InputParameter = ({ name, value, parameterList, disabled, updateFormData }) => {
+const InputParameter = ({ validation, name, value, parameterList, disabled, updateFormData }) => {
 
     const paramSelectorChangeHandler = (e) => {
-        console.log(name, ' selected=', e.target.value);
         updateFormData(name, {
             id: e.target.value
         });
@@ -19,6 +18,7 @@ const InputParameter = ({ name, value, parameterList, disabled, updateFormData }
                     return <option key={i} value={p.id}>{p.descripcion}</option>
                 })}
             </select>
+            {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
         </div>
     );
 }

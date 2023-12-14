@@ -38,7 +38,9 @@ i18n
           secuenciador: "Secuenciador",
           permisos: 'Permisos',
           roles: "Roles",
-          paises: 'Países'
+          paises: 'Países',
+          codigoCentroDeCosto: "Centro de costo",
+          codigoPais: "País"
         }
       }
     }

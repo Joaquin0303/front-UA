@@ -20,15 +20,14 @@ const Users = () => {
 
     const loadUsers = () => {
         getUsers().then(result => {
-            console.log('User List=', result.list);
             if (result.list)
                 setUserList(result.list.filter(d => d.activo == statusActive));
         });
     }
 
     const onAdd = (data) => {
-        const error = validate(data);
-        if (error) throw error;
+        const validation = validate(data);
+        if (validation.error) throw validation;
         addUser(data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
             console.log('user saved=', result);
             data.roles && data.roles.forEach(userRole => {
@@ -44,6 +43,8 @@ const Users = () => {
     }
 
     const onEdit = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         editUser(data.id, data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
             console.log('user edited=', result);
             data.roles && data.roles.forEach(userRole => {
@@ -77,7 +78,11 @@ const Users = () => {
         };
         if (!data.nombreUsuario?.trim()) {
             result.error = true;
-            result.validation.nombreUsuario = "Nombre de usuario es requerido."
+            result.validation.nombreUsuario = "Ingrese nombre de usuario"
+        }
+        if (!data.numeroLegajo?.trim()) {
+            result.error = true;
+            result.validation.numeroLegajo = "Ingrese numero de legajo"
         }
         return result;
     }

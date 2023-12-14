@@ -4,9 +4,9 @@ import ABMPage from '../ABMPage';
 
 const SequencerModel = {
     codigo: '',
-    rangoDesde: '',
-    rangoHasta: '',
-    secuencia: '',
+    rangoDesde: 0,
+    rangoHasta: 0,
+    secuencia: 0,
     activo: true
 }
 
@@ -26,6 +26,8 @@ const SequencersPage = () => {
     }
 
     const onAdd = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         addSequencer(data.codigo, data.rangoDesde, data.rangoHasta, data.secuencia, data.activo).then(result => {
             console.log('saved=', result);
             loadSequencers();
@@ -33,6 +35,8 @@ const SequencersPage = () => {
     }
 
     const onEdit = (data) => {
+        const validation = validate(data);
+        if (validation.error) throw validation;
         updateSequencer(data.id, data.codigo, data.rangoDesde, data.rangoHasta, data.secuencia, data.activo).then(result => {
             console.log('edited=', result);
             loadSequencers();
@@ -49,6 +53,30 @@ const SequencersPage = () => {
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
         return data.codigo?.toLowerCase().includes(lowerCaseSearchTerm);
+    }
+
+    const validate = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        };
+        if (!data.codigo?.trim()) {
+            result.error = true;
+            result.validation.codigo = "Ingrese código"
+        }
+        if (!data.rangoDesde) {
+            result.error = true;
+            result.validation.rangoDesde = "Ingrese rango desde"
+        }
+        if (!data.rangoHasta) {
+            result.error = true;
+            result.validation.rangoHasta = "Ingrese rango hasta"
+        }
+        if (!data.secuencia) {
+            result.error = true;
+            result.validation.secuencia = "Ingrese secuencia"
+        }
+        return result;
     }
 
     return (
