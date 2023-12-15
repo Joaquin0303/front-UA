@@ -95,3 +95,39 @@ label {
     width: 100%;
     flex-wrap: wrap;
 }
+
+/*********** Estilos del nuevo Modal ***********/
+.accordion {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 20px auto;
+
+  }
+
+  .section {
+    font-family: 'Ubuntu';
+    font-weight: 700;
+    background-color: #ffffff;
+    color: #00528F;
+    border: 1px solid #ddd;
+    border: none;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .section:hover {
+    background-color: #ddd;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .content input {
+    margin-bottom: 10px;
+  }
