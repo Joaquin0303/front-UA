@@ -10,7 +10,7 @@ import logoPais from '../img/paises.png';
 import logoEmpleados from '../img/empleado.png'
 import logoFamilia from '../img/familia.png'
 import logoExterno from '../img/externo.png'
-import logoLicencias from '../img/licencia.png'
+import logoLicencias from '../img/licencias.png'
 import logoHisPuesto from '../img/historial-puesto.png'
 import logoHisIngreso from '../img/historial-ingresos.png'
 import '../styles/AdminUsers.css';
