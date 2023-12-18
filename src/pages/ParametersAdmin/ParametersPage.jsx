@@ -96,7 +96,7 @@ const ParametersPage = () => {
     }
 
     return (
-        <ABMPage pageName="Parametros" dataList={parameterList} dataModel={ParameterModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} setActive={setStatusActive} matchHandler={matchHandler} />
+        <ABMPage pageName="Parametros" dataList={parameterList} dataModel={ParameterModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} setActive={setStatusActive} matchHandler={matchHandler} statusActive={statusActive} />
     );
 }
 

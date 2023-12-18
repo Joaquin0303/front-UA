@@ -20,6 +20,7 @@ import ParametersPage from './pages/ParametersAdmin/ParametersPage';
 import CountriesPage from './pages/ParametersAdmin/CountriesPage';
 import PositionsPage from './pages/ParametersAdmin/PositionsPage';
 import SequencersPage from './pages/ParametersAdmin/SequencersPage';
+import EmployeesPage from './pages/EmployeesAdmin/EmployeesPage';
 
 function App() {
 
@@ -51,7 +52,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        
+
         {/* Administracion de Usuarios */}
         {/* -------------------------- */}
         <Route path="/administracion-usuarios" element={<AdminUsers />} />
@@ -71,7 +72,7 @@ function App() {
         {/* Administracion de Empleados */}
         {/* -------------------------- */}
         <Route path="/administracion-empleados" element={<AdminEmployees />} />
-        {<Route path="/administracion-empleados/empleados" element={<ParameterTypesPage />} />}
+        {<Route path="/administracion-empleados/empleados" element={<EmployeesPage />} />}
         {<Route path="/administracion-empleados/cargas-de-familia" element={<ParametersPage />} />}
         {<Route path="/administracion-empleados/externos" element={<SequencersPage />} />}
         {<Route path="/administracion-empleados/historial-licencias" element={<PositionsPage />} />}

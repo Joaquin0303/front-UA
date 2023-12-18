@@ -12,8 +12,9 @@ import InputPositionCode from './InputPositionCode';
 import InputDate from './InputDate';
 import InputNumber from './InputNumber';
 import InputCountry from './InputCountry';
+import InputFileNumber from './InputFileNumber';
 
-const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
+const DynamicForm = ({ pageName, data, closeModal, disabled, onSubmitForm }) => {
 
     const [formData, setFormData] = useState(data);
     const [parameterList, setParameterList] = useState([]);
@@ -29,8 +30,8 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
     const submitForm = () => {
         console.log('Submit=', formData);
         try {
-            onSubmitForm(formData);
-            setModal(false);
+            onSubmitForm(formData)
+            closeModal();
         } catch (error) {
             console.error('error', error);
             if (error.validation)
@@ -74,8 +75,10 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
                     return <InputPermission key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 case 'codigoPuestoAlQueReporta':
                     return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
+                case 'numeroLegajo':
+                    return <InputFileNumber validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} />
                 default:
-                    if (key != 'id' && key != 'activo' && key != 'fechaAlta'
+                    if (key != 'id' && key != 'activo' && key != 'fechaAlta' && key != 'fechaBaja'
                         && (pageName != 'parameterType' || key != 'codigo')
                         && (pageName != 'Roles' || key != 'codigo')
                     ) {
@@ -96,13 +99,18 @@ const DynamicForm = ({ pageName, data, setModal, disabled, onSubmitForm }) => {
     }
 
     return (
-        <div className='form'>
-            {createInputFields()}
-            <div className='botones-conf-close'>
+        <div>
+            <div className="modals-content">
+                <div className='form scroll-shadows'>
+                    {validation && validation.genericError && <div>{validation.genericError}</div>}
+                    {createInputFields()}
+                </div>
+            </div>
+            <div className='modal-buttons'>
                 {(
                     <button type='submit' className='btns' onClick={submitForm}>Confirmar</button>
                 )}
-                <button className='btns-close' onClick={() => { setModal(false) }}>Cerrar</button>
+                <button className='btns-close' onClick={closeModal}>Cerrar</button>
             </div>
         </div>
     )

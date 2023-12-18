@@ -45,18 +45,20 @@ const Users = () => {
     const onEdit = (data) => {
         const validation = validate(data);
         if (validation.error) throw validation;
+
         editUser(data.id, data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
-            console.log('user edited=', result);
-            data.roles && data.roles.forEach(userRole => {
-                assignRoleToUser(userRole.codigo, result.model.id).then(result => {
-                    console.log('role user saved=', result);
-                    loadUsers();
+            if (result.codigo == 200) {
+                data.roles && data.roles.forEach(userRole => {
+                    assignRoleToUser(userRole.codigo, result.model.id).then(result => {
+                        console.log('role user saved=', result);
+                        loadUsers();
+                    });
                 });
-            });
-            if (!data.roles || data.roles.length == 0) {
-                loadUsers();
+                if (!data.roles || data.roles.length == 0) {
+                    loadUsers();
+                }
             }
-        });
+        })
     }
 
     const onRemove = (data) => {
@@ -75,20 +77,20 @@ const Users = () => {
         const result = {
             error: false,
             validation: {}
-        };
+        }
         if (!data.nombreUsuario?.trim()) {
             result.error = true;
             result.validation.nombreUsuario = "Ingrese nombre de usuario"
         }
         if (!data.numeroLegajo?.trim()) {
             result.error = true;
-            result.validation.numeroLegajo = "Ingrese numero de legajo"
+            result.validation.numeroLegajo = "Ingrese un número de legajo válido"
         }
         return result;
     }
 
     return (
-        <ABMPage pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} />
+        <ABMPage pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

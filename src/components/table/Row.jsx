@@ -10,7 +10,7 @@ import CellDate from './CellDate';
 import CellPositionCode from './CellPositionCode';
 import CellCountry from './CellCountry';
 
-const Row = ({ pageName, data, setModal }) => {
+const Row = ({ pageName, data, setModal, statusActive }) => {
 
     const createCells = () => {
         const cells = Object.keys(data).map((key, i) => {
@@ -40,14 +40,15 @@ const Row = ({ pageName, data, setModal }) => {
                 case 'codigoPuestoAlQueReporta':
                     return <CellPositionCode key={i} position={data[key]} />
                 default:
-                    if (key.startsWith('fecha'))
-                        return <CellDate key={i} value={data[key]} />
-                    else
-                        if (!Array.isArray(data[key]) && key != 'id' && key != 'activo' && key != 'usuarios'
-                            && (pageName != 'Roles' || key != 'codigo')
-                            && (pageName != 'parameterType' || key != 'codigo')
-                            && (pageName != 'Puesto' || key != 'codigo')
-                        )
+                    if (!Array.isArray(data[key]) && key != 'id' && key != 'activo' && key != 'usuarios'
+                        && (pageName != 'Roles' || key != 'codigo')
+                        && (pageName != 'parameterType' || key != 'codigo')
+                        && (pageName != 'Puesto' || key != 'codigo')
+                        && (!statusActive || key != 'fechaBaja')
+                    )
+                        if (key.startsWith('fecha'))
+                            return <CellDate key={i} value={data[key]} />
+                        else
                             return <Cell key={i} value={data[key]} />
             }
         });
@@ -58,7 +59,7 @@ const Row = ({ pageName, data, setModal }) => {
         <>
             <tr>
                 {createCells()}
-                <CellAction data={data} setModal={setModal} />
+                <CellAction data={data} setModal={setModal} statusActive={statusActive} />
             </tr>
         </>
     );

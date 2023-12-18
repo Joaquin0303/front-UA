@@ -126,6 +126,23 @@
     margin-left: 10px;
 }
 
+.btns-step {
+    margin-top: 1rem;
+    border: none;
+    background-color: #ffffff;
+    color: #000 !important;
+    padding: 10px 20px;
+    color: #FFF;
+    font-family: Ubuntu;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
 .bloque-search {
     width: 80%;
     display: flex;

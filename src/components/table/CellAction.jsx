@@ -5,24 +5,21 @@ import { BsFillPencilFill } from 'react-icons/bs'
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { PiPencilSimpleSlashBold } from "react-icons/pi";
 
-const CellAction = ({ data, setModal }) => {
-    
+const CellAction = ({ data, setModal, statusActive }) => {
+    console.log('statusActive', statusActive)
     return (
         <td className='expand'>
             <span className='actions'>
-                <div title="Ver" onClick={(e) => { e.stopPropagation(); setModal(true, 'see', data) }}>
+                <div title="Ver" onClick={(e) => { e.stopPropagation(); setModal('view', data) }}>
                     <IoEyeSharp />
                 </div>
-                {data.activo && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal(true, 'edit', data) }}>
+                {statusActive && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal('edit', data) }}>
                     <BsFillPencilFill />
                 </div>}
-                {!data.activo && <div title="No se puede editar" onClick={(e) => { e.stopPropagation(); setModal(true, 'inactivate', data) }}>
-                    <PiPencilSimpleSlashBold />
-                </div>}
-                {data.activo && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal(true, 'inactivate', data) }}>
+                {data.activo && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal('inactivate', data) }}>
                     <FaArrowDown />
                 </div>}
-                {!data.activo && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); setModal(true, 'activate', data) }}>
+                {!data.activo && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); setModal('activate', data) }}>
                     <FaArrowUp />
                 </div>}
             </span>

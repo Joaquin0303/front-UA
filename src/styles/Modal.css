@@ -24,10 +24,39 @@ label {
     padding: 2rem 2rem 0rem 2rem;
     background-color: #00528F;
     width: min-content;
-    height: 450px;
+    /*   max-height: 450px;*/
     margin: auto;
     color: white;
+    /*   overflow-y: scroll;*/
+}
+
+.modalss {
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.modalss::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
+.modals-content {
     overflow-y: scroll;
+    max-height: 340px;
+}
+
+.modals-content {
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.modals-content::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
 }
 
 .modal .btns {
@@ -72,6 +101,12 @@ label {
     width: 80%;
 }
 
+.form-view {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 400px;
+}
+
 .botones-conf-close {
     /* bottom: 0; */
     /* left: 0; */
@@ -85,11 +120,29 @@ label {
     align-items: flex-end;
 }
 
-.form-p {
-    color: rgb(197, 197, 197);
+.modal-buttons {
+    border-top: 1px solid #999;
+    position: relative;
+    margin-bottom: 0 !important;
+    background: #00528f;
+    text-align: right;
+    padding-bottom: 15px;
 }
 
-.switch-wrap{
+.modal-step-buttons {
+    position: relative;
+    margin-bottom: 0 !important;
+    background: #00528f;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.form-p {
+    color: rgb(197, 197, 197);
+    margin-left: 10px;
+}
+
+.switch-wrap {
     display: flex;
     align-items: flex-end;
     width: 100%;
@@ -103,9 +156,9 @@ label {
     width: 400px;
     margin: 20px auto;
 
-  }
+}
 
-  .section {
+.section {
     font-family: 'Ubuntu';
     font-weight: 700;
     background-color: #ffffff;
@@ -116,18 +169,18 @@ label {
     margin-bottom: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
+}
 
-  .section:hover {
+.section:hover {
     background-color: #ddd;
-  }
+}
 
-  .content {
+.content {
     display: flex;
     flex-direction: column;
     padding: 10px;
-  }
+}
 
-  .content input {
+.content input {
     margin-bottom: 10px;
-  }
+}
