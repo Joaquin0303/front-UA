@@ -1,13 +1,12 @@
 import React from "react";
-import InputParameter from "../form/InputParameter";
-import InputCountry from "../form/InputCountry";
-import InputText from "../form/InputText";
+import InputParameter from "../InputParameter";
+import InputCountry from "../InputCountry";
+import InputText from "../InputText";
 
 const FormEmployeeStep2 = ({ parameterList, validation, formData, updateFormData }) => {
 
     return (
-        <div className="accordion">
-            <div className="sections">Datos Personales</div>
+        <div className="form-step-container">
             <InputParameter validation={validation} name="codigoNacionalidad" value={formData["codigoNacionalidad"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 17)} updateFormData={updateFormData} />
             <InputCountry validation={validation} name="codigoPaisResidencia" value={formData["codigoPaisResidencia"]} updateFormData={updateFormData} />
             <InputText validation={validation} name="calleResidencia" updateFormData={updateFormData} value={formData["calleResidencia"]} />

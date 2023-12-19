@@ -68,11 +68,11 @@ const DynamicForm = ({ pageName, data, closeModal, disabled, onSubmitForm }) => 
                     return <InputCountry key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />;
                 case 'roles':
                     if (pageName != 'Permisos') {
-                        return <InputRole key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                        return <InputRole key={i} validation={validation} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                     }
                     break;
                 case 'permisos':
-                    return <InputPermission key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
+                    return <InputPermission key={i} validation={validation} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
                 case 'codigoPuestoAlQueReporta':
                     return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
                 case 'numeroLegajo':

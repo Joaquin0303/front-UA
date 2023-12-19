@@ -17,7 +17,7 @@ const InputFileNumber = ({ validation, name, value, updateFormData }) => {
     useEffect(() => {
         getEmployees().then(result => {
             if (result.list)
-                setEmployeeList(result.list);
+                setEmployeeList(result.list.filter(empl => empl.codigoEstadoEmpleado.id == 87));
         })
     }, []);
 

@@ -5,9 +5,13 @@ import '../../styles/Modal.css';
 const InputParameter = ({ validation, name, value, parameterList, disabled, updateFormData }) => {
 
     const paramSelectorChangeHandler = (e) => {
-        updateFormData(name, {
-            id: e.target.value
-        });
+        if (e.target.value > 0) {
+            updateFormData(name, {
+                id: e.target.value
+            });
+        } else {
+            updateFormData(name, null);
+        }
     }
     return (
         <div className='form-group'>

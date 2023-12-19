@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getPermissions } from "../../services/PermissionServices";
 
-const InputPermission = ({ name, value, disabled, updateFormData }) => {
+const InputPermission = ({ validation, name, value, disabled, updateFormData }) => {
 
     const [permissionList, setPermissionList] = useState([]);
     const [permissionsSelected, setPermissionsSelected] = useState(value ? value : []);
@@ -32,15 +32,16 @@ const InputPermission = ({ name, value, disabled, updateFormData }) => {
         <>
             <div className='form-group'>
                 <label className='label' htmlFor="id">Permisos</label>
+                {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
                 <div className="switch-wrap">
-                   {permissionList.map((p, i) => {
-                    return <div key={i} className='form-check form-switch'>
-                        <label className='label' htmlFor="id">{i18n.t(p.descripcion)}</label>
-                        <input disabled={disabled} type='checkbox' className='form-check-input' value='' defaultChecked={permissionsSelected.find(s => s.id == p.id)} onChange={(e) => { handlePermissionChange(e, p.id) }} />
-                    </div>
-                })} 
+                    {permissionList.map((p, i) => {
+                        return <div key={i} className='form-check form-switch'>
+                            <label className='label' htmlFor="id">{i18n.t(p.descripcion)}</label>
+                            <input disabled={disabled} type='checkbox' className='form-check-input' value='' defaultChecked={permissionsSelected.find(s => s.id == p.id)} onChange={(e) => { handlePermissionChange(e, p.id) }} />
+                        </div>
+                    })}
                 </div>
-                
+
             </div>
 
         </>

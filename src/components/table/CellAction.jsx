@@ -6,7 +6,6 @@ import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { PiPencilSimpleSlashBold } from "react-icons/pi";
 
 const CellAction = ({ data, setModal, statusActive }) => {
-    console.log('statusActive', statusActive)
     return (
         <td className='expand'>
             <span className='actions'>

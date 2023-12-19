@@ -74,6 +74,10 @@ const Roles = () => {
             result.error = true;
             result.validation.descripcion = "Ingrese descripción"
         }
+        if (!data.permisos || data.permisos.length <= 0) {
+            result.error = true;
+            result.validation.permisos = "Seleccione al menos un permiso"
+        }
         return result;
     }
 

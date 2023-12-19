@@ -1,15 +1,13 @@
 import React from "react";
-import InputText from "../form/InputText";
-import InputDate from "../form/InputDate";
-import InputParameter from "../form/InputParameter";
-import InputNumber from "../form/InputNumber";
-import InputSwitch from '../form/InputSwitch';
+import InputText from "../InputText";
+import InputParameter from "../InputParameter";
+import InputNumber from "../InputNumber";
+import InputSwitch from '../InputSwitch';
 
 const FormEmployeeStep3 = ({ parameterList, validation, formData, updateFormData }) => {
 
     return (
-        <div className="accordion">
-            <div className="sections">Datos Laborales</div>
+        <div className="form-step-container">
             <InputParameter validation={validation} name="codigoTipoContratacion" value={formData["codigoTipoContratacion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 26)} updateFormData={updateFormData} />
             <InputNumber validation={validation} name="horasSemanales" updateFormData={updateFormData} value={formData["horasSemanales"]} />
             <InputNumber validation={validation} name="fte" updateFormData={updateFormData} value={formData["fte"]} />

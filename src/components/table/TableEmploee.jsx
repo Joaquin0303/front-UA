@@ -6,7 +6,6 @@ import { BsFillPencilFill } from 'react-icons/bs'
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 const TableEmployee = ({ dataList, setModal, statusActive }) => {
-    console.log("emplo", dataList);
     return (
         <div className='table-wrapper' >
             <table className='table' style={{ width: '80%' }}>

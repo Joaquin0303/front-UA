@@ -74,3 +74,16 @@ export const removeSequencer = async (sequencerId) => {
     })
     return result.data;
 }
+
+export const getCurrentSequence = async (sequencerCode) => {
+    const result = await axios({
+        method: 'get',
+        url: host + '/ua/secuenciador/secuencia/' + sequencerCode
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}
+

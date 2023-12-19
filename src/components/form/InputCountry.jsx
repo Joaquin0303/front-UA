@@ -2,14 +2,18 @@ import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getCountries } from "../../services/CountryServices";
 
-const InputCountry = ({ name, value, disabled, updateFormData }) => {
+const InputCountry = ({ validation, name, value, disabled, updateFormData }) => {
 
     const [countryList, setCountryList] = useState([]);
 
     const countrySelectorChangeHandler = (e) => {
-        updateFormData(name, {
-            id: e.target.value
-        });
+        if (e.target.value > 0) {
+            updateFormData(name, {
+                id: e.target.value
+            });
+        } else {
+            updateFormData(name, null);
+        }
     }
 
     useEffect(() => {
@@ -28,6 +32,7 @@ const InputCountry = ({ name, value, disabled, updateFormData }) => {
                     return <option key={i} value={s.id}>{s.descripcion}</option>
                 })}
             </select>
+            {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
         </div>
     );
 }

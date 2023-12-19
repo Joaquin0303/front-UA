@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getRoles } from "../../services/RoleServices";
 
-const InputRole = ({ name, value, disabled, updateFormData }) => {
+const InputRole = ({ validation, name, value, disabled, updateFormData }) => {
 
     const [roleList, setRoleList] = useState([]);
     const [rolesSelected, setRolesSelected] = useState(value ? value : []);
@@ -32,6 +32,7 @@ const InputRole = ({ name, value, disabled, updateFormData }) => {
         <>
             <div className='form-group'>
                 <label className='label' htmlFor="id">Roles</label>
+                {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
                 {roleList.map((r, i) => {
                     return <div key={i} className='form-check form-switch'>
                         <label className='label' htmlFor="id">{i18n.t(r.descripcion)}</label>

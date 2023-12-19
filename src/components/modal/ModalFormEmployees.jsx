@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/Modal.css'
 import { getParameters } from '../../services/ParameterServices';
-import FormEmployeeRegistration from './FormEmployeeRegistration';
-import FormEmployeeDismissal from './FormEmployeeDismissal';
+import FormEmployeeRegistration from '../form/employee/FormEmployeeRegistration';
+import FormEmployeeDismissal from '../form/employee/FormEmployeeDismissal';
 
 export const ModalFormEmployees = ({ action, data, closeModal, onSubmitForm }) => {
     const [parameterList, setParameterList] = useState([]);
@@ -12,8 +12,6 @@ export const ModalFormEmployees = ({ action, data, closeModal, onSubmitForm }) =
             setParameterList(result.list);
         });
     }, []);
-
-    console.log('action', action)
 
     return (
         <>

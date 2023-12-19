@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import '../../styles/Modal.css'
-import InputParameter from '../form/InputParameter';
-import InputText from '../form/InputText';
-import InputDate from '../form/InputDate';
+import '../../../styles/Modal.css'
+import InputParameter from '../InputParameter';
+import InputText from '../InputText';
+import InputDate from '../InputDate';
 
 const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
-
-    const [formDataDismissal, setFormDataDismissal] = useState({});
-
     const [formData, setFormData] = useState(data);
-    const [, setParameterList] = useState([]);
 
     const updateFormData = (key, value) => {
         formData[key] = value;
@@ -26,7 +22,7 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
                 formData.codigoEstadoEmpleado = {
                     id: 89
                 }
-                //onSubmitForm(formData)
+                onSubmitForm(formData)
             }
             closeModal();
         } catch (error) {
@@ -56,8 +52,8 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
         <div>
             <div className="modals-content">
                 <div className='form-view'>
-                    <div className="accordion">
-                        <div className="sections">Baja</div>
+                    <div className='modal-title'>Baja de empleado</div>
+                    <div className="form-step-container">
                         <InputParameter validation={validation} name="codigoTipoEgreso" value={formData["codigoTipoEgreso"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 15)} updateFormData={updateFormData} />
                         <InputText name="observaciones" updateFormData={updateFormData} value={formData["observaciones"]} />
                         <InputDate validation={validation} name="fechaEgreso" updateFormData={updateFormData} value={formData["fechaEgreso"]} />

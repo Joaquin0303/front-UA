@@ -24,7 +24,6 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
     }
 
     const openModalForm = (action, data) => {
-        console.log(action);
         setFormData(data);
         setActionForm(action);
         setShowModalForm(true);
@@ -35,14 +34,12 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
     }
 
     const openModalView = (action, data) => {
-        console.log(action);
         setFormData(data);
         setActionForm(action);
         setShowModalView(true);
     }
 
     const setModal = (action, data) => {
-        console.log('la accion', action);
         if (pageName == 'Empleados') {
             if (action == 'view') {
                 openModalView(action, data);
@@ -57,7 +54,6 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
     }
 
     const onSubmitForm = (data) => {
-        console.log('data submited', data)
         switch (actionForm) {
             case 'add': onAdd(data); break;
             case 'edit': onEdit(data); break;

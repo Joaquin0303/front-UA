@@ -17,9 +17,10 @@ const Users = () => {
     useEffect(() => {
         loadUsers();
     }, [statusActive]);
-
+    console.log('statusActive', statusActive)
     const loadUsers = () => {
         getUsers().then(result => {
+            console.log('result', result.list)
             if (result.list)
                 setUserList(result.list.filter(d => d.activo == statusActive));
         });
@@ -85,6 +86,14 @@ const Users = () => {
         if (!data.numeroLegajo?.trim()) {
             result.error = true;
             result.validation.numeroLegajo = "Ingrese un número de legajo válido"
+        }
+        if (userList.find(u => u.numeroLegajo == data.numeroLegajo)) {
+            result.error = true;
+            result.validation.numeroLegajo = "Ya existe un usuario con este número de legajo"
+        }
+        if (!data.roles || data.roles.length <= 0) {
+            result.error = true;
+            result.validation.roles = "Seleccione al menos un rol"
         }
         return result;
     }

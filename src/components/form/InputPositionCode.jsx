@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getPositions } from "../../services/PositionServices";
-const InputPositionCode = ({ name, value, disabled, updateFormData, directionCode, countryCode, categoryCode, currentPositionId }) => {
+const InputPositionCode = ({ validation, name, value, disabled, updateFormData, directionCode, countryCode, categoryCode, currentPositionId }) => {
 
     const [positionList, setPositionList] = useState([]);
     const [positionListFiltered, setPositionListFiltered] = useState([]);
@@ -47,6 +47,7 @@ const InputPositionCode = ({ name, value, disabled, updateFormData, directionCod
                     return <option key={i} value={s.id}>{s.descripcion}</option>
                 })}
             </select>
+            {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
         </div>
     );
 }

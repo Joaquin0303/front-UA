@@ -30,16 +30,9 @@ label {
     /*   overflow-y: scroll;*/
 }
 
-.modalss {
-    -ms-overflow-style: none;
-    /* Internet Explorer 10+ */
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-.modalss::-webkit-scrollbar {
-    display: none;
-    /* Safari and Chrome */
+.modal-title {
+    border-bottom: 1px solid #999;
+    width: 100%;
 }
 
 .modals-content {
@@ -150,12 +143,11 @@ label {
 }
 
 /*********** Estilos del nuevo Modal ***********/
-.accordion {
+.form-step-container {
     display: flex;
     flex-direction: column;
     width: 400px;
     margin: 20px auto;
-
 }
 
 .section {

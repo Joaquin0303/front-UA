@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getEmployees, addEmployee, updateEmployee, getEmployeeById, removeEmployee } from '../../services/EmployeeServices';
+import { getCurrentSequence, updateSequencer } from '../../services/SequencerServices';
+import { getCountries } from '../../services/CountryServices';
+
+let employeeTotalList = [];
+export const findByFileNumber = (fileNumber) => {
+    return employeeTotalList.find(e => e.numeroLegajo == fileNumber);
+}
+
+export const findByIdentity = (docTypeId, docNumber) => {
+    return employeeTotalList.find(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoPersonal == docNumber);
+}
+
+export const findByLaboralIdentity = (docTypeId, docNumber) => {
+    return employeeTotalList.find(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoLaboral == docNumber);
+}
 
 const EmployeesPage = ({ }) => {
     const [employeeList, setEmployeeList] = useState([]);
@@ -12,8 +27,10 @@ const EmployeesPage = ({ }) => {
 
     const loadEmployees = () => {
         getEmployees().then(result => {
-            if (result.list)
+            if (result.list) {
+                employeeTotalList = result.list;
                 setEmployeeList(result.list.filter(d => (!statusActive && d.codigoEstadoEmpleado.id != 87) || (statusActive && d.codigoEstadoEmpleado.id == 87)));
+            }
         });
     }
 
@@ -21,10 +38,32 @@ const EmployeesPage = ({ }) => {
         const validation = validate(data);
         if (validation.error) throw validation;
 
-        addEmployee(data).then(result => {
-            console.log('Employee added=', result);
-            loadEmployees();
-        });
+        data.codigoEstadoEmpleado = {
+            id: 87
+        }
+
+        data.fechaIngresoReconocida = data.fechaIngreso;
+
+        // REMOVE AFTER DATABASE FIXED
+        data.codigoCentroDeCosto = {
+            id: 55
+        }
+
+        getCountries().then(rCountries => {
+            getCurrentSequence(
+                rCountries.list.find(c => c.id == data.codigoPais.id).secuenciador.codigo
+            ).then(seq => {
+                data.numeroLegajo = seq.model.secuencia + 1;
+                addEmployee(data).then(result => {
+                    console.log('Employee added=', result);
+                    loadEmployees();
+                    updateSequencer(seq.model.id, seq.model.codigo, seq.model.rangoDesde, seq.model.rangoHasta, seq.model.secuencia + 1, seq.model.activo);
+                });
+            });
+
+        })
+
+
     }
 
     const onEdit = (data) => {
@@ -55,18 +94,7 @@ const EmployeesPage = ({ }) => {
             error: false,
             validation: {}
         }
-        if (!data.numeroLegajo) {
-            result.error = true;
-            result.validation.nombre = "Ingrese nombre de usuario"
-        }
-        if (!data.numeroLegajo) {
-            result.error = true;
-            result.validation.nombre = "Ingrese nombre de apellido"
-        }
-        if (!data.numeroLegajo?.trim()) {
-            result.error = true;
-            result.validation.numeroLegajo = "Ingrese numero de legajo"
-        }
+
         return result;
     }
 

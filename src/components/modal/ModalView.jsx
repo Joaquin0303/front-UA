@@ -63,7 +63,6 @@ const ModalView = ({ pageName, data, closeModal, onSubmitForm, action }) => {
                     return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
                 case 'roles':
                     if (pageName != 'Permisos') {
-                        console.log('length', data[key].length)
                         return createCellListInfo(i, key, data[key]);
                     }
                     break;
