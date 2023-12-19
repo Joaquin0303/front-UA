@@ -94,7 +94,7 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
             {pageName != 'Empleados' && <Table pageName={pageName} dataList={filteredDataList} setModal={setModal} statusActive={statusActive} />}
             {pageName == 'Empleados' && <TableEmployee pageName={pageName} dataList={filteredDataList} setModal={setModal} statusActive={statusActive} />}
             {pageName != 'Empleados' && showModalForm && <ModalForm pageName={pageName} data={formData} closeModal={closeModalForm} formDisabled={formDisabled} onSubmitForm={onSubmitForm} />}
-            {pageName != 'Empleados' && showModalView && <ModalView pageName={pageName} data={formData} closeModal={closeModalView} onSubmitForm={onSubmitForm} action={actionForm} />}
+            {showModalView && <ModalView pageName={pageName} data={formData} closeModal={closeModalView} onSubmitForm={onSubmitForm} action={actionForm} />}
             {pageName == 'Empleados' && showModalForm && <ModalFormEmployees action={actionForm} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} />}
         </>
     );

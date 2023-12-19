@@ -92,11 +92,12 @@ const ModalView = ({ pageName, data, closeModal, onSubmitForm, action }) => {
         }}>
             <div className='modals'>
                 <div>
-                    <h1 className='label'>Detalle</h1>
+                    <div className='modal-title'>Detalle</div>
                     <div className="modals-content">
-                        <br />
                         <div className='form-view'>
-                            {createCell()}
+                            <div className="form-field-container">
+                                {createCell()}
+                            </div>
                         </div>
                     </div>
                     <div className='modal-buttons'>

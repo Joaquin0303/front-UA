@@ -7,7 +7,7 @@ import InputSwitch from '../InputSwitch';
 const FormEmployeeStep3 = ({ parameterList, validation, formData, updateFormData }) => {
 
     return (
-        <div className="form-step-container">
+        <div className="form-field-container">
             <InputParameter validation={validation} name="codigoTipoContratacion" value={formData["codigoTipoContratacion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 26)} updateFormData={updateFormData} />
             <InputNumber validation={validation} name="horasSemanales" updateFormData={updateFormData} value={formData["horasSemanales"]} />
             <InputNumber validation={validation} name="fte" updateFormData={updateFormData} value={formData["fte"]} />

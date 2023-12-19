@@ -6,7 +6,7 @@ import InputText from "../InputText";
 const FormEmployeeStep2 = ({ parameterList, validation, formData, updateFormData }) => {
 
     return (
-        <div className="form-step-container">
+        <div className="form-field-container">
             <InputParameter validation={validation} name="codigoNacionalidad" value={formData["codigoNacionalidad"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 17)} updateFormData={updateFormData} />
             <InputCountry validation={validation} name="codigoPaisResidencia" value={formData["codigoPaisResidencia"]} updateFormData={updateFormData} />
             <InputText validation={validation} name="calleResidencia" updateFormData={updateFormData} value={formData["calleResidencia"]} />

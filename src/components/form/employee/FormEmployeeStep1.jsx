@@ -9,7 +9,7 @@ import InputNumber from "../InputNumber";
 const FormEmployeeStep1 = ({ parameterList, validation, formData, updateFormData }) => {
 
     return (
-        <div className="form-step-container">
+        <div className="form-field-container">
             <InputText validation={validation} name="apellido" updateFormData={updateFormData} value={formData["apellido"]} />
             <InputText validation={validation} name="nombre" updateFormData={updateFormData} value={formData["nombre"]} />
             <InputText validation={validation} name="segundoNombre" updateFormData={updateFormData} value={formData["segundoNombre"]} />

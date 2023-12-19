@@ -50,10 +50,10 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
 
     return (
         <div>
+            <div className='modal-title'>Baja de empleado</div>
             <div className="modals-content">
                 <div className='form-view'>
-                    <div className='modal-title'>Baja de empleado</div>
-                    <div className="form-step-container">
+                    <div className="form-field-container">
                         <InputParameter validation={validation} name="codigoTipoEgreso" value={formData["codigoTipoEgreso"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 15)} updateFormData={updateFormData} />
                         <InputText name="observaciones" updateFormData={updateFormData} value={formData["observaciones"]} />
                         <InputDate validation={validation} name="fechaEgreso" updateFormData={updateFormData} value={formData["fechaEgreso"]} />
