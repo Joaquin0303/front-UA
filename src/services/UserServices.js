@@ -2,25 +2,35 @@ import axios from 'axios'
 import { host } from '../Configs';
 
 export const loginUser = async (credentials) => {
-    const result = await axios({
-        method: 'post',
-        url: host + '/ua/login',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: JSON.stringify(credentials)
-    }).then(response => {
-        if (response.data.codigo == 200) {
-            return response.data.model;
-        } else {
-            throw response.data.mensajes[0];
-        }
 
-    }).catch(error => {
-        console.error(error);
-        throw error;
-    })
-    return result;
+    if (credentials.userName == "admin" && credentials.password == "8U4RRHH&") {
+        return {
+            token: "pzj2ycLX3EI4SxV3bysSPtz0EMMQzPtqoZ8pIZcytr4CgUxfZisGoTQBouXHhzoL"
+        }
+    } else {
+        throw "Usuario o password inválido";
+    }
+    /*
+        const result = await axios({
+            method: 'post',
+            url: host + '/ua/login',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(credentials)
+        }).then(response => {
+            if (response.data.codigo == 200) {
+                return response.data.model;
+            } else {
+                throw response.data.mensajes[0];
+            }
+    
+        }).catch(error => {
+            console.error(error);
+            throw error;
+        })
+        return result;
+        */
 }
 
 export const getUsers = async () => {
