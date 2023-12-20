@@ -30,7 +30,7 @@ export const updateExcludedIncome = async (excludeIncomeId, employee, motivo, ob
         method: 'put',
         url: host + '/ua/historialingresoscaidos/' + excludeIncomeId,
         data: {
-            'employee': employee,
+            'empleado': employee,
             'motivo': motivo,
             'activo': activo,
             'observaciones': observaciones
@@ -48,7 +48,7 @@ export const addExcludedIncome = async (employee, motivo, observaciones, activo)
         method: 'post',
         url: host + '/ua/historialingresoscaidos',
         data: {
-            'employee': employee,
+            'empleado': employee,
             'motivo': motivo,
             'activo': activo,
             'observaciones': observaciones

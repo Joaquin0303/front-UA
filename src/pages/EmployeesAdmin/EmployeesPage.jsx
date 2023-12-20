@@ -3,7 +3,7 @@ import ABMPage from '../ABMPage';
 import { getEmployees, addEmployee, updateEmployee, getEmployeeById, removeEmployee } from '../../services/EmployeeServices';
 import { getCurrentSequence, updateSequencer } from '../../services/SequencerServices';
 import { getCountries } from '../../services/CountryServices';
-
+import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
 let employeeTotalList = [];
 export const findByFileNumber = (fileNumber) => {
     return employeeTotalList.find(e => e.numeroLegajo == fileNumber);
@@ -71,8 +71,13 @@ const EmployeesPage = ({ }) => {
         if (validation.error) throw validation;
         const employeeId = data.id;
         delete data["id"];
-        updateEmployee(employeeId, data).then(result => {
-            console.log('Employee updated=', result);
+        updateEmployee(employeeId, data).then(empResult => {
+            console.log('Employee updated=', empResult);
+            if (empResult && empResult.model && empResult.model.codigoTipoEgreso && empResult.model.codigoTipoEgreso.id == 202) {
+                addExcludedIncome(empResult.model, empResult.model.codigoTipoEgreso.descripcion, empResult.model.observaciones, true).then(excludeResult => {
+                    console.log('Excluded Income added=', excludeResult);
+                });
+            }
             loadEmployees();
         })
     }

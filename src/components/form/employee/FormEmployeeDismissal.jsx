@@ -3,7 +3,6 @@ import '../../../styles/Modal.css'
 import InputParameter from '../InputParameter';
 import InputText from '../InputText';
 import InputDate from '../InputDate';
-import { updateExcludedIncome } from '../../../services/ExcludedIncomeServices';
 
 const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();

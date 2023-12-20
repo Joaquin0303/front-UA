@@ -3,7 +3,6 @@ import DynamicForm from '../form/DynamicForm';
 import '../../styles/Modal.css'
 
 const ModalForm = ({ pageName, data, closeModal, formDisabled, onSubmitForm }) => {
-
     return (
         <div className='modal-container' >
             <div className='modals'>

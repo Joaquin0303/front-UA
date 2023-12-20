@@ -74,7 +74,7 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
         setFilteredDataList(dataList.filter((data) => matchHandler(data, searchTerm)));
     }, [searchTerm, dataList]);
 
-
+    console.log("his", dataList)
     return (
         <>
             <div className='bloque-search'>
@@ -84,18 +84,19 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
                 </div>
                 {pageName != 'ingresoCaido' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); setModal('add', dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
             </div >
-            <div className='active-users'>
+            {pageName != 'ingresoCaido' && <div className='active-users'>
                 {setActive && <div className='form-check form-switch'>
                     Activos
                     <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />
                 </div>}
-            </div>
+            </div>}
 
             {pageName != 'Empleados' && <Table pageName={pageName} dataList={filteredDataList} setModal={setModal} statusActive={statusActive} />}
             {pageName == 'Empleados' && <TableEmployee pageName={pageName} dataList={filteredDataList} setModal={setModal} statusActive={statusActive} />}
             {pageName != 'Empleados' && showModalForm && <ModalForm pageName={pageName} data={formData} closeModal={closeModalForm} formDisabled={formDisabled} onSubmitForm={onSubmitForm} />}
             {showModalView && <ModalView pageName={pageName} data={formData} closeModal={closeModalView} onSubmitForm={onSubmitForm} action={actionForm} />}
             {pageName == 'Empleados' && showModalForm && <ModalFormEmployees action={actionForm} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} />}
+
         </>
     );
 }

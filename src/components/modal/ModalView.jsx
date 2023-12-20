@@ -70,6 +70,8 @@ const ModalView = ({ pageName, data, closeModal, onSubmitForm, action }) => {
                     return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
                 case 'codigoPuestoAlQueReporta':
                     return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
+                case 'empleado':
+                    return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].numeroLegajo + " - " + data[key].apellido + " " + data[key].nombre : '');
                 default:
                     if (key != 'id' && key != 'activo' && key != 'fechaAlta'
                         && (pageName != 'parameterType' || key != 'codigo')

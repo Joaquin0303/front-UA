@@ -15,10 +15,10 @@ const CellAction = ({ pageName, data, setModal, statusActive }) => {
                 {pageName != 'ingresoCaido' && statusActive && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal('edit', data) }}>
                     <BsFillPencilFill />
                 </div>}
-                {data.activo && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal('inactivate', data) }}>
+                {pageName != 'ingresoCaido' && data.activo && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal('inactivate', data) }}>
                     <FaArrowDown />
                 </div>}
-                {!data.activo && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); setModal('activate', data) }}>
+                {pageName != 'ingresoCaido' && !data.activo && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); setModal('activate', data) }}>
                     <FaArrowUp />
                 </div>}
             </span>

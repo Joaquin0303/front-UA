@@ -21,6 +21,7 @@ const ExcludedIncomePage = () => {
 
     const loadExcludedIcomes = () => {
         getExcludedIncomes().then(result => {
+            console.log("activos", statusActive)
             if (result.list)
                 setExcludedIncomeList(result.list.filter(d => d.activo == statusActive));
         });
@@ -53,7 +54,7 @@ const ExcludedIncomePage = () => {
 
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return data.empleado.numeroLegajo == lowerCaseSearchTerm || (data.empleado.nombre + data.empleado.apellido).toLowerCase().includes(lowerCaseSearchTerm);
+        return !data.empleado || data.empleado.numeroLegajo == lowerCaseSearchTerm || (data.empleado.nombre + data.empleado.apellido).toLowerCase().includes(lowerCaseSearchTerm);
     }
 
     const validate = (data) => {
