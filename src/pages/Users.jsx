@@ -87,7 +87,7 @@ const Users = () => {
             result.error = true;
             result.validation.numeroLegajo = "Ingrese un número de legajo válido"
         }
-        if (userList.find(u => u.numeroLegajo == data.numeroLegajo)) {
+        if (userList.find(u => u.numeroLegajo == data.numeroLegajo && u.id != data.id)) {
             result.error = true;
             result.validation.numeroLegajo = "Ya existe un usuario con este número de legajo"
         }

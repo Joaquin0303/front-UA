@@ -8,9 +8,7 @@ const InputCountry = ({ validation, name, value, disabled, updateFormData }) => 
 
     const countrySelectorChangeHandler = (e) => {
         if (e.target.value > 0) {
-            updateFormData(name, {
-                id: e.target.value
-            });
+            updateFormData(name, countryList.find(c => c.id == e.target.value));
         } else {
             updateFormData(name, null);
         }

@@ -81,7 +81,8 @@ i18n
           codigoConvenio: "Convenio",
           codigoCategoriaConvenio: "Categoría convenio",
           afiliadoSindicato: "Afiliado sindicato",
-          codigoGrado: "Grado"
+          codigoGrado: "Grado",
+          ingresoCaido: "Ingreso caido"
         }
       }
     }

@@ -21,6 +21,10 @@ import CountriesPage from './pages/ParametersAdmin/CountriesPage';
 import PositionsPage from './pages/ParametersAdmin/PositionsPage';
 import SequencersPage from './pages/ParametersAdmin/SequencersPage';
 import EmployeesPage from './pages/EmployeesAdmin/EmployeesPage';
+import ExcludedIncomePage from './pages/EmployeesAdmin/ExcludedIncomePage';
+import LoadFamilyPage from './pages/EmployeesAdmin/LoadFamilyPage';
+import ExternalPage from './pages/EmployeesAdmin/ExternalPage';
+import PositionChangesPage from './pages/EmployeesAdmin/PositionChangesPage';
 
 function App() {
 
@@ -73,11 +77,11 @@ function App() {
         {/* -------------------------- */}
         <Route path="/administracion-empleados" element={<AdminEmployees />} />
         {<Route path="/administracion-empleados/empleados" element={<EmployeesPage />} />}
-        {<Route path="/administracion-empleados/cargas-de-familia" element={<ParametersPage />} />}
-        {<Route path="/administracion-empleados/externos" element={<SequencersPage />} />}
+        {<Route path="/administracion-empleados/cargas-de-familia" element={<LoadFamilyPage />} />}
+        {<Route path="/administracion-empleados/externos" element={<ExternalPage />} />}
         {<Route path="/administracion-empleados/historial-licencias" element={<PositionsPage />} />}
-        {<Route path="/administracion-empleados/cambios-puestos" element={<CountriesPage />} />}
-        {<Route path="/administracion-empleados/ingreso-caido" element={<CountriesPage />} />}
+        {<Route path="/administracion-empleados/cambios-puestos" element={<PositionChangesPage />} />}
+        {<Route path="/administracion-empleados/ingreso-caido" element={<ExcludedIncomePage />} />}
       </Routes>
     </>
   )

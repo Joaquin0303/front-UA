@@ -123,6 +123,7 @@ label {
 }
 
 .modal-step-buttons {
+    margin-top: 10px;
     position: relative;
     margin-bottom: 0 !important;
     background: #00528f;

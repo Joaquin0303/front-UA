@@ -9,6 +9,7 @@ import CellParameter from './CellParameter';
 import CellDate from './CellDate';
 import CellPositionCode from './CellPositionCode';
 import CellCountry from './CellCountry';
+import CellEmployee from './CellEmployee';
 
 const Row = ({ pageName, data, setModal, statusActive }) => {
 
@@ -39,17 +40,18 @@ const Row = ({ pageName, data, setModal, statusActive }) => {
                     return <CellCountry key={i} country={data[key]} />
                 case 'codigoPuestoAlQueReporta':
                     return <CellPositionCode key={i} position={data[key]} />
-                default:
-                    if (!Array.isArray(data[key]) && key != 'id' && key != 'activo' && key != 'usuarios'
-                        && (pageName != 'Roles' || key != 'codigo')
-                        && (pageName != 'parameterType' || key != 'codigo')
-                        && (pageName != 'Puesto' || key != 'codigo')
-                        && (!statusActive || key != 'fechaBaja')
-                    )
-                        if (key.startsWith('fecha'))
-                            return <CellDate key={i} value={data[key]} />
-                        else
-                            return <Cell key={i} value={data[key]} />
+                case 'empleado':
+                    return <CellEmployee key={i} employee={data[key]} />
+                default: if (!Array.isArray(data[key]) && key != 'id' && key != 'activo' && key != 'usuarios'
+                    && (pageName != 'Roles' || key != 'codigo')
+                    && (pageName != 'parameterType' || key != 'codigo')
+                    && (pageName != 'Puesto' || key != 'codigo')
+                    && (!statusActive || key != 'fechaBaja')
+                )
+                    if (key.startsWith('fecha'))
+                        return <CellDate key={i} value={data[key]} />
+                    else
+                        return <Cell key={i} value={data[key]} />
             }
         });
         return cells;
@@ -59,7 +61,7 @@ const Row = ({ pageName, data, setModal, statusActive }) => {
         <>
             <tr>
                 {createCells()}
-                <CellAction data={data} setModal={setModal} statusActive={statusActive} />
+                <CellAction pageName={pageName} data={data} setModal={setModal} statusActive={statusActive} />
             </tr>
         </>
     );

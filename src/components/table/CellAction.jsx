@@ -5,14 +5,14 @@ import { BsFillPencilFill } from 'react-icons/bs'
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { PiPencilSimpleSlashBold } from "react-icons/pi";
 
-const CellAction = ({ data, setModal, statusActive }) => {
+const CellAction = ({ pageName, data, setModal, statusActive }) => {
     return (
         <td className='expand'>
             <span className='actions'>
                 <div title="Ver" onClick={(e) => { e.stopPropagation(); setModal('view', data) }}>
                     <IoEyeSharp />
                 </div>
-                {statusActive && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal('edit', data) }}>
+                {pageName != 'ingresoCaido' && statusActive && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal('edit', data) }}>
                     <BsFillPencilFill />
                 </div>}
                 {data.activo && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal('inactivate', data) }}>

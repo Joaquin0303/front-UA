@@ -14,7 +14,12 @@ const Table = ({ pageName, dataList, setModal, statusActive }) => {
                             <tr>
                                 {
                                     Object.keys(dataList[0]).map((k, i) => {
-                                        if (k != 'id' && k != 'activo' && k != 'usuarios'
+                                        if (k == 'empleado') {
+                                            return <>
+                                                <th key={i + "a"}>{i18n.t('numeroLegajo')}</th>
+                                                <th key={i + "b"}>{i18n.t('nombre')}</th>
+                                            </>
+                                        } else if (k != 'id' && k != 'activo' && k != 'usuarios'
                                             && (pageName != 'Permisos' || k != 'roles')
                                             && (pageName != 'Roles' || k != 'codigo')
                                             && (pageName != 'parameterType' || k != 'codigo')

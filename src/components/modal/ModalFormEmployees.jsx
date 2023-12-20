@@ -9,7 +9,7 @@ export const ModalFormEmployees = ({ action, data, closeModal, onSubmitForm }) =
 
     useEffect(() => {
         getParameters().then(result => {
-            setParameterList(result.list);
+            setParameterList(result.list.filter(p => p.activo == true));
         });
     }, []);
 
