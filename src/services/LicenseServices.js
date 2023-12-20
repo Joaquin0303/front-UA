@@ -4,7 +4,7 @@ import { host } from '../Configs';
 export const getLicenses = async () => {
     const result = await axios({
         method: 'get',
-        url: host + '/ua/licencia'
+        url: host + '/ua/historiallicencias'
     }).then(response => {
         return response;
     }).catch(error => {
@@ -28,7 +28,7 @@ export const getLicenses = async () => {
 export const updateLicense = async (numeroLegajo, fechaInicio, fechaFin, motivoLicencia, activo) => {
     const result = await axios({
         method: 'put',
-        url: host + '/ua/licencia/' + numeroLegajo,
+        url: host + '/ua/historiallicencias/' + numeroLegajo,
         data: {
             'fechaInicio': fechaInicio,
             'fechaFin': fechaFin,
@@ -46,7 +46,7 @@ export const updateLicense = async (numeroLegajo, fechaInicio, fechaFin, motivoL
 export const addLicense = async (numeroLegajo, fechaInicio, fechaFin, motivoLicencia, activo) => {
     const result = await axios({
         method: 'post',
-        url: host + '/ua/licencia',
+        url: host + '/ua/historiallicencias',
         data: {
             'numeroLegajo': numeroLegajo,
             'fechaInicio': fechaInicio,
@@ -65,7 +65,7 @@ export const addLicense = async (numeroLegajo, fechaInicio, fechaFin, motivoLice
 export const removeLicense = async (numeroLegajo) => {
     const result = await axios({
         method: 'delete',
-        url: host + '/ua/licencia/' + numeroLegajo
+        url: host + '/ua/historiallicencias/' + numeroLegajo
     }).then(response => {
         return response;
     }).catch(error => {

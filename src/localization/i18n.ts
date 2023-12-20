@@ -82,7 +82,11 @@ i18n
           codigoCategoriaConvenio: "Categoría convenio",
           afiliadoSindicato: "Afiliado sindicato",
           codigoGrado: "Grado",
-          ingresoCaido: "Ingreso caido"
+          ingresoCaido: "Ingreso caido",
+          cambioDePuesto: "Historial de puesto",
+          cargaDeFamilia: "Carga de familia",
+          licenciaHistory: "Historial de licencia",
+          external: "Empleado externo"
         }
       }
     }
