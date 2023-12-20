@@ -50,12 +50,12 @@ const LicensesPage = () => {
         });
     }
 
-    /* const matchHandler = (data, searchTerm) => {
+    const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
         return data.descripcion?.toLowerCase().includes(lowerCaseSearchTerm) ||
             data.pais?.toLowerCase().includes(lowerCaseSearchTerm) ||
             data.secuenciador?.codigo?.toLowerCase().includes(lowerCaseSearchTerm);
-    } */
+    }
 
     const validate = (data) => {
         const result = {

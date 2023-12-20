@@ -65,7 +65,7 @@ export const addLicense = async (numeroLegajo, fechaInicio, fechaFin, motivoLice
 export const removeLicense = async (numeroLegajo) => {
     const result = await axios({
         method: 'delete',
-        url: host + '/ua/pais/' + numeroLegajo
+        url: host + '/ua/licencia/' + numeroLegajo
     }).then(response => {
         return response;
     }).catch(error => {
