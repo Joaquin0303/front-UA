@@ -59,6 +59,7 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
             case 'edit': onEdit(data); break;
             case 'activate': data.activo = true; onEdit(data); break;
             case 'inactivate': data.activo = false; onEdit(data); break;
+            case 'cancel': data.activo = false; onEdit(data); break;
             case 'view': break;
             case 'remove': onRemove(data); break;
             default: ;

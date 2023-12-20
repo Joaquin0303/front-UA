@@ -65,7 +65,7 @@ const DynamicForm = ({ pageName, data, closeModal, disabled, onSubmitForm }) => 
                 case 'codigoCentroDeCosto':
                     return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 4)} updateFormData={updateFormData} />
                 case "codigoPais":
-                    return <InputCountry key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />;
+                    return <InputCountry validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />;
                 case 'roles':
                     if (pageName != 'Permisos') {
                         return <InputRole key={i} validation={validation} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />

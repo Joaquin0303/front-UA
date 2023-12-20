@@ -90,6 +90,15 @@ const PositionsPage = () => {
             result.error = true;
             result.validation.codigoCategoria = "Seleccione código de categoría"
         }
+        if (!data.codigoCentroDeCosto || data.codigoCentroDeCosto.id <= 0) {
+            result.error = true;
+            result.validation.codigoCentroDeCosto = "Seleccione código de centro de costo"
+        }
+        if (!data.codigoPais || data.codigoPais.id <= 0) {
+            result.error = true;
+            result.validation.codigoPais = "Seleccione un pais"
+        }
+
         return result;
     }
 

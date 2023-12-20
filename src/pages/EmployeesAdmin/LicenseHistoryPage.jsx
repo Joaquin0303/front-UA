@@ -13,7 +13,7 @@ const LicenseModel = {
 const LicensesPage = () => {
     const [licenseList, setLicenseList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
-
+    console.log(licenseList);
     useEffect(() => {
         loadLicenses();
     }, [statusActive]);
@@ -52,9 +52,7 @@ const LicensesPage = () => {
 
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return data.descripcion?.toLowerCase().includes(lowerCaseSearchTerm) ||
-            data.pais?.toLowerCase().includes(lowerCaseSearchTerm) ||
-            data.secuenciador?.codigo?.toLowerCase().includes(lowerCaseSearchTerm);
+        return !data.empleado || data.numeroLegajo == lowerCaseSearchTerm || (data.empleado.nombre + data.empleado.apellido).toLowerCase().includes(lowerCaseSearchTerm);
     }
 
     const validate = (data) => {

@@ -4,6 +4,7 @@ import { getEmployees, addEmployee, updateEmployee, getEmployeeById, removeEmplo
 import { getCurrentSequence, updateSequencer } from '../../services/SequencerServices';
 import { getCountries } from '../../services/CountryServices';
 import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
+import { addLicense } from '../../services/LicenseServices';
 let employeeTotalList = [];
 export const findByFileNumber = (fileNumber) => {
     return employeeTotalList.find(e => e.numeroLegajo == fileNumber);
@@ -76,6 +77,10 @@ const EmployeesPage = ({ }) => {
             if (empResult && empResult.model && empResult.model.codigoTipoEgreso && empResult.model.codigoTipoEgreso.id == 202) {
                 addExcludedIncome(empResult.model, empResult.model.codigoTipoEgreso.descripcion, empResult.model.observaciones, true).then(excludeResult => {
                     console.log('Excluded Income added=', excludeResult);
+                });
+            } else if (empResult && empResult.model && empResult.model.codigoEstadoEmpleado.id == 88) {
+                addLicense(empResult.model, empResult.model.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, true).then(licenceResult => {
+                    console.log('Licence added=', licenceResult);
                 });
             }
             loadEmployees();

@@ -42,7 +42,7 @@ const TableEmployee = ({ dataList, setModal, statusActive }) => {
                                     {statusActive && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal('edit', d) }}>
                                         <BsFillPencilFill />
                                     </div>}
-                                    {(d.codigoEstadoEmpleado.id == 87 || d.codigoEstadoEmpleado.id == 88) && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal('inactivate', d) }}>
+                                    {(d.codigoEstadoEmpleado.id == 87 || d.codigoEstadoEmpleado.id == 88) && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal('cancel', d) }}>
                                         <FaArrowDown />
                                     </div>}
                                     {d.codigoEstadoEmpleado.id == 88 && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); setModal('activate', d) }}>
