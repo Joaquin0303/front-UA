@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getParameterTypes, addParameterType, updateParameterType, removeParameterType } from '../../services/ParameterTypeServices';
 import ABMPage from '../ABMPage';
+import { PiFaceMask } from 'react-icons/pi';
 
 const ParameterTypeModel = {
     codigo: '',
@@ -9,10 +10,10 @@ const ParameterTypeModel = {
 }
 
 const compare = (a, b) => {
-    if (a.descripcion < b.descripcion) {
+    if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
         return -1;
     }
-    if (a.descripcion > b.descripcion) {
+    if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
         return 1;
     }
     return 0;
@@ -72,6 +73,11 @@ const ParameterTypesPage = () => {
             result.error = true;
             result.validation.descripcion = "Ingrese descripción"
         }
+        if (parameterTypeList.find(pt => pt.descripcion.toLowerCase() == data.descripcion.toLowerCase() && pt.id != data.id)) {
+            result.error = true;
+            result.validation.descripcion = "Ya existe un tipo de parámetro con este nombre"
+        }
+
         return result;
     }
 

@@ -11,6 +11,16 @@ const CountryModel = {
     activo: true
 }
 
+const compare = (a, b) => {
+    if (a.codigo.toLowerCase() < b.codigo.toLowerCase()) {
+        return -1;
+    }
+    if (a.codigo.toLowerCase() > b.codigo.toLowerCase()) {
+        return 1;
+    }
+    return 0;
+}
+
 const CountriesPage = () => {
     const [countryList, setCountryList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
@@ -22,7 +32,7 @@ const CountriesPage = () => {
     const loadCountries = () => {
         getCountries().then(result => {
             if (result.list)
-                setCountryList(result.list.filter(d => d.activo == statusActive));
+                setCountryList(result.list.filter(d => d.activo == statusActive).sort(compare));
         });
     }
 
@@ -74,6 +84,10 @@ const CountriesPage = () => {
         if (!data.secuenciador || data.secuenciador.id <= 0) {
             result.error = true;
             result.validation.secuenciador = "Seleccione secuenciador"
+        }
+        if (countryList.find(pt => pt.codigo.toLowerCase() == data.codigo.toLowerCase() && pt.id != data.id)) {
+            result.error = true;
+            result.validation.codigo = "Ya existe un país con este codigo"
         }
         return result;
     }

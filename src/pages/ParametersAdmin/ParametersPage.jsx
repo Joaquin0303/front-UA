@@ -14,15 +14,15 @@ const ParameterModel = {
 }
 
 const compare = (a, b) => {
-    if (a.tipoParametro.descripcion < b.tipoParametro.descripcion) {
+    if (a.tipoParametro.descripcion.toLowerCase() < b.tipoParametro.descripcion.toLowerCase()) {
         return -1
-    } else if (a.tipoParametro.descripcion > b.tipoParametro.descripcion) {
+    } else if (a.tipoParametro.descripcion.toLowerCase() > b.tipoParametro.descripcion.toLowerCase()) {
         return 1;
     } else {
-        if (a.descripcion < b.descripcion) {
+        if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
             return -1;
         }
-        if (a.descripcion > b.descripcion) {
+        if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
             return 1;
         }
         return 0;
@@ -91,6 +91,10 @@ const ParametersPage = () => {
         if (!data.tipoParametro || data.tipoParametro.id <= 0) {
             result.error = true;
             result.validation.tipoParametro = "Seleccione tipo de parámetro"
+        }
+        if (parameterList.find(pt => pt.codigo.toLowerCase() == data.codigo.toLowerCase() && pt.id != data.id)) {
+            result.error = true;
+            result.validation.codigo = "Ya existe un parámetro con este codigo"
         }
         return result;
     }

@@ -28,7 +28,7 @@ const LicensesPage = () => {
     const onAdd = (data) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        addLicense(data.numeroLegajo, data.fechaInicio, data.fechaFin, data.motivoLicencia, data.activo).then(result => {
+        addLicense(data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.motivoLicencia, data.activo).then(result => {
             console.log('saved=', result);
             loadLicenses();
         });
@@ -37,7 +37,7 @@ const LicensesPage = () => {
     const onEdit = (data) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        updateLicense(data.numeroLegajo, data.fechaInicio, data.fechaFin, data.motivoLicencia, data.activo).then(result => {
+        updateLicense(data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.motivoLicencia, data.activo).then(result => {
             console.log('edited=', result);
             loadLicenses();
         });
