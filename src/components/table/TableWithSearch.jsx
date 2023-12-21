@@ -83,9 +83,9 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
                     <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                     <i className="fa-solid fa-magnifying-glass icon"></i>
                 </div>
-                {pageName != 'ingresoCaido' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); setModal('add', dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
+                {pageName != 'ingresoCaido' || pageName != 'licenciaHistory' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); setModal('add', dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
             </div >
-            {pageName != 'ingresoCaido' && <div className='active-users'>
+            {pageName != 'ingresoCaido' || pageName != 'licenciaHistory' && <div className='active-users'>
                 {setActive && <div className='form-check form-switch'>
                     Activos
                     <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />

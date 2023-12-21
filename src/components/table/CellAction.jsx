@@ -12,13 +12,13 @@ const CellAction = ({ pageName, data, setModal, statusActive }) => {
                 <div title="Ver" onClick={(e) => { e.stopPropagation(); setModal('view', data) }}>
                     <IoEyeSharp />
                 </div>
-                {pageName != 'ingresoCaido' && statusActive && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal('edit', data) }}>
+                {pageName != 'ingresoCaido' || pageName != 'licenciaHistory' && statusActive && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal('edit', data) }}>
                     <BsFillPencilFill />
                 </div>}
-                {pageName != 'ingresoCaido' && data.activo && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal('inactivate', data) }}>
+                {pageName != 'ingresoCaido' || pageName != 'licenciaHistory' && data.activo && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal('inactivate', data) }}>
                     <FaArrowDown />
                 </div>}
-                {pageName != 'ingresoCaido' && !data.activo && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); setModal('activate', data) }}>
+                {pageName != 'ingresoCaido' || pageName != 'licenciaHistory' && !data.activo && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); setModal('activate', data) }}>
                     <FaArrowUp />
                 </div>}
             </span>
