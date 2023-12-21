@@ -86,7 +86,13 @@ i18n
           cambioDePuesto: "Historial de puesto",
           cargaDeFamilia: "Carga de familia",
           licenciaHistory: "Historial de licencia",
-          external: "Empleado externo"
+          external: "Empleado externo",
+          codigoTipoEgreso: "Motivo de egreso",
+          observaciones: "Observaciones",
+          fechaEgreso: "Fecha de egreso",
+          tipoLicencia: "Tipo de licencia",
+          fechaInicio: "Fecha de inicio",
+          fechaFin: "Fecha de fin"
         }
       }
     }
