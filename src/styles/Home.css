@@ -7,6 +7,13 @@
     gap: 30px;
 }
 
+.container-img{
+    width: 75vw;
+    max-width: 1000px;
+    min-width: 320px;
+    margin: auto;
+}
+
 .imgHome{
-    width: 1020px;
+    width: 100%;
 }
