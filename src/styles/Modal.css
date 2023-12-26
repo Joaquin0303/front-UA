@@ -60,7 +60,7 @@ label {
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     margin-right: 64px;
 }
 
@@ -122,13 +122,26 @@ label {
     padding-bottom: 15px;
 }
 
+.modal-buttons-step{
+    border-top: 1px solid #999;
+    position: relative;
+    margin-bottom: 0 !important;
+    background: #00528f;
+    text-align: right;
+    padding-bottom: 15px;
+}
+
 .modal-step-buttons {
     margin-top: 10px;
+    border-top: 1px solid #999;
     position: relative;
     margin-bottom: 0 !important;
     background: #00528f;
     text-align: center;
     padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .form-p {

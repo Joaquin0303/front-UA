@@ -216,13 +216,13 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                             {(formStep == 1 || formStep == 2) &&
                                 <FaArrowAltCircleRight size={30} title="Siguente" onClick={(e) => { nextStep(formStep + 1); }} />
                             }
+                            <div className='modal-buttons-step'>
+                                {formStep == 0 && <button type='submit' className='btns' onClick={searchEmployee}>Confirmar</button>}
+                                {formStep != 0 && <button type='submit' className='btns' onClick={submitForm}>Confirmar</button>}
+                                <button className='btns-close' onClick={closeModal}>Cerrar</button>
+                            </div>
                         </div>
 
-                        <div className='modal-buttons'>
-                            {formStep == 0 && <button type='submit' className='btns' onClick={searchEmployee}>Confirmar</button>}
-                            {formStep != 0 && <button type='submit' className='btns' onClick={submitForm}>Confirmar</button>}
-                            <button className='btns-close' onClick={closeModal}>Cerrar</button>
-                        </div>
                     </div>
                 </div>
             </div >
