@@ -240,6 +240,6 @@
 
 .form-field-error-msg {
     margin-left: 5px;
-    font-size: 80%;
-    color: rgb(255, 0, 0);
+    color: #FC5959;
+    font-weight: bold;
 }
