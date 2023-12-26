@@ -243,3 +243,8 @@
     color: #FC5959;
     font-weight: bold;
 }
+
+input:disabled{
+    color: #ccc;
+    background-color: transparent;
+}

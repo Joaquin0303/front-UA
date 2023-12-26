@@ -190,3 +190,9 @@ label {
 .content input {
     margin-bottom: 10px;
 }
+
+
+input:disabled{
+    color: #ccc;
+    background-color: transparent;
+}
