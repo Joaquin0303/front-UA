@@ -72,6 +72,8 @@ const compare = (a, b) => {
     return 0;
 }
 
+let countryTotalList = [];
+
 const CountriesPage = () => {
     const [countryList, setCountryList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
@@ -82,8 +84,10 @@ const CountriesPage = () => {
 
     const loadCountries = () => {
         getCountries().then(result => {
-            if (result.list)
+            if (result.list) {
+                countryTotalList = result.list;
                 setCountryList(result.list.filter(d => d.activo == statusActive).sort(compare));
+            }
         });
     }
 
@@ -136,9 +140,15 @@ const CountriesPage = () => {
             result.error = true;
             result.validation.secuenciador = "Seleccione secuenciador"
         }
-        if (countryList.find(pt => pt.codigo.toLowerCase() == data.codigo.toLowerCase() && pt.id != data.id)) {
+        if (countryTotalList.find(pt => pt.codigo.toLowerCase() == data.codigo.toLowerCase() && pt.id != data.id)) {
             result.error = true;
             result.validation.codigo = "Ya existe un país con este codigo"
+        }
+        if (data.secuenciador && data.secuenciador.id > 0) {
+            if (countryTotalList.find(pt => pt.secuenciador.id == data.secuenciador.id && pt.id != data.id)) {
+                result.error = true;
+                result.validation.secuenciador = "Ya existe un país con este secuenciador"
+            }
         }
         return result;
     }

@@ -39,11 +39,19 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
         }
         if (!data.codigoTipoEgreso || data.codigoTipoEgreso.id <= 0) {
             result.error = true;
-            result.validation.codigoTipoEgreso = "Ingrese motivo de egreso"
+            result.validation.codigoTipoEgreso = "Ingrese motivo de egreso";
         }
         if (!data.fechaEgreso || data.fechaEgreso.trim().length <= 0) {
             result.error = true;
-            result.validation.fechaEgreso = "Ingrese fecha de egreso"
+            result.validation.fechaEgreso = "Ingrese fecha de egreso";
+        }
+        if (data.fechaEgreso && data.fechaEgreso.trim().length > 0) {
+            const fi = new Date(data.fechaIngreso);
+            const fe = new Date(data.fechaEgreso);
+            if (fi > fe) {
+                result.error = true;
+                result.validation.fechaEgreso = "Ingrese fecha de egreso válida";
+            }
         }
         if (result.error) throw result;
     }

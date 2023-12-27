@@ -1,4 +1,5 @@
 
+export const MIN_DATE = new Date("1940-01-01");
 
 export const TABLE_ACTIONS = {
     ADD: 'ADD',

@@ -8,7 +8,7 @@ import FormEmployeeStep2 from './FormEmployeeStep2';
 import FormEmployeeStep3 from './FormEmployeeStep3';
 import FormEmployeeStep0 from './FormEmployeeStep0';
 import { findByLaboralIdentity, findByIdentity } from '../../../pages/EmployeesAdmin/EmployeesPage';
-import { TABLE_ACTIONS } from '../../../utils/GeneralConstants';
+import { MIN_DATE, TABLE_ACTIONS } from '../../../utils/GeneralConstants';
 
 const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onSubmitForm }) => {
     const [formData, setFormData] = useState(data);
@@ -126,6 +126,14 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
         if (!data.fechaNacimiento || data.fechaNacimiento.trim().length <= 0) {
             result.error = true;
             result.validation.fechaNacimiento = "Ingrese fecha de nacimiento"
+        }
+        if (data.fechaNacimiento && data.fechaNacimiento.trim().length > 0) {
+            const fn = new Date(data.fechaNacimiento);
+            const now = new Date();
+            if (fn.getTime() < MIN_DATE || fn.getTime() > now.getTime()) {
+                result.error = true;
+                result.validation.fechaNacimiento = "Ingrese fecha de nacimiento válida"
+            }
         }
         if (!data.fechaIngreso || data.fechaIngreso.trim().length <= 0) {
             result.error = true;

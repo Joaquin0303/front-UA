@@ -112,7 +112,7 @@ export const findByLaboralIdentity = (docTypeId, docNumber) => {
 const EmployeesPage = ({ }) => {
     const [employeeList, setEmployeeList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
-    console.log('employeeList', employeeList);
+
     useEffect(() => {
         loadEmployees();
     }, [statusActive]);
@@ -158,7 +158,7 @@ const EmployeesPage = ({ }) => {
 
     }
 
-    const onEdit = (data) => {
+    const onEdit = (data, action) => {
         const validation = validate(data);
         if (validation.error) throw validation;
         const employeeId = data.id;
