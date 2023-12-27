@@ -66,6 +66,8 @@ const pageConfiguration = {
     }
 }
 
+let secuenceTotalList = [];
+
 const SequencersPage = () => {
     const [sequencerList, setSequencerList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
@@ -76,8 +78,10 @@ const SequencersPage = () => {
 
     const loadSequencers = () => {
         getSequencers().then(result => {
-            if (result.list)
+            if (result.list) {
+                secuenceTotalList = result.list;
                 setSequencerList(result.list.filter(d => d.activo == statusActive));
+            }
         });
     }
 
@@ -131,6 +135,13 @@ const SequencersPage = () => {
         if (!data.secuencia) {
             result.error = true;
             result.validation.secuencia = "Ingrese secuencia"
+        }
+        if (data.rangoDesde && data.rangoHasta) {
+            if (secuenceTotalList.find(sec => data.id != sec.id && ((data.rangoDesde <= sec.rangoHasta && data.rangoDesde >= sec.rangoDesde) || (data.rangoHasta >= sec.rangoDesde && data.rangoHasta <= sec.rangoHasta)))) {
+                result.error = true;
+                result.validation.rangoDesde = "Ingrese un rango valido"
+                result.validation.rangoHasta = "Ingrese un rango valido"
+            }
         }
         return result;
     }
