@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getExcludedIncomes, addExcludedIncome, updateExcludedIncome, removeExcludedIncome } from '../../services/ExcludedIncomeServices';
 import ABMPage from '../ABMPage';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const ExcludedIncomeModel = {
     motivo: '',
@@ -9,6 +10,52 @@ const ExcludedIncomeModel = {
     },
     observaciones: '',
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: false,
+    show_active_button: false,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+            'empleado',
+            'motivo',
+            'observaciones'
+        ],
+        inactiveRows: [
+            'empleado',
+            'motivo',
+            'observaciones'
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'empleado',
+            'motivo',
+            'observaciones'
+        ],
+        inactiveFields: [
+            'empleado',
+            'motivo',
+            'observaciones'
+        ]
+    }
 }
 
 const ExcludedIncomePage = () => {
@@ -66,7 +113,7 @@ const ExcludedIncomePage = () => {
     }
 
     return (
-        <ABMPage pageName="ingresoCaido" dataList={excludedIncomeList} dataModel={ExcludedIncomeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="ingresoCaido" dataList={excludedIncomeList} dataModel={ExcludedIncomeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

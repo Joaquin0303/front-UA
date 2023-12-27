@@ -5,6 +5,97 @@ import { getCurrentSequence, updateSequencer } from '../../services/SequencerSer
 import { getCountries } from '../../services/CountryServices';
 import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
 import { addLicense } from '../../services/LicenseServices';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.PUTDOWN,
+                TABLE_ACTIONS.ADDLICENCE,
+                TABLE_ACTIONS.ADDFAMILY
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+                TABLE_ACTIONS.PUTDOWN,
+                TABLE_ACTIONS.REENTRY
+            ],
+        },
+        activeRows: [
+        ],
+        inactiveRows: [
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'codigoTipoDocumento',
+            'numeroDocumentoPersonal',
+            'numeroDocumentoLaboral',
+            'fechaNacimiento',
+            'fechaIngreso',
+            'codigoPais',
+            'codigoOficina',
+            'codigoDireccion',
+            'codigoPuesto',
+            'segundoNombre',
+            'nombrePreferido',
+            'codigoGeneracion',
+            'codigoNacionalidad',
+            'codigoGenero',
+            'codigoProvincia',
+            'calleResidencia',
+            'numeroResidencia',
+            'departamentoResidencia',
+            'pisoResidencia',
+            'localidadResidencia',
+            'emailPersonal',
+            'codigoBanco',
+            'cbu',
+            'fechaIngresoReconocida',
+            'codigoTipoContratacion',
+            'horasSemanales',
+            'fte',
+            'codigoFrecuenciaLiquidacion',
+            'codigoTipoEmpleo',
+            'codigoTipoJornada',
+            'emailLaboral',
+            'codigoCategoriaEmpleado',
+            'codigoDivision',
+            'codigoCentroDeCosto',
+            'codigoPrepaga',
+            'codigoObraSocial',
+            'codigoConvenio',
+            'codigoCategoriaConvenio',
+            'afiliadoSindicato',
+            'fechaFinContrato',
+            'fechaEgreso',
+            'codigoTipoEgreso',
+            'codigoEstadoEmpleado',
+            'observaciones',
+            'codigoPaisResidencia',
+            'codigoEstadoCivil',
+            'codigoGrado'
+        ],
+        inactiveFields: [
+        ]
+    }
+}
+
 let employeeTotalList = [];
 export const findByFileNumber = (fileNumber) => {
     return employeeTotalList.find(e => e.numeroLegajo == fileNumber);
@@ -73,7 +164,6 @@ const EmployeesPage = ({ }) => {
         const employeeId = data.id;
         delete data["id"];
         updateEmployee(employeeId, data).then(empResult => {
-            console.log('Employee updated=', empResult);
             if (empResult && empResult.model && empResult.model.codigoTipoEgreso && empResult.model.codigoTipoEgreso.id == 202) {
                 addExcludedIncome(empResult.model, empResult.model.codigoTipoEgreso.descripcion, empResult.model.observaciones, true).then(excludeResult => {
                     console.log('Excluded Income added=', excludeResult);
@@ -109,7 +199,7 @@ const EmployeesPage = ({ }) => {
     }
 
     return (
-        <ABMPage pageName="Empleados" dataList={employeeList} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="Empleados" dataList={employeeList} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

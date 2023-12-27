@@ -1,8 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getExternals, addExternal, updateExternal, removeExternal } from '../../services/ExternalServices';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 const ExternalModel = {
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE
+            ],
+        },
+        activeRows: [
+        ],
+        inactiveRows: [
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+        ],
+        inactiveFields: [
+        ]
+    }
 }
 
 const ExternalPage = () => {
@@ -59,7 +95,7 @@ const ExternalPage = () => {
     }
 
     return (
-        <ABMPage pageName="external" dataList={extarnalList} dataModel={ExternalModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="external" dataList={extarnalList} dataModel={ExternalModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

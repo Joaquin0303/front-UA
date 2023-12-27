@@ -1,8 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getLoadFamilies, addLoadFamily, updateLoadFamily, removeLoadFamily } from '../../services/LoadFamilyServices';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 const LoadFamilyModel = {
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: false,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+        ],
+        inactiveRows: [
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+        ],
+        inactiveFields: [
+        ]
+    }
 }
 
 const LoadFamilyPage = () => {
@@ -59,7 +95,7 @@ const LoadFamilyPage = () => {
     }
 
     return (
-        <ABMPage pageName="cargaDeFamilia" dataList={loadFamilyList} dataModel={LoadFamilyModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="cargaDeFamilia" dataList={loadFamilyList} dataModel={LoadFamilyModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

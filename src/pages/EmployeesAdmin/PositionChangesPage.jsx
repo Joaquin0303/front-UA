@@ -1,9 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getPositionChanges, addPositionChange, updatePositionChange, removePositionChange } from '../../services/PositionChangeServices';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const PositionChangeModel = {
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: false,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+        ],
+        inactiveRows: [
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+        ],
+        inactiveFields: [
+        ]
+    }
 }
 
 const PositionChangesPage = () => {
@@ -60,7 +95,7 @@ const PositionChangesPage = () => {
     }
 
     return (
-        <ABMPage pageName="cambioDePuesto" dataList={positionChangeList} dataModel={PositionChangeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="cambioDePuesto" dataList={positionChangeList} dataModel={PositionChangeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

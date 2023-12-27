@@ -14,13 +14,17 @@ import InputNumber from './InputNumber';
 import InputCountry from './InputCountry';
 import InputFileNumber from './InputFileNumber';
 
-const DynamicForm = ({ pageName, data, closeModal, disabled, onSubmitForm }) => {
-
+const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
+    const [validation, setValidation] = useState();
     const [formData, setFormData] = useState(data);
     const [parameterList, setParameterList] = useState([]);
-    const [validation, setValidation] = useState();
 
     console.log('formData=', formData);
+
+    const showField = (actionName) => {
+        return (formConfiguration.activeFields.includes(actionName) && data.activo) ||
+            (formConfiguration.inactiveFields.includes(actionName) && !data.activo);
+    }
 
     const updateFormData = (key, value) => {
         formData[key] = value;
@@ -47,52 +51,44 @@ const DynamicForm = ({ pageName, data, closeModal, disabled, onSubmitForm }) => 
 
     const createInputFields = () => {
         const cells = Object.keys(data).map((key, i) => {
-            const value = data[key];
-
-            switch (key) {
-                case 'secuenciador':
-                    return <InputSequencer validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
-                case 'tipoParametro':
-                    return <InputParameterType validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
-                case 'codigoDireccion':
-                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
-                case 'codigoGerencia':
-                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 12)} updateFormData={updateFormData} />
-                case 'codigoJefatura':
-                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 14)} updateFormData={updateFormData} />
-                case 'codigoCategoria':
-                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 3)} updateFormData={updateFormData} />
-                case 'codigoCentroDeCosto':
-                    return <InputParameter validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} parameterList={parameterList.filter(p => p.tipoParametro.id == 4)} updateFormData={updateFormData} />
-                case "codigoPais":
-                    return <InputCountry validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />;
-                case 'roles':
-                    if (pageName != 'Permisos') {
-                        return <InputRole key={i} validation={validation} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
-                    }
-                    break;
-                case 'permisos':
-                    return <InputPermission key={i} validation={validation} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} />
-                case 'codigoPuestoAlQueReporta':
-                    return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} disabled={disabled} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
-                case 'numeroLegajo':
-                    return <InputFileNumber validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} />
-                default:
-                    if (key != 'id' && key != 'activo' && key != 'fechaAlta' && key != 'fechaBaja'
-                        && (pageName != 'parameterType' || key != 'codigo')
-                        && (pageName != 'Roles' || key != 'codigo')
-                    ) {
+            if (showField(key)) {
+                const value = data[key];
+                switch (key) {
+                    case 'secuenciador':
+                        return <InputSequencer validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} />
+                    case 'tipoParametro':
+                        return <InputParameterType validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} />
+                    case 'codigoDireccion':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
+                    case 'codigoGerencia':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 12)} updateFormData={updateFormData} />
+                    case 'codigoJefatura':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 14)} updateFormData={updateFormData} />
+                    case 'codigoCategoria':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 3)} updateFormData={updateFormData} />
+                    case 'codigoCentroDeCosto':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 4)} updateFormData={updateFormData} />
+                    case "codigoPais":
+                        return <InputCountry validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} />;
+                    case 'roles':
+                        return <InputRole key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
+                    case 'permisos':
+                        return <InputPermission key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
+                    case 'codigoPuestoAlQueReporta':
+                        return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
+                    case 'numeroLegajo':
+                        return <InputFileNumber validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} />
+                    default:
                         if (key.startsWith('fechaBaja')) {
-                            return <InputDate key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                            return <InputDate key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'boolean') {
-                            return <InputSwitch key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                            return <InputSwitch key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'string') {
-                            return <InputText validation={validation} key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                            return <InputText validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'number') {
-                            return <InputNumber validation={validation} key={i} disabled={disabled} name={key} updateFormData={updateFormData} value={formData[key]} />
+                            return <InputNumber validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
                         }
-                    }
-
+                }
             }
         });
         return cells;
@@ -102,17 +98,18 @@ const DynamicForm = ({ pageName, data, closeModal, disabled, onSubmitForm }) => 
         <div>
             <div className="modals-content">
                 <div className='form scroll-shadows'>
-                    {validation && validation.genericError && <div>{validation.genericError}</div>}
-                    {createInputFields()}
+                    <div className="form-field-container">
+                        {validation && validation.genericError && <div>{validation.genericError}</div>}
+                        {createInputFields()}
+                    </div>
                 </div>
             </div>
             <div className='modal-buttons'>
-                {(
-                    <button type='submit' className='btns' onClick={submitForm}>Confirmar</button>
-                )}
-                <button className='btns-close' onClick={closeModal}>Cerrar</button>
+                {<button type='submit' className='btns' onClick={submitForm}>Confirmar</button>}
+                {<button className='btns-close' onClick={closeModal}>Cerrar</button>}
             </div>
         </div>
+
     )
 }
 

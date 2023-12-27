@@ -1,7 +1,7 @@
 import React from "react";
 import i18n from "../../localization/i18n";
 
-const ModalView = ({ pageName, data, closeModal, onSubmitForm, action }) => {
+const ModalView = ({ viewConfiguration, pageName, data, closeModal, onSubmitForm, action }) => {
 
     const submitForm = () => {
         try {
@@ -42,6 +42,8 @@ const ModalView = ({ pageName, data, closeModal, onSubmitForm, action }) => {
 
     const createCell = () => {
         const cells = Object.keys(data).map((key, i) => {
+            //if ( (data.active && viewConfiguration.activeFields.includes(key)) || (!data.active && viewConfiguration.inactiveFields.includes(key)) ) {
+
             const value = data[key];
 
             switch (key) {
@@ -84,13 +86,14 @@ const ModalView = ({ pageName, data, closeModal, onSubmitForm, action }) => {
                         }
                     }
             }
+            //}
         });
         return cells;
     }
 
     return (
         <div className='modal-container' onClick={(e) => {
-            if (e.target.className === "modal-container") setModal(false);
+            if (e.target.className === "modal-container") closeModal();
         }}>
             <div className='modals'>
                 <div>

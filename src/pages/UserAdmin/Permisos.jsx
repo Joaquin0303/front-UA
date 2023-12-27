@@ -1,10 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { getPermissions, updatePermission, addPermission, removePermission } from '../services/PermissionServices';
-import ABMPage from './ABMPage';
+import { getPermissions, updatePermission, addPermission, removePermission } from '../../services/PermissionServices';
+import ABMPage from '../ABMPage';
+import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const PermissionModel = {
     descripcion: '',
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+            'descripcion'
+        ],
+        inactiveRows: [
+            'descripcion'
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+            'descripcion'
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'descripcion'
+        ],
+        inactiveFields: [
+            'descripcion'
+        ]
+    }
 }
 
 export const Permisos = () => {
@@ -65,6 +106,6 @@ export const Permisos = () => {
     }
 
     return (
-        <ABMPage pageName="Permisos" dataList={permissionList} dataModel={PermissionModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="Permisos" dataList={permissionList} dataModel={PermissionModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 };

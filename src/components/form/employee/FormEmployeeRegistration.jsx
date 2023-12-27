@@ -8,11 +8,12 @@ import FormEmployeeStep2 from './FormEmployeeStep2';
 import FormEmployeeStep3 from './FormEmployeeStep3';
 import FormEmployeeStep0 from './FormEmployeeStep0';
 import { findByLaboralIdentity, findByIdentity } from '../../../pages/EmployeesAdmin/EmployeesPage';
+import { TABLE_ACTIONS } from '../../../utils/GeneralConstants';
 
 const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onSubmitForm }) => {
     const [formData, setFormData] = useState(data);
     const [validation, setValidation] = useState();
-    const [formStep, setFormStep] = useState(action == 'add' || action == 'activate' ? 0 : 1);
+    const [formStep, setFormStep] = useState(action == TABLE_ACTIONS.ADD || action == TABLE_ACTIONS.ACTIVATE ? 0 : 1);
 
     console.log('formData=', formData);
 
@@ -35,41 +36,51 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
     }
 
     const searchEmployee = () => {
-        const employee = findByIdentity(formData.codigoTipoDocumento.id, formData.numeroDocumentoPersonal);
-        setValidation(null);
-        if (!employee) {
-            setFormData({
-                codigoTipoDocumento: {
-                    id: formData.codigoTipoDocumento.id
-                },
-                numeroDocumentoPersonal: formData.numeroDocumentoPersonal
-            });
-            setFormStep(1);
-        } else if (employee.codigoEstadoEmpleado.id == 88) {
-            let reactivate = confirm("¿Desea reactivar el empleado?");
-            if (reactivate) {
-                employee.codigoEstadoEmpleado.id = 87;
-                setFormData(employee);
+        try {
+            validateStep(formData, 0);
+            const employee = findByIdentity(formData.codigoTipoDocumento.id, formData.numeroDocumentoPersonal);
+            setValidation(null);
+            if (!employee) {
+                setFormData({
+                    codigoTipoDocumento: {
+                        id: formData.codigoTipoDocumento.id
+                    },
+                    numeroDocumentoPersonal: formData.numeroDocumentoPersonal
+                });
                 setFormStep(1);
+            } else if (employee.codigoEstadoEmpleado.id == 88) {
+                let reactivate = confirm("¿Desea reactivar el empleado?");
+                if (reactivate) {
+                    employee.codigoEstadoEmpleado.id = 87;
+                    setFormData(employee);
+                    setFormStep(1);
+                } else {
+                    closeModal();
+                }
+            } else if (employee.codigoEstadoEmpleado.id == 87) {
+                const errorValidation = {
+                    numeroDocumentoPersonal: "Hay un empleado activo con esta identificación"
+                }
+                setValidation(errorValidation);
             } else {
-                closeModal();
+                const errorValidation = {
+                    numeroDocumentoPersonal: "Hay un empleado dado de baja con esta identificación"
+                };
+                setValidation(errorValidation);
             }
-        } else if (employee.codigoEstadoEmpleado.id == 87) {
-            const errorValidation = {
-                numeroDocumentoPersonal: "Hay un empleado activo con esta identificación"
-            }
-            setValidation(errorValidation);
-        } else {
-            const errorValidation = {
-                numeroDocumentoPersonal: "Hay un empleado dado de baja con esta identificación"
-            };
-            setValidation(errorValidation);
+        } catch (error) {
+            console.error('error', error);
+            if (error.validation)
+                setValidation(error.validation);
         }
     }
 
     const validateStep = (data, step) => {
         setValidation(null);
         switch (step) {
+            case 0:
+                validateStep0(data);
+                break;
             case 1:
                 validateStep1(data);
                 break;
@@ -80,6 +91,23 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                 validateStep1(data);
                 validateStep2(data);
         }
+    }
+
+
+    const validateStep0 = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        }
+        if (!data.codigoTipoDocumento || data.codigoTipoDocumento.id <= 0) {
+            result.error = true;
+            result.validation.codigoTipoDocumento = "Ingrese tipo de documento"
+        }
+        if (!data.numeroDocumentoPersonal || data.numeroDocumentoPersonal.trim().length <= 0) {
+            result.error = true;
+            result.validation.numeroDocumentoPersonal = "Ingrese nro. documento personal"
+        }
+        if (result.error) throw result;
     }
 
     const validateStep1 = (data) => {

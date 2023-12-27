@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { addLicense, getLicenses, removeLicense, updateLicense } from '../../services/LicenseServices';
 import ABMPage from '../ABMPage';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const LicenseModel = {
     numeroLegajo: null,
@@ -8,6 +9,54 @@ const LicenseModel = {
     fechaFin: null,
     motivoLicencia: '',
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: false,
+    show_active_button: false,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.PUTDOWN
+            ],
+            inactiveActions: [
+            ],
+        },
+        activeRows: [
+            'numeroLegajo',
+            'tipoLicencia',
+            'fechaInicio',
+            'fechaFin',
+            'empleado'
+        ],
+        inactiveRows: [
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+            'numeroLegajo',
+            'tipoLicencia',
+            'fechaInicio',
+            'fechaFin',
+            'empleado'
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'numeroLegajo',
+            'tipoLicencia',
+            'fechaInicio',
+            'fechaFin',
+            'empleado'
+        ],
+        inactiveFields: [
+        ]
+    }
 }
 
 const LicensesPage = () => {
@@ -88,7 +137,7 @@ const LicensesPage = () => {
     }
 
     return (
-        <ABMPage pageName="licenciaHistory" dataList={licenseList} dataModel={LicenseModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="licenciaHistory" dataList={licenseList} dataModel={LicenseModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

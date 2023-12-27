@@ -25,7 +25,7 @@ export const getLicenses = async () => {
     return result.data;
 } */
 
-export const updateLicense = async (empleado, numeroLegajo, fechaInicio, fechaFin, motivoLicencia, activo) => {
+export const updateLicense = async (empleado, numeroLegajo, fechaInicio, fechaFin, tipoLicencia, activo) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/historiallicencias/' + numeroLegajo,
@@ -33,7 +33,7 @@ export const updateLicense = async (empleado, numeroLegajo, fechaInicio, fechaFi
             'empleado': empleado,
             'fechaInicio': fechaInicio,
             'fechaFin': fechaFin,
-            'motivoLicencia': motivoLicencia,
+            'tipoLicencia': tipoLicencia,
             'activo': activo
         }
     }).then(response => {

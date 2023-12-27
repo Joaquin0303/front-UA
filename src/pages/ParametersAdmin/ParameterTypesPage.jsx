@@ -1,12 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { getParameterTypes, addParameterType, updateParameterType, removeParameterType } from '../../services/ParameterTypeServices';
 import ABMPage from '../ABMPage';
-import { PiFaceMask } from 'react-icons/pi';
+import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const ParameterTypeModel = {
     codigo: '',
     descripcion: '',
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+            'descripcion'
+        ],
+        inactiveRows: [
+            'descripcion'
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+            'descripcion'
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'descripcion'
+        ],
+        inactiveFields: [
+            'descripcion'
+        ]
+    }
 }
 
 const compare = (a, b) => {
@@ -82,7 +122,7 @@ const ParameterTypesPage = () => {
     }
 
     return (
-        <ABMPage pageName="parameterType" dataList={parameterTypeList} dataModel={ParameterTypeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="parameterType" dataList={parameterTypeList} dataModel={ParameterTypeModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

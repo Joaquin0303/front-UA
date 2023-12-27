@@ -1,13 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import { getUsers, addUser, editUser, removeUser } from '../services/UserServices';
-import { assignRoleToUser } from '../services/RoleServices';
-import ABMPage from './ABMPage';
+import { getUsers, addUser, editUser, removeUser } from '../../services/UserServices';
+import { assignRoleToUser } from '../../services/RoleServices';
+import ABMPage from '../ABMPage';
+import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const UserModel = {
     numeroLegajo: '',
     nombreUsuario: '',
     roles: [],
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+            'numeroLegajo',
+            'nombreUsuario',
+            'fechaAlta',
+            'roles'
+        ],
+        inactiveRows: [
+            'numeroLegajo',
+            'nombreUsuario',
+            'fechaAlta',
+            'fechaBaja',
+            'roles'
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+            'numeroLegajo',
+            'nombreUsuario',
+            'roles'
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'numeroLegajo',
+            'nombreUsuario',
+            'fechaAlta',
+            'roles'
+        ],
+        inactiveFields: [
+            'numeroLegajo',
+            'nombreUsuario',
+            'roles',
+            'fechaAlta',
+            'fechaBaja'
+        ]
+    }
 }
 
 const Users = () => {
@@ -99,7 +156,7 @@ const Users = () => {
     }
 
     return (
-        <ABMPage pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

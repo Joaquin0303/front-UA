@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { addCountry, getCountries, removeCountry, updateCountry } from '../../services/CountryServices';
 import ABMPage from '../ABMPage';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const CountryModel = {
     codigo: '',
@@ -9,6 +10,56 @@ const CountryModel = {
         id: 0
     },
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+            'codigo',
+            'descripcion',
+            'secuenciador'
+        ],
+        inactiveRows: [
+            'codigo',
+            'descripcion',
+            'secuenciador'
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+            'codigo',
+            'descripcion',
+            'secuenciador'
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'codigo',
+            'descripcion',
+            'secuenciador'
+        ],
+        inactiveFields: [
+            'codigo',
+            'descripcion',
+            'secuenciador'
+        ]
+    }
 }
 
 const compare = (a, b) => {
@@ -93,7 +144,7 @@ const CountriesPage = () => {
     }
 
     return (
-        <ABMPage pageName="paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="paises" dataList={countryList} dataModel={CountryModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

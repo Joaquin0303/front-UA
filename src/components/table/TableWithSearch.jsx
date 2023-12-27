@@ -3,18 +3,16 @@ import '../../styles/abm.css';
 import Table from './Table';
 import { FaPlus } from 'react-icons/fa';
 import ModalForm from '../modal/ModalForm';
-import ModalView from '../modal/ModalView';
 import TableEmployee from './TableEmploee';
 import { ModalFormEmployees } from '../modal/ModalFormEmployees';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
-const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemove, setActive, matchHandler, statusActive }) => {
+const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onAdd, onEdit, onRemove, setActive, matchHandler }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [formData, setFormData] = useState();
 
     const [showModalForm, setShowModalForm] = useState(false);
-    const [showModalView, setShowModalView] = useState(false);
 
-    const [formDisabled, setFormDisabled] = useState();
     const [actionForm, setActionForm] = useState();
     const [showActives, setShowActives] = useState(true);
     const [filteredDataList, setFilteredDataList] = useState(dataList);
@@ -29,25 +27,9 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
         setShowModalForm(true);
     }
 
-    const closeModalView = () => {
-        setShowModalView(false);
-    }
-
-    const openModalView = (action, data) => {
-        setFormData(data);
-        setActionForm(action);
-        setShowModalView(true);
-    }
-
     const setModal = (action, data) => {
         if (pageName == 'Empleados') {
-            if (action == 'view') {
-                openModalView(action, data);
-            } else {
-                openModalForm(action, data);
-            }
-        } else if (action == 'view' || action == 'inactivate' || action == 'activate') {
-            openModalView(action, data);
+            openModalForm(action, data);
         } else {
             openModalForm(action, data);
         }
@@ -55,12 +37,12 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
 
     const onSubmitForm = (data) => {
         switch (actionForm) {
-            case 'add': onAdd(data); break;
-            case 'edit': onEdit(data); break;
-            case 'activate': data.activo = true; onEdit(data); break;
-            case 'inactivate': data.activo = false; onEdit(data); break;
-            case 'cancel': data.activo = false; onEdit(data); break;
-            case 'view': break;
+            case TABLE_ACTIONS.ADD: onAdd(data); break;
+            case TABLE_ACTIONS.EDIT: onEdit(data); break;
+            case TABLE_ACTIONS.ACTIVATE: data.activo = true; onEdit(data); break;
+            case TABLE_ACTIONS.INACTIVATE: data.activo = false; onEdit(data); break;
+            case TABLE_ACTIONS.PUTDOWN: data.activo = false; onEdit(data); break;
+            case TABLE_ACTIONS.VIEW: break;
             case 'remove': onRemove(data); break;
             default: ;
         }
@@ -75,27 +57,25 @@ const TableWithSearch = ({ pageName, dataList, dataModel, onAdd, onEdit, onRemov
         setFilteredDataList(dataList.filter((data) => matchHandler(data, searchTerm)));
     }, [searchTerm, dataList]);
 
-    console.log("his", dataList)
     return (
         <>
             <div className='bloque-search'>
-                <div className='search'>
+                {pageConfiguration.show_search && <div className='search'>
                     <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                     <i className="fa-solid fa-magnifying-glass icon"></i>
-                </div>
-                {pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); setModal('add', dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
+                </div>}
+                {pageConfiguration.show_add_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); setModal(TABLE_ACTIONS.ADD, dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
             </div >
-            {pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <div className='active-users'>
+            {pageConfiguration.show_active_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <div className='active-users'>
                 {setActive && <div className='form-check form-switch'>
                     Activos
                     <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />
                 </div>}
             </div>}
 
-            {pageName != 'Empleados' && <Table pageName={pageName} dataList={filteredDataList} setModal={setModal} statusActive={statusActive} />}
-            {pageName == 'Empleados' && <TableEmployee pageName={pageName} dataList={filteredDataList} setModal={setModal} statusActive={statusActive} />}
-            {pageName != 'Empleados' && showModalForm && <ModalForm pageName={pageName} data={formData} closeModal={closeModalForm} formDisabled={formDisabled} onSubmitForm={onSubmitForm} />}
-            {showModalView && <ModalView pageName={pageName} data={formData} closeModal={closeModalView} onSubmitForm={onSubmitForm} action={actionForm} />}
+            {pageName != 'Empleados' && <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={filteredDataList} setModal={setModal} />}
+            {pageName != 'Empleados' && showModalForm && <ModalForm pageConfiguration={pageConfiguration} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} actionForm={actionForm} />}
+            {pageName == 'Empleados' && <TableEmployee dataList={filteredDataList} setModal={setModal} />}
             {pageName == 'Empleados' && showModalForm && <ModalFormEmployees action={actionForm} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} />}
 
         </>

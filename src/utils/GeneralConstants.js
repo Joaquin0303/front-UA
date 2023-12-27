@@ -1,0 +1,18 @@
+
+
+export const TABLE_ACTIONS = {
+    ADD: 'ADD',
+    VIEW: 'VIEW',
+    EDIT: 'EDIT',
+    ACTIVATE: 'ACTIVATE',
+    INACTIVATE: 'INACTIVATE',
+    PUTDOWN: 'PUTDOWN',
+    ADDLICENCE: 'ADDLICENCE',
+    ADDFAMILY: 'ADDFAMILY',
+    REENTRY: 'REENTRY'
+}
+
+export const FORM_ACTIONS = {
+    CLOSE: 'CLOSE',
+    CONFIRM: 'CONFIRM'
+}

@@ -1,12 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { getRoles, updateRole, addRole, assignPermissionToRole, getRoleById, removeRole } from '../services/RoleServices';
-import ABMPage from './ABMPage';
+import { getRoles, updateRole, addRole, assignPermissionToRole, getRoleById, removeRole } from '../../services/RoleServices';
+import ABMPage from '../ABMPage';
+import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const RoleModel = {
     descripcion: '',
     activo: true,
     permisos: null,
     usuarios: null,
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+            'descripcion',
+            'permisos'
+        ],
+        inactiveRows: [
+            'descripcion',
+            'permisos'
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+            'descripcion',
+            'permisos'
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'descripcion',
+            'permisos'
+        ],
+        inactiveFields: [
+            'descripcion',
+            'permisos'
+        ]
+    }
 }
 
 const Roles = () => {
@@ -82,7 +128,7 @@ const Roles = () => {
     }
 
     return (
-        <ABMPage pageName="Roles" dataList={roleList} dataModel={RoleModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="Roles" dataList={roleList} dataModel={RoleModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

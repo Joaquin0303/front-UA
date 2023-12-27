@@ -2,7 +2,6 @@ import React from "react";
 import i18n from "../../localization/i18n";
 
 const InputDate = ({ validation, name, value, disabled, updateFormData }) => {
-    console.log(value)
     return (
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>

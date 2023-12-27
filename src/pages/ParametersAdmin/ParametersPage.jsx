@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getParameters, addParameter, updateParameter, removeParameter } from '../../services/ParameterServices';
 import ABMPage from '../ABMPage';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const ParameterModel = {
     codigo: '',
@@ -11,6 +12,66 @@ const ParameterModel = {
     texto1: '',
     texto2: '',
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+            'codigo',
+            'tipoParametro',
+            'descripcion',
+            'texto1',
+            'texto2'
+        ],
+        inactiveRows: [
+            'codigo',
+            'tipoParametro',
+            'descripcion',
+            'texto1',
+            'texto2'
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+            'codigo',
+            'tipoParametro',
+            'descripcion',
+            'texto1',
+            'texto2'
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'codigo',
+            'tipoParametro',
+            'descripcion',
+            'texto1',
+            'texto2'
+        ],
+        inactiveFields: [
+            'codigo',
+            'tipoParametro',
+            'descripcion',
+            'texto1',
+            'texto2'
+        ]
+    }
 }
 
 const compare = (a, b) => {
@@ -100,7 +161,7 @@ const ParametersPage = () => {
     }
 
     return (
-        <ABMPage pageName="Parametros" dataList={parameterList} dataModel={ParameterModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} setActive={setStatusActive} matchHandler={matchHandler} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="Parametros" dataList={parameterList} dataModel={ParameterModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} setActive={setStatusActive} matchHandler={matchHandler} statusActive={statusActive} />
     );
 }
 

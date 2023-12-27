@@ -4,9 +4,9 @@ import { AdminUsers } from './components/AdminPages';
 import { AdminParam } from './components/AdminPages';
 import { AdminEmployees } from './components/AdminPages';
 import { Home } from './pages/Home';
-import Users from './pages/Users';
-import { Permisos } from './pages/Permisos';
-import Roles from './pages/Roles';
+import Users from './pages/UserAdmin/Users';
+import { Permisos } from './pages/UserAdmin/Permisos';
+import Roles from './pages/UserAdmin/Roles';
 
 import logoempresa from './img/logo-empresa.png';
 import logoout from './img/logout.png';

@@ -1,13 +1,13 @@
 import React from "react";
 import '../../styles/abm.css'
-import i18n from '../../localization/i18n'
 import { IoEyeSharp } from "react-icons/io5";
 import { BsFillPencilFill } from 'react-icons/bs'
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { TbLicense } from "react-icons/tb";
+import { TABLE_ACTIONS } from "../../utils/GeneralConstants";
 
 
-const TableEmployee = ({ dataList, setModal, statusActive }) => {
+const TableEmployee = ({ dataList, setModal }) => {
     return (
         <div className='table-wrapper' >
             <table className='table' style={{ width: '80%' }}>
@@ -36,19 +36,19 @@ const TableEmployee = ({ dataList, setModal, statusActive }) => {
 
                             <td className='expand'>
                                 <span className='actions'>
-                                    <div title="Ver" onClick={(e) => { e.stopPropagation(); setModal('view', d) }}>
+                                    {TABLE_ACTIONS.VIEW && <div title="Ver" onClick={(e) => { e.stopPropagation(); setModal(TABLE_ACTIONS.VIEW, d) }}>
                                         <IoEyeSharp />
-                                    </div>
-                                    {statusActive && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal('edit', d) }}>
+                                    </div>}
+                                    {TABLE_ACTIONS.EDIT && d.codigoEstadoEmpleado.id == 87 && <div title="Editar" onClick={(e) => { e.stopPropagation(); setModal(TABLE_ACTIONS.EDIT, d) }}>
                                         <BsFillPencilFill />
                                     </div>}
-                                    {(d.codigoEstadoEmpleado.id == 87 || d.codigoEstadoEmpleado.id == 88) && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal('cancel', d) }}>
+                                    {TABLE_ACTIONS.PUTDOWN && (d.codigoEstadoEmpleado.id == 87 || d.codigoEstadoEmpleado.id == 88) && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); setModal(TABLE_ACTIONS.PUTDOWN, d) }}>
                                         <FaArrowDown />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); setModal('activate', d) }}>
+                                    {TABLE_ACTIONS.ACTIVATE && d.codigoEstadoEmpleado.id == 89 && <div title="Reincorporar" onClick={(e) => { e.stopPropagation(); setModal(TABLE_ACTIONS.ACTIVATE, d) }}>
                                         <FaArrowUp />
                                     </div>}
-                                    {(d.codigoEstadoEmpleado.id == 87 || d.codigoEstadoEmpleado.id == 88) && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); setModal('inactivate', d) }}>
+                                    {TABLE_ACTIONS.INACTIVATE && (d.codigoEstadoEmpleado.id == 87 || d.codigoEstadoEmpleado.id == 88) && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); setModal(TABLE_ACTIONS.INACTIVATE, d) }}>
                                         <TbLicense />
                                     </div>}
                                 </span>

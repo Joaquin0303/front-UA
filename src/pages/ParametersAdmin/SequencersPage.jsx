@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getSequencers, updateSequencer, removeSequencer, addSequencer } from '../../services/SequencerServices';
 import ABMPage from '../ABMPage';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const SequencerModel = {
     codigo: '',
@@ -8,6 +9,61 @@ const SequencerModel = {
     rangoHasta: 0,
     secuencia: 0,
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+            'codigo',
+            'rangoDesde',
+            'rangoHasta',
+            'secuencia'
+        ],
+        inactiveRows: [
+            'codigo',
+            'rangoDesde',
+            'rangoHasta',
+            'secuencia'
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+            'codigo',
+            'rangoDesde',
+            'rangoHasta',
+            'secuencia'
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'codigo',
+            'rangoDesde',
+            'rangoHasta',
+            'secuencia'
+        ],
+        inactiveFields: [
+            'codigo',
+            'rangoDesde',
+            'rangoHasta',
+            'secuencia'
+        ]
+    }
 }
 
 const SequencersPage = () => {
@@ -80,7 +136,7 @@ const SequencersPage = () => {
     }
 
     return (
-        <ABMPage pageName="Secuenciador" dataList={sequencerList} dataModel={SequencerModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="Secuenciador" dataList={sequencerList} dataModel={SequencerModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 

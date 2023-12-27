@@ -3,7 +3,11 @@ import Row from './Row'
 import '../../styles/abm.css'
 import i18n from '../../localization/i18n'
 
-const Table = ({ pageName, dataList, setModal, statusActive }) => {
+const Table = ({ tableConfiguration, dataList, setModal }) => {
+
+    const showColum = (columnName, data) => {
+        return (tableConfiguration.activeRows.includes(columnName) && data.activo) || (tableConfiguration.inactiveRows.includes(columnName) && !data.activo);
+    }
 
     return (
         <>
@@ -13,20 +17,17 @@ const Table = ({ pageName, dataList, setModal, statusActive }) => {
                         <thead>
                             <tr>
                                 {
-                                    Object.keys(dataList[0]).map((k, i) => {
-                                        if (k == 'empleado') {
-                                            return <>
-                                                <th key={i + "a"}>{i18n.t('numeroLegajo')}</th>
-                                                <th key={i + "b"}>{i18n.t('nombre')}</th>
-                                            </>
-                                        } else if (k != 'id' && k != 'activo' && k != 'usuarios'
-                                            && (pageName != 'Permisos' || k != 'roles')
-                                            && (pageName != 'Roles' || k != 'codigo')
-                                            && (pageName != 'parameterType' || k != 'codigo')
-                                            && (pageName != 'Puesto' || k != 'codigo')
-                                            && (!statusActive || k != 'fechaBaja')
-                                        )
-                                            return <th key={i}>{i18n.t(k)}</th>
+                                    Object.keys(dataList[0]).map((key, i) => {
+                                        if (showColum(key, dataList[0])) {
+                                            if (key == 'empleado') {
+                                                return <>
+                                                    <th key={i + "a"}>{i18n.t('numeroLegajo')}</th>
+                                                    <th key={i + "b"}>{i18n.t('nombre')}</th>
+                                                </>
+                                            } else {
+                                                return <th key={i}>{i18n.t(key)}</th>
+                                            }
+                                        }
                                     })
                                 }
                                 <th style={{ width: '20%' }}>Acciones</th>
@@ -34,7 +35,7 @@ const Table = ({ pageName, dataList, setModal, statusActive }) => {
                         </thead>
                         <tbody>
                             {dataList.map((d, i) => {
-                                return <Row pageName={pageName} key={i} data={d} setModal={setModal} statusActive={statusActive} />
+                                return <Row tableConfiguration={tableConfiguration} key={i} data={d} setModal={setModal} />
                             })}
                         </tbody>
                     </table>

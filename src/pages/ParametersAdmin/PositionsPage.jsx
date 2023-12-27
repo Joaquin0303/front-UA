@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getPositions, addPosition, updatePosition, removePosition } from '../../services/PositionServices';
 import ABMPage from '../ABMPage';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const PositionModel = {
     descripcion: '',
@@ -26,6 +27,81 @@ const PositionModel = {
         id: 0
     },
     activo: true
+}
+
+const pageConfiguration = {
+    show_search: true,
+    show_add_button: true,
+    show_active_button: true,
+    tableConfiguration: {
+        actions: {
+            activeActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT,
+                TABLE_ACTIONS.INACTIVATE
+            ],
+            inactiveActions: [
+                TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.ACTIVATE,
+            ],
+        },
+        activeRows: [
+            'codigoCentroDeCosto',
+            'descripcion',
+            'codigoDireccion',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoCategoria',
+            'codigoPuestoAlQueReporta',
+            'codigoPais'
+        ],
+        inactiveRows: [
+            'codigoCentroDeCosto',
+            'descripcion',
+            'codigoDireccion',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoCategoria',
+            'codigoPuestoAlQueReporta',
+            'codigoPais'
+        ]
+    },
+    formConfiguration: {
+        activeFields: [
+            'codigoCentroDeCosto',
+            'descripcion',
+            'codigoDireccion',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoCategoria',
+            'codigoPuestoAlQueReporta',
+            'codigoPais'
+        ],
+        inactiveFields: [
+        ]
+    },
+    viewConfiguration: {
+        activeFields: [
+            'codigoCentroDeCosto',
+            'descripcion',
+            'codigoDireccion',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoCategoria',
+            'codigoPuestoAlQueReporta',
+            'codigoPais'
+        ],
+        inactiveFields: [
+            'codigoCentroDeCosto',
+            'descripcion',
+            'codigoDireccion',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoCategoria',
+            'codigoPuestoAlQueReporta',
+            'codigoPais'
+        ]
+    }
 }
 
 const PositionsPage = () => {
@@ -103,7 +179,7 @@ const PositionsPage = () => {
     }
 
     return (
-        <ABMPage pageName="Puesto" dataList={positionList} dataModel={PositionModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <ABMPage pageConfiguration={pageConfiguration} pageName="Puesto" dataList={positionList} dataModel={PositionModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
     );
 }
 
