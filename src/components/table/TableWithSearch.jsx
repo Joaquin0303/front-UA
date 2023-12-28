@@ -68,7 +68,7 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
             </div >
             {pageConfiguration.show_active_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <div className='active-users'>
                 {setActive && <div className='form-check form-switch'>
-                    Activos
+                    {pageName === 'Empleados' ? (showActives ? 'Activos / Licencias' : 'Inactivos') : (showActives ? 'Activos' : 'Inactivos')}
                     <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />
                 </div>}
             </div>}
