@@ -13,24 +13,25 @@ export const getLicenses = async () => {
     return result.data;
 }
 
-/* export const getLicenseById = async (countryId) => {
+export const getLicenseById = async (licenceId) => {
     const result = await axios({
         method: 'get',
-        url: host + '/ua/pais/' + countryId
+        url: host + '/ua/historiallicencias/' + licenceId
     }).then(response => {
         return response;
     }).catch(error => {
         throw error;
     })
     return result.data;
-} */
+}
 
-export const updateLicense = async (empleado, numeroLegajo, fechaInicio, fechaFin, tipoLicencia, activo) => {
+export const updateLicense = async (licenceId, empleado, numeroLegajo, fechaInicio, fechaFin, tipoLicencia, activo) => {
     const result = await axios({
         method: 'put',
-        url: host + '/ua/historiallicencias/' + numeroLegajo,
+        url: host + '/ua/historiallicencias/' + licenceId,
         data: {
             'empleado': empleado,
+            'numeroLegajo': numeroLegajo,
             'fechaInicio': fechaInicio,
             'fechaFin': fechaFin,
             'tipoLicencia': tipoLicencia,

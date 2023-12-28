@@ -3,7 +3,7 @@ import Row from './Row'
 import '../../styles/abm.css'
 import i18n from '../../localization/i18n'
 
-const Table = ({ tableConfiguration, dataList, setModal }) => {
+const Table = ({ tableConfiguration, dataList, openModalForm }) => {
 
     const showColum = (columnName, data) => {
         return (tableConfiguration.activeRows.includes(columnName) && data.activo) || (tableConfiguration.inactiveRows.includes(columnName) && !data.activo);
@@ -35,7 +35,7 @@ const Table = ({ tableConfiguration, dataList, setModal }) => {
                         </thead>
                         <tbody>
                             {dataList.map((d, i) => {
-                                return <Row tableConfiguration={tableConfiguration} key={i} data={d} setModal={setModal} />
+                                return <Row tableConfiguration={tableConfiguration} key={i} data={d} openModalForm={openModalForm} />
                             })}
                         </tbody>
                     </table>

@@ -11,7 +11,7 @@ import CellPositionCode from './CellPositionCode';
 import CellCountry from './CellCountry';
 import CellEmployee from './CellEmployee';
 
-const Row = ({ tableConfiguration, data, setModal }) => {
+const Row = ({ tableConfiguration, data, openModalForm }) => {
 
     const showColum = (columnName) => {
         return (tableConfiguration.activeRows.includes(columnName) && data.activo) || (tableConfiguration.inactiveRows.includes(columnName) && !data.activo);
@@ -62,7 +62,7 @@ const Row = ({ tableConfiguration, data, setModal }) => {
         <>
             <tr>
                 {createCells()}
-                <CellAction actions={tableConfiguration.actions} data={data} setModal={setModal} />
+                <CellAction actions={tableConfiguration.actions} data={data} openModalForm={openModalForm} />
             </tr>
         </>
     );

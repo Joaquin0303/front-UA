@@ -5,13 +5,14 @@ import { FaPlus } from 'react-icons/fa';
 import ModalForm from '../modal/ModalForm';
 import TableEmployee from './TableEmploee';
 import { ModalFormEmployees } from '../modal/ModalFormEmployees';
-import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import { MODAL_FORM, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onAdd, onEdit, onRemove, setActive, matchHandler }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [formData, setFormData] = useState();
 
     const [showModalForm, setShowModalForm] = useState(false);
+    const [showEmployeeModalForm, setShowEmployeeModalForm] = useState(false);
 
     const [actionForm, setActionForm] = useState();
     const [showActives, setShowActives] = useState(true);
@@ -19,29 +20,29 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
 
     const closeModalForm = () => {
         setShowModalForm(false);
+        setShowEmployeeModalForm(false);
     }
 
-    const openModalForm = (action, data) => {
+    const openModalForm = (modal, action, data) => {
+        console.log('modal', modal);
         setFormData(data);
         setActionForm(action);
-        setShowModalForm(true);
-    }
-
-    const setModal = (action, data) => {
-        if (pageName == 'Empleados') {
-            openModalForm(action, data);
+        if (modal == MODAL_FORM.DYNAMICMODAL) {
+            setShowModalForm(true);
         } else {
-            openModalForm(action, data);
+            setShowEmployeeModalForm(true);
         }
     }
 
     const onSubmitForm = (data) => {
         switch (actionForm) {
             case TABLE_ACTIONS.ADD: onAdd(data); break;
-            case TABLE_ACTIONS.EDIT: onEdit(data); break;
-            case TABLE_ACTIONS.ACTIVATE: data.activo = true; onEdit(data); break;
-            case TABLE_ACTIONS.INACTIVATE: data.activo = false; onEdit(data); break;
-            case TABLE_ACTIONS.PUTDOWN: data.activo = false; onEdit(data); break;
+            case TABLE_ACTIONS.EDIT: onEdit(data, TABLE_ACTIONS.EDIT); break;
+            case TABLE_ACTIONS.ACTIVATE: data.activo = true; onEdit(data, TABLE_ACTIONS.ACTIVATE); break;
+            case TABLE_ACTIONS.INACTIVATE: data.activo = false; onEdit(data, TABLE_ACTIONS.INACTIVATE); break;
+            case TABLE_ACTIONS.PUTDOWN: data.activo = false; onEdit(data, TABLE_ACTIONS.PUTDOWN); break;
+            case TABLE_ACTIONS.ADDLICENCE: onAdd(data, TABLE_ACTIONS.ADDLICENCE); break;
+            case TABLE_ACTIONS.PUTDOWNLICENCE: onEdit(data, TABLE_ACTIONS.PUTDOWNLICENCE); break;
             case TABLE_ACTIONS.VIEW: break;
             case 'remove': onRemove(data); break;
             default: ;
@@ -56,7 +57,7 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
     useEffect(() => {
         setFilteredDataList(dataList.filter((data) => matchHandler(data, searchTerm)));
     }, [searchTerm, dataList]);
-
+    console.log('pageConfiguration', pageConfiguration)
     return (
         <>
             <div className='bloque-search'>
@@ -64,7 +65,7 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
                     <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                     <i className="fa-solid fa-magnifying-glass icon"></i>
                 </div>}
-                {pageConfiguration.show_add_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); setModal(TABLE_ACTIONS.ADD, dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
+                {pageConfiguration.show_add_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(pageName == 'Empleados' ? MODAL_FORM.EMPLOYEEMODAL : MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADD, dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
             </div >
             {pageConfiguration.show_active_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <div className='active-users'>
                 {setActive && <div className='form-check form-switch'>
@@ -73,10 +74,11 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
                 </div>}
             </div>}
 
-            {pageName != 'Empleados' && <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={filteredDataList} setModal={setModal} />}
-            {pageName != 'Empleados' && showModalForm && <ModalForm pageConfiguration={pageConfiguration} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} actionForm={actionForm} />}
-            {pageName == 'Empleados' && <TableEmployee dataList={filteredDataList} setModal={setModal} />}
-            {pageName == 'Empleados' && showModalForm && <ModalFormEmployees action={actionForm} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} />}
+
+            {pageName != 'Empleados' && <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={filteredDataList} openModalForm={openModalForm} />}
+            {showModalForm && <ModalForm pageConfiguration={pageConfiguration} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} actionForm={actionForm} />}
+            {pageName == 'Empleados' && <TableEmployee tableConfiguration={pageConfiguration.tableConfiguration} dataList={filteredDataList} openModalForm={openModalForm} />}
+            {showEmployeeModalForm && <ModalFormEmployees action={actionForm} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} />}
 
         </>
     );

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { addLicense, getLicenses, removeLicense, updateLicense } from '../../services/LicenseServices';
+import { addLicense, getLicenses, removeLicense, updateLicense, getLicenseById } from '../../services/LicenseServices';
+import { updateEmployee } from '../../services/EmployeeServices';
 import ABMPage from '../ABMPage';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import { compareStrDates } from '../../utils/Utils';
 
-const LicenseModel = {
+export const LicenseModel = {
     numeroLegajo: null,
     fechaInicio: null,
     fechaFin: null,
-    motivoLicencia: '',
+    tipoLicencia: '',
     activo: true
 }
 
@@ -20,30 +22,31 @@ const pageConfiguration = {
             activeActions: [
                 TABLE_ACTIONS.VIEW,
                 TABLE_ACTIONS.EDIT,
-                TABLE_ACTIONS.PUTDOWN
+                TABLE_ACTIONS.ADDLICENCE,
+                TABLE_ACTIONS.PUTDOWNLICENCE
             ],
             inactiveActions: [
+                TABLE_ACTIONS.VIEW,
             ],
         },
         activeRows: [
-            'numeroLegajo',
             'tipoLicencia',
             'fechaInicio',
             'fechaFin',
-            'empleado',
-            'motivoLicencia'
+            'empleado'
         ],
         inactiveRows: [
+            'tipoLicencia',
+            'fechaInicio',
+            'fechaFin',
+            'empleado'
         ]
     },
     formConfiguration: {
         activeFields: [
-            'numeroLegajo',
             'tipoLicencia',
             'fechaInicio',
-            'fechaFin',
-            'empleado',
-            'motivoLicencia'
+            'fechaFin'
         ],
         inactiveFields: [
         ]
@@ -54,10 +57,14 @@ const pageConfiguration = {
             'tipoLicencia',
             'fechaInicio',
             'fechaFin',
-            'empleado',
-            'motivoLicencia'
+            'empleado'
         ],
         inactiveFields: [
+            'numeroLegajo',
+            'tipoLicencia',
+            'fechaInicio',
+            'fechaFin',
+            'empleado'
         ]
     }
 }
@@ -65,7 +72,6 @@ const pageConfiguration = {
 const LicensesPage = () => {
     const [licenseList, setLicenseList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
-    console.log(licenseList);
     useEffect(() => {
         loadLicenses();
     }, [statusActive]);
@@ -73,26 +79,64 @@ const LicensesPage = () => {
     const loadLicenses = () => {
         getLicenses().then(result => {
             if (result.list)
-                setLicenseList(result.list.filter(d => d.activo == statusActive));
+                setLicenseList(result.list);
         });
     }
 
-    const onAdd = (data) => {
+    const onAdd = (data, action) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        addLicense(data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.motivoLicencia, data.activo).then(result => {
-            console.log('saved=', result);
-            loadLicenses();
-        });
+        switch (action) {
+            case TABLE_ACTIONS.ADD:
+                break;
+            case TABLE_ACTIONS.ADDLICENCE: // RENOVATION
+                const validation = validateRenovation(data);
+                if (validation.error) throw validation;
+                addLicense(data.empleado, data.empleado.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, true).then(nLicenceResult => {
+                    console.log('Licence added=', nLicenceResult);
+                    getLicenseById(data.id).then(originalLicence => {
+                        console.log('Original Licence', originalLicence)
+                        updateLicense(originalLicence.model.id, originalLicence.model.empleado, originalLicence.model.numeroLegajo, originalLicence.model.fechaInicio, originalLicence.model.fechaFin, originalLicence.model.tipoLicencia, false).then(oLicenceResult => {
+                            console.log('Licence disabled=', oLicenceResult);
+                            loadLicenses();
+                        });
+                    });
+                });
+                break;
+        }
     }
 
-    const onEdit = (data) => {
+    const onEdit = (data, action) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        updateLicense(data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.motivoLicencia, data.activo).then(result => {
-            console.log('edited=', result);
-            loadLicenses();
-        });
+        console.log('edit action', action)
+        switch (action) {
+            case TABLE_ACTIONS.PUTDOWNLICENCE:
+                let putdownLicence = confirm("Desea dar de baja la licencia y reactivar el empleado?");
+                if (putdownLicence) {
+                    updateLicense(data.id, data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, false).then(result => {
+                        console.log('Putdown Licence=', result);
+                        result.model.empleado.codigoEstadoEmpleado = {
+                            id: 87 // ACTIVATE EMPLOYEE
+                        };
+                        updateEmployee(result.model.empleado.id, result.model.empleado).then(resultEmp => {
+                            console.log('Update employee=', resultEmp);
+                            loadLicenses();
+                        })
+                    });
+                }
+                break;
+            case TABLE_ACTIONS.EDIT:
+                console.log('licence edit', data)
+                updateLicense(data.id, data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, data.activo).then(result => {
+                    console.log('edited=', result);
+                    loadLicenses();
+                });
+                break;
+            default:
+        }
+
+
     }
 
     const onRemove = (data) => {
@@ -112,10 +156,6 @@ const LicensesPage = () => {
             error: false,
             validation: {}
         };
-        if (!data.numeroLegajo) {
-            result.error = true;
-            result.validation.numeroLegajo = "Ingrese número de legajo"
-        }
         if (!data.fechaInicio) {
             result.error = true;
             result.validation.fechaInicio = "Ingrese fecha de inicio"
@@ -124,20 +164,29 @@ const LicensesPage = () => {
             result.error = true;
             result.validation.fechaFin = "Ingrese fecha de finalización"
         }
-        if (!data.motivoLicencia) {
+        if (data.fechaInicio && data.fechaFin && compareStrDates(data.fechaInicio, data.fechaFin) < 1) {
             result.error = true;
-            result.validation.motivoLicencia = "Ingrese motivo de licencia"
+            result.validation.fechaInicio = "Ingrese fecha de inicio valida"
         }
-        if (!data.activo) {
+        if (!data.tipoLicencia) {
             result.error = true;
-            result.validation.activo = "Ingrese activo"
+            result.validation.tipoLicencia = "Ingrese motivo de licencia"
         }
-        /* if (!data.secuenciador || data.secuenciador.id <= 0) {
-            result.error = true;
-            result.validation.secuenciador = "Seleccione secuenciador"
-        } */
         return result;
     }
+
+    const validateRenovation = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        };
+        if (licenseList.find(l => l.numeroLegajo == data.numeroLegajo && l.activo && compareStrDates(l.fechaFin, data.fechaInicio) < 1)) {
+            result.error = true;
+            result.validation.fechaInicio = "Ingrese fecha de inicio valida"
+        }
+        return result;
+    }
+
 
     return (
         <ABMPage pageConfiguration={pageConfiguration} pageName="licenciaHistory" dataList={licenseList} dataModel={LicenseModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />

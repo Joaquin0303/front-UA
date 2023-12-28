@@ -21,9 +21,11 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
 
     console.log('formData=', formData);
 
-    const showField = (actionName) => {
-        return (formConfiguration.activeFields.includes(actionName) && data.activo) ||
-            (formConfiguration.inactiveFields.includes(actionName) && !data.activo);
+    const showField = (fieldName) => {
+        console.log('conf fields', formConfiguration.activeFields);
+        console.log('field', fieldName)
+        return (formConfiguration.activeFields.includes(fieldName) && data.activo) ||
+            (formConfiguration.inactiveFields.includes(fieldName) && !data.activo);
     }
 
     const updateFormData = (key, value) => {
@@ -78,9 +80,11 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
                         return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
                     case 'numeroLegajo':
                         return <InputFileNumber validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} />
+                    case 'tipoLicencia':
+                        return <InputParameter validation={validation} key={i} name="tipoLicencia" value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 16)} updateFormData={updateFormData} />
                     default:
-                        if (key.startsWith('fechaBaja')) {
-                            return <InputDate key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
+                        if (key.startsWith('fecha')) {
+                            return <InputDate validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'boolean') {
                             return <InputSwitch key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
                         } else if (typeof value == 'string') {

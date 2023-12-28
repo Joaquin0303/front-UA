@@ -6,6 +6,7 @@ import { getCountries } from '../../services/CountryServices';
 import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
 import { addLicense } from '../../services/LicenseServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import { compareStrDates } from '../../utils/Utils';
 
 const pageConfiguration = {
     show_search: true,
@@ -22,8 +23,6 @@ const pageConfiguration = {
             ],
             inactiveActions: [
                 TABLE_ACTIONS.VIEW,
-                TABLE_ACTIONS.ACTIVATE,
-                TABLE_ACTIONS.PUTDOWN,
                 TABLE_ACTIONS.REENTRY
             ],
         },
@@ -34,6 +33,9 @@ const pageConfiguration = {
     },
     formConfiguration: {
         activeFields: [
+            'tipoLicencia', // LicencePage
+            'fechaInicio', // LicencePage
+            'fechaFin' // LicencePage
         ],
         inactiveFields: [
         ]
@@ -121,60 +123,81 @@ const EmployeesPage = ({ }) => {
         getEmployees().then(result => {
             if (result.list) {
                 employeeTotalList = result.list;
-                setEmployeeList(result.list.filter(d => (!statusActive && d.codigoEstadoEmpleado.id != 87) || (statusActive && d.codigoEstadoEmpleado.id == 87)));
+                setEmployeeList(result.list.filter(d => (!statusActive && d.codigoEstadoEmpleado.id == 89) || (statusActive && d.codigoEstadoEmpleado.id != 89)));
             }
         });
     }
 
-    const onAdd = (data) => {
-        const validation = validate(data);
-        if (validation.error) throw validation;
+    const onAdd = (data, action) => {
+        switch (action) {
+            case TABLE_ACTIONS.ADD:
+                const validation = validate(data);
+                if (validation.error) throw validation;
 
-        data.codigoEstadoEmpleado = {
-            id: 87
-        }
+                data.codigoEstadoEmpleado = {
+                    id: 87
+                }
 
-        data.fechaIngresoReconocida = data.fechaIngreso;
+                data.fechaIngresoReconocida = data.fechaIngreso;
 
-        // REMOVE AFTER DATABASE FIXED
-        data.codigoCentroDeCosto = {
-            id: 55
-        }
+                // REMOVE AFTER DATABASE FIXED
+                data.codigoCentroDeCosto = {
+                    id: 55
+                }
 
-        getCountries().then(rCountries => {
-            getCurrentSequence(
-                rCountries.list.find(c => c.id == data.codigoPais.id).secuenciador.codigo
-            ).then(seq => {
-                data.numeroLegajo = seq.model.secuencia + 1;
-                addEmployee(data).then(result => {
-                    console.log('Employee added=', result);
-                    loadEmployees();
-                    updateSequencer(seq.model.id, seq.model.codigo, seq.model.rangoDesde, seq.model.rangoHasta, seq.model.secuencia + 1, seq.model.activo);
+                getCountries().then(rCountries => {
+                    getCurrentSequence(
+                        rCountries.list.find(c => c.id == data.codigoPais.id).secuenciador.codigo
+                    ).then(seq => {
+                        data.numeroLegajo = seq.model.secuencia + 1;
+                        addEmployee(data).then(result => {
+                            console.log('Employee added=', result);
+                            loadEmployees();
+                            updateSequencer(seq.model.id, seq.model.codigo, seq.model.rangoDesde, seq.model.rangoHasta, seq.model.secuencia + 1, seq.model.activo);
+                        });
+                    });
+
+                })
+                break;
+            case TABLE_ACTIONS.ADDLICENCE:
+                const validationLicence = validateLicence(data);
+                if (validationLicence.error) throw validationLicence;
+                addLicense(data.empleado, data.empleado.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, true).then(licenceResult => {
+                    console.log('Licence added=', licenceResult);
+                    data.empleado.codigoEstadoEmpleado = {
+                        id: 88
+                    }
+                    updateEmployee(data.empleado.id, data.empleado).then(empResult => {
+                        loadEmployees();
+                    });
                 });
-            });
-
-        })
-
+                break;
+            default:
+        }
 
     }
 
     const onEdit = (data, action) => {
-        const validation = validate(data);
-        if (validation.error) throw validation;
-        const employeeId = data.id;
-        delete data["id"];
-        updateEmployee(employeeId, data).then(empResult => {
-            if (empResult && empResult.model && empResult.model.codigoTipoEgreso && empResult.model.codigoTipoEgreso.id == 202) {
-                addExcludedIncome(empResult.model, empResult.model.codigoTipoEgreso.descripcion, empResult.model.observaciones, true).then(excludeResult => {
-                    console.log('Excluded Income added=', excludeResult);
+
+        switch (action) {
+            case TABLE_ACTIONS.EDIT:
+                const validation = validate(data);
+                if (validation.error) throw validation;
+                const employeeId = data.id;
+                delete data["id"];
+                updateEmployee(employeeId, data).then(empResult => {
+                    if (empResult && empResult.model && empResult.model.codigoTipoEgreso && empResult.model.codigoTipoEgreso.id == 202) {
+                        addExcludedIncome(empResult.model, empResult.model.codigoTipoEgreso.descripcion, empResult.model.observaciones, true).then(excludeResult => {
+                            console.log('Excluded Income added=', excludeResult);
+                        });
+                    }
+                    loadEmployees();
                 });
-            } else if (empResult && empResult.model && empResult.model.codigoEstadoEmpleado.id == 88) {
-                addLicense(empResult.model, empResult.model.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, true).then(licenceResult => {
-                    console.log('Licence added=', licenceResult);
-                });
-            }
-            loadEmployees();
-        })
+            case TABLE_ACTIONS.ADDLICENCE:
+
+            default:
+
+        }
     }
 
     const onRemove = (data) => {
@@ -195,6 +218,30 @@ const EmployeesPage = ({ }) => {
             validation: {}
         }
 
+        return result;
+    }
+
+    const validateLicence = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        };
+        if (!data.fechaInicio || data.fechaInicio.trim().length <= 0) {
+            result.error = true;
+            result.validation.fechaInicio = "Ingrese fecha de inicio"
+        }
+        if (!data.fechaFin || data.fechaFin.trim().length <= 0) {
+            result.error = true;
+            result.validation.fechaFin = "Ingrese fecha de finalización"
+        }
+        if (data.fechaInicio && data.fechaFin && compareStrDates(data.fechaInicio, data.fechaFin) < 1) {
+            result.error = true;
+            result.validation.fechaInicio = "Ingrese fecha de inicio valida"
+        }
+        if (!data.tipoLicencia) {
+            result.error = true;
+            result.validation.tipoLicencia = "Ingrese motivo de licencia"
+        }
         return result;
     }
 

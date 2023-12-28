@@ -7,7 +7,11 @@ import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 const ModalForm = ({ pageConfiguration, data, closeModal, onSubmitForm, actionForm }) => {
 
     const showView = () => {
-        return actionForm == TABLE_ACTIONS.VIEW || actionForm == TABLE_ACTIONS.ACTIVATE || actionForm == TABLE_ACTIONS.INACTIVATE;
+        console.log('actionForm', actionForm);
+        return actionForm == TABLE_ACTIONS.VIEW
+            || actionForm == TABLE_ACTIONS.ACTIVATE
+            || actionForm == TABLE_ACTIONS.INACTIVATE
+            || actionForm == TABLE_ACTIONS.PUTDOWNLICENCE;
     }
 
     const showForm = () => {
