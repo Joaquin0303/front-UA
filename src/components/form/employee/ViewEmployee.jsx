@@ -29,6 +29,7 @@ const ViewEmployee = ({ data, closeModal }) => {
         return <>
             <div className="modal-title">View 1</div>
             {createCellInfo('Empleado', data['apellido'] + ' ' + data['segundoNombre'] + ' ' + data['nombre'] + ' (' + data['numeroLegajo'] + ')')}
+            {createCellDataInfo('Estado', data['codigoEstadoEmpleado'], 'descripcion')}
             {createCellInfo('Nombre Preferido', data['nombrePreferido'])}
             {createCellInfo('Genero', data['codigoGenero'].descripcion)}
             {createCellInfo('Documento Personal', data['codigoTipoDocumento'].descripcion + ' ' + data['numeroDocumentoPersonal'])}
