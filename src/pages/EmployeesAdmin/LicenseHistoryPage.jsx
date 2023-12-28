@@ -30,7 +30,8 @@ const pageConfiguration = {
             'tipoLicencia',
             'fechaInicio',
             'fechaFin',
-            'empleado'
+            'empleado',
+            'motivoLicencia'
         ],
         inactiveRows: [
         ]
@@ -41,7 +42,8 @@ const pageConfiguration = {
             'tipoLicencia',
             'fechaInicio',
             'fechaFin',
-            'empleado'
+            'empleado',
+            'motivoLicencia'
         ],
         inactiveFields: [
         ]
@@ -52,7 +54,8 @@ const pageConfiguration = {
             'tipoLicencia',
             'fechaInicio',
             'fechaFin',
-            'empleado'
+            'empleado',
+            'motivoLicencia'
         ],
         inactiveFields: [
         ]
