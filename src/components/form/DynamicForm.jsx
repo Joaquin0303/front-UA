@@ -22,8 +22,6 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
     console.log('formData=', formData);
 
     const showField = (fieldName) => {
-        console.log('conf fields', formConfiguration.activeFields);
-        console.log('field', fieldName)
         return (formConfiguration.activeFields.includes(fieldName) && data.activo) ||
             (formConfiguration.inactiveFields.includes(fieldName) && !data.activo);
     }

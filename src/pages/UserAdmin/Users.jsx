@@ -74,7 +74,6 @@ const Users = () => {
     useEffect(() => {
         loadUsers();
     }, [statusActive]);
-    console.log('statusActive', statusActive)
     const loadUsers = () => {
         getUsers().then(result => {
             console.log('result', result.list)

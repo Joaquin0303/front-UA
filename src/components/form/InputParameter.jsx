@@ -6,11 +6,7 @@ const InputParameter = ({ validation, name, value, valueName, parameterList, dis
 
     const fieldDescription = valueName ? valueName : "descripcion";
 
-    console.log('codigo', country ? country.codigo : 'no country')
-
     const parameterListByCountry = !country ? parameterList : parameterList.filter(p => p.texto1 == country.codigo);
-
-    console.log('PARAM LIST', parameterListByCountry);
 
     const paramSelectorChangeHandler = (e) => {
         if (e.target.value > 0) {

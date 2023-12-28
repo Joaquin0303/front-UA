@@ -5,7 +5,6 @@ import InputNumber from "../InputNumber";
 import InputSwitch from '../InputSwitch';
 
 const FormEmployeeStep3 = ({ parameterList, validation, formData, updateFormData }) => {
-    console.log('FDATA=', formData)
     return (
         <div className="form-field-container">
             <InputParameter validation={validation} name="codigoTipoContratacion" value={formData["codigoTipoContratacion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 26)} updateFormData={updateFormData} />

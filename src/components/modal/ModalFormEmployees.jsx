@@ -8,7 +8,6 @@ import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import ViewEmployee from '../form/employee/ViewEmployee';
 
 export const ModalFormEmployees = ({ action, data, closeModal, onSubmitForm }) => {
-    console.log('EMP MODAL');
     const [parameterList, setParameterList] = useState([]);
 
     useEffect(() => {

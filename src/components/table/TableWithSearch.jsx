@@ -24,7 +24,6 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
     }
 
     const openModalForm = (modal, action, data) => {
-        console.log('modal', modal);
         setFormData(data);
         setActionForm(action);
         if (modal == MODAL_FORM.DYNAMICMODAL) {
@@ -57,7 +56,6 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
     useEffect(() => {
         setFilteredDataList(dataList.filter((data) => matchHandler(data, searchTerm)));
     }, [searchTerm, dataList]);
-    console.log('pageConfiguration', pageConfiguration)
     return (
         <>
             <div className='bloque-search'>

@@ -109,7 +109,6 @@ const LicensesPage = () => {
     const onEdit = (data, action) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        console.log('edit action', action)
         switch (action) {
             case TABLE_ACTIONS.PUTDOWNLICENCE:
                 let putdownLicence = confirm("Desea dar de baja la licencia y reactivar el empleado?");

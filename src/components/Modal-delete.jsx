@@ -2,9 +2,7 @@ import React from 'react';
 import '../styles/Modal.css';
 
 const ModalDelete = ({ user, closeModal, onDelete }) => {
-    console.log('ModalDelete user:', user);
     const handleConfirm = () => {
-        console.log('Confirming delete');
         onDelete(user.id);
     };
 
