@@ -25,18 +25,37 @@ const ViewEmployee = ({ data, closeModal }) => {
         )
     }
 
+    const parseDate = (d) => {
+        const date = new Date(d);
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        const formatter = new Intl.DateTimeFormat('es-ES', options);
+        const formattedDate = formatter.format(date);
+        return formattedDate;
+    }
+
+    const createCellDate = (label, data) => {
+        return (
+            <>
+                {data && data[name] && <div className='form-group'>
+                    <label className='label' htmlFor="id">{i18n.t(label)}</label>
+                    <div className='form-p'>{parseDate(data[name])}</div>
+                </div>}
+            </>
+        )
+    }
+
     const createView1 = () => {
         return <>
-            <div className="modal-title">View 1</div>
+            <div className="modal-title">Datos Mínimos</div>
             {createCellInfo('Empleado', data['apellido'] + ' ' + data['segundoNombre'] + ' ' + data['nombre'] + ' (' + data['numeroLegajo'] + ')')}
             {createCellDataInfo('Estado', data['codigoEstadoEmpleado'], 'descripcion')}
             {createCellInfo('Nombre Preferido', data['nombrePreferido'])}
             {createCellInfo('Genero', data['codigoGenero'].descripcion)}
             {createCellInfo('Documento Personal', data['codigoTipoDocumento'].descripcion + ' ' + data['numeroDocumentoPersonal'])}
             {createCellInfo('Documento Laboral', data['codigoTipoDocumento'].descripcion + ' ' + data['numeroDocumentoLaboral'])}
-            {createCellInfo('Fecha de Nacimiento', data['fechaNacimiento'])}
+            {createCellDate('Fecha de Nacimiento', data['fechaNacimiento'])}
             {createCellDataInfo('Generacion', data['codigoGeneracion'], 'descripcion')}
-            {createCellInfo('Fecha de Ingreso', data['fechaIngreso'])}
+            {createCellDate('Fecha de Ingreso', data['fechaIngreso'])}
             {createCellDataInfo('Pais', data['codigoPais'], 'descripcion')}
             {createCellDataInfo('Oficina', data['codigoOficina'], 'descripcion')}
             {createCellDataInfo('Direccion', data['codigoDireccion'], 'descripcion')}
@@ -47,7 +66,7 @@ const ViewEmployee = ({ data, closeModal }) => {
 
     const createView2 = () => {
         return <>
-            <div className="modal-title">View 2</div>
+            <div className="modal-title">Datos Personales</div>
             {createCellDataInfo('Nacionalidad', data['codigoNacionalidad'], 'descripcion')}
             {createCellDataInfo('Pais de Residencia', data['codigoPaisResidencia'], 'descripcion')}
             {createCellDataInfo('Provincia', data['codigoProvincia'], 'descripcion')}
@@ -65,8 +84,8 @@ const ViewEmployee = ({ data, closeModal }) => {
 
     const createView3 = () => {
         return <>
-            <div className="modal-title">View 3</div>
-            {createCellInfo('Fecha Ingreso Reconocida', data['fechaIngresoReconocida'])}
+            <div className="modal-title">Datos Laborales</div>
+            {createCellDate('Fecha Ingreso Reconocida', data['fechaIngresoReconocida'])}
             {createCellDataInfo('Tipo Contratacion', data['codigoTipoContratacion'], 'descripcion')}
             {createCellDataInfo('Horas Semanales', data['horasSemanales'], 'descripcion')}
             {createCellDataInfo('FTE', data['fte'], 'texto2')}
@@ -88,8 +107,8 @@ const ViewEmployee = ({ data, closeModal }) => {
         return <>
             <div className="modal-title">View 4</div>
             {createCellDataInfo('Centro De Costo', data['codigoCentroDeCosto'], 'descripcion')}
-            {createCellInfo('Fecha Fin Contrato', data['fechaFinContrato'])}
-            {createCellInfo('Fecha Egreso', data['fechaEgreso'])}
+            {createCellDate('Fecha Fin Contrato', data['fechaFinContrato'])}
+            {createCellDate('Fecha Egreso', data['fechaEgreso'])}
             {createCellDataInfo('Tipo Egreso', data['codigoTipoEgreso'], 'descripcion')}
             {createCellInfo('Observaciones', data['observaciones'])}
         </>
