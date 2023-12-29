@@ -124,6 +124,8 @@ const compare = (a, b) => {
 const EmployeesPage = ({ }) => {
     const [employeeList, setEmployeeList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
 
     useEffect(() => {
         loadEmployees();
@@ -164,6 +166,13 @@ const EmployeesPage = ({ }) => {
                             console.log('Employee added=', result);
                             loadEmployees();
                             updateSequencer(seq.model.id, seq.model.codigo, seq.model.rangoDesde, seq.model.rangoHasta, seq.model.secuencia + 1, seq.model.activo);
+                        
+                            setShowPopup(true);
+                            setPopupMessage('Empleado con el numero de legajo: ${data.empleado.numeroLegajo} agregado correctamente');
+
+                            setTimeout(() => {
+                                setShowPopup(false);
+                            }, 3000);
                         });
                     });
 
