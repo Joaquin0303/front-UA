@@ -9,16 +9,16 @@ const ABMPage = ({ pageConfiguration, pageName, dataList, dataModel, onAdd, onEd
     let seccion;
     let to;
 
-    if (pageName === 'Empleados' || pageName === 'Carga de familia' || pageName === 'Empleado externo' || pageName === 'Histial de licencia' || pageName === 'Historial de puesto' || pageName === 'Ingreso caido'){
+    if (pageName === 'Empleados' || pageName === 'cargaDeFamilia' || pageName === 'external' || pageName === 'licenciaHistory' || pageName === 'cambioDePuesto' || pageName === 'ingresoCaido'){
         seccion = '/ Administracion de Empleados';
         to = '/administracion-empleados'}
-    else if (pageName === 'Usuarios' || pageName === 'Roles' || pageName === 'Permisos'){
+    else if (pageName === 'usuarios' || pageName === 'roles' || pageName === 'permisos'){
         seccion = '/ Administracion de Usuarios';
         to = '/administracion-usuarios'}
-    else if (pageName === 'Tipo de Parámetro' || pageName === 'Parametros' || pageName === 'Secuenciador' || pageName === 'Puesto' || pageName === 'Países'){
+    else if (pageName === 'tipoParametro' || pageName === 'parametros' || pageName === 'secuenciador' || pageName === 'puesto' || pageName === 'pais'){
         seccion = '/ Administracion de Parámetros';
         to = '/administracion-parametros'}
-        
+
     return (
         <div className='bloque-principal'>
             <div className="bloque-secundario">
