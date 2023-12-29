@@ -15,7 +15,7 @@ const ABMPage = ({ pageConfiguration, pageName, dataList, dataModel, onAdd, onEd
     else if (pageName === 'usuarios' || pageName === 'roles' || pageName === 'permisos'){
         seccion = '/ Administracion de Usuarios';
         to = '/administracion-usuarios'}
-    else if (pageName === 'tipoParametro' || pageName === 'parametros' || pageName === 'secuenciador' || pageName === 'puesto' || pageName === 'pais'){
+    else if (pageName === 'parameterType' || pageName === 'parametros' || pageName === 'secuenciador' || pageName === 'puesto' || pageName === 'paises'){
         seccion = '/ Administracion de Parámetros';
         to = '/administracion-parametros'}
 
