@@ -111,6 +111,16 @@ export const findByLaboralIdentity = (docTypeId, docNumber) => {
     return employeeTotalList.find(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoLaboral == docNumber);
 }
 
+const compare = (a, b) => {
+    if (a.codigoEstadoEmpleado.id < b.codigoEstadoEmpleado.id) {
+        return -1
+    } else if (a.codigoEstadoEmpleado.id > b.codigoEstadoEmpleado.id) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 const EmployeesPage = ({ }) => {
     const [employeeList, setEmployeeList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
@@ -123,7 +133,7 @@ const EmployeesPage = ({ }) => {
         getEmployees().then(result => {
             if (result.list) {
                 employeeTotalList = result.list;
-                setEmployeeList(result.list.filter(d => (!statusActive && d.codigoEstadoEmpleado.id == 89) || (statusActive && d.codigoEstadoEmpleado.id != 89)));
+                setEmployeeList(result.list.filter(d => (!statusActive && d.codigoEstadoEmpleado.id == 89) || (statusActive && d.codigoEstadoEmpleado.id != 89)).sort(compare));
             }
         });
     }
