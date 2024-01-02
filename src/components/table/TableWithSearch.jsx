@@ -34,8 +34,9 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
     }
 
     const onSubmitForm = (data) => {
+        console.log('action', actionForm)
         switch (actionForm) {
-            case TABLE_ACTIONS.ADD: onAdd(data); break;
+            case TABLE_ACTIONS.ADD: onAdd(data, actionForm); break;
             case TABLE_ACTIONS.EDIT: onEdit(data, TABLE_ACTIONS.EDIT); break;
             case TABLE_ACTIONS.ACTIVATE: data.activo = true; onEdit(data, TABLE_ACTIONS.ACTIVATE); break;
             case TABLE_ACTIONS.INACTIVATE: data.activo = false; onEdit(data, TABLE_ACTIONS.INACTIVATE); break;
