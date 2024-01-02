@@ -139,7 +139,7 @@ const Users = () => {
             result.error = true;
             result.validation.nombreUsuario = "Ingrese nombre de usuario"
         }
-        if (!data.numeroLegajo?.trim()) {
+        if (!data.numeroLegajo) {
             result.error = true;
             result.validation.numeroLegajo = "Ingrese un número de legajo válido"
         }
