@@ -168,6 +168,7 @@ const EmployeesPage = ({ }) => {
                             updateSequencer(seq.model.id, seq.model.codigo, seq.model.rangoDesde, seq.model.rangoHasta, seq.model.secuencia + 1, seq.model.activo);
                         
                             setShowPopup(true);
+                            console.log('Empleado con el numero de legajo: ${data.empleado.numeroLegajo} agregado correctamente');
                             setPopupMessage('Empleado con el numero de legajo: ${data.empleado.numeroLegajo} agregado correctamente');
 
                             setTimeout(() => {
