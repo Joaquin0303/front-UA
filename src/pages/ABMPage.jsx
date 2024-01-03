@@ -12,10 +12,10 @@ const ABMPage = ({ pageConfiguration, pageName, dataList, dataModel, onAdd, onEd
     if (pageName === 'Empleados' || pageName === 'cargaDeFamilia' || pageName === 'external' || pageName === 'licenciaHistory' || pageName === 'cambioDePuesto' || pageName === 'ingresoCaido'){
         seccion = '/ Administracion de Empleados';
         to = '/administracion-empleados'}
-    else if (pageName === 'usuarios' || pageName === 'roles' || pageName === 'permisos'){
+    else if (pageName === 'Usuarios' || pageName === 'Roles' || pageName === 'Permisos'){
         seccion = '/ Administracion de Usuarios';
         to = '/administracion-usuarios'}
-    else if (pageName === 'parameterType' || pageName === 'parametros' || pageName === 'secuenciador' || pageName === 'puesto' || pageName === 'paises'){
+    else if (pageName === 'parameterType' || pageName === 'Parametros' || pageName === 'Secuenciador' || pageName === 'Puesto' || pageName === 'paises'){
         seccion = '/ Administracion de Parámetros';
         to = '/administracion-parametros'}
 
