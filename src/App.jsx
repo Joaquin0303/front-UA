@@ -8,6 +8,8 @@ import Users from './pages/UserAdmin/Users';
 import { Permisos } from './pages/UserAdmin/Permisos';
 import Roles from './pages/UserAdmin/Roles';
 
+import { Reports } from './components/AdminPages';
+
 import logoempresa from './img/logo-empresa.png';
 import logoout from './img/logout.png';
 import './styles/header_and_nav.css';
@@ -83,6 +85,20 @@ function App() {
         {<Route path="/administracion-empleados/historial-licencias" element={<LicensesPage />} />}
         {<Route path="/administracion-empleados/cambios-puestos" element={<PositionChangesPage />} />}
         {<Route path="/administracion-empleados/ingreso-caido" element={<ExcludedIncomePage />} />}
+
+        {/* Reportes */}
+        {/* -------------------------- */}
+        <Route path="/reportes" element={<Reports />} />
+        {<Route path="/reportes/vuelta-al-colegio" element={<EmployeesPage />} />}
+        {<Route path="/reportes/central-costo" element={<LoadFamilyPage />} />}
+        {<Route path="/reportes/historial-laboral" element={<ExternalPage />} />}
+        {<Route path="/reportes/international" element={<LicensesPage />} />}
+        {<Route path="/reportes/externos" element={<PositionChangesPage />} />}
+        {<Route path="/reportes/directores" element={<ExcludedIncomePage />} />}
+        {<Route path="/reportes/generico" element={<ExcludedIncomePage />} />}
+        {<Route path="/reportes/licencias" element={<ExcludedIncomePage />} />}
+
+
       </Routes>
     </>
   )

@@ -13,6 +13,14 @@ import logoExterno from '../img/externo.png'
 import logoLicencias from '../img/licencias.png'
 import logoHisPuesto from '../img/historial-puesto.png'
 import logoHisIngreso from '../img/historial-ingresos.png'
+
+import vueltaColegio from '../img/vueltaColegio.png'
+import centralCosto from '../img/centralCosto.png'
+import historialLaboral from '../img/historialLaboral.png'
+import International from '../img/International.png'
+import directores from '../img/directores.png'
+import generico from '../img/generico.png'
+
 import '../styles/AdminUsers.css';
 import Card from "./cards";
 
@@ -51,5 +59,20 @@ export const AdminEmployees = () =>
             <Card img={logoLicencias} title={'Historial Licencias'} path={'/administracion-empleados/historial-licencias'} />
             <Card img={logoHisPuesto} title={'Historial Cambios de Puesto'} path={'/administracion-empleados/cambios-puestos'} />
             <Card img={logoHisIngreso} title={'Historial Ingreso Caído'} path={'/administracion-empleados/ingreso-caido'} />
+        </div>
+    </div>
+
+export const Reports = () =>
+    <div className='bloque_principal'>
+        <h4>Reportes</h4>
+        <div className='div-cards'>
+            <Card img={vueltaColegio} title={'Vuelta al Colegio'} path={'/reportes/vuelta-al-colegio'} />
+            <Card img={centralCosto} title={'Central de Costo'} path={'/reportes/central-costo'} />
+            <Card img={historialLaboral} title={'Historial laboral'} path={'/reportes/historial-laboral'} />
+            <Card img={International} title={'International Data Collection'} path={'/reportes/international'} />
+            <Card img={logoExterno} title={'Externos'} path={'/reportes/externos'} />
+            <Card img={directores} title={'Directores'} path={'/reportes/directores'} />
+            <Card img={generico} title={'Genérico'} path={'/reportes/generico'} />
+            <Card img={logoLicencias} title={'Licencias'} path={'/reportes/licencias'} />
         </div>
     </div>
