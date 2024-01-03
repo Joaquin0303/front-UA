@@ -7,6 +7,7 @@ import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
 import { addLicense } from '../../services/LicenseServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import { compareStrDates } from '../../utils/Utils';
+import { addPositionChange } from '../../services/PositionChangeServices';
 
 const pageConfiguration = {
     show_search: true,
@@ -99,6 +100,10 @@ const pageConfiguration = {
 }
 
 let employeeTotalList = [];
+export const findById = (id) => {
+    return employeeTotalList.find(e => e.id == id);
+}
+
 export const findByFileNumber = (fileNumber) => {
     return employeeTotalList.find(e => e.numeroLegajo == fileNumber);
 }
@@ -166,7 +171,7 @@ const EmployeesPage = ({ }) => {
                             console.log('Employee added=', result);
                             loadEmployees();
                             updateSequencer(seq.model.id, seq.model.codigo, seq.model.rangoDesde, seq.model.rangoHasta, seq.model.secuencia + 1, seq.model.activo);
-                        
+
                             setShowPopup(true);
                             console.log('Empleado con el numero de legajo: ${data.empleado.numeroLegajo} agregado correctamente');
                             setPopupMessage(`Empleado con el numero de legajo: ${data.empleado.numeroLegajo} agregado correctamente`);
@@ -213,8 +218,22 @@ const EmployeesPage = ({ }) => {
                     }
                     loadEmployees();
                 });
-            case TABLE_ACTIONS.ADDLICENCE:
+            case TABLE_ACTIONS.CHANGEPOSITION:
+                getEmployeeById(data.id).then(oldEmp => {
+                    console.log('old position:', oldEmp.model.codigoPuesto.id);
+                    console.log('new position:', data.codigoPuesto.id);
+                    if (oldEmp.model.codigoPuesto.id != data.codigoPuesto.id) {
+                        addPositionChange(data.numeroLegajo, data.codigoPais, data.codigoOficina, data.codigoDireccion, data.codigoPuesto.codigoGerencia, data.codigoPuesto.codigoJefatura, data.codigoPuesto, data.fechaIngresoReconocida, new Date(), true).then(r => {
+                            console.log('Position History Updated', r)
+                        })
+                        updateEmployee(data.id, data).then(r => {
+                            console.log('Employee updated=', r);
+                            loadEmployees();
+                        });
+                    }
+                })
 
+                break;
             default:
 
         }

@@ -1,5 +1,6 @@
 import React from "react";
 import i18n from "../../localization/i18n";
+import { parseDate } from "../../utils/Utils";
 
 const DynamicView = ({ viewConfiguration, data, closeModal, onSubmitForm }) => {
 
@@ -22,6 +23,18 @@ const DynamicView = ({ viewConfiguration, data, closeModal, onSubmitForm }) => {
         } else {
             return false;
         }
+    }
+
+    const createCellDate = (cellId, label, value) => {
+        console.log('v', value)
+        return (
+            <>
+                {value && <div key={cellId} className='form-group'>
+                    <label className='label' htmlFor="id">{i18n.t(label)}</label>
+                    <div className='form-p'>{parseDate(value)}</div>
+                </div>}
+            </>
+        )
     }
 
     const createCellInfo = (cellId, label, value) => {
@@ -85,8 +98,16 @@ const DynamicView = ({ viewConfiguration, data, closeModal, onSubmitForm }) => {
                         return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].numeroLegajo + " - " + data[key].apellido + " " + data[key].nombre : '');
                     case 'tipoLicencia':
                         return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
+                    case 'codigoPuesto':
+                        return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
+                    case 'codigoOficina':
+                        return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
                     default:
-                        return createCellInfo(i, key, data[key]);
+                        if (key.startsWith('fecha')) {
+                            return createCellDate(i, key, data[key]);
+                        } else {
+                            return createCellInfo(i, key, data[key]);
+                        }
                 }
             }
         });
