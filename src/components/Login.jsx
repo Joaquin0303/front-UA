@@ -37,11 +37,11 @@ const Login = ({ setToken }) => {
                     <h2>Iniciar Sesión</h2>
                     <div className="form-group-login">
                         <label htmlFor="login-user">Nombre de Usuario</label>
-                        <input type="text" className="form-control" id="login-user" placeholder="Nombre de usuario" onChange={e => setUserName(e.target.value)} />
+                        <input type="text" className="form-control" id="login-user" placeholder="Usuario" onChange={e => setUserName(e.target.value)} />
                     </div>
                     <div className="form-group-login">
                         <label htmlFor="password-user">Contraseña</label>
-                        <input type="password" className="form-control" id="password-user" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                        <input type="password" className="form-control" id="password-user" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} />
                     </div>
                     <p className="authFail">
                         {errorMessage}
