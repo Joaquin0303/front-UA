@@ -33,7 +33,7 @@ const ViewEmployee = ({ data, closeModal }) => {
         return formattedDate;
     }
 
-    const createCellDate = (label, data) => {
+    const createCellDate = (label, data, name) => {
         return (
             <>
                 {data && data[name] && <div className='form-group'>
