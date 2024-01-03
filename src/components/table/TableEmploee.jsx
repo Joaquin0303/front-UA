@@ -7,7 +7,7 @@ import { TbLicense } from "react-icons/tb";
 import { MODAL_FORM, TABLE_ACTIONS } from "../../utils/GeneralConstants";
 import { LicenseModel } from "../../pages/EmployeesAdmin/LicenseHistoryPage";
 import { MdFamilyRestroom } from "react-icons/md";
-
+import { TbStatusChange } from "react-icons/tb";
 
 const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
 
@@ -18,7 +18,7 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
     }
 
     const openAddFamilyModal = (emp) => {
-        const family = { ...LoadFamilyModel};
+        const family = { ...LoadFamilyModel };
         family.empleado = emp;
         openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADDFAMILY, family)
     }
@@ -68,6 +68,9 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                                     </div>}
                                     {d.codigoEstadoEmpleado.id == 87 && <div title="Cargar Familia" onClick={(e) => { e.stopPropagation(); openAddFamilyModal(d) }}>
                                         <MdFamilyRestroom />
+                                    </div>}
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cambio De Puesto" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.CHANGEPOSITION, d) }}>
+                                        <TbStatusChange />
                                     </div>}
                                 </span>
                             </td>

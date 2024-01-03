@@ -23,8 +23,26 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
+            'numeroLegajo',
+            'codigoPais',
+            'codigoOficina',
+            'codigoDireccion',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoPuesto',
+            'fechaIngresoReconocida',
+            'fechaEgreso'
         ],
         inactiveRows: [
+            'numeroLegajo',
+            'codigoPais',
+            'codigoOficina',
+            'codigoDireccion',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoPuesto',
+            'fechaIngresoReconocida',
+            'fechaEgreso'
         ]
     },
     formConfiguration: {
@@ -35,8 +53,26 @@ const pageConfiguration = {
     },
     viewConfiguration: {
         activeFields: [
+            'numeroLegajo',
+            'codigoPais',
+            'codigoOficina',
+            'codigoDireccion',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoPuesto',
+            'fechaIngresoReconocida',
+            'fechaEgreso'
         ],
         inactiveFields: [
+            'numeroLegajo',
+            'codigoPais',
+            'codigoOficina',
+            'codigoDireccion',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoPuesto',
+            'fechaIngresoReconocida',
+            'fechaEgreso'
         ]
     }
 }
@@ -68,7 +104,7 @@ const PositionChangesPage = () => {
     const onEdit = (data) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        updatePositionChange(data).then(result => {
+        updatePositionChange(data.id, data).then(result => {
             console.log('edited=', result);
             loadPositionChanges();
         });
@@ -83,7 +119,7 @@ const PositionChangesPage = () => {
 
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return lowerCaseSearchTerm == lowerCaseSearchTerm;
+        return !searchTerm || data.numeroLegajo == lowerCaseSearchTerm;
     }
 
     const validate = (data) => {

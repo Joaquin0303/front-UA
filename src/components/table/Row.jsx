@@ -19,7 +19,9 @@ const Row = ({ tableConfiguration, data, openModalForm }) => {
 
     const createCells = () => {
         const cells = Object.keys(data).map((key, i) => {
+
             if (showColum(key)) {
+                console.log('key', key)
                 switch (key) {
                     case 'secuenciador':
                         return <CellSequencer key={i} sequencerData={data[key]} />
@@ -46,6 +48,10 @@ const Row = ({ tableConfiguration, data, openModalForm }) => {
                     case 'empleado':
                         return <CellEmployee key={i} employee={data[key]} />
                     case 'tipoLicencia':
+                        return <CellParameter key={i} parameter={data[key]} />
+                    case 'codigoPuesto':
+                        return <CellPositionCode key={i} position={data[key]} />
+                    case 'codigoOficina':
                         return <CellParameter key={i} parameter={data[key]} />
                     default:
                         if (key.startsWith('fecha'))
