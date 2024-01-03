@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getLoadFamilies, addLoadFamily, updateLoadFamily, removeLoadFamily } from '../../services/LoadFamilyServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
-const LoadFamilyModel = {
+
+export const LoadFamilyModel = {
     activo: true
 }
 
 const pageConfiguration = {
     show_search: true,
     show_add_button: false,
-    show_active_button: true,
+    show_active_button: false,
     tableConfiguration: {
         actions: {
             activeActions: [

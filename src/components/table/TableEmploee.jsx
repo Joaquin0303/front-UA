@@ -6,6 +6,7 @@ import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { TbLicense } from "react-icons/tb";
 import { MODAL_FORM, TABLE_ACTIONS } from "../../utils/GeneralConstants";
 import { LicenseModel } from "../../pages/EmployeesAdmin/LicenseHistoryPage";
+import { MdFamilyRestroom } from "react-icons/md";
 
 
 const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
@@ -15,6 +16,13 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
         licence.empleado = emp;
         openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADDLICENCE, licence);
     }
+
+    const openAddFamilyModal = (emp) => {
+        const family = { ...LoadFamilyModel};
+        family.empleado = emp;
+        openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADDFAMILY, family)
+    }
+
     return (
         <div className='table-wrapper' >
             <table className='table' style={{ width: '80%' }}>
@@ -57,6 +65,9 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                                     </div>}
                                     {d.codigoEstadoEmpleado.id == 87 && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); openLicenceModal(d) }}>
                                         <TbLicense />
+                                    </div>}
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cargar Familia" onClick={(e) => { e.stopPropagation(); openAddFamilyModal(d) }}>
+                                        <MdFamilyRestroom />
                                     </div>}
                                 </span>
                             </td>
