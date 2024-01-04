@@ -108,7 +108,7 @@ const ViewEmployee = ({ data, closeModal }) => {
     }
 
     return (
-        <div>
+        <div className='div-width'>
             <div className="modals-content">
                 <div className='form-view'>
                     <div className="form-field-container">

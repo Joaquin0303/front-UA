@@ -221,7 +221,7 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
         <>
             <div className='modal-container'>
                 <div className='modals'>
-                    <div>
+                    <div className='div-width'>
                         {formStep > 0 && <div>
                             <div>
                                 <div className="progress-container">

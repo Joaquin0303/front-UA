@@ -97,7 +97,7 @@ label {
 .form {
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
+    width: 100%;
 }
 
 .form-view {
@@ -166,7 +166,7 @@ label {
 .form-field-container {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 100%;
 }
 
 .section {
