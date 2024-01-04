@@ -28,6 +28,14 @@ import LoadFamilyPage from './pages/EmployeesAdmin/LoadFamilyPage';
 import ExternalPage from './pages/EmployeesAdmin/ExternalPage';
 import PositionChangesPage from './pages/EmployeesAdmin/PositionChangesPage';
 import LicensesPage from './pages/EmployeesAdmin/LicenseHistoryPage';
+import BackToSchoolReportPage from './pages/ReportsAdmin/BackToSchoolReportPage';
+import CostCenterReportPage from './pages/ReportsAdmin/CostCenterReportPage';
+import EmploymentHistoryReportPage from './pages/ReportsAdmin/EmploymentHistoryReportPage';
+import InternationalDataCollectionReportPage from './pages/ReportsAdmin/InternationalDataCollectionReportPage';
+import ExternalReportPage from './pages/ReportsAdmin/ExternalReportPage';
+import DirectorsReportPage from './pages/ReportsAdmin/DirectorsReportPage';
+import GenericReportPage from './pages/ReportsAdmin/GenericReportPage';
+import LicencesReportPage from './pages/ReportsAdmin/LicencesReportPage';
 
 function App() {
 
@@ -89,14 +97,14 @@ function App() {
         {/* Reportes */}
         {/* -------------------------- */}
         <Route path="/reportes" element={<Reports />} />
-        {<Route path="/reportes/vuelta-al-colegio" element={<EmployeesPage />} />}
-        {<Route path="/reportes/central-costo" element={<LoadFamilyPage />} />}
-        {<Route path="/reportes/historial-laboral" element={<ExternalPage />} />}
-        {<Route path="/reportes/international" element={<LicensesPage />} />}
-        {<Route path="/reportes/externos" element={<PositionChangesPage />} />}
-        {<Route path="/reportes/directores" element={<ExcludedIncomePage />} />}
-        {<Route path="/reportes/generico" element={<ExcludedIncomePage />} />}
-        {<Route path="/reportes/licencias" element={<ExcludedIncomePage />} />}
+        {<Route path="/reportes/vuelta-al-colegio" element={<BackToSchoolReportPage />} />}
+        {<Route path="/reportes/central-costo" element={<CostCenterReportPage />} />}
+        {<Route path="/reportes/historial-laboral" element={<EmploymentHistoryReportPage />} />}
+        {<Route path="/reportes/international" element={<InternationalDataCollectionReportPage />} />}
+        {<Route path="/reportes/externos" element={<ExternalReportPage />} />}
+        {<Route path="/reportes/directores" element={<DirectorsReportPage />} />}
+        {<Route path="/reportes/generico" element={<GenericReportPage />} />}
+        {<Route path="/reportes/licencias" element={<LicencesReportPage />} />}
 
 
       </Routes>

@@ -1,0 +1,60 @@
+.form-filter-container {
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.form-filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-filter-container .form-filter .form-group {
+    margin-bottom: 0;
+    margin-right: 30px;
+    width: 200px;
+    padding: 10px 20px;
+}
+
+.form-filter-container .form-filter .form-group select {
+    width: 150px;
+    margin: 0;
+    padding: 0;
+    color: gray;
+}
+
+.form-filter-container .form-filter .form-group input {
+    width: 150px;
+    margin: 0;
+    padding: 0;
+}
+
+.form-filter-container .form-filter .form-group select option[value="0"][disabled] {
+    display: none;
+}
+
+.form-filter-container .form-filter .form-group select option {
+    color: black;
+}
+
+.form-filter-container .form-filter .form-group .label {
+    display: none;
+}
+
+.form-filter-container .form-filter .btns {
+    margin-top: 0;
+}
+
+.export-container {
+    width: 100%;
+}
+
+.export-buttons-container {
+    width: 80%;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.export-buttons-container .btns {
+    font-size: 14px;
+    margin-left: 10px;
+}

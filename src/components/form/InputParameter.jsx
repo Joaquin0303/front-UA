@@ -21,7 +21,7 @@ const InputParameter = ({ validation, name, value, valueName, parameterList, dis
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
             <select disabled={disabled} value={value ? value.id : 0} name={name} onChange={paramSelectorChangeHandler}>
-                <option value={0}>(Seleccione)</option>
+                <option disabled className='default' value={0}>{i18n.t(name)}</option>
                 {parameterListByCountry && parameterListByCountry.map((p, i) => {
                     return <option key={i} value={p.id}>{p[fieldDescription]}</option>
                 })}

@@ -3,8 +3,8 @@ import Row from './Row'
 import '../../styles/abm.css'
 import i18n from '../../localization/i18n'
 
-const Table = ({ tableConfiguration, dataList, openModalForm }) => {
-
+const Table = ({ tableConfiguration, dataList, openModalForm, tableRef }) => {
+    console.log('dataList', dataList)
     const showColum = (columnName, data) => {
         return (tableConfiguration.activeRows.includes(columnName) && data.activo) || (tableConfiguration.inactiveRows.includes(columnName) && !data.activo);
     }
@@ -13,7 +13,7 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
         <>
             {dataList && dataList.length > 0 &&
                 <div className='table-wrapper' >
-                    <table className='table' style={{ width: '80%' }}>
+                    <table ref={tableRef} className='table' style={{ width: '80%' }}>
                         <thead>
                             <tr>
                                 {
@@ -30,7 +30,7 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
                                         }
                                     })
                                 }
-                                <th style={{ width: '20%' }}>Acciones</th>
+                                {openModalForm && <th style={{ width: '20%' }}>Acciones</th>}
                             </tr>
                         </thead>
                         <tbody>

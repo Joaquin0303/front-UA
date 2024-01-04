@@ -25,7 +25,7 @@ const InputCountry = ({ validation, name, value, disabled, updateFormData }) => 
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
             <select disabled={disabled} value={value ? value.id : 0} name={name} onChange={countrySelectorChangeHandler}>
-                <option value={0}>(Seleccione)</option>
+                <option disabled className='default' value={0}>Pais</option>
                 {countryList.map((s, i) => {
                     return <option key={i} value={s.id}>{s.descripcion}</option>
                 })}

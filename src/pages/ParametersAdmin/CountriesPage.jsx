@@ -144,12 +144,6 @@ const CountriesPage = () => {
             result.error = true;
             result.validation.codigo = "Ya existe un país con este codigo"
         }
-        if (data.secuenciador && data.secuenciador.id > 0) {
-            if (countryTotalList.find(pt => pt.secuenciador.id == data.secuenciador.id && pt.id != data.id)) {
-                result.error = true;
-                result.validation.secuenciador = "Ya existe un país con este secuenciador"
-            }
-        }
         return result;
     }
 

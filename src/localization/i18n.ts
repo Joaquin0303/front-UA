@@ -92,7 +92,17 @@ i18n
           fechaEgreso: "Fecha de egreso",
           tipoLicencia: "Tipo de licencia",
           fechaInicio: "Fecha de inicio",
-          fechaFin: "Fecha de fin"
+          fechaFin: "Fecha de fin",
+          'vuelta-al-colegio': "Vuelta al colegio",
+          'centro-de-costo': 'Centro de costo',
+          directores: 'Directores',
+          'historial-de-empleados': 'Historial de empleados',
+          externos: 'Externos',
+          generico: 'Genérico',
+          'international-data-collection': 'International data collection',
+          licencias: 'Licencias',
+          codigoEstadoEmpleado: 'Estado'
+
         }
       }
     }
