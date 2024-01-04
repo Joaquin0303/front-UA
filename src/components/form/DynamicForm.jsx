@@ -97,7 +97,7 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
     }
 
     return (
-        <div>
+        <div className='div-width'>
             <div className="modals-content">
                 <div className='form scroll-shadows'>
                     <div className="form-field-container">
