@@ -4,6 +4,13 @@ import { getLoadFamilies, addLoadFamily, updateLoadFamily, removeLoadFamily } fr
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 export const LoadFamilyModel = {
+    numeroLegajo: null,
+    apellido: null,
+    nombre: null,
+    codigoParentesco: null,
+    codigoTipóDocumento: null,
+    numeroDocumento: null,
+    fechaNacimiento: null,
     activo: true
 }
 
@@ -24,18 +31,30 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
+            'numeroLegajo',
+            'codigoParentesco',
+            'numeroDocumentoPersonal',
+            'fechaNacimiento',
         ],
         inactiveRows: [
         ]
     },
     formConfiguration: {
         activeFields: [
+            'numeroLegajo',
+            'codigoParentesco',
+            'numeroDocumentoPersonal',
+            'fechaNacimiento',
         ],
         inactiveFields: [
         ]
     },
     viewConfiguration: {
         activeFields: [
+            'numeroLegajo',
+            'codigoParentesco',
+            'numeroDocumentoPersonal',
+            'fechaNacimiento',
         ],
         inactiveFields: [
         ]
