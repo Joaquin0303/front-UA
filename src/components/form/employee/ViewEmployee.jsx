@@ -46,9 +46,9 @@ const ViewEmployee = ({ data, closeModal }) => {
             {createCellInfo('Genero', data['codigoGenero'].descripcion)}
             {createCellInfo('Documento Personal', data['codigoTipoDocumento'].descripcion + ' ' + data['numeroDocumentoPersonal'])}
             {createCellInfo('Documento Laboral', data['codigoTipoDocumento'].descripcion + ' ' + data['numeroDocumentoLaboral'])}
-            {createCellDate('Fecha de Nacimiento', data['fechaNacimiento'])}
+            {createCellDate('Fecha de Nacimiento', data, 'fechaNacimiento')}
             {createCellDataInfo('Generacion', data['codigoGeneracion'], 'descripcion')}
-            {createCellDate('Fecha de Ingreso', data['fechaIngreso'])}
+            {createCellDate('Fecha de Ingreso', data, 'fechaIngreso')}
             {createCellDataInfo('Pais', data['codigoPais'], 'descripcion')}
             {createCellDataInfo('Oficina', data['codigoOficina'], 'descripcion')}
             {createCellDataInfo('Direccion', data['codigoDireccion'], 'descripcion')}
@@ -78,7 +78,7 @@ const ViewEmployee = ({ data, closeModal }) => {
     const createView3 = () => {
         return <>
             <div className="modal-title">Datos Laborales</div>
-            {createCellDate('Fecha Ingreso Reconocida', data['fechaIngresoReconocida'])}
+            {createCellDate('Fecha Ingreso Reconocida', data, 'fechaIngresoReconocida')}
             {createCellDataInfo('Tipo Contratacion', data['codigoTipoContratacion'], 'descripcion')}
             {createCellDataInfo('Horas Semanales', data['horasSemanales'], 'descripcion')}
             {createCellDataInfo('FTE', data['fte'], 'texto2')}
@@ -100,8 +100,8 @@ const ViewEmployee = ({ data, closeModal }) => {
         return <>
             <div className="modal-title">Datos Contractuales</div>
             {createCellDataInfo('Centro De Costo', data['codigoCentroDeCosto'], 'descripcion')}
-            {createCellDate('Fecha Fin Contrato', data['fechaFinContrato'])}
-            {createCellDate('Fecha Egreso', data['fechaEgreso'])}
+            {createCellDate('Fecha Fin Contrato', data, 'fechaFinContrato')}
+            {createCellDate('Fecha Egreso', data, 'fechaEgreso')}
             {createCellDataInfo('Tipo Egreso', data['codigoTipoEgreso'], 'descripcion')}
             {createCellInfo('Observaciones', data['observaciones'])}
         </>
