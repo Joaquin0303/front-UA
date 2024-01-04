@@ -98,7 +98,7 @@ const ViewEmployee = ({ data, closeModal }) => {
 
     const createView4 = () => {
         return <>
-            <div className="modal-title">View 4</div>
+            <div className="modal-title">Datos Contractuales</div>
             {createCellDataInfo('Centro De Costo', data['codigoCentroDeCosto'], 'descripcion')}
             {createCellDate('Fecha Fin Contrato', data['fechaFinContrato'])}
             {createCellDate('Fecha Egreso', data['fechaEgreso'])}
