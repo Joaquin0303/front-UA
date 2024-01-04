@@ -198,6 +198,7 @@ const EmployeesPage = ({ }) => {
                 });
                 break;
             default:
+                break;
         }
 
     }
@@ -218,6 +219,7 @@ const EmployeesPage = ({ }) => {
                     }
                     loadEmployees();
                 });
+                break;
             case TABLE_ACTIONS.CHANGEPOSITION:
                 getEmployeeById(data.id).then(oldEmp => {
                     console.log('old position:', oldEmp.model.codigoPuesto.id);
@@ -231,11 +233,20 @@ const EmployeesPage = ({ }) => {
                             loadEmployees();
                         });
                     }
-                })
-
+                });
+                break;
+            case TABLE_ACTIONS.PUTDOWN:
+                updateEmployee(employeeId, data).then(empResult => {
+                    if (empResult && empResult.model && empResult.model.codigoTipoEgreso && empResult.model.codigoTipoEgreso.id == 202) {
+                        addExcludedIncome(empResult.model, empResult.model.codigoTipoEgreso.descripcion, empResult.model.observaciones, true).then(excludeResult => {
+                            console.log('Excluded Income added=', excludeResult);
+                        });
+                    }
+                    loadEmployees();
+                });
                 break;
             default:
-
+                break;
         }
     }
 
