@@ -14,7 +14,6 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const [formData, setFormData] = useState();
 
     const targetRef = useRef();
-    const tableRef = useRef(null);
 
     const closeModalForm = () => {
         setShowModalForm(false);
@@ -28,7 +27,6 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const onSubmitForm = (data) => {
         loadReportData(data);
     }
-
     return (
         <>
             {
@@ -43,14 +41,14 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
                 <DownloadTableExcel
                     filename={'reporte.' + pageConfiguration.name}
                     sheet={i18n.t(pageConfiguration.name)}
-                    currentTableRef={tableRef.current}
+                    currentTableRef={targetRef.current}
                 >
                     <button className='btns' title='Descargar Excel'> XLS </button>
 
                 </DownloadTableExcel>
             </div>}
             <div className='export-container' ref={targetRef}>
-                <Table tableRef={tableRef} tableConfiguration={pageConfiguration.tableConfiguration} dataList={reportDataList} />
+                <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={reportDataList} />
             </div>
             {showModalForm && <ModalForm pageConfiguration={pageConfiguration} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} />}
         </>

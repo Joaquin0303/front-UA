@@ -3,17 +3,17 @@ import Row from './Row'
 import '../../styles/abm.css'
 import i18n from '../../localization/i18n'
 
-const Table = ({ tableConfiguration, dataList, openModalForm, tableRef }) => {
+const Table = ({ tableConfiguration, dataList, openModalForm }) => {
     console.log('dataList', dataList)
+
     const showColum = (columnName, data) => {
         return (tableConfiguration.activeRows.includes(columnName) && data.activo) || (tableConfiguration.inactiveRows.includes(columnName) && !data.activo);
     }
-
     return (
         <>
             {dataList && dataList.length > 0 &&
                 <div className='table-wrapper' >
-                    <table ref={tableRef} className='table' style={{ width: '80%' }}>
+                    <table className='table' style={{ width: '80%' }}>
                         <thead>
                             <tr>
                                 {
