@@ -174,7 +174,7 @@ const EmployeesPage = ({ }) => {
 
                             setShowPopup(true);
                             console.log('Empleado con el numero de legajo: ${data.empleado.numeroLegajo} agregado correctamente');
-                            setPopupMessage(`Empleado con el numero de legajo: ${data.empleado.numeroLegajo} agregado correctamente`);
+                            setPopupMessage(`Empleado con el numero de legajo: ${data.numeroLegajo} agregado correctamente`);
 
                             setTimeout(() => {
                                 setShowPopup(false);
