@@ -8,7 +8,7 @@ export const LoadFamilyModel = {
     apellido: null,
     nombre: null,
     codigoParentesco: null,
-    codigoTipóDocumento: null,
+    codigoTipoDocumento: null,
     numeroDocumento: null,
     fechaNacimiento: null,
     activo: true

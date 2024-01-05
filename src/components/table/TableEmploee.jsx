@@ -6,6 +6,7 @@ import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { TbLicense } from "react-icons/tb";
 import { MODAL_FORM, TABLE_ACTIONS } from "../../utils/GeneralConstants";
 import { LicenseModel } from "../../pages/EmployeesAdmin/LicenseHistoryPage";
+import { LoadFamilyModel } from "../../pages/EmployeesAdmin/LoadFamilyPage";
 import { MdFamilyRestroom } from "react-icons/md";
 import { TbStatusChange } from "react-icons/tb";
 
