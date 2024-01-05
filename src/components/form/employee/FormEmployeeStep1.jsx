@@ -4,9 +4,9 @@ import InputDate from "../InputDate";
 import InputCountry from "../InputCountry";
 import InputPositionCode from "../InputPositionCode";
 import InputParameter from "../InputParameter";
-import InputNumber from "../InputNumber";
+import { TABLE_ACTIONS } from "../../../utils/GeneralConstants";
 
-const FormEmployeeStep1 = ({ parameterList, validation, formData, updateFormData }) => {
+const FormEmployeeStep1 = ({ action, parameterList, validation, formData, updateFormData }) => {
 
     return (
         <div className="form-field-container">
@@ -22,16 +22,18 @@ const FormEmployeeStep1 = ({ parameterList, validation, formData, updateFormData
             <InputText validation={validation} name="numeroDocumentoPersonal" updateFormData={updateFormData} value={formData["numeroDocumentoPersonal"]} />
             <InputText validation={validation} name="numeroDocumentoLaboral" updateFormData={updateFormData} value={formData["numeroDocumentoLaboral"]} />
 
-            <InputCountry validation={validation} name="codigoPais" value={formData["codigoPais"]} updateFormData={updateFormData} />
-            <InputParameter validation={validation} name="codigoOficina" value={formData["codigoOficina"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 19)} updateFormData={updateFormData} country={formData["codigoPais"]} />
-            <InputParameter validation={validation} name="codigoDireccion" value={formData["codigoDireccion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
-            <InputParameter validation={validation} name="codigoCategoriaEmpleado" value={formData["codigoCategoriaEmpleado"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 3)} updateFormData={updateFormData} />
-            <InputPositionCode validation={validation} name="codigoPuesto" value={formData["codigoPuesto"]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} countryCode={formData['codigoPais']} categoryCode={formData['codigoCategoriaEmpleado']} currentPositionId={formData['id']} />
+            {action == TABLE_ACTIONS.ADD && <>
+                <InputCountry validation={validation} name="codigoPais" value={formData["codigoPais"]} updateFormData={updateFormData} />
+                <InputParameter validation={validation} name="codigoOficina" value={formData["codigoOficina"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 19)} updateFormData={updateFormData} country={formData["codigoPais"]} />
+                <InputParameter validation={validation} name="codigoDireccion" value={formData["codigoDireccion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
+                <InputParameter validation={validation} name="codigoCategoriaEmpleado" value={formData["codigoCategoriaEmpleado"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 3)} updateFormData={updateFormData} />
+                <InputPositionCode validation={validation} name="codigoPuesto" value={formData["codigoPuesto"]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} countryCode={formData['codigoPais']} categoryCode={formData['codigoCategoriaEmpleado']} currentPositionId={formData['id']} />
 
-            <InputText disabled={true} validation={validation} name="A quien reporta" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoPuestoAlQueReporta ? formData['codigoPuesto'].codigoPuestoAlQueReporta.descripcion : ""} />
-            <InputText disabled={true} validation={validation} name="Centro de costo" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoCentroDeCosto ? formData['codigoPuesto'].codigoCentroDeCosto.descripcion : ""} />
-            <InputText disabled={true} validation={validation} name="Gerencia" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoGerencia ? formData['codigoPuesto'].codigoGerencia.descripcion : ""} />
-            <InputText disabled={true} validation={validation} name="Jefatura" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoJefatura ? formData['codigoPuesto'].codigoJefatura.descripcion : ""} />
+                <InputText disabled={true} validation={validation} name="A quien reporta" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoPuestoAlQueReporta ? formData['codigoPuesto'].codigoPuestoAlQueReporta.descripcion : ""} />
+                <InputText disabled={true} validation={validation} name="Centro de costo" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoCentroDeCosto ? formData['codigoPuesto'].codigoCentroDeCosto.descripcion : ""} />
+                <InputText disabled={true} validation={validation} name="Gerencia" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoGerencia ? formData['codigoPuesto'].codigoGerencia.descripcion : ""} />
+                <InputText disabled={true} validation={validation} name="Jefatura" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoJefatura ? formData['codigoPuesto'].codigoJefatura.descripcion : ""} />
+            </>}
         </div>
     );
 }

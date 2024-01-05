@@ -240,7 +240,7 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                         <div className="modals-content">
                             <div className='form-view'>
                                 {formStep == 0 && <FormEmployeeStep0 parameterList={parameterList} validation={validation} formData={formData} updateFormData={updateFormData} />}
-                                {formStep == 1 && <FormEmployeeStep1 parameterList={parameterList} validation={validation} formData={formData} updateFormData={updateFormData} />}
+                                {formStep == 1 && <FormEmployeeStep1 action={action} parameterList={parameterList} validation={validation} formData={formData} updateFormData={updateFormData} />}
                                 {formStep == 2 && <FormEmployeeStep2 parameterList={parameterList} validation={validation} formData={formData} updateFormData={updateFormData} />}
                                 {formStep == 3 && <FormEmployeeStep3 parameterList={parameterList} validation={validation} formData={formData} updateFormData={updateFormData} />}
                             </div>

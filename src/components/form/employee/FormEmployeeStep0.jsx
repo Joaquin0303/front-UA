@@ -1,6 +1,6 @@
 import React from "react";
 import InputParameter from "../InputParameter";
-import InputNumber from "../InputNumber";
+import InputText from "../InputText";
 
 const FormEmployeeStep0 = ({ validation, formData, updateFormData, parameterList }) => {
     console.log('formData', formData)
