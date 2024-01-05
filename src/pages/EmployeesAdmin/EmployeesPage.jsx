@@ -166,11 +166,11 @@ const EmployeesPage = ({ }) => {
                     getCurrentSequence(
                         rCountries.list.find(c => c.id == data.codigoPais.id).secuenciador.codigo
                     ).then(seq => {
-                        data.numeroLegajo = seq.model.secuencia + 1;
+                        data.numeroLegajo = seq.model.secuencia;
                         addEmployee(data).then(result => {
                             console.log('Employee added=', result);
                             loadEmployees();
-                            updateSequencer(seq.model.id, seq.model.codigo, seq.model.rangoDesde, seq.model.rangoHasta, seq.model.secuencia + 1, seq.model.activo);
+                            updateSequencer(seq.model.id, seq.model.codigo, seq.model.rangoDesde, seq.model.rangoHasta, seq.model.secuencia, seq.model.activo);
 
                             setShowPopup(true);
                             console.log('Empleado con el numero de legajo: ${data.empleado.numeroLegajo} agregado correctamente');
