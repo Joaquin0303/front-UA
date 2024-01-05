@@ -5,13 +5,17 @@ import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import { compareStrDates } from '../../utils/Utils';
 
 export const LoadFamilyModel = {
-    numeroLegajo: null,
+    numeroLegajo: 0,
     apellido: '',
-    nombre: null,
-    codigoParentesco: null,
-    codigoTipoDocumento: null,
-    numeroDocumento: null,
-    fechaNacimiento: null,
+    nombre: '',
+    codigoParentesco: {
+        id: 0
+    },
+    codigoTipoDocumento: {
+        id: 0
+    },
+    numeroDocumento: '',
+    fechaNacimiento: '',
     activo: true
 }
 
@@ -36,7 +40,8 @@ const pageConfiguration = {
             'nombre',
             'apellido',
             'codigoParentesco',
-            'numeroDocumentoPersonal',
+            'codigoTipoDocumento',
+            'numeroDocumento',
             'fechaNacimiento',
         ],
         inactiveRows: [
@@ -45,21 +50,41 @@ const pageConfiguration = {
     formConfiguration: {
         activeFields: [
             'numeroLegajo',
+            'nombre',
+            'apellido',
             'codigoParentesco',
-            'numeroDocumentoPersonal',
+            'codigoTipoDocumento',
+            'numeroDocumento',
             'fechaNacimiento',
         ],
         inactiveFields: [
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'codigoParentesco',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'fechaNacimiento',
         ]
     },
     viewConfiguration: {
         activeFields: [
             'numeroLegajo',
+            'nombre',
+            'apellido',
             'codigoParentesco',
-            'numeroDocumentoPersonal',
+            'codigoTipoDocumento',
+            'numeroDocumento',
             'fechaNacimiento',
         ],
         inactiveFields: [
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'codigoParentesco',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'fechaNacimiento',
         ]
     }
 }

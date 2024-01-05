@@ -36,7 +36,9 @@ const DynamicFilterForm = ({ formConfiguration, filterDataModel, onSubmitForm })
     }
 
     const createInputFields = () => {
+
         const fields = Object.keys(filterDataModel).map((key, i) => {
+
             if (showField(key)) {
                 const value = filterDataModel[key];
                 switch (key) {

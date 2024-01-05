@@ -36,7 +36,13 @@ const pageConfiguration = {
         activeFields: [
             'tipoLicencia', // LicencePage
             'fechaInicio', // LicencePage
-            'fechaFin' // LicencePage
+            'fechaFin', // LicencePage
+            'nombre',
+            'apellido',
+            'codigoParentesco',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'fechaNacimiento'
         ],
         inactiveFields: [
         ]

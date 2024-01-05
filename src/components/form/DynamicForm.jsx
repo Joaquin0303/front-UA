@@ -51,7 +51,9 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
 
     const createInputFields = () => {
         const cells = Object.keys(data).map((key, i) => {
+            console.log(key, data[key])
             if (showField(key)) {
+                console.log('INCLUDED=', key)
                 const value = data[key];
                 switch (key) {
                     case 'secuenciador':
@@ -82,6 +84,11 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
                         return <InputParameter validation={validation} key={i} name="tipoLicencia" value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 16)} updateFormData={updateFormData} />
                     case 'codigoEstadoEmpleado':
                         return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 8)} updateFormData={updateFormData} />
+                    case 'codigoParentesco':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 20)} updateFormData={updateFormData} />
+                    case 'codigoTipoDocumento':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 29)} updateFormData={updateFormData} />
+
                     default:
                         if (key.startsWith('fecha')) {
                             return <InputDate validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />

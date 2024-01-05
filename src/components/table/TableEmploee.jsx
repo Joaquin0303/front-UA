@@ -20,7 +20,6 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
 
     const openAddFamilyModal = (emp) => {
         const family = { ...LoadFamilyModel };
-        family.empleado = emp;
         openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADDFAMILY, family)
     }
 
