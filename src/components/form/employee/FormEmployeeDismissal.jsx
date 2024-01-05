@@ -57,7 +57,7 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
     }
 
     return (
-        <div>
+        <div className='div-width'>
             <div className='modal-title'>Baja de empleado</div>
             <div className="modals-content">
                 <div className='form-view'>
