@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getLoadFamilies, addLoadFamily, updateLoadFamily, removeLoadFamily } from '../../services/LoadFamilyServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import { compareStrDates } from '../../utils/Utils';
 
 export const LoadFamilyModel = {
     numeroLegajo: null,
-    apellido: null,
+    apellido: '',
     nombre: null,
     codigoParentesco: null,
     codigoTipoDocumento: null,
@@ -32,6 +33,8 @@ const pageConfiguration = {
         },
         activeRows: [
             'numeroLegajo',
+            'nombre',
+            'apellido',
             'codigoParentesco',
             'numeroDocumentoPersonal',
             'fechaNacimiento',
@@ -111,6 +114,22 @@ const LoadFamilyPage = () => {
             error: false,
             validation: {}
         };
+        if (!data.fechaInicio) {
+            result.error = true;
+            result.validation.fechaInicio = "Ingrese fecha de inicio"
+        }
+        if (!data.fechaFin) {
+            result.error = true;
+            result.validation.fechaFin = "Ingrese fecha de finalización"
+        }
+        if (data.fechaInicio && data.fechaFin && compareStrDates(data.fechaInicio, data.fechaFin) < 1) {
+            result.error = true;
+            result.validation.fechaInicio = "Ingrese fecha de inicio valida"
+        }
+        if (!data.tipoLicencia) {
+            result.error = true;
+            result.validation.tipoLicencia = "Ingrese motivo de licencia"
+        }
         return result;
     }
 
