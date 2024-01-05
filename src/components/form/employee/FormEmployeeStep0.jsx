@@ -7,7 +7,7 @@ const FormEmployeeStep0 = ({ validation, formData, updateFormData, parameterList
     return (
         <div className="form-field-container">
             <InputParameter validation={validation} name="codigoTipoDocumento" value={formData["codigoTipoDocumento"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 29)} updateFormData={updateFormData} />
-            <InputNumber validation={validation} name="numeroDocumentoPersonal" updateFormData={updateFormData} value={formData["numeroDocumentoPersonal"] ? formData["numeroDocumentoPersonal"] : ""} />
+            <InputText validation={validation} name="numeroDocumentoPersonal" updateFormData={updateFormData} value={formData["numeroDocumentoPersonal"] ? formData["numeroDocumentoPersonal"] : ""} />
         </div>
     );
 }

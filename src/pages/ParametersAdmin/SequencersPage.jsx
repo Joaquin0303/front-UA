@@ -139,8 +139,12 @@ const SequencersPage = () => {
         if (data.rangoDesde && data.rangoHasta) {
             if (secuenceTotalList.find(sec => data.id != sec.id && ((data.rangoDesde <= sec.rangoHasta && data.rangoDesde >= sec.rangoDesde) || (data.rangoHasta >= sec.rangoDesde && data.rangoHasta <= sec.rangoHasta)))) {
                 result.error = true;
-                result.validation.rangoDesde = "Ingrese un rango valido"
-                result.validation.rangoHasta = "Ingrese un rango valido"
+                result.validation.rangoDesde = "Ingrese un rango válido"
+                result.validation.rangoHasta = "Ingrese un rango válido"
+            }
+            if (data.secuencia && (data.rangoDesde > data.secuencia || data.rangoHasta < data.secuencia)) {
+                result.error = true;
+                result.validation.secuencia = "Ingrese un valor de secuencia válido"
             }
         }
         return result;

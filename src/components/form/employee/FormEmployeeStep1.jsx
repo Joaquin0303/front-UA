@@ -19,8 +19,8 @@ const FormEmployeeStep1 = ({ parameterList, validation, formData, updateFormData
             <InputParameter validation={validation} name="codigoGeneracion" value={formData["codigoGeneracion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 10)} updateFormData={updateFormData} />
             <InputDate validation={validation} name="fechaIngreso" updateFormData={updateFormData} value={formData["fechaIngreso"]} />
             <InputParameter validation={validation} name="codigoTipoDocumento" value={formData["codigoTipoDocumento"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 29)} updateFormData={updateFormData} />
-            <InputNumber validation={validation} name="numeroDocumentoPersonal" updateFormData={updateFormData} value={formData["numeroDocumentoPersonal"]} />
-            <InputNumber validation={validation} name="numeroDocumentoLaboral" updateFormData={updateFormData} value={formData["numeroDocumentoLaboral"]} />
+            <InputText validation={validation} name="numeroDocumentoPersonal" updateFormData={updateFormData} value={formData["numeroDocumentoPersonal"]} />
+            <InputText validation={validation} name="numeroDocumentoLaboral" updateFormData={updateFormData} value={formData["numeroDocumentoLaboral"]} />
 
             <InputCountry validation={validation} name="codigoPais" value={formData["codigoPais"]} updateFormData={updateFormData} />
             <InputParameter validation={validation} name="codigoOficina" value={formData["codigoOficina"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 19)} updateFormData={updateFormData} country={formData["codigoPais"]} />
