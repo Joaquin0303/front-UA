@@ -8,6 +8,7 @@ import { addLicense } from '../../services/LicenseServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import { compareStrDates } from '../../utils/Utils';
 import { addPositionChange } from '../../services/PositionChangeServices';
+import { addLoadFamily } from '../../services/LoadFamilyServices';
 
 const pageConfiguration = {
     show_search: true,
@@ -98,9 +99,16 @@ const pageConfiguration = {
             'observaciones',
             'codigoPaisResidencia',
             'codigoEstadoCivil',
-            'codigoGrado'
+            'codigoGrado',
+            'tipoLicencia', // LicencePage
+            'fechaInicio', // LicencePage
+            'fechaFin', // LicencePage
+
         ],
         inactiveFields: [
+            'tipoLicencia', // LicencePage
+            'fechaInicio', // LicencePage
+            'fechaFin', // LicencePage
         ]
     }
 }
@@ -203,6 +211,13 @@ const EmployeesPage = ({ }) => {
                     });
                 });
                 break;
+            case TABLE_ACTIONS.ADDFAMILY:
+                const validationFamily = validateFamily(data);
+                if (validationFamily.error) throw validationFamily;
+                addLoadFamily(data).then(result => {
+                    console.log('saved=', result);
+                });
+                break;
             default:
                 break;
         }
@@ -298,6 +313,14 @@ const EmployeesPage = ({ }) => {
             result.error = true;
             result.validation.tipoLicencia = "Ingrese motivo de licencia"
         }
+        return result;
+    }
+
+    const validateFamily = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        };
         return result;
     }
 

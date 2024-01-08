@@ -5,7 +5,6 @@ import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import { compareStrDates } from '../../utils/Utils';
 
 export const LoadFamilyModel = {
-    numeroLegajo: 0,
     apellido: '',
     nombre: '',
     codigoParentesco: {
@@ -42,7 +41,7 @@ const pageConfiguration = {
             'codigoParentesco',
             'codigoTipoDocumento',
             'numeroDocumento',
-            'fechaNacimiento',
+            'fechaNacimiento'
         ],
         inactiveRows: [
         ]

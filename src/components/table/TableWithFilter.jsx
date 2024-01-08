@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Table from "./Table";
-import DynamicFilterForm from "../form/DynamicFilterForm";
 import generatePDF from 'react-to-pdf';
 import { useRef } from 'react';
 import i18n from '../../localization/i18n'
@@ -29,10 +28,6 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     }
     return (
         <>
-            {
-                //<DynamicFilterForm formConfiguration={pageConfiguration.formConfiguration} filterDataModel={filterDataModel} onSubmitForm={onSubmitForm} />
-            }
-
             <div className='bloque-search'>
                 <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><FaFilter />Filtros</button>
             </div>

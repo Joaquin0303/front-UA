@@ -3,7 +3,7 @@ import '../../styles/abm.css'
 import { IoEyeSharp } from "react-icons/io5";
 import { BsFillPencilFill } from 'react-icons/bs'
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
-import { TbLicense } from "react-icons/tb";
+import { TbLicense, TbLicenseOff } from "react-icons/tb";
 import { MODAL_FORM, TABLE_ACTIONS } from "../../utils/GeneralConstants";
 import { LicenseModel } from "../../pages/EmployeesAdmin/LicenseHistoryPage";
 import { LoadFamilyModel } from "../../pages/EmployeesAdmin/LoadFamilyPage";
@@ -20,7 +20,20 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
 
     const openAddFamilyModal = (emp) => {
         const family = { ...LoadFamilyModel };
+        family.numeroLegajo = emp.numeroLegajo;
         openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADDFAMILY, family)
+    }
+
+    const openRenewLicenceModal = (emp) => {
+        const licence = { ...LicenseModel };
+        licence.empleado = emp;
+        openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADDLICENCE, licence);
+    }
+
+    const openPutdownLicenceModal = (emp) => {
+        const licence = { ...LicenseModel };
+        licence.empleado = emp;
+        openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.PUTDOWNLICENCE, licence);
     }
 
     return (
@@ -71,6 +84,12 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                                     </div>}
                                     {d.codigoEstadoEmpleado.id == 87 && <div title="Cambio De Puesto" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.CHANGEPOSITION, d) }}>
                                         <TbStatusChange />
+                                    </div>}
+                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Renovar Licencia" onClick={(e) => { e.stopPropagation(); openRenewLicenceModal(d) }}>
+                                        <TbLicense />
+                                    </div>}
+                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Finalizar Licencia" onClick={(e) => { e.stopPropagation(); openPutdownLicenceModal(d) }}>
+                                        <TbLicenseOff />
                                     </div>}
                                 </span>
                             </td>

@@ -102,6 +102,10 @@ const DynamicView = ({ viewConfiguration, data, closeModal, onSubmitForm }) => {
                         return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
                     case 'codigoOficina':
                         return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
+                    case 'codigoParentesco':
+                        return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
+                    case 'codigoTipoDocumento':
+                        return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
                     default:
                         if (key.startsWith('fecha')) {
                             return createCellDate(i, key, data[key]);

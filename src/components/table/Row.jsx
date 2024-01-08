@@ -73,6 +73,8 @@ const Row = ({ tableConfiguration, data, openModalForm }) => {
                         return <CellParameter key={i} parameter={data[key]} />
                     case 'fte':
                         return <CellParameter key={i} parameter={data[key]} />
+                    case 'codigoParentesco':
+                        return <CellParameter key={i} parameter={data[key]} />
                     default:
                         if (key.startsWith('fecha'))
                             return <CellDate key={i} value={data[key]} />

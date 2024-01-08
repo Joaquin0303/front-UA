@@ -137,7 +137,7 @@ const SequencersPage = () => {
             result.validation.secuencia = "Ingrese secuencia"
         }
         if (data.rangoDesde && data.rangoHasta) {
-            if (secuenceTotalList.find(sec => data.id != sec.id && ((data.rangoDesde <= sec.rangoHasta && data.rangoDesde >= sec.rangoDesde) || (data.rangoHasta >= sec.rangoDesde && data.rangoHasta <= sec.rangoHasta)))) {
+            if (data.rangoDesde >= data.rangoHasta || secuenceTotalList.find(sec => data.id != sec.id && ((data.rangoDesde <= sec.rangoHasta && data.rangoDesde >= sec.rangoDesde) || (data.rangoHasta >= sec.rangoDesde && data.rangoHasta <= sec.rangoHasta)))) {
                 result.error = true;
                 result.validation.rangoDesde = "Ingrese un rango válido"
                 result.validation.rangoHasta = "Ingrese un rango válido"
