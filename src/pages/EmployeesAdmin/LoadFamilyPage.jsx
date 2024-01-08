@@ -140,7 +140,7 @@ const LoadFamilyPage = () => {
         };
         if (!data.fechaNacimiento) {
             result.error = true;
-            result.validation.fechaInicio = "Ingrese fecha de Nacimiento"
+            result.validation.fechaNacimiento = "Ingrese fecha de Nacimiento"
         }
         return result;
     }
