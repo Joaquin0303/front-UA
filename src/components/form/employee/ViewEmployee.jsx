@@ -45,7 +45,7 @@ const ViewEmployee = ({ data, closeModal }) => {
             {createCellInfo('Nombre Preferido', data['nombrePreferido'])}
             {createCellInfo('Genero', data['codigoGenero'].descripcion)}
             {createCellInfo('Documento Personal', data['codigoTipoDocumento'].descripcion + ' ' + data['numeroDocumentoPersonal'])}
-            {createCellInfo('Documento Laboral', data['codigoTipoDocumento'].descripcion + ' ' + data['numeroDocumentoLaboral'])}
+            {createCellInfo('Documento Laboral', data['numeroDocumentoLaboral'])}
             {createCellDate('Fecha de Nacimiento', data, 'fechaNacimiento')}
             {createCellDataInfo('Generacion', data['codigoGeneracion'], 'descripcion')}
             {createCellDate('Fecha de Ingreso', data, 'fechaIngreso')}
