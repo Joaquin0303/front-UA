@@ -49,7 +49,7 @@ i18n
           fechaNacimiento: "Fecha de nacimiento",
           codigoGeneracion: "Generación",
           fechaIngreso: "Fecha de ingreso",
-          codigoTipoDocumento: "Tipo doc",
+          codigoTipoDocumento: "Tipo Doc",
           numeroDocumentoPersonal: "Nro. Doc. Personal",
           numeroDocumentoLaboral: "Nro. Doc. laboral",
           codigoOficina: "Oficina",
@@ -101,8 +101,9 @@ i18n
           generico: 'Genérico',
           'international-data-collection': 'International data collection',
           licencias: 'Licencias',
-          codigoEstadoEmpleado: 'Estado'
-
+          codigoEstadoEmpleado: 'Estado',
+          codigoParentesco: 'Paretesco',
+          numeroDocumento: 'Nro. Doc'
         }
       }
     }
