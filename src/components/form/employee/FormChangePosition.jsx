@@ -55,7 +55,7 @@ const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) =
     }
 
     return (
-        <div>
+        <div className='div-width'>
             <div className='modal-title'>Cambio de puesto</div>
             <div className="modals-content">
                 <div className='form-view'>
