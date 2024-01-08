@@ -17,9 +17,7 @@ const ModalAddSwitch = ({ closeModal, onSubmit }) => {
     };
 
     return (
-        <div className='modal-container' onClick={(e) => {
-            if (e.target.className === "modal-container") closeModal();
-        }}>
+        <div className='modal-container'>
             <div className='modals'>
                 <form onSubmit={handleSubmit}>
                     <h1 className='label'>Nuevo Rol</h1>

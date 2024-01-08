@@ -20,9 +20,7 @@ const ModalEdit = ({ user, closeModal, onSubmit }) => {
     });
 
     return (
-        <div className='modal-container' onClick={(e) => {
-            if (e.target.className === "modal-container") closeModal();
-        }}>
+        <div className='modal-container'>
             <div className='modals'>
                 <div>
                     <h1 className='label'>Editar Datos del Usuario</h1>

@@ -14,9 +14,7 @@ const Modal = ({ closeModal, onSubmit }) => {
         company: { name: '' },
     });
 
-    return <div className='modal-container' onClick={(e) => {
-        if (e.target.className === "modal-container") closeModal()
-    }}>
+    return <div className='modal-container'>
         <div className='modals'>
             <form action="">
                 <h1 className='label'>Alta de Usuario</h1>

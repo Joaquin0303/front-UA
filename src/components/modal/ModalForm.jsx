@@ -19,14 +19,10 @@ const ModalForm = ({ pageConfiguration, data, closeModal, onSubmitForm, actionFo
     }
 
     return (
-        <div className='modal-container' onClick={(e) => {
-            if (e.target.className === "modal-container") closeModal();
-        }}>
+        <div className='modal-container' >
             <div className='modals'>
-
                 {showView() && <DynamicView viewConfiguration={pageConfiguration.viewConfiguration} data={data} closeModal={closeModal} onSubmitForm={actionForm == TABLE_ACTIONS.VIEW ? null : onSubmitForm} />}
                 {showForm() && <DynamicForm formConfiguration={pageConfiguration.formConfiguration} data={data} closeModal={closeModal} onSubmitForm={onSubmitForm} />}
-
             </div>
         </div >
     )

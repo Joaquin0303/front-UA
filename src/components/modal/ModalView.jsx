@@ -92,9 +92,7 @@ const ModalView = ({ viewConfiguration, pageName, data, closeModal, onSubmitForm
     }
 
     return (
-        <div className='modal-container' onClick={(e) => {
-            if (e.target.className === "modal-container") closeModal();
-        }}>
+        <div className='modal-container'>
             <div className='modals'>
                 <div>
                     <div className='modal-title'>Detalle</div>

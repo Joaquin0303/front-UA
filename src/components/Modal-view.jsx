@@ -3,9 +3,7 @@ import '../styles/Modal.css';
 
 const ModalView = ({ user, closeModal }) => {
     return (
-        <div className='modal-container' onClick={(e) => {
-            if (e.target.className === "modal-container") closeModal();
-        }}>
+        <div className='modal-container'>
             <div className='modals'>
                 <div>
                     <h1 className='label'>Datos del Usuario</h1>
