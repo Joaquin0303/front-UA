@@ -35,6 +35,7 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
+            'numeroLegajo',
             'nombre',
             'apellido',
             'codigoParentesco',
@@ -43,7 +44,6 @@ const pageConfiguration = {
             'fechaNacimiento'
         ],
         inactiveRows: [
-            'numeroLegajo',
         ]
     },
     formConfiguration: {
@@ -68,7 +68,6 @@ const pageConfiguration = {
     },
     viewConfiguration: {
         activeFields: [
-            'numeroLegajo',
             'nombre',
             'apellido',
             'codigoParentesco',
@@ -138,9 +137,29 @@ const LoadFamilyPage = () => {
             error: false,
             validation: {}
         };
+        if (!data.nombre || data.nombre.trim().length <= 0) {
+            result.error = true;
+            result.validation.nombre = "Ingrese nombre"
+        }
+        if (!data.apellido || data.apellido.trim().length <= 0) {
+            result.error = true;
+            result.validation.apellido = "Ingrese apellido"
+        }
+        if (!data.codigoTipoDocumento || data.codigoTipoDocumento.id <= 0) {
+            result.error = true;
+            result.validation.codigoTipoDocumento = "Ingrese tipo de documento"
+        }
         if (!data.fechaNacimiento) {
             result.error = true;
-            result.validation.fechaNacimiento = "Ingrese fecha de Nacimiento"
+            result.validation.fechaNacimiento = "Ingrese fecha de nacimiento"
+        }
+        if (!data.codigoParentesco) {
+            result.error = true;
+            result.validation.codigoParentesco = "Ingrese un parentesco"
+        }
+        if (!data.numeroDocumento || data.numeroDocumento.trim().length <= 0) {
+            result.error = true;
+            result.validation.numeroDocumento = "Ingrese nro. documento"
         }
         return result;
     }
