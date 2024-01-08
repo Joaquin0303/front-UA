@@ -24,3 +24,13 @@ export const parseDate = (d) => {
     const formattedDate = formatter.format(date);
     return formattedDate;
 }
+
+export const parseInputDate = (d) => {
+    return new Date(d + ' GMT-0300');
+}
+
+export const parseToday = () => {
+    const d = new Date();
+    return new Date(d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' GMT-0300');
+}
+

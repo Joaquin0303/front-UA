@@ -3,6 +3,7 @@ import '../../../styles/Modal.css'
 import InputParameter from '../InputParameter';
 import InputText from '../InputText';
 import InputDate from '../InputDate';
+import { parseInputDate } from '../../../utils/Utils';
 
 const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
@@ -46,8 +47,8 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
             result.validation.fechaEgreso = "Ingrese fecha de egreso";
         }
         if (data.fechaEgreso && data.fechaEgreso.trim().length > 0) {
-            const fi = new Date(data.fechaIngreso);
-            const fe = new Date(data.fechaEgreso);
+            const fi = parseInputDate(data.fechaIngreso);
+            const fe = parseInputDate(data.fechaEgreso);
             if (fi > fe) {
                 result.error = true;
                 result.validation.fechaEgreso = "Ingrese fecha de egreso válida";

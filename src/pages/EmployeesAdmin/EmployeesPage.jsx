@@ -233,18 +233,12 @@ const EmployeesPage = ({ }) => {
                 const employeeId = data.id;
                 delete data["id"];
                 updateEmployee(employeeId, data).then(empResult => {
-                    if (empResult && empResult.model && empResult.model.codigoTipoEgreso && empResult.model.codigoTipoEgreso.id == 202) {
-                        addExcludedIncome(empResult.model, empResult.model.codigoTipoEgreso.descripcion, empResult.model.observaciones, true).then(excludeResult => {
-                            console.log('Excluded Income added=', excludeResult);
-                        });
-                    }
+                    console.log('Employee updated=', r);
                     loadEmployees();
                 });
                 break;
             case TABLE_ACTIONS.CHANGEPOSITION:
                 getEmployeeById(data.id).then(oldEmp => {
-                    console.log('old position:', oldEmp.model.codigoPuesto.id);
-                    console.log('new position:', data.codigoPuesto.id);
                     if (oldEmp.model.codigoPuesto.id != data.codigoPuesto.id) {
                         addPositionChange(data.numeroLegajo, data.codigoPais, data.codigoOficina, data.codigoDireccion, data.codigoPuesto.codigoGerencia, data.codigoPuesto.codigoJefatura, data.codigoPuesto, data.fechaIngresoReconocida, new Date(), true).then(r => {
                             console.log('Position History Updated', r)
@@ -257,12 +251,14 @@ const EmployeesPage = ({ }) => {
                 });
                 break;
             case TABLE_ACTIONS.PUTDOWN:
-                updateEmployee(data.id, data).then(empResult => {
-                    if (empResult && empResult.model && empResult.model.codigoTipoEgreso && empResult.model.codigoTipoEgreso.id == 202) {
-                        addExcludedIncome(empResult.model, empResult.model.codigoTipoEgreso.descripcion, empResult.model.observaciones, true).then(excludeResult => {
-                            console.log('Excluded Income added=', excludeResult);
-                        });
-                    }
+                if (data.codigoTipoEgreso && data.codigoTipoEgreso.id == 202) {
+                    data.fechaEgreso = data.fechaIngreso;
+                    addExcludedIncome(data, data.codigoTipoEgreso.descripcion, data.observaciones, true).then(excludeResult => {
+                        console.log('Excluded Income added=', excludeResult);
+                    });
+                }
+                updateEmployee(data.id, data).then(r => {
+                    console.log('Employee updated=', r);
                     loadEmployees();
                 });
                 break;

@@ -9,6 +9,7 @@ import FormEmployeeStep3 from './FormEmployeeStep3';
 import FormEmployeeStep0 from './FormEmployeeStep0';
 import { findByLaboralIdentity, findByIdentity } from '../../../pages/EmployeesAdmin/EmployeesPage';
 import { MIN_DATE, TABLE_ACTIONS } from '../../../utils/GeneralConstants';
+import { parseInputDate, parseToday } from '../../../utils/Utils';
 
 const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onSubmitForm }) => {
     const [formData, setFormData] = useState(data);
@@ -128,16 +129,27 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
             result.validation.fechaNacimiento = "Ingrese fecha de nacimiento"
         }
         if (data.fechaNacimiento && data.fechaNacimiento.trim().length > 0) {
-            const fn = new Date(data.fechaNacimiento);
-            const now = new Date();
-            if (fn.getTime() < MIN_DATE || fn.getTime() > now.getTime()) {
+            const fn = parseInputDate(data.fechaNacimiento);
+            const today = parseToday();
+            if (fn.getTime() < MIN_DATE || fn.getTime() >= today.getTime()) {
                 result.error = true;
-                result.validation.fechaNacimiento = "Ingrese fecha de nacimiento válida"
+                result.validation.fechaNacimiento = "Ingrese fecha de nacimiento válida";
             }
         }
         if (!data.fechaIngreso || data.fechaIngreso.trim().length <= 0) {
             result.error = true;
-            result.validation.fechaIngreso = "Ingrese fecha de ingreso"
+            result.validation.fechaIngreso = "Ingrese fecha de ingreso";
+        }
+        if (data.fechaIngreso && data.fechaIngreso.trim().length > 0) {
+            if (data.fechaNacimiento && data.fechaNacimiento.trim().length > 0) {
+                const fn = parseInputDate(data.fechaNacimiento);
+                const fi = parseInputDate(data.fechaIngreso);
+                if (fn.getTime() >= fi.getTime()) {
+                    result.error = true;
+                    result.validation.fechaNacimiento = "Ingrese fecha de nacimiento válida";
+                    result.validation.fechaIngreso = "Ingrese fecha de ingreso válida";
+                }
+            }
         }
         if (!data.codigoTipoDocumento || data.codigoTipoDocumento.id <= 0) {
             result.error = true;
