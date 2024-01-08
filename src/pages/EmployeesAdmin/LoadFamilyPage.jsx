@@ -138,21 +138,9 @@ const LoadFamilyPage = () => {
             error: false,
             validation: {}
         };
-        if (!data.fechaInicio) {
+        if (!data.fechaNacimiento) {
             result.error = true;
-            result.validation.fechaInicio = "Ingrese fecha de inicio"
-        }
-        if (!data.fechaFin) {
-            result.error = true;
-            result.validation.fechaFin = "Ingrese fecha de finalización"
-        }
-        if (data.fechaInicio && data.fechaFin && compareStrDates(data.fechaInicio, data.fechaFin) < 1) {
-            result.error = true;
-            result.validation.fechaInicio = "Ingrese fecha de inicio valida"
-        }
-        if (!data.tipoLicencia) {
-            result.error = true;
-            result.validation.tipoLicencia = "Ingrese motivo de licencia"
+            result.validation.fechaInicio = "Ingrese fecha de Nacimiento"
         }
         return result;
     }
