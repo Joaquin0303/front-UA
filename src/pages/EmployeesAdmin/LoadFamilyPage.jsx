@@ -35,7 +35,6 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
-            'numeroLegajo',
             'nombre',
             'apellido',
             'codigoParentesco',
@@ -44,6 +43,7 @@ const pageConfiguration = {
             'fechaNacimiento'
         ],
         inactiveRows: [
+            'numeroLegajo',
         ]
     },
     formConfiguration: {
