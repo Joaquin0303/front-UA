@@ -115,7 +115,7 @@ const LoadFamilyPage = () => {
     const onEdit = (data) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        updateLoadFamily(data).then(result => {
+        updateLoadFamily(data.id, data).then(result => {
             console.log('edited=', result);
             loadLoadFamilies();
         });
