@@ -48,7 +48,6 @@ const pageConfiguration = {
     },
     formConfiguration: {
         activeFields: [
-            'numeroLegajo',
             'nombre',
             'apellido',
             'codigoParentesco',
@@ -57,7 +56,6 @@ const pageConfiguration = {
             'fechaNacimiento',
         ],
         inactiveFields: [
-            'numeroLegajo',
             'nombre',
             'apellido',
             'codigoParentesco',
