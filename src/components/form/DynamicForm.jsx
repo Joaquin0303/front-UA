@@ -86,7 +86,8 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
                         return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 20)} updateFormData={updateFormData} />
                     case 'codigoTipoDocumento':
                         return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 29)} updateFormData={updateFormData} />
-
+                    case 'secuencia':
+                        return <InputNumber disabled={data.id && data.id > 0} validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
                     default:
                         if (key.startsWith('fecha')) {
                             return <InputDate validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />

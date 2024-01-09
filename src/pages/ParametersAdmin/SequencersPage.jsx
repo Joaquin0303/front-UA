@@ -124,7 +124,7 @@ const SequencersPage = () => {
             result.error = true;
             result.validation.codigo = "Ingrese código"
         }
-        if (data.codigo?.trim() && secuenceTotalList.find(sec => data.id != sec.id && data.codigo == sec.codigo)) {
+        if (data.codigo?.trim() && secuenceTotalList.find(sec => data.id != sec.id && data.codigo.toLowerCase() == sec.codigo.toLowerCase())) {
             result.error = true;
             result.validation.codigo = "Ingrese un codigo válido"
         }

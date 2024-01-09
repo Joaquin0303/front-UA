@@ -49,7 +49,7 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
         if (data.fechaEgreso && data.fechaEgreso.trim().length > 0) {
             const fi = parseInputDate(data.fechaIngreso);
             const fe = parseInputDate(data.fechaEgreso);
-            if (fi > fe) {
+            if (fi >= fe) {
                 result.error = true;
                 result.validation.fechaEgreso = "Ingrese fecha de egreso válida";
             }
