@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getLoadFamilies, addLoadFamily, updateLoadFamily, removeLoadFamily } from '../../services/LoadFamilyServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
-import { compareStrDates } from '../../utils/Utils';
 
 export const LoadFamilyModel = {
     apellido: '',

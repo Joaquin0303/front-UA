@@ -327,7 +327,7 @@ const EmployeesPage = ({ }) => {
             result.error = true;
             result.validation.fechaFin = "Ingrese fecha de finalización"
         }
-        if (data.fechaInicio && data.fechaFin && compareStrDates(data.fechaInicio.substring(0, 10), data.fechaFin.substring(0, 10)) < 1) {
+        if (data.fechaInicio && data.fechaFin && compareStrDates(data.fechaInicio, data.fechaFin) < 1) {
             result.error = true;
             result.validation.fechaFin = "Ingrese fecha de fin valida"
         }
@@ -336,8 +336,8 @@ const EmployeesPage = ({ }) => {
             result.validation.tipoLicencia = "Ingrese motivo de licencia"
         }
         if (oldLicence && data.fechaInicio) {
-            const lDate1 = parseInputDate(data.fechaInicio.substring(0, 10));
-            const lDate2 = parseInputDate(oldLicence.fechaFin.substring(0, 10));
+            const lDate1 = parseInputDate(data.fechaInicio);
+            const lDate2 = parseInputDate(oldLicence.fechaFin);
             if (lDate1 <= lDate2) {
                 result.error = true;
                 result.validation.fechaInicio = "Ingrese fecha de inicio mayor"

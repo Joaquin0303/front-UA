@@ -30,7 +30,10 @@ export const parseDate = (d) => {
 }
 
 export const parseInputDate = (d) => {
-    return new Date(d + ' GMT-0300');
+    if (d && d.length >= 10)
+        return new Date(d.substring(0, 10) + ' GMT-0300');
+    else
+        return null;
 }
 
 export const parseToday = () => {
