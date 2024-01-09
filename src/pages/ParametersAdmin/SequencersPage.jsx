@@ -124,6 +124,10 @@ const SequencersPage = () => {
             result.error = true;
             result.validation.codigo = "Ingrese código"
         }
+        if (data.codigo?.trim() && secuenceTotalList.find(sec => data.id != sec.id && data.codigo == sec.codigo)) {
+            result.error = true;
+            result.validation.codigo = "Ingrese un codigo válido"
+        }
         if (!data.rangoDesde) {
             result.error = true;
             result.validation.rangoDesde = "Ingrese rango desde"

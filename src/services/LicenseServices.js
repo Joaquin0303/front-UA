@@ -76,3 +76,19 @@ export const removeLicense = async (numeroLegajo) => {
     })
     return result.data;
 }
+
+
+export const searchByEmployeeId = async (employeeId) => {
+    const result = await axios({
+        method: 'get',
+        url: host + '/ua/historiallicencias/buscar',
+        params: {
+            idempleado: employeeId
+        }
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}

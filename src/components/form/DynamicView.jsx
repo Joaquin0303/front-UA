@@ -26,7 +26,6 @@ const DynamicView = ({ viewConfiguration, data, closeModal, onSubmitForm }) => {
     }
 
     const createCellDate = (cellId, label, value) => {
-        console.log('v', value)
         return (
             <>
                 {value && <div key={cellId} className='form-group'>

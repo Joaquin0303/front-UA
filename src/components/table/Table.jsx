@@ -4,7 +4,6 @@ import '../../styles/abm.css'
 import i18n from '../../localization/i18n'
 
 const Table = ({ tableConfiguration, dataList, openModalForm }) => {
-    console.log('dataList', dataList)
 
     const showColum = (columnName, data) => {
         return (tableConfiguration.activeRows.includes(columnName) && data.activo) || (tableConfiguration.inactiveRows.includes(columnName) && !data.activo);

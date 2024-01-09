@@ -20,10 +20,8 @@ const pageConfiguration = {
     tableConfiguration: {
         actions: {
             activeActions: [
-                TABLE_ACTIONS.VIEW,
-                TABLE_ACTIONS.EDIT,
-                TABLE_ACTIONS.ADDLICENCE,
-                TABLE_ACTIONS.PUTDOWNLICENCE
+                TABLE_ACTIONS.VIEW
+                //TABLE_ACTIONS.EDIT
             ],
             inactiveActions: [
                 TABLE_ACTIONS.VIEW,
@@ -69,6 +67,22 @@ const pageConfiguration = {
     }
 }
 
+const compare = (a, b) => {
+    if (a.activo && !b.activo) {
+        return -1;
+    } else if (!a.activo && b.activo) {
+        return 1;
+    } else {
+        if (a.empleado.apellido < b.empleado.apellido) {
+            return -1
+        } else if (a.empleado.apellido > b.empleado.apellido) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+}
+
 const LicensesPage = () => {
     const [licenseList, setLicenseList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
@@ -79,7 +93,7 @@ const LicensesPage = () => {
     const loadLicenses = () => {
         getLicenses().then(result => {
             if (result.list)
-                setLicenseList(result.list);
+                setLicenseList(result.list.sort(compare));
         });
     }
 

@@ -51,9 +51,7 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
 
     const createInputFields = () => {
         const cells = Object.keys(data).map((key, i) => {
-            console.log(key, data[key])
             if (showField(key)) {
-                console.log('INCLUDED=', key)
                 const value = data[key];
                 switch (key) {
                     case 'secuenciador':

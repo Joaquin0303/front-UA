@@ -4,9 +4,9 @@ import { getEmployees, addEmployee, updateEmployee, getEmployeeById, removeEmplo
 import { getCurrentSequence, updateSequencer } from '../../services/SequencerServices';
 import { getCountries } from '../../services/CountryServices';
 import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
-import { addLicense } from '../../services/LicenseServices';
+import { addLicense, updateLicense } from '../../services/LicenseServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
-import { compareStrDates } from '../../utils/Utils';
+import { compareStrDates, parseInputDate } from '../../utils/Utils';
 import { addPositionChange } from '../../services/PositionChangeServices';
 import { addLoadFamily } from '../../services/LoadFamilyServices';
 
@@ -262,6 +262,33 @@ const EmployeesPage = ({ }) => {
                     loadEmployees();
                 });
                 break;
+            case TABLE_ACTIONS.RENEWLICENCE:
+                const oldLicence = data.oldLicence;
+                const validationLicence = validateLicence(data, oldLicence);
+                if (validationLicence.error) throw validationLicence;
+                updateLicense(oldLicence.id, oldLicence.empleado, oldLicence.numeroLegajo, oldLicence.fechaInicio, oldLicence.fechaFin, oldLicence.tipoLicencia, false).then(r => {
+                    console.log('Licence inactivated=', r);
+                    addLicense(data.empleado, data.empleado.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, true).then(r => {
+                        console.log('Licence added=', r);
+                    });
+                });
+
+                break;
+            case TABLE_ACTIONS.PUTDOWNLICENCE:
+                let putdownLicence = confirm("Desea dar de baja la licencia y reactivar el empleado?");
+                if (putdownLicence) {
+                    updateLicense(data.id, data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, false).then(result => {
+                        console.log('Putdown Licence=', result);
+                        result.model.empleado.codigoEstadoEmpleado = {
+                            id: 87 // ACTIVATE EMPLOYEE
+                        };
+                        updateEmployee(result.model.empleado.id, result.model.empleado).then(resultEmp => {
+                            console.log('Update employee=', resultEmp);
+                            loadEmployees();
+                        })
+                    });
+                }
+                break;
             default:
                 break;
         }
@@ -288,7 +315,7 @@ const EmployeesPage = ({ }) => {
         return result;
     }
 
-    const validateLicence = (data) => {
+    const validateLicence = (data, oldLicence) => {
         const result = {
             error: false,
             validation: {}
@@ -301,13 +328,21 @@ const EmployeesPage = ({ }) => {
             result.error = true;
             result.validation.fechaFin = "Ingrese fecha de finalización"
         }
-        if (data.fechaInicio && data.fechaFin && compareStrDates(data.fechaInicio, data.fechaFin) < 1) {
+        if (data.fechaInicio && data.fechaFin && compareStrDates(data.fechaInicio.substring(0, 10), data.fechaFin.substring(0, 10)) < 1) {
             result.error = true;
-            result.validation.fechaInicio = "Ingrese fecha de inicio valida"
+            result.validation.fechaFin = "Ingrese fecha de fin valida"
         }
         if (!data.tipoLicencia) {
             result.error = true;
             result.validation.tipoLicencia = "Ingrese motivo de licencia"
+        }
+        if (oldLicence && data.fechaInicio) {
+            const lDate1 = parseInputDate(data.fechaInicio.substring(0, 10));
+            const lDate2 = parseInputDate(oldLicence.fechaFin.substring(0, 10));
+            if (lDate1 <= lDate2) {
+                result.error = true;
+                result.validation.fechaInicio = "Ingrese fecha de inicio mayor"
+            }
         }
         return result;
     }

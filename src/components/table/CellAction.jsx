@@ -29,12 +29,6 @@ const CellAction = ({ actions, data, openModalForm }) => {
                 {showAction(TABLE_ACTIONS.ACTIVATE) && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ACTIVATE, data) }}>
                     <FaArrowUp />
                 </div>}
-                {showAction(TABLE_ACTIONS.PUTDOWNLICENCE) && <div title="Finalizar Licencia" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.PUTDOWNLICENCE, data) }}>
-                    <TbLicenseOff />
-                </div>}
-                {showAction(TABLE_ACTIONS.ADDLICENCE) && <div title="Renovar Licencia" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADDLICENCE, data) }}>
-                    <TbLicense />
-                </div>}
             </span>
         </td >
     );

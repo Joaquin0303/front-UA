@@ -42,6 +42,7 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
             case TABLE_ACTIONS.INACTIVATE: data.activo = false; onEdit(data, TABLE_ACTIONS.INACTIVATE); break;
             case TABLE_ACTIONS.PUTDOWN: data.activo = false; onEdit(data, TABLE_ACTIONS.PUTDOWN); break;
             case TABLE_ACTIONS.ADDLICENCE: onAdd(data, TABLE_ACTIONS.ADDLICENCE); break;
+            case TABLE_ACTIONS.RENEWLICENCE: onEdit(data, TABLE_ACTIONS.RENEWLICENCE); break;
             case TABLE_ACTIONS.PUTDOWNLICENCE: onEdit(data, TABLE_ACTIONS.PUTDOWNLICENCE); break;
             case TABLE_ACTIONS.VIEW: break;
             case TABLE_ACTIONS.CHANGEPOSITION: onEdit(data, TABLE_ACTIONS.CHANGEPOSITION); break;

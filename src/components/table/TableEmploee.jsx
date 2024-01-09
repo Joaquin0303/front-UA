@@ -9,6 +9,7 @@ import { LicenseModel } from "../../pages/EmployeesAdmin/LicenseHistoryPage";
 import { LoadFamilyModel } from "../../pages/EmployeesAdmin/LoadFamilyPage";
 import { MdFamilyRestroom } from "react-icons/md";
 import { TbStatusChange } from "react-icons/tb";
+import { searchByEmployeeId } from "../../services/LicenseServices";
 
 const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
 
@@ -25,15 +26,17 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
     }
 
     const openRenewLicenceModal = (emp) => {
-        const licence = { ...LicenseModel };
-        licence.empleado = emp;
-        openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADDLICENCE, licence);
+        searchByEmployeeId(emp.id).then(licence => {
+            const licenceToRenew = { ...licence.model };
+            licenceToRenew.oldLicence = licence.model;
+            openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.RENEWLICENCE, licenceToRenew);
+        })
     }
 
     const openPutdownLicenceModal = (emp) => {
-        const licence = { ...LicenseModel };
-        licence.empleado = emp;
-        openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.PUTDOWNLICENCE, licence);
+        searchByEmployeeId(emp.id).then(licence => {
+            openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.PUTDOWNLICENCE, licence.model);
+        })
     }
 
     return (
