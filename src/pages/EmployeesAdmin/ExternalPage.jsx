@@ -2,7 +2,26 @@ import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getExternals, addExternal, updateExternal, removeExternal } from '../../services/ExternalServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
+
 const ExternalModel = {
+    apellido: '',
+    nombre: '',
+    codigoTipoDocumento: {
+        id: 0
+    },
+    numeroDocumento: '',
+    numeroDocumentoLaboral: '',
+    codigoNacionalidad: '',
+    codigoGenero: '',
+    fechaIngreso: '',
+    codigoPaisResidencia: null,
+    codigoDireccion: null,
+    codigoGerencia: null,
+    codigoJefatura: null,
+    codigoPuesto: null,
+    codigoDivision: null,
+    codigoProveedor: null,
+    emailPersonal: null,
     activo: true
 }
 
@@ -23,18 +42,39 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'pais',
+            'codigoPuesto',
+            'codigoDireccion',
+            'codigoDivision'
         ],
         inactiveRows: [
         ]
     },
     formConfiguration: {
         activeFields: [
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'pais',
+            'codigoPuesto',
+            'codigoDireccion',
+            'codigoDivision'
         ],
         inactiveFields: [
         ]
     },
     viewConfiguration: {
         activeFields: [
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'pais',
+            'codigoPuesto',
+            'codigoDireccion',
+            'codigoDivision'
         ],
         inactiveFields: [
         ]
