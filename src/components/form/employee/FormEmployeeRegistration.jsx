@@ -41,7 +41,7 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
             validateStep(formData, 0);
             const employee = findByIdentity(formData.codigoTipoDocumento.id, formData.numeroDocumentoPersonal);
             setValidation(null);
-            if (!employee) {
+            if (!employee || (employee.codigoEstadoEmpleado.id == 89 && employee.codigoTipoEgreso.id == 202)) {
                 setFormData({
                     codigoTipoDocumento: {
                         id: formData.codigoTipoDocumento.id
@@ -49,10 +49,14 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                     numeroDocumentoPersonal: formData.numeroDocumentoPersonal
                 });
                 setFormStep(1);
-            } else if (employee.codigoEstadoEmpleado.id == 88) {
-                let reactivate = confirm("¿Desea reactivar el empleado?");
-                if (reactivate) {
-                    employee.codigoEstadoEmpleado.id = 87;
+            } else if (employee.codigoEstadoEmpleado.id == 89) {
+                let reingresar = confirm("¿Desea reingresar el empleado " + employee.apellido + " " + employee.nombre + " con número de legajo " + employee.numeroLegajo + "?");
+                if (reingresar) {
+                    employee.codigoEstadoEmpleado = {
+                        id: 87
+                    }
+                    employee.codigoTipoEgreso = null;
+                    employee.observaciones = null;
                     setFormData(employee);
                     setFormStep(1);
                 } else {
@@ -63,11 +67,14 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                     numeroDocumentoPersonal: "Hay un empleado activo con esta identificación"
                 }
                 setValidation(errorValidation);
-            } else {
+            } else if (employee.codigoEstadoEmpleado.id == 88) {
                 const errorValidation = {
-                    numeroDocumentoPersonal: "Hay un empleado dado de baja con esta identificación"
-                };
+                    numeroDocumentoPersonal: "Hay un empleado en licencia con esta identificación"
+                }
                 setValidation(errorValidation);
+            } else {
+                // NO IS AN OPTION
+                console.error("Trying to add employee with wrong data");
             }
         } catch (error) {
             console.error('error', error);

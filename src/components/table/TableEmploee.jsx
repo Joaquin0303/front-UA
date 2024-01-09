@@ -76,9 +76,6 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                                     {d.codigoEstadoEmpleado.id == 87 && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.PUTDOWN, d) }}>
                                         <FaArrowDown />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 89 && <div title="Reincorporar" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.REENTRY, d) }}>
-                                        <FaArrowUp />
-                                    </div>}
                                     {d.codigoEstadoEmpleado.id == 87 && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); openLicenceModal(d) }}>
                                         <TbLicense />
                                     </div>}

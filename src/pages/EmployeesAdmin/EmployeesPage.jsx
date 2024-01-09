@@ -24,8 +24,7 @@ const pageConfiguration = {
                 TABLE_ACTIONS.ADDFAMILY
             ],
             inactiveActions: [
-                TABLE_ACTIONS.VIEW,
-                TABLE_ACTIONS.REENTRY
+                TABLE_ACTIONS.VIEW
             ],
         },
         activeRows: [
