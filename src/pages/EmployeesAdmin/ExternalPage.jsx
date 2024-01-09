@@ -14,14 +14,28 @@ const ExternalModel = {
     codigoNacionalidad: '',
     codigoGenero: '',
     fechaIngreso: '',
-    codigoPaisResidencia: null,
-    codigoDireccion: null,
-    codigoGerencia: null,
-    codigoJefatura: null,
-    codigoPuesto: null,
-    codigoDivision: null,
-    codigoProveedor: null,
-    emailPersonal: null,
+    codigoPaisResidencia: {
+        id: 0
+    },
+    codigoDireccion: {
+        id: 0
+    },
+    codigoGerencia: {
+        id: 0
+    },
+    codigoJefatura: {
+        id: 0
+    },
+    codigoPuesto: {
+        id: 0
+    },
+    codigoDivision: {
+        id: 0
+    },
+    codigoProveedor: {
+        id: 0
+    },
+    emailPersonal: '',
     activo: true
 }
 
@@ -51,6 +65,13 @@ const pageConfiguration = {
             'codigoDivision'
         ],
         inactiveRows: [
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'pais',
+            'codigoPuesto',
+            'codigoDireccion',
+            'codigoDivision'
         ]
     },
     formConfiguration: {
@@ -64,6 +85,13 @@ const pageConfiguration = {
             'codigoDivision'
         ],
         inactiveFields: [
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'pais',
+            'codigoPuesto',
+            'codigoDireccion',
+            'codigoDivision'
         ]
     },
     viewConfiguration: {
@@ -77,6 +105,13 @@ const pageConfiguration = {
             'codigoDivision'
         ],
         inactiveFields: [
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'pais',
+            'codigoPuesto',
+            'codigoDireccion',
+            'codigoDivision'
         ]
     }
 }
