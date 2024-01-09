@@ -13,6 +13,7 @@ import InputDate from './InputDate';
 import InputNumber from './InputNumber';
 import InputCountry from './InputCountry';
 import InputFileNumber from './InputFileNumber';
+import InputParameterSearch from './InputParameterSearch';
 
 const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
@@ -61,9 +62,9 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
                     case 'codigoDireccion':
                         return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
                     case 'codigoGerencia':
-                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 12)} updateFormData={updateFormData} />
+                        return <InputParameterSearch validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 12)} updateFormData={updateFormData} />
                     case 'codigoJefatura':
-                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 14)} updateFormData={updateFormData} />
+                        return <InputParameterSearch validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 14)} updateFormData={updateFormData} />
                     case 'codigoCategoria':
                         return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 3)} updateFormData={updateFormData} />
                     case 'codigoCentroDeCosto':

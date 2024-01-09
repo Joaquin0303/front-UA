@@ -3,18 +3,30 @@ import i18n from "../../localization/i18n";
 import { getPositions } from "../../services/PositionServices";
 const InputPositionCode = ({ validation, name, value, disabled, updateFormData, directionCode, countryCode, categoryCode, currentPositionId }) => {
 
+    const [fieldValue, setFieldValue] = useState(value && value.id > 0 ? value.descripcion : '')
+
     const [positionList, setPositionList] = useState([]);
     const [positionListFiltered, setPositionListFiltered] = useState([]);
 
-    const posSelectorChangeHandler = (e) => {
-        const positionSelected = positionList.find(p => p.id == e.target.value);
-        if (positionSelected)
-            updateFormData(name, positionSelected);
+    const handleOnBlur = (e) => {
+        console.log('handleOnBlur', value);
+        if (!value || value.id == 0)
+            setFieldValue('');
         else
+            setFieldValue(value.descripcion);
+    }
+
+    const posSelectorChangeHandler = (e) => {
+        setFieldValue(e.target.value);
+        console.log('posSelectorChangeHandler', e.target.value);
+        const positionSelected = positionList.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
+        if (positionSelected && positionSelected.length == 1) {
+            updateFormData(name, positionSelected[0]);
+        } else {
             updateFormData(name, {
                 id: 0,
-
             });
+        }
     }
 
     useEffect(() => {
@@ -25,6 +37,7 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
     }, []);
 
     useEffect(() => {
+        console.log('use efect directionCode', categoryCode)
         if (directionCode || countryCode || categoryCode) {
             setPositionListFiltered(positionList.filter(d =>
                 d.activo == true
@@ -36,18 +49,22 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
         } else {
             setPositionListFiltered([]);
         }
+        updateFormData(name, {
+            id: 0,
+        });
+        setFieldValue('');
     }, [directionCode, countryCode, categoryCode, positionList]);
 
     return (
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
-            <select disabled={disabled} value={value ? value.id : 0} name={name} onChange={posSelectorChangeHandler}>
-                <option value={0}>(seleccione)</option>
-                {positionListFiltered.map((s, i) => {
-                    return <option key={i} value={s.id}>{s.descripcion}</option>
-                })}
-            </select>
+            <input onBlur={handleOnBlur} autoComplete="off" disabled={disabled} list="position-data-list" type="text" name={name} value={fieldValue} onChange={posSelectorChangeHandler} />
             {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
+            <datalist id="position-data-list">
+                {positionListFiltered && positionListFiltered.map((p, i) => {
+                    return <option key={i} value={p.descripcion}></option>
+                })}
+            </datalist>
         </div>
     );
 }
