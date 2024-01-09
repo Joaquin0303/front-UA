@@ -158,7 +158,7 @@ const ExternalPage = () => {
 
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return lowerCaseSearchTerm == lowerCaseSearchTerm;
+        return data.numeroLegajo == lowerCaseSearchTerm || (data.nombre + data.apellido).toLowerCase().includes(lowerCaseSearchTerm);
     }
 
     const validate = (data) => {
