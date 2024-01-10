@@ -3,17 +3,11 @@ import ReportPage from "../ReportPage";
 import { employmentHistoryReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    codigoPais: {
-        id: 0
-    },
-    codigoDireccion: {
-        id: 0
-    },
-    codigoEstadoEmpleado: {
-        id: 0
-    },
-    fechaDesde: '',
-    fechaHasta: ''
+    idPais: null,
+    idDireccion: null,
+    estado: null,
+    fechaIngresoDesde: null,
+    fechaIngresoHasta: null
 }
 
 const defaultFilter = {
@@ -21,7 +15,7 @@ const defaultFilter = {
 }
 
 const pageConfiguration = {
-    name: 'historial-de-empleados',
+    name: 'historial-laboral',
     tableConfiguration: {
         activeRows: [
             'numeroLegajo',
@@ -42,18 +36,18 @@ const pageConfiguration = {
     },
     formConfiguration: {
         activeFields: [
-            'codigoPais',
-            'codigoDireccion',
-            'codigoEstadoEmpleado',
-            'fechaDesde',
-            'fechaHasta'
+            'idPais',
+            'idDireccion',
+            'estado',
+            'fechaIngresoDesde',
+            'fechaIngresoHasta'
         ],
         inactiveFields: [
-            'codigoPais',
-            'codigoDireccion',
-            'codigoEstadoEmpleado',
-            'fechaDesde',
-            'fechaHasta'
+            'idPais',
+            'idDireccion',
+            'estado',
+            'fechaIngresoDesde',
+            'fechaIngresoHasta'
         ]
     }
 }

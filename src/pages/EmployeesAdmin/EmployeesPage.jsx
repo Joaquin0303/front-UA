@@ -9,6 +9,7 @@ import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import { compareStrDates, parseInputDate } from '../../utils/Utils';
 import { addPositionChange } from '../../services/PositionChangeServices';
 import { addLoadFamily } from '../../services/LoadFamilyServices';
+import PopUp from '../../components/modal/PopUp';
 
 const pageConfiguration = {
     show_search: true,
@@ -135,7 +136,13 @@ const compare = (a, b) => {
     } else if (a.codigoEstadoEmpleado.id > b.codigoEstadoEmpleado.id) {
         return 1;
     } else {
-        return 0;
+        if (a.numeroLegajo < b.numeroLegajo) {
+            return -1
+        } else if (a.numeroLegajo > b.numeroLegajo) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
 
@@ -178,13 +185,17 @@ const EmployeesPage = ({ }) => {
                 getCountries().then(rCountries => {
                     getCurrentSequence(
                         rCountries.list.find(c => c.id == data.codigoPais.id).secuenciador.codigo
-                    ).then(seq => {
-                        data.numeroLegajo = seq.model.secuencia;
+                    ).then(seq1 => {
+                        data.numeroLegajo = seq1.model.secuencia;
                         addEmployee(data).then(result => {
                             console.log('Employee added=', result);
                             loadEmployees();
-                            updateSequencer(seq.model.id, seq.model.codigo, seq.model.rangoDesde, seq.model.rangoHasta, seq.model.secuencia, seq.model.activo);
-
+                            getCurrentSequence(
+                                rCountries.list.find(c => c.id == data.codigoPais.id).secuenciador.codigo
+                            ).then(seq2 => {
+                                if (seq1.model.secuencia == seq2.model.secuencia)
+                                    updateSequencer(seq2.model.id, seq2.model.codigo, seq2.model.rangoDesde, seq2.model.rangoHasta, seq2.model.secuencia, seq2.model.activo);
+                            });
                             setShowPopup(true);
                             console.log(`Empleado con el numero de legajo: ${data.numeroLegajo} agregado correctamente`);
                             setPopupMessage(`Empleado con el numero de legajo: ${data.numeroLegajo} agregado correctamente`);
@@ -380,8 +391,8 @@ const EmployeesPage = ({ }) => {
 
     return (
         <>
-        {showPopup && <PopUp message={popupMessage} />}
-        <ABMPage pageConfiguration={pageConfiguration} pageName="Empleados" dataList={employeeList} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+            {showPopup && <PopUp message={popupMessage} />}
+            <ABMPage pageConfiguration={pageConfiguration} pageName="Empleados" dataList={employeeList} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
         </>
     );
 }

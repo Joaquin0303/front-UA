@@ -1,10 +1,12 @@
 import React from 'react'
 import '../../styles/popup.css'
 
-export const PopUp = ({message}) => {
+const PopUp = ({ message }) => {
   return (
     <div className='popup'>
-        <p>{message}</p>
+      <p>{message}</p>
     </div>
   )
 }
+
+export default PopUp;

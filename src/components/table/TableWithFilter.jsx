@@ -6,6 +6,7 @@ import i18n from '../../localization/i18n'
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { FaFilter } from "react-icons/fa";
 import ModalForm from "../modal/ModalForm";
+import '../../styles/Filter.css'
 
 
 const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, loadReportData }) => {

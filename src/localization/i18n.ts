@@ -96,7 +96,7 @@ i18n
           'vuelta-al-colegio': "Vuelta al colegio",
           'centro-de-costo': 'Centro de costo',
           directores: 'Directores',
-          'historial-de-empleados': 'Historial de empleados',
+          'historial-laboral': 'Historial laboral',
           externos: 'Externos',
           generico: 'Genérico',
           'international-data-collection': 'International data collection',
