@@ -379,7 +379,10 @@ const EmployeesPage = ({ }) => {
     }
 
     return (
+        <>
+        {showPopup && <PopUp message={popupMessage} />}
         <ABMPage pageConfiguration={pageConfiguration} pageName="Empleados" dataList={employeeList} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        </>
     );
 }
 
