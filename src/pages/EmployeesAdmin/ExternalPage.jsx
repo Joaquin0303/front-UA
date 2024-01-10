@@ -12,7 +12,9 @@ const ExternalModel = {
     numeroDocumento: '',
     numeroDocumentoLaboral: '',
     codigoNacionalidad: '',
-    codigoGenero: '',
+    codigoGenero: {
+        id: 0
+    },
     fechaIngreso: '',
     codigoPaisResidencia: {
         id: 0
@@ -27,7 +29,7 @@ const ExternalModel = {
         id: 0
     },
     codigoPuesto: {
-        id: 0
+        descripcion: 0
     },
     codigoDivision: {
         id: 0
@@ -79,8 +81,9 @@ const pageConfiguration = {
         activeFields: [
             'nombre',
             'apellido',
+            'codigoTipoDocumento',
             'codigoPais',
-            'codigoPuesto',
+            'codigoGenero',
             'codigoDireccion',
             'codigoDivision'
         ],
