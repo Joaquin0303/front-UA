@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getEmployees, addEmployee, updateEmployee, getEmployeeById, removeEmployee } from '../../services/EmployeeServices';
-import { getCurrentSequence, updateSequencer } from '../../services/SequencerServices';
+import { getCurrentSequence, updateSequencer, getSequencerById } from '../../services/SequencerServices';
 import { getCountries } from '../../services/CountryServices';
 import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
 import { addLicense, updateLicense } from '../../services/LicenseServices';
@@ -190,11 +190,9 @@ const EmployeesPage = ({ }) => {
                         addEmployee(data).then(result => {
                             console.log('Employee added=', result);
                             loadEmployees();
-                            getCurrentSequence(
-                                rCountries.list.find(c => c.id == data.codigoPais.id).secuenciador.codigo
-                            ).then(seq2 => {
-                                if (seq1.model.secuencia == seq2.model.secuencia)
-                                    updateSequencer(seq2.model.id, seq2.model.codigo, seq2.model.rangoDesde, seq2.model.rangoHasta, seq2.model.secuencia, seq2.model.activo);
+                            getSequencerById(seq1.model.id).then(seq2 => {
+                                if (seq1.model.secuencia == seq2.model.secuencia + 1)
+                                    updateSequencer(seq1.model.id, seq1.model.codigo, seq1.model.rangoDesde, seq1.model.rangoHasta, seq1.model.secuencia, seq1.model.activo);
                             });
                             setShowPopup(true);
                             console.log(`Empleado con el numero de legajo: ${data.numeroLegajo} agregado correctamente`);
