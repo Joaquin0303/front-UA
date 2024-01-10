@@ -59,16 +59,17 @@ const pageConfiguration = {
             'numeroLegajo',
             'nombre',
             'apellido',
-            'pais',
+            'codigoPais',
             'codigoPuesto',
             'codigoDireccion',
-            'codigoDivision'
+            'codigoDivision',
+
         ],
         inactiveRows: [
             'numeroLegajo',
             'nombre',
             'apellido',
-            'pais',
+            'codigoPais',
             'codigoPuesto',
             'codigoDireccion',
             'codigoDivision'
@@ -76,19 +77,17 @@ const pageConfiguration = {
     },
     formConfiguration: {
         activeFields: [
-            'numeroLegajo',
             'nombre',
             'apellido',
-            'pais',
+            'codigoPais',
             'codigoPuesto',
             'codigoDireccion',
             'codigoDivision'
         ],
         inactiveFields: [
-            'numeroLegajo',
             'nombre',
             'apellido',
-            'pais',
+            'codigoPais',
             'codigoPuesto',
             'codigoDireccion',
             'codigoDivision'
