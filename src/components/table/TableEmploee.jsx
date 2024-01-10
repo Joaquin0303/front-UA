@@ -62,8 +62,8 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                             <td>{d.apellido}</td>
                             <td>{d.codigoPais.descripcion}</td>
                             <td>{d.codigoPuesto.descripcion}</td>
-                            <td>{d.codigoDireccion.descripcion}</td>
-                            <td></td>
+                            <td>{d.codigoPuesto.descripcion}</td>
+                            <td>{d.codigoPuesto.codigoGerencia ? d.codigoPuesto.codigoGerencia.descripcion : ''}</td>
 
                             <td className='expand'>
                                 <span className='actions'>

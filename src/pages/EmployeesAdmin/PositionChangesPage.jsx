@@ -23,24 +23,12 @@ const pageConfiguration = {
         activeRows: [
             'numeroLegajo',
             'codigoPais',
-            'codigoOficina',
             'codigoDireccion',
-            'codigoGerencia',
-            'codigoJefatura',
             'codigoPuesto',
             'fechaIngresoReconocida',
             'fechaEgreso'
         ],
         inactiveRows: [
-            'numeroLegajo',
-            'codigoPais',
-            'codigoOficina',
-            'codigoDireccion',
-            'codigoGerencia',
-            'codigoJefatura',
-            'codigoPuesto',
-            'fechaIngresoReconocida',
-            'fechaEgreso'
         ]
     },
     formConfiguration: {
