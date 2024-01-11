@@ -51,6 +51,7 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                         <th>Puesto</th>
                         <th>Dirección</th>
                         <th>Gerencia</th>
+                        <th>Estado</th>
                         <th style={{ width: '20%' }}>Acciones</th>
                     </tr>
                 </thead>
@@ -62,9 +63,9 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                             <td>{d.apellido}</td>
                             <td>{d.codigoPais.descripcion}</td>
                             <td>{d.codigoPuesto.descripcion}</td>
-                            <td>{d.codigoPuesto.descripcion}</td>
+                            <td>{d.codigoDireccion.descripcion}</td>
                             <td>{d.codigoPuesto.codigoGerencia ? d.codigoPuesto.codigoGerencia.descripcion : ''}</td>
-
+                            <td>{d.codigoEstadoEmpleado.descripcion}</td>
                             <td className='expand'>
                                 <span className='actions'>
                                     {<div title="Ver" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.VIEW, d) }}>
