@@ -87,6 +87,14 @@ const DynamicView = ({ viewConfiguration, data, closeModal, onSubmitForm }) => {
                         return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
                     case "codigoPais":
                         return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
+                    case "codigoNacionalidad":
+                        return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
+                    case "codigoGenero":
+                        return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
+                    case "codigoDivision":
+                        return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
+                    case "codigoProveedor":
+                        return createCellInfo(i, key, data[key] && data[key].id > 0 ? data[key].descripcion : '');
                     case 'roles':
                         return createCellListInfo(i, key, data[key]);
                     case 'permisos':

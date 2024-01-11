@@ -197,6 +197,70 @@ const ExternalPage = () => {
             error: false,
             validation: {}
         };
+        if (!data.nombre || data.nombre.trim().length <= 0) {
+            result.error = true;
+            result.validation.nombre = "Ingrese nombre"
+        }
+        if (!data.apellido || data.apellido.trim().length <= 0) {
+            result.error = true;
+            result.validation.apellido = "Ingrese apellido"
+        }
+        if (!data.codigoTipoDocumento || data.codigoTipoDocumento.id <= 0) {
+            result.error = true;
+            result.validation.codigoTipoDocumento = "Ingrese tipo de documento"
+        }
+        if (!data.numeroDocumento || data.numeroDocumento.trim().length <= 0) {
+            result.error = true;
+            result.validation.numeroDocumento = "Ingrese nro. documento"
+        }
+        if (!data.codigoNacionalidad || data.codigoNacionalidad.id <= 0) {
+            result.error = true;
+            result.validation.codigoNacionalidad = "Ingrese nacionalidad"
+        }
+        if (!data.codigoProveedor || data.codigoProveedor.id <= 0) {
+            result.error = true;
+            result.validation.codigoProveedor = "Ingrese proveedor"
+        }
+        if (!data.codigoPais || data.codigoPais.id <= 0) {
+            result.error = true;
+            result.validation.codigoPais = "Ingrese pais"
+        }
+        if (!data.codigoPuesto || data.codigoPuesto.id <= 0) {
+            result.error = true;
+            result.validation.codigoPuesto = "Ingrese puesto"
+        }
+        if (!data.codigoDivision || data.codigoDivision.id <= 0) {
+            result.error = true;
+            result.validation.codigoDivision = "Ingrese división"
+        }
+        if (!data.codigoDireccion || data.codigoDireccion.id <= 0) {
+            result.error = true;
+            result.validation.codigoDireccion = "Ingrese dirección"
+        }
+        if (!data.codigoGerencia || data.codigoGerencia.id <= 0) {
+            result.error = true;
+            result.validation.codigoGerencia = "Ingrese gerencia"
+        }
+        if (!data.codigoJefatura || data.codigoJefatura.id <= 0) {
+            result.error = true;
+            result.validation.codigoJefatura = "Ingrese jefatura"
+        }
+        if (!data.fechaIngreso) {
+            result.error = true;
+            result.validation.fechaIngreso = "Ingrese fecha de ingreso"
+        }
+        if (!data.codigoGenero || data.codigoGenero.id <= 0) {
+            result.error = true;
+            result.validation.codigoGenero = "Ingrese genero"
+        }
+        if (!data.emailPersonal || data.emailPersonal.id <= 0) {
+            result.error = true;
+            result.validation.emailPersonal = "Ingrese email"
+        }
+        if (!data.numeroDocumentoLaboral || data.numeroDocumentoLaboral.id <= 0) {
+            result.error = true;
+            result.validation.emailPersonal = "Ingrese documento laboral"
+        }
         return result;
     }
 
