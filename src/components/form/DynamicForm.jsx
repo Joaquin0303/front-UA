@@ -87,6 +87,14 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
                         return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 20)} updateFormData={updateFormData} />
                     case 'codigoTipoDocumento':
                         return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 29)} updateFormData={updateFormData} />
+                    case 'codigoNacionalidad':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 17)} updateFormData={updateFormData} />
+                    case 'codigoGenero':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 11)} updateFormData={updateFormData} />
+                    case 'codigoDivision':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 7)} updateFormData={updateFormData} />
+                    case 'codigoProveedor':
+                        return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 24)} updateFormData={updateFormData} />
                     case 'secuencia':
                         return <InputNumber disabled={data.id && data.id > 0} validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
                     default:

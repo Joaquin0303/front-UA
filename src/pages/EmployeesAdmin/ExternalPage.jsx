@@ -11,12 +11,14 @@ const ExternalModel = {
     },
     numeroDocumento: '',
     numeroDocumentoLaboral: '',
-    codigoNacionalidad: '',
+    codigoNacionalidad: {
+        id: 0
+    },
     codigoGenero: {
         id: 0
     },
     fechaIngreso: '',
-    codigoPaisResidencia: {
+    codigoPais: {
         id: 0
     },
     codigoDireccion: {
@@ -29,7 +31,7 @@ const ExternalModel = {
         id: 0
     },
     codigoPuesto: {
-        descripcion: 0
+        id: 0
     },
     codigoDivision: {
         id: 0
@@ -65,6 +67,7 @@ const pageConfiguration = {
             'codigoPuesto',
             'codigoDireccion',
             'codigoDivision',
+            'codigoGerencia'
 
         ],
         inactiveRows: [
@@ -74,46 +77,68 @@ const pageConfiguration = {
             'codigoPais',
             'codigoPuesto',
             'codigoDireccion',
-            'codigoDivision'
+            'codigoDivision',
+            'codigoGerencia'
         ]
     },
     formConfiguration: {
         activeFields: [
-            'nombre',
             'apellido',
+            'nombre',
             'codigoTipoDocumento',
-            'codigoPais',
-            'codigoGenero',
+            'numeroDocumento',
+            'numeroDocumentoLaboral',
             'codigoDireccion',
-            'codigoDivision'
+            'codigoNacionalidad',
+            'codigoGenero',
+            'fechaIngreso',
+            'codigoPais',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoPuesto',
+            'codigoDivision',
+            'codigoProveedor',
+            'emailPersonal'
         ],
         inactiveFields: [
-            'nombre',
-            'apellido',
-            'codigoPais',
-            'codigoPuesto',
-            'codigoDireccion',
-            'codigoDivision'
         ]
     },
     viewConfiguration: {
         activeFields: [
-            'numeroLegajo',
-            'nombre',
             'apellido',
-            'pais',
-            'codigoPuesto',
+            'nombre',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'numeroDocumentoLaboral',
             'codigoDireccion',
-            'codigoDivision'
+            'codigoNacionalidad',
+            'codigoGenero',
+            'fechaIngreso',
+            'codigoPais',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoPuesto',
+            'codigoDivision',
+            'codigoProveedor',
+            'emailPersonal'
         ],
         inactiveFields: [
-            'numeroLegajo',
-            'nombre',
             'apellido',
-            'pais',
-            'codigoPuesto',
+            'nombre',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'numeroDocumentoLaboral',
             'codigoDireccion',
-            'codigoDivision'
+            'codigoNacionalidad',
+            'codigoGenero',
+            'fechaIngreso',
+            'codigoPais',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoPuesto',
+            'codigoDivision',
+            'codigoProveedor',
+            'emailPersonal'
         ]
     }
 }
