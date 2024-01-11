@@ -3,11 +3,23 @@ import '../../../styles/Modal.css'
 import InputParameter from '../InputParameter';
 import InputText from '../InputText';
 import InputDate from '../InputDate';
-import { parseInputDate } from '../../../utils/Utils';
+import { parseInputDate, parseToday } from '../../../utils/Utils';
 
 const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
     const [formData, setFormData] = useState(data);
+    const [disableEndDate, setDisableEndDate] = useState(false)
+
+    const handleOnChangeReason = (d, value) => {
+        updateFormData(d, value);
+        if (value && value.id == 202) {
+            setDisableEndDate(true);
+            updateFormData('fechaEgreso', parseToday());
+
+        } else {
+            setDisableEndDate(false);
+        }
+    }
 
     const updateFormData = (key, value) => {
         formData[key] = value;
@@ -46,12 +58,14 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
             result.error = true;
             result.validation.fechaEgreso = "Ingrese fecha de egreso";
         }
-        if (data.fechaEgreso && data.fechaEgreso.trim().length > 0) {
-            const fi = parseInputDate(data.fechaIngreso);
-            const fe = parseInputDate(data.fechaEgreso);
-            if (fi >= fe) {
-                result.error = true;
-                result.validation.fechaEgreso = "Ingrese fecha de egreso válida";
+        if (data.codigoTipoEgreso && data.codigoTipoEgreso.id != 202) {
+            if (data.fechaEgreso && data.fechaEgreso.trim().length > 0) {
+                const fi = parseInputDate(data.fechaIngreso);
+                const fe = parseInputDate(data.fechaEgreso);
+                if (fi >= fe) {
+                    result.error = true;
+                    result.validation.fechaEgreso = "Ingrese fecha de egreso válida";
+                }
             }
         }
         if (result.error) throw result;
@@ -63,9 +77,9 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
             <div className="modals-content">
                 <div className='form-view'>
                     <div className="form-field-container">
-                        <InputParameter validation={validation} name="codigoTipoEgreso" value={formData["codigoTipoEgreso"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 15)} updateFormData={updateFormData} />
+                        <InputParameter validation={validation} name="codigoTipoEgreso" value={formData["codigoTipoEgreso"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 15)} updateFormData={handleOnChangeReason} />
                         <InputText name="observaciones" updateFormData={updateFormData} value={formData["observaciones"]} />
-                        <InputDate validation={validation} name="fechaEgreso" updateFormData={updateFormData} value={formData["fechaEgreso"]} />
+                        <InputDate disabled={disableEndDate} validation={validation} name="fechaEgreso" updateFormData={updateFormData} value={formData["fechaEgreso"]} />
                     </div>
                 </div>
             </div>
