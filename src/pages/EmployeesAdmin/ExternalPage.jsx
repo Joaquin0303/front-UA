@@ -174,7 +174,7 @@ const ExternalPage = () => {
     const onEdit = (data) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        updateExternal(data).then(result => {
+        updateExternal(data.id, data).then(result => {
             console.log('edited=', result);
             loadExternals();
         });
