@@ -77,6 +77,8 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
                         return <InputPermission key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
                     case 'codigoPuestoAlQueReporta':
                         return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
+                    case 'codigoPuesto':
+                        return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
                     case 'numeroLegajo':
                         return <InputFileNumber validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} />
                     case 'tipoLicencia':
