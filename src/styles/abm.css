@@ -244,7 +244,16 @@
     font-weight: bold;
 }
 
-input:disabled{
+input:disabled {
     color: #ccc;
     background-color: transparent;
+}
+
+.first-column {
+    font-weight: bold;
+}
+
+.table-row-status-inactive {
+    color: #888;
+    background-color: #ddd;
 }

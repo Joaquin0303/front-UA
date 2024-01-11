@@ -56,8 +56,8 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                 </thead>
                 <tbody>
                     {dataList.map((d, i) => {
-                        return <tr key={i}>
-                            <td>{d.numeroLegajo}</td>
+                        return <tr key={i} className={d.codigoEstadoEmpleado.id == 88 ? 'table-row-status-inactive' : ''} title={d.codigoEstadoEmpleado.id == 88 ? 'Inactivo' : 'Activo'}>
+                            <td className='first-column'>{d.numeroLegajo}</td>
                             <td>{d.nombre}</td>
                             <td>{d.apellido}</td>
                             <td>{d.codigoPais.descripcion}</td>
