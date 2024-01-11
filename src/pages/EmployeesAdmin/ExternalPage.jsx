@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
-import { getExternals, addExternal, updateExternal, removeExternal } from '../../services/ExternalServices';
+import { getExternals, addExternal, updateExternal, removeExternal, getNextFileNumber } from '../../services/ExternalServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const ExternalModel = {
@@ -161,10 +161,14 @@ const ExternalPage = () => {
     const onAdd = (data) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        addExternal(data).then(result => {
-            console.log('saved=', result);
-            loadExternals();
-        });
+        getNextFileNumber().then(r => {
+            data.numeroLegajo = r.model.numeroLegajo ? parseInt(r.model.numeroLegajo) + 1 : 1;
+            addExternal(data).then(result => {
+                console.log('saved=', result);
+                loadExternals();
+            });
+        })
+
     }
 
     const onEdit = (data) => {

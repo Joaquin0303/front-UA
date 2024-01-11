@@ -62,3 +62,15 @@ export const removeExternal = async (externalId) => {
     })
     return result.data;
 }
+
+export const getNextFileNumber = async () => {
+    const result = await axios({
+        method: 'get',
+        url: host + '/ua/empleadoexterno/siguientelegajo'
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}
