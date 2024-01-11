@@ -123,11 +123,15 @@ export const findByFileNumber = (fileNumber) => {
 }
 
 export const findByIdentity = (docTypeId, docNumber) => {
+    return employeeTotalList.find(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoPersonal == docNumber && (e.codigoEstadoEmpleado.id == 87 || e.codigoEstadoEmpleado.id == 88));
+}
+
+export const filterByIdentity = (docTypeId, docNumber) => {
     return employeeTotalList.filter(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoPersonal == docNumber);
 }
 
 export const findByLaboralIdentity = (docTypeId, docNumber) => {
-    return employeeTotalList.find(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoLaboral == docNumber);
+    return employeeTotalList.find(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoLaboral == docNumber && (e.codigoEstadoEmpleado.id == 87 || e.codigoEstadoEmpleado.id == 88));
 }
 
 const compare = (a, b) => {

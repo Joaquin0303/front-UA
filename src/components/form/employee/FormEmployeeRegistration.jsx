@@ -7,7 +7,7 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 import FormEmployeeStep2 from './FormEmployeeStep2';
 import FormEmployeeStep3 from './FormEmployeeStep3';
 import FormEmployeeStep0 from './FormEmployeeStep0';
-import { findByLaboralIdentity, findByIdentity } from '../../../pages/EmployeesAdmin/EmployeesPage';
+import { findByLaboralIdentity, findByIdentity, filterByIdentity } from '../../../pages/EmployeesAdmin/EmployeesPage';
 import { MIN_DATE, TABLE_ACTIONS } from '../../../utils/GeneralConstants';
 import { diffBetweenDates, parseInputDate, parseToday } from '../../../utils/Utils';
 
@@ -39,7 +39,7 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
     const searchEmployee = () => {
         try {
             validateStep(formData, 0);
-            const employeeSearchResult = findByIdentity(formData.codigoTipoDocumento.id, formData.numeroDocumentoPersonal);
+            const employeeSearchResult = filterByIdentity(formData.codigoTipoDocumento.id, formData.numeroDocumentoPersonal);
             console.log('employees', employeeSearchResult);
             setValidation(null);
 
@@ -62,7 +62,11 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                 });
                 setFormStep(1);
             } else if (employeeSearchResult && employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 89)) {
-                const employee = employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 89);
+                const inactiveEmployees = employeeSearchResult.filter(e => e.codigoEstadoEmpleado.id == 89);
+                const employee = inactiveEmployees.sort((e1, e2) => {
+                    if (e1.id > e2.id) return -1;
+                    else return 1;
+                })[0];
                 let reingresar = confirm("¿Desea reingresar el empleado " + employee.apellido + " " + employee.nombre + " con número de legajo " + employee.numeroLegajo + "?");
                 if (reingresar) {
                     employee.codigoEstadoEmpleado = {
@@ -71,6 +75,7 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                     employee.id = null;
                     employee.antiguedad = diffBetweenDates(parseInputDate(employee.fechaIngreso), parseInputDate(employee.fechaEgreso));
                     employee.codigoTipoEgreso = null;
+                    employee.fechaEgreso = null;
                     employee.observaciones = null;
                     setFormData(employee);
                     setFormStep(1);
