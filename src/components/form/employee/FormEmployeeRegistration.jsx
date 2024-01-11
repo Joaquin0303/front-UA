@@ -9,7 +9,7 @@ import FormEmployeeStep3 from './FormEmployeeStep3';
 import FormEmployeeStep0 from './FormEmployeeStep0';
 import { findByLaboralIdentity, findByIdentity } from '../../../pages/EmployeesAdmin/EmployeesPage';
 import { MIN_DATE, TABLE_ACTIONS } from '../../../utils/GeneralConstants';
-import { parseInputDate, parseToday } from '../../../utils/Utils';
+import { diffBetweenDates, parseInputDate, parseToday } from '../../../utils/Utils';
 
 const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onSubmitForm }) => {
     const [formData, setFormData] = useState(data);
@@ -55,6 +55,8 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                     employee.codigoEstadoEmpleado = {
                         id: 87
                     }
+                    //employee.id = null;
+                    employee.antiguedad = diffBetweenDates(parseInputDate(employee.fechaIngreso), parseInputDate(employee.fechaEgreso));
                     employee.codigoTipoEgreso = null;
                     employee.observaciones = null;
                     setFormData(employee);

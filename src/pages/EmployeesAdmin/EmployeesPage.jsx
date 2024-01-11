@@ -6,7 +6,7 @@ import { getCountries } from '../../services/CountryServices';
 import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
 import { addLicense, updateLicense } from '../../services/LicenseServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
-import { compareStrDates, parseInputDate } from '../../utils/Utils';
+import { compareStrDates, parseDate, parseInputDate } from '../../utils/Utils';
 import { addPositionChange } from '../../services/PositionChangeServices';
 import { addLoadFamily } from '../../services/LoadFamilyServices';
 import PopUp from '../../components/modal/PopUp';
@@ -175,11 +175,15 @@ const EmployeesPage = ({ }) => {
                     id: 87
                 }
 
-                data.fechaIngresoReconocida = data.fechaIngreso;
-
                 // REMOVE AFTER DATABASE FIXED
                 data.codigoCentroDeCosto = {
                     id: 55
+                }
+
+                if (data.antiguedad) {
+                    data.fechaIngresoReconocida = new Date(parseInputDate(data.fechaIngreso).getTime() - data.antiguedad);
+                } else {
+                    data.fechaIngresoReconocida = data.fechaIngreso;
                 }
 
                 getCountries().then(rCountries => {
@@ -240,7 +244,7 @@ const EmployeesPage = ({ }) => {
                 if (validation.error) throw validation;
                 const employeeId = data.id;
                 delete data["id"];
-                updateEmployee(employeeId, data).then(empResult => {
+                updateEmployee(employeeId, data).then(r => {
                     console.log('Employee updated=', r);
                     loadEmployees();
                 });
@@ -352,6 +356,7 @@ const EmployeesPage = ({ }) => {
                 result.validation.fechaInicio = "Ingrese fecha de inicio mayor"
             }
         }
+
         return result;
     }
 
