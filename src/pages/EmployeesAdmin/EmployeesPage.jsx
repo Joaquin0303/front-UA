@@ -123,7 +123,7 @@ export const findByFileNumber = (fileNumber) => {
 }
 
 export const findByIdentity = (docTypeId, docNumber) => {
-    return employeeTotalList.find(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoPersonal == docNumber);
+    return employeeTotalList.filter(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoPersonal == docNumber);
 }
 
 export const findByLaboralIdentity = (docTypeId, docNumber) => {

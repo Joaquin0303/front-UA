@@ -39,9 +39,21 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
     const searchEmployee = () => {
         try {
             validateStep(formData, 0);
-            const employee = findByIdentity(formData.codigoTipoDocumento.id, formData.numeroDocumentoPersonal);
+            const employeeSearchResult = findByIdentity(formData.codigoTipoDocumento.id, formData.numeroDocumentoPersonal);
+            console.log('employees', employeeSearchResult);
             setValidation(null);
-            if (!employee || (employee.codigoEstadoEmpleado.id == 89 && employee.codigoTipoEgreso.id == 202)) {
+
+            if (employeeSearchResult && employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 87)) {
+                const errorValidation = {
+                    numeroDocumentoPersonal: "Hay un empleado activo con esta identificación"
+                }
+                setValidation(errorValidation);
+            } else if (employeeSearchResult && employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 88)) {
+                const errorValidation = {
+                    numeroDocumentoPersonal: "Hay un empleado en licencia con esta identificación"
+                }
+                setValidation(errorValidation);
+            } else if (!employeeSearchResult || employeeSearchResult.length == 0 || employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 89 && e.codigoTipoEgreso.id == 202)) {
                 setFormData({
                     codigoTipoDocumento: {
                         id: formData.codigoTipoDocumento.id
@@ -49,13 +61,14 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                     numeroDocumentoPersonal: formData.numeroDocumentoPersonal
                 });
                 setFormStep(1);
-            } else if (employee.codigoEstadoEmpleado.id == 89) {
+            } else if (employeeSearchResult && employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 89)) {
+                const employee = employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 89);
                 let reingresar = confirm("¿Desea reingresar el empleado " + employee.apellido + " " + employee.nombre + " con número de legajo " + employee.numeroLegajo + "?");
                 if (reingresar) {
                     employee.codigoEstadoEmpleado = {
                         id: 87
                     }
-                    //employee.id = null;
+                    employee.id = null;
                     employee.antiguedad = diffBetweenDates(parseInputDate(employee.fechaIngreso), parseInputDate(employee.fechaEgreso));
                     employee.codigoTipoEgreso = null;
                     employee.observaciones = null;
@@ -64,16 +77,6 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                 } else {
                     closeModal();
                 }
-            } else if (employee.codigoEstadoEmpleado.id == 87) {
-                const errorValidation = {
-                    numeroDocumentoPersonal: "Hay un empleado activo con esta identificación"
-                }
-                setValidation(errorValidation);
-            } else if (employee.codigoEstadoEmpleado.id == 88) {
-                const errorValidation = {
-                    numeroDocumentoPersonal: "Hay un empleado en licencia con esta identificación"
-                }
-                setValidation(errorValidation);
             } else {
                 // NO IS AN OPTION
                 console.error("Trying to add employee with wrong data");
