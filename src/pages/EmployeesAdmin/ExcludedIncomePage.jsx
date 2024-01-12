@@ -25,14 +25,27 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
-            'empleado',
-            'motivo',
+            'empleado_documentoPersonal',
+            'empleado_nombreyapellido',
+            'empleado_puesto',
+            'empleado_direccion',
+            'empleado_fechaEgreso',
             'observaciones'
         ],
         inactiveRows: [
-            'empleado',
-            'motivo',
+            'empleado_documentoPersonal',
+            'empleado_nombreyapellido',
+            'empleado_puesto',
+            'empleado_direccion',
+            'empleado_fechaEgreso',
             'observaciones'
+        ],
+        aditionalRows: [
+            'empleado_documentoPersonal',
+            'empleado_nombreyapellido',
+            'empleado_puesto',
+            'empleado_direccion',
+            'empleado_fechaEgreso'
         ]
     },
     formConfiguration: {
@@ -67,7 +80,7 @@ const ExcludedIncomePage = () => {
         getExcludedIncomes().then(result => {
             console.log("activos", statusActive)
             if (result.list)
-                setExcludedIncomeList(result.list.filter(d => d.activo == statusActive));
+                setExcludedIncomeList(result.list);
         });
     }
 

@@ -22,6 +22,7 @@ const pageConfiguration = {
         },
         activeRows: [
             'numeroLegajo',
+            'nombreEmpleado',
             'codigoPais',
             'codigoDireccion',
             'codigoPuesto',
@@ -29,6 +30,18 @@ const pageConfiguration = {
             'fechaEgreso'
         ],
         inactiveRows: [
+        ],
+        aditionalRows: [
+            'nombreEmpleado'
+        ],
+        sortRow: [
+            'numeroLegajo',
+            'nombreEmpleado',
+            'codigoPais',
+            'codigoDireccion',
+            'codigoPuesto',
+            'fechaIngresoReconocida',
+            'fechaEgreso'
         ]
     },
     formConfiguration: {

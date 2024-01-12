@@ -180,9 +180,7 @@ const EmployeesPage = ({ }) => {
                 }
 
                 // REMOVE AFTER DATABASE FIXED
-                data.codigoCentroDeCosto = {
-                    id: 55
-                }
+                data.codigoCentroDeCosto = data.codigoPuesto.codigoCentroDeCosto;
 
                 if (data.antiguedad) {
                     data.fechaIngresoReconocida = new Date(parseInputDate(data.fechaIngreso).getTime() - data.antiguedad);

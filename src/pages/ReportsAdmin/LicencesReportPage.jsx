@@ -3,19 +3,17 @@ import ReportPage from "../ReportPage";
 import { licencesReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    codigoPais: {
-        id: 0
-    },
-    codigoEstadoEmpleado: {
-        id: 0
-    },
-    codigoDireccion: {
-        id: 0
-    }
+    paisLicencia: 1,
+    estadoLicencia: 1,
+    codigoDireccion: null,
+    estado: [1]
 }
 
 const defaultFilter = {
-    f1: 0
+    paisLicencia: 1,
+    estadoLicencia: 1,
+    codigoDireccion: null,
+    estado: [1]
 }
 
 const pageConfiguration = {
@@ -25,41 +23,43 @@ const pageConfiguration = {
             'numeroLegajo',
             'apellido',
             'nombre',
-            'tipoLicencia',
+            'descripcionLicencia',
             'fechaInicio',
             'fechaFin',
-            'codigoEstadoEmpleado',
-            'codigoPais',
-            'codigoPuesto',
-            'codigoDireccion',
-            'codigoGerencia',
-            'codigoJefatura'
+            'estado',
+            'pais',
+            'puesto',
+            'direccion',
+            'gerencia',
+            'jefatura'
         ],
         inactiveRows: [
             'numeroLegajo',
             'apellido',
             'nombre',
-            'tipoLicencia',
+            'descripcionLicencia',
             'fechaInicio',
             'fechaFin',
-            'codigoEstadoEmpleado',
-            'codigoPais',
-            'codigoPuesto',
-            'codigoDireccion',
-            'codigoGerencia',
-            'codigoJefatura'
+            'estado',
+            'pais',
+            'puesto',
+            'direccion',
+            'gerencia',
+            'jefatura'
         ]
     },
     formConfiguration: {
         activeFields: [
-            'codigoEstadoEmpleado',
-            'codigoPais',
+            'estadoLicencia',
+            'paisLicencia',
             'codigoDireccion',
+            'estado'
         ],
         inactiveFields: [
-            'codigoEstadoEmpleado',
-            'codigoPais',
+            'estadoLicencia',
+            'paisLicencia',
             'codigoDireccion',
+            'estado'
         ]
     }
 }

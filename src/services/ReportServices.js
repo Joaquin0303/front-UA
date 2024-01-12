@@ -1,14 +1,18 @@
+import axios from 'axios'
+import { host } from '../Configs';
 
 const useMock = true;
 
 export const backToSchoolReportService = async (filter) => {
     console.log("Filter backToSchoolReportService");
-    if (useMock) return backToSchoolMockData;
+    //if (useMock) return backToSchoolMockData;
+    console.log('filter', filter)
     const result = await axios({
-        method: 'get',
-        url: host + '/ua/report',
+        method: 'post',
+        url: host + '/ua/reporte/vueltaalcolegio/generar',
         data: {
-            filter
+            'estadoEmpleado': 1,
+            'pais': filter.pais
         }
     }).then(response => {
         return response;
@@ -20,12 +24,15 @@ export const backToSchoolReportService = async (filter) => {
 
 export const costCenterReportService = async (filter) => {
     console.log("Filter costCenterReportService");
-    if (useMock) return costCenterMockData;
+    //if (useMock) return costCenterMockData;
+    console.log('filter', filter)
     const result = await axios({
-        method: 'get',
-        url: host + '/ua/report',
+        method: 'post',
+        url: host + '/ua/reporte/centrodecosto/generar',
         data: {
-            filter
+            "idDireccion": filter.codigoDireccion.id,
+            "idCentroDeCosto": filter.codigoCentroDeCosto.id,
+            "estado": filter.estado
         }
     }).then(response => {
         return response;
@@ -36,14 +43,19 @@ export const costCenterReportService = async (filter) => {
 }
 
 export const employmentHistoryReportService = async (filter) => {
-    console.log("Filter employmentHistoryReportService");
-    if (useMock) return employmentHistoryMockData;
+    console.log("Filter employmentHistoryReportService", filter);
+    //if (useMock) return employmentHistoryMockData;
     const result = await axios({
-        method: 'get',
-        url: host + '/ua/report',
+        method: 'post',
+        url: host + '/ua/reporte/historiallaboral/generar',
         data: {
-            filter
+            'pais': filter.pais,
+            'idDireccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
+            'estado': filter.estado,
+            'fechaIngresoDesde': filter.fechaDesde ? filter.fechaDesde : null,
+            'fechaIngresoHasta': filter.fechaHasta ? filter.fechaHasta : null
         }
+
     }).then(response => {
         return response;
     }).catch(error => {
@@ -56,7 +68,7 @@ export const internationalDataCollectionReportService = async (filter) => {
     console.log("Filter internationalDataCollectionReportService");
     if (useMock) return internationalDataCollectionMockData;
     const result = await axios({
-        method: 'get',
+        method: 'post',
         url: host + '/ua/report',
         data: {
             filter
@@ -71,12 +83,12 @@ export const internationalDataCollectionReportService = async (filter) => {
 
 export const externalReportService = async (filter) => {
     console.log("Filter externalReportService");
-    if (useMock) return externalMockData;
+    //if (useMock) return externalMockData;
     const result = await axios({
-        method: 'get',
-        url: host + '/ua/report',
+        method: 'post',
+        url: host + '/ua/reporte/externos/generar',
         data: {
-            filter
+            activo: filter.activo
         }
     }).then(response => {
         return response;
@@ -88,12 +100,14 @@ export const externalReportService = async (filter) => {
 
 export const directorsReportService = async (filter) => {
     console.log("Filter directorsReportService");
-    if (useMock) return directorsMockData;
+    //if (useMock) return directorsMockData;
     const result = await axios({
-        method: 'get',
-        url: host + '/ua/report',
+        method: 'post',
+        url: host + '/ua/reporte/directores/generar',
         data: {
-            filter
+            'estado': filter.estado,
+            'idDireccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
+            'idGerencia': filter.codigoGerencia ? filter.codigoGerencia.id : null
         }
     }).then(response => {
         return response;
@@ -107,7 +121,7 @@ export const genericReportService = async (filter) => {
     console.log("Filter genericReportService");
     if (useMock) return genericMockData;
     const result = await axios({
-        method: 'get',
+        method: 'post',
         url: host + '/ua/report',
         data: {
             filter
@@ -122,12 +136,15 @@ export const genericReportService = async (filter) => {
 
 export const licencesReportService = async (filter) => {
     console.log("Filter licencesReportService");
-    if (useMock) return licencesMockData;
+    //if (useMock) return licencesMockData;
     const result = await axios({
-        method: 'get',
-        url: host + '/ua/report',
+        method: 'post',
+        url: host + '/ua/reporte/licencias/generar',
         data: {
-            filter
+            'pais': filter.paisLicencia,
+            'estadoEmpleado': filter.estado,
+            'direccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
+            'estadoLicencia': filter.estadoLicencia
         }
     }).then(response => {
         return response;

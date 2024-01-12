@@ -3,7 +3,7 @@ import '../../../styles/Modal.css'
 import InputParameter from '../InputParameter';
 import InputText from '../InputText';
 import InputDate from '../InputDate';
-import { parseInputDate, parseToday } from '../../../utils/Utils';
+import { parseInputDate, parseTodayStr } from '../../../utils/Utils';
 
 const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
@@ -14,7 +14,7 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
         updateFormData(d, value);
         if (value && value.id == 202) {
             setDisableEndDate(true);
-            updateFormData('fechaEgreso', parseToday());
+            updateFormData('fechaEgreso', parseTodayStr());
 
         } else {
             setDisableEndDate(false);

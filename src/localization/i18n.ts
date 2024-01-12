@@ -106,11 +106,27 @@ i18n
           Puestos: 'Puestos',
           external: "Empleado Externo",
           cambioDePuesto: "Historial de Cambios de Puesto",
+          pais: 'Pais',
+          cantidadHijos: 'Hijos',
+          edades: 'Edades',
+          direccion: 'Dirección',
+          gerencia: 'Gerencia',
+          descripcionCentroDeCosto: "Centro de Costo",
+          puesto: 'Puesto',
+          codigoProveedor: 'Proveedor',
+          apellidoNombre: 'Nombre',
+          manager: 'Manager',
+          startDate: 'Start Date',
+          nombreEmpleado: 'Nombre',
+          empleado_documentoPersonal: 'Documento Personal',
+          empleado_nombreyapellido: 'Nombre',
+          empleado_puesto: 'Puesto',
+          empleado_direccion: 'Dirección',
+          empleado_fechaEgreso: 'Fecha Egreso'
 
-          
         }
       }
     }
   });
-  
-  export default i18n;
+
+export default i18n;

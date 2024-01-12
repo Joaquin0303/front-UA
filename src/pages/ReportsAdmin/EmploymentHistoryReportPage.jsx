@@ -3,15 +3,19 @@ import ReportPage from "../ReportPage";
 import { employmentHistoryReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    idPais: null,
-    idDireccion: null,
-    estado: null,
-    fechaIngresoDesde: null,
-    fechaIngresoHasta: null
+    pais: [1],
+    codigoDireccion: null,
+    estado: [1],
+    fechaDesde: null,
+    fechaHasta: null
 }
 
 const defaultFilter = {
-    f1: 0
+    pais: [1],
+    codigoDireccion: null,
+    estado: [1],
+    fechaDesde: null,
+    fechaHasta: null
 }
 
 const pageConfiguration = {
@@ -21,50 +25,44 @@ const pageConfiguration = {
             'numeroLegajo',
             'apellido',
             'nombre',
-            'codigoPuesto',
-            'fechaDesde',
-            'fechaHasta'
+            'puesto',
+            'fechaIngresoReconocida',
+            'fechaEgreso'
         ],
         inactiveRows: [
             'numeroLegajo',
             'apellido',
             'nombre',
-            'codigoPuesto',
-            'fechaDesde',
-            'fechaHasta'
+            'puesto',
+            'fechaIngresoReconocida',
+            'fechaEgreso'
         ]
     },
     formConfiguration: {
         activeFields: [
-            'idPais',
-            'idDireccion',
+            'pais',
+            'codigoDireccion',
             'estado',
-            'fechaIngresoDesde',
-            'fechaIngresoHasta'
+            'fechaDesde',
+            'fechaHasta'
         ],
         inactiveFields: [
-            'idPais',
-            'idDireccion',
+            'pais',
+            'codigoDireccion',
             'estado',
-            'fechaIngresoDesde',
-            'fechaIngresoHasta'
+            'fechaDesde',
+            'fechaHasta'
         ]
     }
 }
 
 const compare = (a, b) => {
-    if (a.codigoPais.codigo.toLowerCase() < b.codigoPais.codigo.toLowerCase()) {
+    if (parseInt(a.numeroLegajo) < parseInt(b.numeroLegajo)) {
         return -1;
-    } else if (a.codigoPais.codigo.toLowerCase() > b.codigoPais.codigo.toLowerCase()) {
+    } else if (parseInt(a.numeroLegajo) > parseInt(b.numeroLegajo)) {
         return 1;
     } else {
-        if (a.numeroLegajo < b.numeroLegajo) {
-            return -1;
-        } else if (a.numeroLegajo > b.numeroLegajo) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return 0;
     }
 }
 
@@ -78,6 +76,7 @@ const EmploymentHistoryReportPage = ({ }) => {
 
     const loadReportData = (filter) => {
         employmentHistoryReportService(filter).then(result => {
+            console.log('Report Result', result)
             if (result.list) {
                 setReportDataList(result.list.sort(compare));
             }

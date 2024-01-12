@@ -257,3 +257,7 @@ input:disabled {
     color: #888;
     background-color: #ddd;
 }
+
+.form-group .select-multiple {
+    height: 100px;
+}

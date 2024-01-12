@@ -3,11 +3,11 @@ import ReportPage from "../ReportPage";
 import { externalReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    activo: 0
+    activo: [1]
 }
 
 const defaultFilter = {
-    f1: 0
+    activo: [1]
 }
 
 const pageConfiguration = {
@@ -15,25 +15,39 @@ const pageConfiguration = {
     tableConfiguration: {
         activeRows: [
             'numeroLegajo',
-            'apellido',
-            'nombre',
-            'codigoPuesto',
             'codigoTipoDocumento',
             'numeroDocumento',
             'codigoPais',
             'codigoProveedor',
             'codigoPuesto',
-            'codigoDivision',
-            'codigoDireccion',
-            'codigoGerencia',
             'codigoJefatura',
+            'codigoDivision',
+            'apellidoNombre',
+            'manager',
+            'startDate',
+            'codigoGenero',
             'activo',
             'fechaIngreso',
-            'codigoGenero',
             'fechaEgreso',
             'emailPersonal'
         ],
         inactiveRows: [
+            'numeroLegajo',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'codigoPais',
+            'codigoProveedor',
+            'codigoPuesto',
+            'codigoJefatura',
+            'codigoDivision',
+            'apellidoNombre',
+            'manager',
+            'startDate',
+            'codigoGenero',
+            'activo',
+            'fechaIngreso',
+            'fechaEgreso',
+            'emailPersonal'
         ]
     },
     formConfiguration: {
@@ -47,18 +61,12 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (a.codigoPais.codigo.toLowerCase() < b.codigoPais.codigo.toLowerCase()) {
+    if (parseInt(a.numeroLegajo) < parseInt(b.numeroLegajo)) {
         return -1;
-    } else if (a.codigoPais.codigo.toLowerCase() > b.codigoPais.codigo.toLowerCase()) {
+    } else if (parseInt(a.numeroLegajo) > parseInt(b.numeroLegajo)) {
         return 1;
     } else {
-        if (a.numeroLegajo < b.numeroLegajo) {
-            return -1;
-        } else if (a.numeroLegajo > b.numeroLegajo) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return 0;
     }
 }
 

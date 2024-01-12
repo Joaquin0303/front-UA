@@ -3,19 +3,15 @@ import ReportPage from "../ReportPage";
 import { directorsReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    codigoEstadoEmpleado: {
-        id: 0
-    },
-    codigoDireccion: {
-        id: 0
-    },
-    codigoGerencia: {
-        id: 0
-    }
+    estado: [1],
+    codigoDireccion: null,
+    codigoGerencia: null
 }
 
 const defaultFilter = {
-    f1: 0
+    estado: [1],
+    codigoDireccion: null,
+    codigoGerencia: null
 }
 
 const pageConfiguration = {
@@ -23,51 +19,51 @@ const pageConfiguration = {
     tableConfiguration: {
         activeRows: [
             'numeroLegajo',
-            'apellido',
-            'nombre',
+            'apellidoNombre',
             'fechaIngreso',
             'fechaIngresoReconocida',
-            'codigoPais',
-            'codigoOficina',
+            'descripcionPais',
+            'descripcionLugarDeTrabajo',
             'emailLaboral',
-            'codigoPuesto',
-            'codigoCategoriaEmpleado',
-            'codigoPuestoJefe',
-            'codigoDireccion',
-            'codigoGerencia',
-            'codigoJefatura',
-            'codigoDivision',
-            'codigoCentroDeCosto',
-            'codigoConvenio'
+            'descripcionPuesto',
+            'descripcionCategoria',
+            'descripcionManagerJefe',
+            'descripcionCargoManagerJefe',
+            'descripcionDireccion',
+            'descripcionGerencia',
+            'descripcionJefatura',
+            'descripcionDivision',
+            'descripcionCentroDeCostos',
+            'descripcionConvenio'
         ],
         inactiveRows: [
             'numeroLegajo',
-            'apellido',
-            'nombre',
+            'apellidoNombre',
             'fechaIngreso',
             'fechaIngresoReconocida',
-            'codigoPais',
-            'codigoOficina',
+            'descripcionPais',
+            'descripcionLugarDeTrabajo',
             'emailLaboral',
-            'codigoPuesto',
-            'codigoCategoriaEmpleado',
-            'codigoPuestoJefe',
-            'codigoDireccion',
-            'codigoGerencia',
-            'codigoJefatura',
-            'codigoDivision',
-            'codigoCentroDeCosto',
-            'codigoConvenio'
+            'descripcionPuesto',
+            'descripcionCategoria',
+            'descripcionManagerJefe',
+            'descripcionCargoManagerJefe',
+            'descripcionDireccion',
+            'descripcionGerencia',
+            'descripcionJefatura',
+            'descripcionDivision',
+            'descripcionCentroDeCostos',
+            'descripcionConvenio'
         ]
     },
     formConfiguration: {
         activeFields: [
-            'codigoEstadoEmpleado',
+            'estado',
             'codigoDireccion',
             'codigoGerencia'
         ],
         inactiveFields: [
-            'codigoEstadoEmpleado',
+            'estado',
             'codigoDireccion',
             'codigoGerencia'
         ]
@@ -75,18 +71,12 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (a.codigoPais.codigo.toLowerCase() < b.codigoPais.codigo.toLowerCase()) {
+    if (parseInt(a.numeroLegajo) < parseInt(b.numeroLegajo)) {
         return -1;
-    } else if (a.codigoPais.codigo.toLowerCase() > b.codigoPais.codigo.toLowerCase()) {
+    } else if (parseInt(a.numeroLegajo) > parseInt(b.numeroLegajo)) {
         return 1;
     } else {
-        if (a.numeroLegajo < b.numeroLegajo) {
-            return -1;
-        } else if (a.numeroLegajo > b.numeroLegajo) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return 0;
     }
 }
 

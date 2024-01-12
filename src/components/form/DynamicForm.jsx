@@ -14,6 +14,9 @@ import InputNumber from './InputNumber';
 import InputCountry from './InputCountry';
 import InputFileNumber from './InputFileNumber';
 import InputParameterSearch from './InputParameterSearch';
+import InputCountryMulti from './InputCountryMulti';
+import InputStatusMulti from './InputStatusMulti';
+import InputActiveMulti from './InputActiveMulti';
 
 const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
@@ -99,6 +102,16 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
                         return <InputParameter validation={validation} key={i} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == 24)} updateFormData={updateFormData} />
                     case 'secuencia':
                         return <InputNumber disabled={data.id && data.id > 0} validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />
+                    case 'pais':
+                        return <InputCountryMulti multiple={true} validation={validation} key={i} name={key} values={formData[key]} updateFormData={updateFormData} />;
+                    case 'paisLicencia':
+                        return <InputCountryMulti multiple={false} validation={validation} key={i} name={key} values={formData[key]} updateFormData={updateFormData} />;
+                    case 'estado':
+                        return <InputStatusMulti multiple={true} validation={validation} key={i} name={key} values={formData[key]} updateFormData={updateFormData} />;
+                    case 'estadoLicencia':
+                        return <InputStatusMulti multiple={false} validation={validation} key={i} name={key} values={formData[key]} updateFormData={updateFormData} />;
+                    case 'activo':
+                        return <InputActiveMulti name={key} values={formData[key]} updateFormData={updateFormData} />;
                     default:
                         if (key.startsWith('fecha')) {
                             return <InputDate validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />

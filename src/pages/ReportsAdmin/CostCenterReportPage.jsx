@@ -9,13 +9,17 @@ const FilterDataModel = {
     codigoCentroDeCosto: {
         id: 0
     },
-    codigoEstadoEmpleado: {
-        id: 0
-    }
+    estado: [1]
 }
 
 const defaultFilter = {
-    f1: 0
+    codigoDireccion: {
+        id: 0
+    },
+    codigoCentroDeCosto: {
+        id: 0
+    },
+    estado: [1]
 }
 
 const pageConfiguration = {
@@ -25,18 +29,20 @@ const pageConfiguration = {
             'numeroLegajo',
             'apellido',
             'nombre',
-            'codigoDireccion',
-            'codigoGerencia',
+            'direccion',
+            'gerencia',
             'codigoCentroDeCosto',
+            'descripcionCentroDeCosto',
             'fte'
         ],
         inactiveRows: [
             'numeroLegajo',
             'apellido',
             'nombre',
-            'codigoDireccion',
-            'codigoGerencia',
+            'direccion',
+            'gerencia',
             'codigoCentroDeCosto',
+            'descripcionCentroDeCosto',
             'fte'
         ]
     },
@@ -44,29 +50,23 @@ const pageConfiguration = {
         activeFields: [
             'codigoDireccion',
             'codigoCentroDeCosto',
-            'codigoEstadoEmpleado'
+            'estado'
         ],
         inactiveFields: [
             'codigoDireccion',
             'codigoCentroDeCosto',
-            'codigoEstadoEmpleado'
+            'estado'
         ]
     }
 }
 
 const compare = (a, b) => {
-    if (a.codigoPais.codigo.toLowerCase() < b.codigoPais.codigo.toLowerCase()) {
+    if (parseInt(a.numeroLegajo) < parseInt(b.numeroLegajo)) {
         return -1;
-    } else if (a.codigoPais.codigo.toLowerCase() > b.codigoPais.codigo.toLowerCase()) {
+    } else if (parseInt(a.numeroLegajo) > parseInt(b.numeroLegajo)) {
         return 1;
     } else {
-        if (a.numeroLegajo < b.numeroLegajo) {
-            return -1;
-        } else if (a.numeroLegajo > b.numeroLegajo) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return 0;
     }
 }
 
@@ -80,6 +80,7 @@ const CostCenterReportPage = ({ }) => {
 
     const loadReportData = (filter) => {
         costCenterReportService(filter).then(result => {
+            console.log('result', result)
             if (result.list) {
                 setReportDataList(result.list.sort(compare));
             }
