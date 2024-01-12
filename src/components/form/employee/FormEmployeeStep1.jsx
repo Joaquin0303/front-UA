@@ -18,6 +18,7 @@ const FormEmployeeStep1 = ({ action, parameterList, validation, formData, update
             <InputDate validation={validation} name="fechaNacimiento" updateFormData={updateFormData} value={formData["fechaNacimiento"]} />
             <InputParameter validation={validation} name="codigoGeneracion" value={formData["codigoGeneracion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 10)} updateFormData={updateFormData} />
             <InputDate validation={validation} name="fechaIngreso" updateFormData={updateFormData} value={formData["fechaIngreso"]} />
+            {action == TABLE_ACTIONS.EDIT && <InputDate validation={validation} name="fechaIngresoReconocida" updateFormData={updateFormData} value={formData["fechaIngresoReconocida"]} />}
             <InputParameter validation={validation} name="codigoTipoDocumento" value={formData["codigoTipoDocumento"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 29)} updateFormData={updateFormData} />
             <InputText validation={validation} name="numeroDocumentoPersonal" updateFormData={updateFormData} value={formData["numeroDocumentoPersonal"]} />
             <InputText validation={validation} name="numeroDocumentoLaboral" updateFormData={updateFormData} value={formData["numeroDocumentoLaboral"]} />
