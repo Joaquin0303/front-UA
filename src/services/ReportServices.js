@@ -51,7 +51,7 @@ export const employmentHistoryReportService = async (filter) => {
         data: {
             'pais': filter.pais,
             'idDireccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
-            'estado': filter.estado,
+            'estado': filter.estadoEmpleado,
             'fechaIngresoDesde': filter.fechaDesde ? filter.fechaDesde : null,
             'fechaIngresoHasta': filter.fechaHasta ? filter.fechaHasta : null
         }

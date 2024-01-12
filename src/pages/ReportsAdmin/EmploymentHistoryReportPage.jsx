@@ -5,7 +5,7 @@ import { employmentHistoryReportService } from "../../services/ReportServices";
 const FilterDataModel = {
     pais: [1],
     codigoDireccion: null,
-    estado: [1],
+    estadoEmpleado: [87],
     fechaDesde: null,
     fechaHasta: null
 }
@@ -13,7 +13,7 @@ const FilterDataModel = {
 const defaultFilter = {
     pais: [1],
     codigoDireccion: null,
-    estado: [1],
+    estadoEmpleado: [87],
     fechaDesde: null,
     fechaHasta: null
 }
@@ -42,14 +42,14 @@ const pageConfiguration = {
         activeFields: [
             'pais',
             'codigoDireccion',
-            'estado',
+            'estadoEmpleado',
             'fechaDesde',
             'fechaHasta'
         ],
         inactiveFields: [
             'pais',
             'codigoDireccion',
-            'estado',
+            'estadoEmpleado',
             'fechaDesde',
             'fechaHasta'
         ]
