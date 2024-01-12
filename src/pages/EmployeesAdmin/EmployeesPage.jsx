@@ -253,10 +253,11 @@ const EmployeesPage = ({ }) => {
             case TABLE_ACTIONS.CHANGEPOSITION:
                 getEmployeeById(data.id).then(oldEmp => {
                     if (oldEmp.model.codigoPuesto.id != data.codigoPuesto.id) {
-                        addPositionChange(data.numeroLegajo, data.codigoPais, data.codigoOficina, data.codigoDireccion, data.codigoPuesto.codigoGerencia, data.codigoPuesto.codigoJefatura, data.codigoPuesto, data.fechaIngresoReconocida, new Date(), true).then(r => {
+                        addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, data.fechaIngresoReconocida, new Date(), true).then(r => {
                             console.log('Position History Updated', r)
                         })
                         // REMOVE AFTER DATABASE FIXED
+                        console.log("data.codigoPuesto.codigoCentroDeCosto", data.codigoPuesto.codigoCentroDeCosto)
                         data.codigoCentroDeCosto = data.codigoPuesto.codigoCentroDeCosto;
                         updateEmployee(data.id, data).then(r => {
                             console.log('Employee updated=', r);
