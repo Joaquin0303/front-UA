@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const CellAge = ({ ageData }) => {
 
+    const [ages, setAges] = useState([]);
+
+    useEffect(() => {
+        if (ageData && ageData.length > 0) {
+            setAges(ageData.split(','));
+        }
+    }, [ageData]);
+
+    const toArray = (d) => {
+        ageData && ageData.length > 0 && ageData.split(',')
+    }
     return (
         <td>
-            {ageData && ageData.length > 0 && ageData.split(',').map((r, i) => {
-                return <span key={i}>{r},</span>
+            {ages.map((r, i) => {
+                return <span key={i}>{r} {i < (ages.length - 1) ? ',' : ''}</span>
             })}
         </td>
     );

@@ -161,88 +161,36 @@ const backToSchoolMockData = {
             numeroLegajo: 10001,
             apellido: 'Garcia',
             nombre: 'Ramiro',
-            hijos: 2,
-            edades: [5, 9],
-            codigoPais: {
-                "id": 1,
-                "codigo": "ARG",
-                "descripcion": "Argentina",
-                "secuenciador": {
-                    "id": 1,
-                    "codigo": "S1",
-                    "rangoDesde": 20,
-                    "rangoHasta": 19999,
-                    "secuencia": 27,
-                    "activo": true
-                },
-                "activo": true
-            },
+            cantidadHijos: 5,
+            edades: null,
+            pais: "Argentina",
             activo: true
         },
         {
             numeroLegajo: 10002,
             apellido: 'Hernandez',
             nombre: 'Lidia',
-            hijos: 0,
-            edades: [],
-            codigoPais: {
-                "id": 1,
-                "codigo": "ARG",
-                "descripcion": "Argentina",
-                "secuenciador": {
-                    "id": 1,
-                    "codigo": "S1",
-                    "rangoDesde": 20,
-                    "rangoHasta": 19999,
-                    "secuencia": 27,
-                    "activo": true
-                },
-                "activo": true
-            },
+            cantidadHijos: 12,
+            edades: "5, 9",
+            pais: "Argentina",
             activo: true
         },
         {
             numeroLegajo: 10003,
             apellido: 'Rojas',
             nombre: 'Belen',
-            hijos: 1,
-            edades: [7],
-            codigoPais: {
-                "id": 1,
-                "codigo": "ARG",
-                "descripcion": "Argentina",
-                "secuenciador": {
-                    "id": 1,
-                    "codigo": "S1",
-                    "rangoDesde": 20,
-                    "rangoHasta": 19999,
-                    "secuencia": 27,
-                    "activo": true
-                },
-                "activo": true
-            },
+            cantidadHijos: 62,
+            edades: "5, 9",
+            pais: "Argentina",
             activo: true
         },
         {
             numeroLegajo: 10004,
             apellido: 'Asis',
             nombre: 'Carlos',
-            hijos: 2,
-            edades: [10, 13, 19],
-            codigoPais: {
-                id: 1,
-                codigo: "ARG",
-                descripcion: "Argentina",
-                secuenciador: {
-                    id: 1,
-                    codigo: "S1",
-                    rangoDesde: 20,
-                    rangoHasta: 19999,
-                    secuencia: 27,
-                    activo: true
-                },
-                activo: true
-            },
+            cantidadHijos: 15,
+            edades: "5, 9",
+            pais: "Argentina",
             activo: true
         }
     ]

@@ -109,7 +109,7 @@ const Row = ({ columnsKey, tableConfiguration, data, openModalForm }) => {
             case 'codigoParentesco':
                 return <CellParameter key={i} parameter={data[key]} />
             case 'cantidadHijos':
-                return <Cell key={i} value={data[key] == 0 ? '' : data[key] == 0} />
+                return <Cell key={i} value={data[key] == 0 ? '' : data[key]} />
             case 'nombreEmpleado':
                 return <CellEmployeeName numeroLegajo={data['numeroLegajo']} />
             case 'empleado_documentoPersonal':
