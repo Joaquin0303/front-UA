@@ -239,7 +239,6 @@ const EmployeesPage = ({ }) => {
     }
 
     const onEdit = (data, action) => {
-
         switch (action) {
             case TABLE_ACTIONS.EDIT:
                 const validation = validate(data);
@@ -257,6 +256,8 @@ const EmployeesPage = ({ }) => {
                         addPositionChange(data.numeroLegajo, data.codigoPais, data.codigoOficina, data.codigoDireccion, data.codigoPuesto.codigoGerencia, data.codigoPuesto.codigoJefatura, data.codigoPuesto, data.fechaIngresoReconocida, new Date(), true).then(r => {
                             console.log('Position History Updated', r)
                         })
+                        // REMOVE AFTER DATABASE FIXED
+                        data.codigoCentroDeCosto = data.codigoPuesto.codigoCentroDeCosto;
                         updateEmployee(data.id, data).then(r => {
                             console.log('Employee updated=', r);
                             loadEmployees();
