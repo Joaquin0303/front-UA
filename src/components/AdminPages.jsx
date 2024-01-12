@@ -54,17 +54,17 @@ export const AdminEmployees = () =>
         <h4>Administración de Empleados</h4>
         <div className='div-cards'>
             <Card img={logoEmpleados} title={'Empleados'} path={'/administracion-empleados/empleados'} />
-            <Card img={logoFamilia} title={'Cargas de Familia'} path={'/administracion-empleados/cargas-de-familia'} />
+            <Card img={logoFamilia} title={'Carga de Familia'} path={'/administracion-empleados/cargas-de-familia'} />
             <Card img={logoExterno} title={'Externos'} path={'/administracion-empleados/externos'} />
-            <Card img={logoLicencias} title={'Historial Licencias'} path={'/administracion-empleados/historial-licencias'} />
-            <Card img={logoHisPuesto} title={'Historial Cambios de Puesto'} path={'/administracion-empleados/cambios-puestos'} />
-            <Card img={logoHisIngreso} title={'Historial Ingreso Caído'} path={'/administracion-empleados/ingreso-caido'} />
+            <Card img={logoLicencias} title={'Historial de Licencias'} path={'/administracion-empleados/historial-licencias'} />
+            <Card img={logoHisPuesto} title={'Historial de Cambios de Puesto'} path={'/administracion-empleados/cambios-puestos'} />
+            <Card img={logoHisIngreso} title={'Historial de Ingresos Caídos'} path={'/administracion-empleados/ingreso-caido'} />
         </div>
     </div>
 
 export const Reports = () =>
     <div className='bloque_principal'>
-        <h4>Reportes</h4>
+        <h2>Reportes</h2>
         <div className='div-cards'>
             <Card img={vueltaColegio} title={'Vuelta al Colegio'} path={'/reportes/vuelta-al-colegio'} />
             <Card img={centralCosto} title={'Central de Costo'} path={'/reportes/central-costo'} />

@@ -24,7 +24,6 @@ i18n
           descripcion: "Descripción",
           codigo: "Código",
           tipoParametro: "Tipo de Parámetro",
-          parameterType: "Tipo de Parámetro",
           texto1: "Texto 1",
           texto2: "Texto 2",
           rangoDesde: "Desde",
@@ -38,7 +37,6 @@ i18n
           secuenciador: "Secuenciador",
           permisos: 'Permisos',
           roles: "Roles",
-          paises: 'Países',
           codigoCentroDeCosto: "Centro de costo",
           codigoPais: "País",
           apellido: "Apellido",
@@ -82,11 +80,9 @@ i18n
           codigoCategoriaConvenio: "Categoría convenio",
           afiliadoSindicato: "Afiliado sindicato",
           codigoGrado: "Grado",
-          ingresoCaido: "Ingreso caido",
-          cambioDePuesto: "Historial de puesto",
+          ingresoCaido: "Ingreso Caído",
           cargaDeFamilia: "Carga de familia",
           licenciaHistory: "Historial de licencia",
-          external: "Empleado externo",
           codigoTipoEgreso: "Motivo de egreso",
           observaciones: "Observaciones",
           fechaEgreso: "Fecha de egreso",
@@ -103,10 +99,18 @@ i18n
           licencias: 'Licencias',
           codigoEstadoEmpleado: 'Estado',
           codigoParentesco: 'Paretesco',
-          numeroDocumento: 'Nro. Doc'
+          numeroDocumento: 'Nro. Doc',
+          Parametros: 'Parámetros',
+          paises: 'País',
+          parameterType: "Tipos de Parámetros",
+          Puestos: 'Puestos',
+          external: "Empleado Externo",
+          cambioDePuesto: "Historial de Cambios de Puesto",
+
+          
         }
       }
     }
   });
-
-export default i18n;
+  
+  export default i18n;

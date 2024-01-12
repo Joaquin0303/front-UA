@@ -67,8 +67,8 @@ const pageConfiguration = {
             'codigoPuesto',
             'codigoDireccion',
             'codigoDivision',
-            'codigoGerencia'
-
+            'codigoGerencia',
+            'fechaIngreso'
         ],
         inactiveRows: [
             'numeroLegajo',
@@ -78,7 +78,8 @@ const pageConfiguration = {
             'codigoPuesto',
             'codigoDireccion',
             'codigoDivision',
-            'codigoGerencia'
+            'codigoGerencia',
+            'fechaIngreso'
         ]
     },
     formConfiguration: {
