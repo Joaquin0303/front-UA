@@ -16,7 +16,8 @@ const CellAge = ({ ageData }) => {
     return (
         <td>
             {ages.map((r, i) => {
-                return <span key={i}>{r} {i < (ages.length - 1) ? ',' : ''}</span>
+                if (r)
+                    return <span key={i}>{r} {i < (ages.length - 1) ? ',' : ''}</span>
             })}
         </td>
     );
