@@ -3,6 +3,10 @@ import ABMPage from '../ABMPage';
 import { getExternals, addExternal, updateExternal, removeExternal, getNextFileNumber } from '../../services/ExternalServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
+export const arrowDownExternModel = {
+    fechaEgreso: ''
+}
+
 const ExternalModel = {
     apellido: '',
     nombre: '',
@@ -52,7 +56,7 @@ const pageConfiguration = {
             activeActions: [
                 TABLE_ACTIONS.VIEW,
                 TABLE_ACTIONS.EDIT,
-                TABLE_ACTIONS.INACTIVATE
+                TABLE_ACTIONS.INACTIVATEEXTERN
             ],
             inactiveActions: [
                 TABLE_ACTIONS.VIEW,
@@ -171,13 +175,17 @@ const ExternalPage = () => {
 
     }
 
-    const onEdit = (data) => {
+    const onEdit = (data, action) => {
+        if(action === TABLE_ACTIONS.EDIT){
         const validation = validate(data);
         if (validation.error) throw validation;
         updateExternal(data.id, data).then(result => {
             console.log('edited=', result);
             loadExternals();
-        });
+        })}
+        else if (action === TABLE_ACTIONS.INACTIVATEEXTERN){
+            
+        }
     }
 
     const onRemove = (data) => {

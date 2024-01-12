@@ -14,6 +14,12 @@ const CellAction = ({ actions, data, openModalForm }) => {
             (actions.inactiveActions.includes(actionName) && !data.activo);
     }
 
+    const openExternalModel = (emp) => {
+        const external = { ...arrowDownExternModel };
+        external.empleado = emp;
+        openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.INACTIVATEEXTERN, external);
+    }
+
     return (
         <td className='expand'>
             <span className='actions'>
@@ -28,6 +34,9 @@ const CellAction = ({ actions, data, openModalForm }) => {
                 </div>}
                 {showAction(TABLE_ACTIONS.ACTIVATE) && <div title="Dar de Alta" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ACTIVATE, data) }}>
                     <FaArrowUp />
+                </div>}
+                {showAction(TABLE_ACTIONS.INACTIVATEEXTERN) && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); openExternalModel(data) }}>
+                    <FaArrowDown />
                 </div>}
             </span>
         </td >

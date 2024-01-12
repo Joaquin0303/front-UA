@@ -47,6 +47,7 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
             case TABLE_ACTIONS.VIEW: break;
             case TABLE_ACTIONS.CHANGEPOSITION: onEdit(data, TABLE_ACTIONS.CHANGEPOSITION); break;
             case TABLE_ACTIONS.ADDFAMILY: onAdd(data, TABLE_ACTIONS.ADDFAMILY); break;
+            case TABLE_ACTIONS.INACTIVATEEXTERN: onEdit(data, TABLE_ACTIONS.INACTIVATEEXTERN); break;
             case 'remove': onRemove(data); break;
             default: ;
         }
