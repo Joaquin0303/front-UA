@@ -29,7 +29,7 @@ body{
 }
 
 #gif{
-    width: 60%;
+    width: 50%;
 }
 
 @media (max-width: 768px) {
@@ -98,4 +98,11 @@ form h2{
     font-weight: 400;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.title-login{
+    display: flex;
+    justify-content: center;
+    color: #002447;
+    font-weight: bold;
 }

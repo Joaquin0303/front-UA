@@ -31,6 +31,11 @@ const Login = ({ setToken }) => {
                     <img src={logoempresa} id="logo-empresa" alt="" />
                 </div>
             </header>
+
+            <div className='title-login'>
+                <h1>ABM HR System</h1>
+            </div>
+
             <div className="login-wrapper">
                 <img src={gifWork} alt="gif-work" id='gif' />
                 <form onSubmit={handleSubmit}>
