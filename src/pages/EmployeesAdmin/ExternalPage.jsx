@@ -4,7 +4,8 @@ import { getExternals, addExternal, updateExternal, removeExternal, getNextFileN
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 export const arrowDownExternModel = {
-    fechaEgreso: ''
+    fechaEgresoExternal: '',
+    activo: true
 }
 
 const ExternalModel = {
@@ -60,6 +61,7 @@ const pageConfiguration = {
             ],
             inactiveActions: [
                 TABLE_ACTIONS.VIEW,
+                TABLE_ACTIONS.EDIT
             ],
         },
         activeRows: [
@@ -82,7 +84,8 @@ const pageConfiguration = {
             'codigoDireccion',
             'codigoDivision',
             'codigoGerencia',
-            'fechaIngreso'
+            'fechaIngreso',
+            'fechaEgreso',
         ]
     },
     formConfiguration: {
@@ -102,9 +105,27 @@ const pageConfiguration = {
             'codigoPuesto',
             'codigoDivision',
             'codigoProveedor',
-            'emailPersonal'
+            'emailPersonal',
+            'fechaEgresoExternal'
         ],
         inactiveFields: [
+            'apellido',
+            'nombre',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'numeroDocumentoLaboral',
+            'codigoDireccion',
+            'codigoNacionalidad',
+            'codigoGenero',
+            'fechaIngreso',
+            'codigoPais',
+            'codigoGerencia',
+            'codigoJefatura',
+            'codigoPuesto',
+            'codigoDivision',
+            'codigoProveedor',
+            'emailPersonal',
+            'fechaEgreso'
         ]
     },
     viewConfiguration: {
@@ -118,6 +139,7 @@ const pageConfiguration = {
             'codigoNacionalidad',
             'codigoGenero',
             'fechaIngreso',
+            'fechaEgreso',
             'codigoPais',
             'codigoGerencia',
             'codigoJefatura',
@@ -136,6 +158,7 @@ const pageConfiguration = {
             'codigoNacionalidad',
             'codigoGenero',
             'fechaIngreso',
+            'fechaEgreso',
             'codigoPais',
             'codigoGerencia',
             'codigoJefatura',
@@ -176,15 +199,22 @@ const ExternalPage = () => {
     }
 
     const onEdit = (data, action) => {
-        if(action === TABLE_ACTIONS.EDIT){
-        const validation = validate(data);
-        if (validation.error) throw validation;
-        updateExternal(data.id, data).then(result => {
-            console.log('edited=', result);
-            loadExternals();
-        })}
-        else if (action === TABLE_ACTIONS.INACTIVATEEXTERN){
-            
+        if (action === TABLE_ACTIONS.EDIT) {
+            const validation = validate(data);
+            if (validation.error) throw validation;
+            updateExternal(data.id, data).then(result => {
+                console.log('edited=', result);
+                loadExternals();
+            })
+        }
+        else if (action === TABLE_ACTIONS.INACTIVATEEXTERN) {
+            console.log('acacacc', data)
+            data.empleado.fechaEgreso = data.fechaEgresoExternal;
+            data.empleado.activo = false;
+            updateExternal(data.empleado.id, data.empleado).then(result => {
+                console.log('inactivated=', result);
+                loadExternals();
+            })
         }
     }
 

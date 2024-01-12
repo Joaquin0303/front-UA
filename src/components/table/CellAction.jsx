@@ -6,6 +6,7 @@ import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { TbLicense } from "react-icons/tb";
 import { TbLicenseOff } from "react-icons/tb";
 import { MODAL_FORM, TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import { arrowDownExternModel } from '../../pages/EmployeesAdmin/ExternalPage';
 
 const CellAction = ({ actions, data, openModalForm }) => {
 
@@ -15,11 +16,12 @@ const CellAction = ({ actions, data, openModalForm }) => {
     }
 
     const openExternalModel = (emp) => {
+
         const external = { ...arrowDownExternModel };
         external.empleado = emp;
         openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.INACTIVATEEXTERN, external);
     }
-
+    console.log('data', data)
     return (
         <td className='expand'>
             <span className='actions'>

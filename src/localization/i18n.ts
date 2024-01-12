@@ -21,7 +21,7 @@ i18n
           numeroLegajo: 'Legajo',
           fechaAlta: "Fecha de Alta",
           fechaBaja: "Fecha de Baja",
-          descripcion: "Descripción", 
+          descripcion: "Descripción",
           codigo: "Código",
           tipoParametro: "Tipos de Parámetro",
           texto1: "Texto 1",
@@ -122,7 +122,8 @@ i18n
           empleado_nombreyapellido: 'Nombre',
           empleado_puesto: 'Puesto',
           empleado_direccion: 'Dirección',
-          empleado_fechaEgreso: 'Fecha Egreso'
+          empleado_fechaEgreso: 'Fecha de egreso',
+          fechaEgresoExternal: 'Fecha de egreso',
 
         }
       }
