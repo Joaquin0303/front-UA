@@ -59,9 +59,9 @@ function App() {
       <nav>
         <div className="nav-links">
           <Link to="/">Inicio</Link>
-          <Link to="/administracion-usuarios">Administración Usuarios</Link>
-          <Link to="/administracion-parametros">Administración Parámetros</Link>
-          <Link to="/administracion-empleados">Administración Empleados</Link>
+          <Link to="/administracion-usuarios">Administración de Usuarios</Link>
+          <Link to="/administracion-parametros">Administración de Parámetros</Link>
+          <Link to="/administracion-empleados">Administración de Empleados</Link>
           <Link to="/reportes">Reportes</Link>
         </div>
       </nav>
