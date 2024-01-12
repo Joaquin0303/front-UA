@@ -4,7 +4,7 @@ const CellAge = ({ ageData }) => {
 
     return (
         <td>
-            {ageData && ageData.map((r, i) => {
+            {ageData && ageData.length > 0 && ageData.split(',').map((r, i) => {
                 return <span key={i}>{r},</span>
             })}
         </td>
