@@ -26,8 +26,7 @@ import Card from "./cards";
 
 export const AdminUsers = () =>
     <div className='bloque_principal'>
-        <h2>Alta, Baja y Modificación</h2>
-        <h4>Administración de Usuarios</h4>
+        <h2>Administración de Usuarios</h2>
         <div className='div-cards'>
             <Card img={logoGrupo} title={'Usuarios'} path={'/administracion-usuarios/usuarios'} />
             <Card img={logoRoles} title={'Roles'} path={'/administracion-usuarios/roles'} />
@@ -37,8 +36,7 @@ export const AdminUsers = () =>
 
 export const AdminParam = () =>
     <div className='bloque_principal'>
-        <h2>Alta, Baja y Modificación</h2>
-        <h4>Administración de Parámetros</h4>
+        <h2>Administración de Parámetros</h2>
         <div className='div-cards'>
             <Card img={logoParam} title={'Tipo de Parámetros'} path={'/administracion-parametros/tipo-de-parametros'} />
             <Card img={logoParamTipo} title={'Parámetros'} path={'/administracion-parametros/parametros'} />
@@ -50,8 +48,7 @@ export const AdminParam = () =>
 
 export const AdminEmployees = () =>
     <div className='bloque_principal'>
-        <h2>Alta, Baja y Modificación</h2>
-        <h4>Administración de Empleados</h4>
+        <h2>Administración de Empleados</h2>
         <div className='div-cards'>
             <Card img={logoEmpleados} title={'Empleados'} path={'/administracion-empleados/empleados'} />
             <Card img={logoFamilia} title={'Carga de Familia'} path={'/administracion-empleados/cargas-de-familia'} />
