@@ -9,10 +9,9 @@ const InputParameter = ({ validation, name, value, valueName, parameterList, dis
     const parameterListByCountry = !country ? parameterList : parameterList.filter(p => p.texto1 == country.codigo);
 
     const paramSelectorChangeHandler = (e) => {
+        console.log('PARAMETER CHANGE')
         if (e.target.value > 0) {
-            updateFormData(name, {
-                id: e.target.value
-            });
+            updateFormData(name, parameterListByCountry.find(p => p.id == e.target.value));
         } else {
             updateFormData(name, null);
         }

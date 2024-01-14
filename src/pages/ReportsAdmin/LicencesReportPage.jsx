@@ -9,6 +9,55 @@ const FilterDataModel = {
     estado: [1]
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'paisLicencia',
+        type: 'country',
+        multivalue: true
+    },
+    {
+        fieldName: 'estadoLicencia',
+        type: 'select',
+        multivalue: true,
+        options: [
+            {
+                value: 1,
+                label: 'Activo'
+            },
+            {
+                value: 0,
+                label: 'Inactivo'
+            }
+        ]
+    },
+    {
+        fieldName: 'codigoDireccion',
+        type: 'parameter',
+        code: 6
+    },
+    {
+        fieldName: 'estado',
+        type: 'select',
+        multivalue: true,
+        options: [
+            {
+                value: 87,
+                label: 'Activo'
+            },
+            {
+                value: 88,
+                label: 'Inactivo'
+            }
+        ]
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const defaultFilter = {
     paisLicencia: 1,
     estadoLicencia: 1,
@@ -19,6 +68,7 @@ const defaultFilter = {
 const pageConfiguration = {
     name: 'licencias',
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeRows: [
             'numeroLegajo',
             'apellido',
@@ -49,6 +99,7 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'estadoLicencia',
             'paisLicencia',

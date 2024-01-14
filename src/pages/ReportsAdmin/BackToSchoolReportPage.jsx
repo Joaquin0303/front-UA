@@ -3,13 +3,36 @@ import { backToSchoolReportService } from "../../services/ReportServices";
 import ReportPage from "../ReportPage";
 
 const FilterDataModel = {
-    pais: [
+    empleadoPais: [
         1
     ]
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'empleadoPais',
+        type: 'country',
+        multivalue: true
+    },
+    {
+        fieldName: 'edades',
+        type: 'listString',
+        separator: ','
+    },
+    {
+        fieldName: 'cantidadHijos',
+        type: 'numberNonCero'
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const defaultFilter = {
-    pais: [
+    empleadoPais: [
         1
     ]
 }
@@ -20,6 +43,7 @@ const pageConfiguration = {
     show_add_button: true,
     show_active_button: true,
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         actions: {
             activeActions: [
             ],
@@ -44,11 +68,12 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
-            'pais'
+            'empleadoPais'
         ],
         inactiveFields: [
-            'pais'
+            'empleadoPais'
         ]
     },
     viewConfiguration: {

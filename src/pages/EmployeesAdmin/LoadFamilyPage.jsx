@@ -17,11 +17,47 @@ export const LoadFamilyModel = {
     activo: true
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'apellido',
+        type: 'string'
+    },
+    {
+        fieldName: 'nombre',
+        type: 'string'
+    },
+    {
+        fieldName: 'codigoParentesco',
+        type: 'parameter',
+        code: 20
+    },
+    {
+        fieldName: 'codigoTipoDocumento',
+        type: 'parameter',
+        code: 29
+    },
+    {
+        fieldName: 'numeroDocumento',
+        type: 'string'
+    },
+    {
+        fieldName: 'fechaNacimiento',
+        type: 'calendar'
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const pageConfiguration = {
     show_search: true,
     show_add_button: false,
     show_active_button: false,
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         actions: {
             activeActions: [
                 TABLE_ACTIONS.VIEW,
@@ -46,6 +82,7 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'nombre',
             'apellido',

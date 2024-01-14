@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const CellAge = ({ ageData }) => {
+const CellAge = ({ ageData, separator }) => {
 
     const [ages, setAges] = useState([]);
 
     useEffect(() => {
         if (ageData && ageData.length > 0) {
-            setAges(ageData.split(','));
+            setAges(ageData.split(separator));
         }
     }, [ageData]);
 

@@ -5,9 +5,55 @@ import { employmentHistoryReportService } from "../../services/ReportServices";
 const FilterDataModel = {
     pais: [1],
     codigoDireccion: null,
-    estadoEmpleado: [87],
-    fechaDesde: null,
-    fechaHasta: null
+    estado: [87],
+    fechaIngresoDesde: null,
+    fechaIngresoHasta: null
+}
+
+const ModelDefinition = [
+    {
+        fieldName: 'pais',
+        type: 'country',
+        multivalue: true
+    },
+    {
+        fieldName: 'estado',
+        type: 'select',
+        multivalue: true,
+        options: [
+            {
+                value: 87,
+                label: 'Activo'
+            },
+            {
+                value: 88,
+                label: 'Inactivo'
+            },
+            {
+                value: 89,
+                label: 'Baja'
+            }
+        ]
+    },
+    {
+        fieldName: 'codigoDireccion',
+        type: 'parameter',
+        code: 6
+    },
+    {
+        fieldName: 'fechaIngresoDesde',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'fechaIngresoHasta',
+        type: 'calendar'
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
 }
 
 const defaultFilter = {
@@ -21,6 +67,7 @@ const defaultFilter = {
 const pageConfiguration = {
     name: 'historial-laboral',
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeRows: [
             'numeroLegajo',
             'apellido',
@@ -39,17 +86,18 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'pais',
             'codigoDireccion',
-            'estadoEmpleado',
+            'estado',
             'fechaDesde',
             'fechaHasta'
         ],
         inactiveFields: [
             'pais',
             'codigoDireccion',
-            'estadoEmpleado',
+            'estado',
             'fechaDesde',
             'fechaHasta'
         ]

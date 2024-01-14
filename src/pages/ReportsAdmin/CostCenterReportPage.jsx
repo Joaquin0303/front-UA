@@ -6,10 +6,44 @@ const FilterDataModel = {
     codigoDireccion: {
         id: 0
     },
-    codigoCentroDeCosto: {
+    centroDeCosto: {
         id: 0
     },
-    estado: [1]
+    estado: [87]
+}
+
+const ModelDefinition = [
+    {
+        fieldName: 'estado',
+        type: 'select',
+        multivalue: true,
+        options: [
+            {
+                value: 87,
+                label: 'Activo'
+            },
+            {
+                value: 88,
+                label: 'Inactivo'
+            }
+        ]
+    },
+    {
+        fieldName: 'codigoDireccion',
+        type: 'parameter',
+        code: 6
+    },
+    {
+        fieldName: 'centroDeCosto',
+        type: 'parameter',
+        code: 4
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
 }
 
 const defaultFilter = {
@@ -25,6 +59,17 @@ const defaultFilter = {
 const pageConfiguration = {
     name: 'centro-de-costo',
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
+        getHeaderLabel: (key) => {
+            const header = pageConfiguration.tableConfiguration.headerRow.find(h => h.field == key);
+            if (header) return header.label;
+            else return key;
+        },
+        headerRow: [{
+            field: 'codigoCentroDeCosto',
+            label: 'codigo'
+        }
+        ],
         activeRows: [
             'numeroLegajo',
             'apellido',
@@ -47,14 +92,15 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'codigoDireccion',
-            'codigoCentroDeCosto',
+            'centroDeCosto',
             'estado'
         ],
         inactiveFields: [
             'codigoDireccion',
-            'codigoCentroDeCosto',
+            'centroDeCosto',
             'estado'
         ]
     }

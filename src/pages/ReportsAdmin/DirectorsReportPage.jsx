@@ -8,6 +8,40 @@ const FilterDataModel = {
     codigoGerencia: null
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'estado',
+        type: 'select',
+        multivalue: true,
+        options: [
+            {
+                value: 87,
+                label: 'Activo'
+            },
+            {
+                value: 88,
+                label: 'Inactivo'
+            }
+        ]
+    },
+    {
+        fieldName: 'codigoDireccion',
+        type: 'parameter',
+        code: 6
+    },
+    {
+        fieldName: 'codigoGerencia',
+        type: 'parameter',
+        code: 12
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const defaultFilter = {
     estado: [1],
     codigoDireccion: null,
@@ -17,6 +51,7 @@ const defaultFilter = {
 const pageConfiguration = {
     name: 'directores',
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeRows: [
             'numeroLegajo',
             'apellidoNombre',
@@ -57,6 +92,7 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'estado',
             'codigoDireccion',

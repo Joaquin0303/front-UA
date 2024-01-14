@@ -70,7 +70,7 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
                 </div>}
                 {pageConfiguration.show_add_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(pageName == 'Empleados' ? MODAL_FORM.EMPLOYEEMODAL : MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADD, dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
             </div >
-            {pageConfiguration.show_active_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <div className='active-users'>
+            {pageConfiguration.show_active_button && <div className='active-users'>
                 {setActive && <div className='form-check form-switch'>
                     {pageName === 'Empleados' ? (showActives ? 'Activos / Licencias' : 'Bajas') : (showActives ? 'Activos' : 'Inactivos')}
                     <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />

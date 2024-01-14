@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Row from './Row'
 import '../../styles/abm.css'
 import i18n from '../../localization/i18n'
+import RowV2 from './RowV2';
 
 const Table = ({ tableConfiguration, dataList, openModalForm }) => {
 
@@ -41,7 +42,8 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
                         <th key={i + "b"}>{i18n.t('nombre')}</th>
                     </>
                 } else {
-                    return <th key={i}>{i18n.t(key)}</th>
+                    const label = tableConfiguration.getHeaderLabel ? tableConfiguration.getHeaderLabel(key) : key;
+                    return <th key={i}>{i18n.t(label)}</th>
                 }
             }
         });
@@ -63,7 +65,7 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
                         </thead>
                         <tbody>
                             {dataList.map((d, i) => {
-                                return <Row columnsKey={columnsKey} tableConfiguration={tableConfiguration} key={i} data={d} openModalForm={openModalForm} />
+                                return <RowV2 columnsKey={columnsKey} tableConfiguration={tableConfiguration} key={i} data={d} openModalForm={openModalForm} />
                             })}
                         </tbody>
                     </table>

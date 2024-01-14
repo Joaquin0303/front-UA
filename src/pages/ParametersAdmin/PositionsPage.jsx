@@ -29,11 +29,58 @@ const PositionModel = {
     activo: true
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'descripcion',
+        type: 'string'
+    },
+    {
+        fieldName: 'codigoPais',
+        type: 'country'
+    },
+    {
+        fieldName: 'codigoDireccion',
+        type: 'parameter',
+        code: 6
+    },
+    {
+        fieldName: 'codigoGerencia',
+        type: 'parameter',
+        code: 12
+    },
+    {
+        fieldName: 'codigoCentroDeCosto',
+        type: 'parameter',
+        code: 4
+    },
+    {
+        fieldName: 'codigoJefatura',
+        type: 'parameter',
+        code: 14
+    },
+    {
+        fieldName: 'codigoCategoria',
+        type: 'parameter',
+        code: 3
+    },
+    {
+        fieldName: 'codigoPuestoAlQueReporta',
+        type: 'leaderPosition'
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const pageConfiguration = {
     show_search: true,
     show_add_button: true,
     show_active_button: true,
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         actions: {
             activeActions: [
                 TABLE_ACTIONS.VIEW,
@@ -46,6 +93,7 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
+            'id',
             'codigoCentroDeCosto',
             'descripcion',
             'codigoDireccion',
@@ -67,6 +115,7 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'codigoCentroDeCosto',
             'descripcion',

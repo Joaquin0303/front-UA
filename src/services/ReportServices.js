@@ -12,7 +12,7 @@ export const backToSchoolReportService = async (filter) => {
         url: host + '/ua/reporte/vueltaalcolegio/generar',
         data: {
             'estadoEmpleado': 1,
-            'pais': filter.pais
+            'pais': filter.empleadoPais
         }
     }).then(response => {
         return response;
@@ -31,7 +31,7 @@ export const costCenterReportService = async (filter) => {
         url: host + '/ua/reporte/centrodecosto/generar',
         data: {
             "idDireccion": filter.codigoDireccion.id,
-            "idCentroDeCosto": filter.codigoCentroDeCosto.id,
+            "idCentroDeCosto": filter.centroDeCosto.id,
             "estado": filter.estado
         }
     }).then(response => {
@@ -51,7 +51,7 @@ export const employmentHistoryReportService = async (filter) => {
         data: {
             'pais': filter.pais,
             'idDireccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
-            'estado': filter.estadoEmpleado,
+            'estado': filter.estado,
             'fechaIngresoDesde': filter.fechaDesde ? filter.fechaDesde : null,
             'fechaIngresoHasta': filter.fechaHasta ? filter.fechaHasta : null
         }

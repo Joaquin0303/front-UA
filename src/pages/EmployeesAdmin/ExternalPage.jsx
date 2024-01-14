@@ -48,11 +48,102 @@ const ExternalModel = {
     activo: true
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'apellido',
+        type: 'string'
+    },
+    {
+        fieldName: 'nombre',
+        type: 'string'
+    },
+    {
+        fieldName: 'emailPersonal',
+        type: 'string'
+    },
+    {
+        fieldName: 'codigoTipoDocumento',
+        type: 'parameter',
+        code: 29
+    },
+    {
+        fieldName: 'numeroDocumento',
+        type: 'string'
+    },
+    {
+        fieldName: 'numeroDocumentoLaboral',
+        type: 'string'
+    },
+    {
+        fieldName: 'codigoNacionalidad',
+        type: 'parameter',
+        code: 17
+    },
+    {
+        fieldName: 'codigoGenero',
+        type: 'parameter',
+        code: 6
+    },
+    {
+        fieldName: 'fechaIngreso',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'codigoPais',
+        type: 'country'
+    },
+    {
+        fieldName: 'codigoDireccion',
+        type: 'parameter',
+        code: 6
+    },
+    {
+        fieldName: 'codigoGerencia',
+        type: 'parameter',
+        code: 12
+    },
+    {
+        fieldName: 'codigoDivision',
+        type: 'parameter',
+        code: 7
+    },
+    {
+        fieldName: 'codigoJefatura',
+        type: 'parameter',
+        code: 14
+    },
+    {
+        fieldName: 'codigoCategoria',
+        type: 'parameter',
+        code: 3
+    },
+    {
+        fieldName: 'codigoPuesto',
+        type: 'position'
+    },
+    {
+        fieldName: 'codigoProveedor',
+        type: 'parameter',
+        code: 24
+    },
+    {
+        fieldName: 'fechaEgresoExternal',
+        type: 'calendar'
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const pageConfiguration = {
     show_search: true,
     show_add_button: true,
     show_active_button: true,
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         actions: {
             activeActions: [
                 TABLE_ACTIONS.VIEW,
@@ -89,6 +180,7 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'apellido',
             'nombre',

@@ -7,11 +7,51 @@ const PositionChangeModel = {
     activo: true
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'numeroLegajo',
+        type: 'string'
+    },
+    {
+        fieldName: 'nombreyapellido',
+        type: 'employee',
+        employeeFields: ['apellido', 'nombre'],
+        employee: "empleado"
+    },
+    {
+        fieldName: 'codigoPais',
+        type: 'country',
+    },
+    {
+        fieldName: 'codigoDireccion',
+        type: 'parameter'
+    },
+    {
+        fieldName: 'codigoPuesto',
+        type: 'position'
+    },
+    {
+        fieldName: 'fechaIngresoReconocida',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'fechaEgreso',
+        type: 'calendar'
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const pageConfiguration = {
     show_search: true,
     show_add_button: false,
     show_active_button: true,
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         actions: {
             activeActions: [
                 TABLE_ACTIONS.VIEW
@@ -22,7 +62,7 @@ const pageConfiguration = {
         },
         activeRows: [
             'numeroLegajo',
-            'nombreEmpleado',
+            'nombreyapellido',
             'codigoPais',
             'codigoDireccion',
             'codigoPuesto',
@@ -32,11 +72,11 @@ const pageConfiguration = {
         inactiveRows: [
         ],
         aditionalRows: [
-            'nombreEmpleado'
+            'nombreyapellido'
         ],
         sortRow: [
             'numeroLegajo',
-            'nombreEmpleado',
+            'nombreyapellido',
             'codigoPais',
             'codigoDireccion',
             'codigoPuesto',

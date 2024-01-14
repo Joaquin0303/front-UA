@@ -12,11 +12,33 @@ const CountryModel = {
     activo: true
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'codigo',
+        type: 'string'
+    },
+    {
+        fieldName: 'secuenciador',
+        type: 'sequencer'
+    },
+    {
+        fieldName: 'descripcion',
+        type: 'string'
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const pageConfiguration = {
     show_search: true,
     show_add_button: true,
     show_active_button: true,
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         actions: {
             activeActions: [
                 TABLE_ACTIONS.VIEW,
@@ -40,6 +62,7 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'codigo',
             'descripcion',

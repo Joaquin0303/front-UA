@@ -17,6 +17,7 @@ import InputParameterSearch from './InputParameterSearch';
 import InputCountryMulti from './InputCountryMulti';
 import InputStatusMulti from './InputStatusMulti';
 import InputActiveMulti from './InputActiveMulti';
+import InputStatusEmployee from './InputStatusEmployee';
 
 const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
@@ -79,7 +80,7 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
                     case 'permisos':
                         return <InputPermission key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
                     case 'codigoPuestoAlQueReporta':
-                        return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
+                        return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} categoryCode={formData['codigoCategoria']} currentPositionId={formData['id']} />
                     case 'codigoPuesto':
                         return <InputPositionCode validation={validation} key={i} name={key} value={formData[key]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} currentPositionId={formData['id']} />
                     case 'numeroLegajo':
@@ -112,6 +113,8 @@ const DynamicForm = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
                         return <InputStatusMulti multiple={false} validation={validation} key={i} name={key} values={formData[key]} updateFormData={updateFormData} />;
                     case 'activo':
                         return <InputActiveMulti name={key} values={formData[key]} updateFormData={updateFormData} />;
+                    case 'estadoEmpleado':
+                        return <InputStatusEmployee multiple={true} validation={validation} key={i} name={key} values={formData[key]} updateFormData={updateFormData} />;
                     default:
                         if (key.startsWith('fecha')) {
                             return <InputDate validation={validation} key={i} name={key} updateFormData={updateFormData} value={formData[key]} />

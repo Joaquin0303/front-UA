@@ -261,3 +261,7 @@ input:disabled {
 .form-group .select-multiple {
     height: 100px;
 }
+
+.form-group .select-multivalue {
+    height: 100px;
+}

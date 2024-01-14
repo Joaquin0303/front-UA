@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getPositions } from "../../services/PositionServices";
-const InputPositionCode = ({ validation, name, value, disabled, updateFormData, directionCode, countryCode, categoryCode, currentPositionId }) => {
 
+const InputPosition = ({ validation, name, value, updateFormData, fieldUpdated, currentPositionId }) => {
 
     const [fieldValue, setFieldValue] = useState(value && value.id > 0 ? value.descripcion : '')
 
     const [positionList, setPositionList] = useState([]);
     const [positionListFiltered, setPositionListFiltered] = useState([]);
+    const [filter, setFilter] = useState([]);
+
+    console.log('filter', filter);
+    console.log('positionListFiltered', positionListFiltered);
 
     const handleOnBlur = (e) => {
         console.log('handleOnBlur', value);
@@ -17,9 +21,9 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
             setFieldValue(value.descripcion);
     }
 
-    const posSelectorChangeHandler = (e) => {
+    const handleOnChange = (e) => {
         setFieldValue(e.target.value);
-        console.log('posSelectorChangeHandler', e.target.value);
+        console.log('handleOnChange', e.target.value);
         const positionSelected = positionList.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
         if (positionSelected && positionSelected.length == 1) {
             updateFormData(name, positionSelected[0]);
@@ -38,23 +42,49 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
     }, []);
 
     useEffect(() => {
-        if (directionCode || countryCode || categoryCode) {
+        console.log('fieldUpdated', fieldUpdated)
+        if (fieldUpdated && ['codigoDireccion', 'codigoCategoria', 'codigoPais'].indexOf(fieldUpdated.key) >= 0) {
+            console.log('filter by', fieldUpdated.key)
+            const f = filter.find(f => f.key == fieldUpdated.key)
+            if (!f) {
+                setFilter([...filter, fieldUpdated]);
+            } else if (f && f.value.id != fieldUpdated.value.id) {
+                f.value = fieldUpdated.value;
+                setFilter([...filter]);
+            }
+            updateFormData(name, {
+                id: 0,
+            });
+            setFieldValue('');
+        }
+    }, [fieldUpdated]);
+
+    useEffect(() => {
+        setPositionListFiltered(positionList.filter(d =>
+            d.activo == true
+            && filter.find(f => f.value.id == d[f.key].id)
+        ));
+    }, [filter]);
+
+    useEffect(() => {
+        console.log('the value', value)
+        console.log('the positionlist', positionList)
+        console.log('the currentPositionId', currentPositionId)
+        if (value && value.id > 0) {
             setPositionListFiltered(positionList.filter(d =>
                 d.activo == true
                 && (!currentPositionId || d.id != currentPositionId)
-                && (!directionCode || directionCode.id == 0 || d.codigoDireccion?.id == directionCode.id)
-                && (!countryCode || countryCode.id == 0 || d.codigoPais?.id == countryCode.id)
-                && (!categoryCode || categoryCode.id == 0 || d.codigoCategoria?.id == categoryCode.id)
+                && d.codigoDireccion.id == value.codigoDireccion.id
+                && d.codigoCategoria.id == value.codigoCategoria.id
+                && d.codigoPais.id == value.codigoPais.id
             ));
-        } else {
-            setPositionListFiltered([]);
         }
-    }, [directionCode, countryCode, categoryCode, positionList]);
+    }, [positionList]);
 
     return (
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
-            <input onBlur={handleOnBlur} autoComplete="off" disabled={disabled} list="position-data-list" type="text" name={name} value={fieldValue} onChange={posSelectorChangeHandler} />
+            <input onBlur={handleOnBlur} autoComplete="off" list="position-data-list" type="text" name={name} value={fieldValue} onChange={handleOnChange} />
             {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
             <datalist id="position-data-list">
                 {positionListFiltered && positionListFiltered.map((p, i) => {
@@ -62,7 +92,7 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
                 })}
             </datalist>
         </div>
-    );
+    )
 }
 
-export default InputPositionCode;
+export default InputPosition;

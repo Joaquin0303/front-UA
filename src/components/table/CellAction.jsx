@@ -21,7 +21,6 @@ const CellAction = ({ actions, data, openModalForm }) => {
         external.empleado = emp;
         openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.INACTIVATEEXTERN, external);
     }
-    console.log('data', data)
     return (
         <td className='expand'>
             <span className='actions'>

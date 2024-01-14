@@ -12,11 +12,62 @@ const ExcludedIncomeModel = {
     activo: true
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'documentoPersonal',
+        type: 'employee',
+        employeeFields: ['numeroDocumentoPersonal'],
+        employee: "empleado"
+    },
+    {
+        fieldName: 'nombreyapellido',
+        type: 'employee',
+        employeeFields: ['apellido', 'nombre'],
+        employee: "empleado"
+    },
+    {
+        fieldName: 'emailPersonal',
+        type: 'employee',
+        employeeFields: ['emailPersonal'],
+        employee: "empleado"
+    },
+    {
+        fieldName: 'puesto',
+        type: 'employee',
+        employeeFields: ['codigoPuesto'],
+        employee: "empleado"
+    },
+    {
+        fieldName: 'direccion',
+        type: 'employee',
+        employeeFields: ['codigoDireccion'],
+        employee: "empleado"
+    },
+    {
+        fieldName: 'fechaEgreso',
+        type: 'employee',
+        employeeFields: ['fechaEgreso'],
+        employee: "empleado"
+    },
+    {
+        fieldName: 'observaciones',
+        type: 'parameter',
+        code: 17
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const pageConfiguration = {
     show_search: true,
     show_add_button: false,
     show_active_button: false,
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         actions: {
             activeActions: [
                 TABLE_ACTIONS.VIEW
@@ -25,27 +76,27 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
-            'empleado_documentoPersonal',
-            'empleado_nombreyapellido',
-            'empleado_puesto',
-            'empleado_direccion',
-            'empleado_fechaEgreso',
+            'documentoPersonal',
+            'nombreyapellido',
+            'puesto',
+            'direccion',
+            'fechaEgreso',
             'observaciones'
         ],
         inactiveRows: [
-            'empleado_documentoPersonal',
-            'empleado_nombreyapellido',
-            'empleado_puesto',
-            'empleado_direccion',
-            'empleado_fechaEgreso',
+            'documentoPersonal',
+            'nombreyapellido',
+            'puesto',
+            'direccion',
+            'fechaEgreso',
             'observaciones'
         ],
         aditionalRows: [
-            'empleado_documentoPersonal',
-            'empleado_nombreyapellido',
-            'empleado_puesto',
-            'empleado_direccion',
-            'empleado_fechaEgreso'
+            'documentoPersonal',
+            'nombreyapellido',
+            'puesto',
+            'direccion',
+            'fechaEgreso'
         ]
     },
     formConfiguration: {

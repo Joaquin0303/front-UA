@@ -118,13 +118,10 @@ i18n
           manager: 'Manager',
           startDate: 'Start Date',
           nombreEmpleado: 'Nombre',
-          empleado_documentoPersonal: 'Documento Personal',
-          empleado_nombreyapellido: 'Nombre',
-          empleado_puesto: 'Puesto',
-          empleado_direccion: 'Dirección',
-          empleado_fechaEgreso: 'Fecha de egreso',
+          documentoPersonal: 'Documento Personal',
+          nombreyapellido: 'Nombre',
           fechaEgresoExternal: 'Fecha de egreso',
-
+          empleadoPais: 'Pais'
         }
       }
     }

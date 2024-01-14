@@ -1,12 +1,23 @@
 import axios from 'axios'
 import { host } from '../Configs';
+import { getEmployees } from './EmployeeServices';
 
 export const getPositionChanges = async () => {
     const result = await axios({
         method: 'get',
         url: host + '/ua/historialpuestos'
     }).then(response => {
-        return response;
+        if (response) {
+            return getEmployees().then(employees => {
+                response.data.list.map(p => {
+                    const emp = employees.list.findLast(e => e.numeroLegajo == p.numeroLegajo && (e.codigoEstadoEmpleado.id == 87 || e.codigoEstadoEmpleado.id == 88));
+                    p.empleado = emp;
+                })
+                return response;
+            });
+        } else {
+            return response;
+        }
     }).catch(error => {
         throw error;
     })

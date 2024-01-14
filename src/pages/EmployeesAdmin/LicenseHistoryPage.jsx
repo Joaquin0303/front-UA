@@ -13,15 +13,47 @@ export const LicenseModel = {
     activo: true
 }
 
+const ModelDefinition = [
+    {
+        fieldName: 'numeroLegajo',
+        type: 'string'
+    },
+    {
+        fieldName: 'fechaInicio',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'tipoLicencia',
+        type: 'parameter',
+        code: 16
+    },
+    {
+        fieldName: 'fechaFin',
+        type: 'string'
+    },
+    {
+        fieldName: 'nombreyapellido',
+        type: 'employee',
+        employeeFields: ['apellido', 'nombre'],
+        employee: "empleado"
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const pageConfiguration = {
     show_search: true,
     show_add_button: false,
-    show_active_button: false,
+    show_active_button: true,
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         actions: {
             activeActions: [
                 TABLE_ACTIONS.VIEW
-                //TABLE_ACTIONS.EDIT
             ],
             inactiveActions: [
                 TABLE_ACTIONS.VIEW,
@@ -31,16 +63,22 @@ const pageConfiguration = {
             'tipoLicencia',
             'fechaInicio',
             'fechaFin',
-            'empleado'
+            'numeroLegajo',
+            'nombreyapellido'
         ],
         inactiveRows: [
             'tipoLicencia',
             'fechaInicio',
             'fechaFin',
-            'empleado'
+            'numeroLegajo',
+            'nombreyapellido'
+        ],
+        aditionalRows: [
+            'nombreyapellido'
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'tipoLicencia',
             'fechaInicio',
@@ -93,7 +131,7 @@ const LicensesPage = () => {
     const loadLicenses = () => {
         getLicenses().then(result => {
             if (result.list)
-                setLicenseList(result.list.sort(compare));
+                setLicenseList(result.list.filter(d => d.activo == statusActive).sort(compare));
         });
     }
 

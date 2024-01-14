@@ -3,7 +3,31 @@ import ReportPage from "../ReportPage";
 import { externalReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    activo: [1]
+    estado: [1]
+}
+
+const ModelDefinition = [
+    {
+        fieldName: 'estado',
+        type: 'select',
+        multivalue: true,
+        options: [
+            {
+                value: 1,
+                label: 'Activo'
+            },
+            {
+                value: 0,
+                label: 'Inactivo'
+            }
+        ]
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
 }
 
 const defaultFilter = {
@@ -13,6 +37,7 @@ const defaultFilter = {
 const pageConfiguration = {
     name: 'externos',
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeRows: [
             'numeroLegajo',
             'codigoTipoDocumento',
@@ -24,7 +49,6 @@ const pageConfiguration = {
             'codigoDivision',
             'apellidoNombre',
             'manager',
-            'startDate',
             'codigoGenero',
             'activo',
             'fechaIngreso',
@@ -42,7 +66,6 @@ const pageConfiguration = {
             'codigoDivision',
             'apellidoNombre',
             'manager',
-            'startDate',
             'codigoGenero',
             'activo',
             'fechaIngreso',
@@ -51,11 +74,12 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
-            'activo'
+            'estado'
         ],
         inactiveFields: [
-            'activo'
+            'estado'
         ]
     }
 }

@@ -6,8 +6,24 @@ import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 const RoleModel = {
     descripcion: '',
     activo: true,
-    permisos: null,
-    usuarios: null,
+    permisos: null
+}
+
+const ModelDefinition = [
+    {
+        fieldName: 'descripcion',
+        type: 'string'
+    },
+    {
+        fieldName: 'permisos',
+        type: 'permission'
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
 }
 
 const pageConfiguration = {
@@ -15,6 +31,7 @@ const pageConfiguration = {
     show_add_button: true,
     show_active_button: true,
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         actions: {
             activeActions: [
                 TABLE_ACTIONS.VIEW,
@@ -36,6 +53,7 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'descripcion',
             'permisos'
