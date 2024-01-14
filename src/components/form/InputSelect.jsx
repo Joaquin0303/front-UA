@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 
 const InputSelect = ({ multivalue, validation, name, value, options, disabled, updateFormData }) => {
-    console.log('multivalue', multivalue)
     const changeHandler = (e) => {
         if (multivalue) {
             const v = parseInt(e.target.value)
@@ -14,7 +13,6 @@ const InputSelect = ({ multivalue, validation, name, value, options, disabled, u
             }
             updateFormData(name, value);
         } else {
-            console.log('update estatus', e.target.value)
             updateFormData(name, parseInt(e.target.value));
         }
     }

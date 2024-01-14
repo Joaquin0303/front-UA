@@ -40,7 +40,6 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
         try {
             validateStep(formData, 0);
             const employeeSearchResult = filterByIdentity(formData.codigoTipoDocumento.id, formData.numeroDocumentoPersonal);
-            console.log('employees', employeeSearchResult);
             setValidation(null);
 
             if (employeeSearchResult && employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 87)) {

@@ -13,7 +13,6 @@ const InputStatusMulti = ({ multiple, validation, name, values, disabled, update
             }
             updateFormData(name, values);
         } else {
-            console.log('update estatus', e.target.value)
             updateFormData(name, parseInt(e.target.value));
         }
     }

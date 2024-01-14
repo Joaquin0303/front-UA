@@ -13,7 +13,6 @@ const InputStatusEmployee = ({ multiple, validation, name, values, disabled, upd
             }
             updateFormData(name, values);
         } else {
-            console.log('update estatus', e.target.value)
             updateFormData(name, parseInt(e.target.value));
         }
     }

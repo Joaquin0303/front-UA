@@ -256,8 +256,6 @@ const EmployeesPage = ({ }) => {
                         addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, data.fechaIngresoReconocida, new Date(), true).then(r => {
                             console.log('Position History Updated', r)
                         })
-                        // REMOVE AFTER DATABASE FIXED
-                        console.log("data.codigoPuesto.codigoCentroDeCosto", data.codigoPuesto.codigoCentroDeCosto)
                         data.codigoCentroDeCosto = data.codigoPuesto.codigoCentroDeCosto;
                         updateEmployee(data.id, data).then(r => {
                             console.log('Employee updated=', r);

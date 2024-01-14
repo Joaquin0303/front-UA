@@ -10,11 +10,7 @@ const InputPositionLead = ({ validation, name, value, updateFormData, fieldUpdat
     const [positionListFiltered, setPositionListFiltered] = useState([]);
     const [filter, setFilter] = useState([]);
 
-    console.log('filter', filter);
-    console.log('positionListFiltered', positionListFiltered);
-
     const handleOnBlur = (e) => {
-        console.log('handleOnBlur', value);
         if (!value || value.id == 0)
             setFieldValue('');
         else
@@ -23,7 +19,6 @@ const InputPositionLead = ({ validation, name, value, updateFormData, fieldUpdat
 
     const handleOnChange = (e) => {
         setFieldValue(e.target.value);
-        console.log('handleOnChange', e.target.value);
         const positionSelected = positionList.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
         if (positionSelected && positionSelected.length == 1) {
             updateFormData(name, positionSelected[0]);
@@ -42,10 +37,8 @@ const InputPositionLead = ({ validation, name, value, updateFormData, fieldUpdat
     }, []);
 
     useEffect(() => {
-        console.log('fieldUpdated', fieldUpdated)
         if (fieldUpdated && fieldUpdated.key == 'codigoCategoria') {
             if (fieldUpdated.value.id == 24) {
-                console.log('codigoCategoria el director')
                 setFilter([...filter, {
                     key: 'codigoDireccion',
                     value: {
@@ -83,7 +76,6 @@ const InputPositionLead = ({ validation, name, value, updateFormData, fieldUpdat
         setPositionListFiltered(positionList.filter(d => {
             let filtersToApplay = filter.filter(f => f.source == 'codigoCategoria');
             if (filtersToApplay.length == 0) filtersToApplay = filter;
-            console.log('filtersToApplay', filtersToApplay);
 
             return d.activo == true
                 && (!currentPositionId || d.id != currentPositionId)
@@ -93,9 +85,6 @@ const InputPositionLead = ({ validation, name, value, updateFormData, fieldUpdat
     }, [filter]);
 
     useEffect(() => {
-        console.log('the value', value)
-        console.log('the positionlist', positionList)
-        console.log('the currentPositionId', currentPositionId)
         if (value && value.id > 0) {
             setPositionListFiltered(positionList.filter(d =>
                 d.activo == true

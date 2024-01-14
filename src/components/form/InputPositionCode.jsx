@@ -10,7 +10,6 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
     const [positionListFiltered, setPositionListFiltered] = useState([]);
 
     const handleOnBlur = (e) => {
-        console.log('handleOnBlur', value);
         if (!value || value.id == 0)
             setFieldValue('');
         else
@@ -19,7 +18,6 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
 
     const posSelectorChangeHandler = (e) => {
         setFieldValue(e.target.value);
-        console.log('posSelectorChangeHandler', e.target.value);
         const positionSelected = positionList.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
         if (positionSelected && positionSelected.length == 1) {
             updateFormData(name, positionSelected[0]);

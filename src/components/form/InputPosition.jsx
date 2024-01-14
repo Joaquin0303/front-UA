@@ -10,11 +10,7 @@ const InputPosition = ({ validation, name, value, updateFormData, fieldUpdated, 
     const [positionListFiltered, setPositionListFiltered] = useState([]);
     const [filter, setFilter] = useState([]);
 
-    console.log('filter', filter);
-    console.log('positionListFiltered', positionListFiltered);
-
     const handleOnBlur = (e) => {
-        console.log('handleOnBlur', value);
         if (!value || value.id == 0)
             setFieldValue('');
         else
@@ -23,7 +19,6 @@ const InputPosition = ({ validation, name, value, updateFormData, fieldUpdated, 
 
     const handleOnChange = (e) => {
         setFieldValue(e.target.value);
-        console.log('handleOnChange', e.target.value);
         const positionSelected = positionList.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
         if (positionSelected && positionSelected.length == 1) {
             updateFormData(name, positionSelected[0]);
@@ -42,9 +37,7 @@ const InputPosition = ({ validation, name, value, updateFormData, fieldUpdated, 
     }, []);
 
     useEffect(() => {
-        console.log('fieldUpdated', fieldUpdated)
         if (fieldUpdated && ['codigoDireccion', 'codigoCategoria', 'codigoPais'].indexOf(fieldUpdated.key) >= 0) {
-            console.log('filter by', fieldUpdated.key)
             const f = filter.find(f => f.key == fieldUpdated.key)
             if (!f) {
                 setFilter([...filter, fieldUpdated]);
@@ -67,9 +60,6 @@ const InputPosition = ({ validation, name, value, updateFormData, fieldUpdated, 
     }, [filter]);
 
     useEffect(() => {
-        console.log('the value', value)
-        console.log('the positionlist', positionList)
-        console.log('the currentPositionId', currentPositionId)
         if (value && value.id > 0) {
             setPositionListFiltered(positionList.filter(d =>
                 d.activo == true
