@@ -10,7 +10,7 @@ export const getPositionChanges = async () => {
         if (response) {
             return getEmployees().then(employees => {
                 response.data.list.map(p => {
-                    const emp = employees.list.findLast(e => e.numeroLegajo == p.numeroLegajo && (e.codigoEstadoEmpleado.id == 87 || e.codigoEstadoEmpleado.id == 88));
+                    const emp = employees.list.findLast(e => e.numeroLegajo == p.numeroLegajo);
                     p.empleado = emp;
                 })
                 return response;
