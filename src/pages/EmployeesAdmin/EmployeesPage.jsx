@@ -11,6 +11,64 @@ import { addPositionChange } from '../../services/PositionChangeServices';
 import { addLoadFamily } from '../../services/LoadFamilyServices';
 import PopUp from '../../components/modal/PopUp';
 
+const ModelDefinition = [
+    {
+        fieldName: 'apellido',
+        type: 'string'
+    },
+    {
+        fieldName: 'nombre',
+        type: 'string'
+    },
+    {
+        fieldName: 'codigoParentesco',
+        type: 'parameter',
+        code: 20
+    },
+    {
+        fieldName: 'codigoTipoDocumento',
+        type: 'parameter',
+        code: 29
+    },
+    {
+        fieldName: 'numeroDocumento',
+        type: 'string'
+    },
+    {
+        fieldName: 'fechaNacimiento',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'numeroLegajo',
+        type: 'string'
+    },
+    {
+        fieldName: 'fechaInicio',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'tipoLicencia',
+        type: 'parameter',
+        code: 16
+    },
+    {
+        fieldName: 'fechaFin',
+        type: 'string'
+    },
+    {
+        fieldName: 'nombreyapellido',
+        type: 'employee',
+        employeeFields: ['apellido', 'nombre'],
+        employee: "empleado"
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
+}
+
 const pageConfiguration = {
     show_search: true,
     show_add_button: true,
@@ -34,6 +92,7 @@ const pageConfiguration = {
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
             'tipoLicencia', // LicencePage
             'fechaInicio', // LicencePage
