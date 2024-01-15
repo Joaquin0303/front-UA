@@ -29,7 +29,7 @@ const ModelDefinition = [
     },
     {
         fieldName: 'fechaFin',
-        type: 'string'
+        type: 'calendar'
     },
     {
         fieldName: 'nombreyapellido',

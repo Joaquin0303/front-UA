@@ -47,13 +47,13 @@ const ModelDefinition = [
         type: 'calendar'
     },
     {
+        fieldName: 'fechaFin',
+        type: 'calendar'
+    },
+    {
         fieldName: 'tipoLicencia',
         type: 'parameter',
         code: 16
-    },
-    {
-        fieldName: 'fechaFin',
-        type: 'string'
     },
     {
         fieldName: 'nombreyapellido',
