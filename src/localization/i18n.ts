@@ -114,7 +114,7 @@ i18n
           descripcionCentroDeCosto: "Centro de Costo",
           puesto: 'Puesto',
           codigoProveedor: 'Proveedor',
-          apellidoNombre: 'Apellido y nombre',
+          apellidoNombre: 'Apellido y Nombre',
           manager: 'Manager',
           startDate: 'Start Date',
           nombreEmpleado: 'Apellido y Nombre',
