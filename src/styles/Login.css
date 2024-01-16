@@ -51,6 +51,35 @@ form{
     gap: 27px;
 }
 
+@media only screen and (max-width: 1366px) {
+
+    form{
+        gap: 20px;
+    }
+
+    .form-control{
+        font-size: 16px;
+        border-radius: 6px;
+        background-color: #fff;
+        width: 350px;
+        border: none;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    form{
+        gap: 15px;
+    }
+
+    .form-control{
+        font-size: 16px;
+        border-radius: 6px;
+        background-color: #fff;
+        width: 300px;
+        border: none;
+    }
+}
+
 form h2{
     text-align: center;
     font-weight: 500;
