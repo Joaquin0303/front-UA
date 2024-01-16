@@ -156,7 +156,6 @@ const pageConfiguration = {
             ],
             inactiveActions: [
                 TABLE_ACTIONS.VIEW,
-                TABLE_ACTIONS.EDIT
             ],
         },
         activeRows: [
