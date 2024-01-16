@@ -54,6 +54,7 @@ form{
 @media only screen and (max-width: 1700px) {
 
     form{
+        padding: 30px 30px 30px 30px;
         gap: 20px;
     }
 
@@ -69,6 +70,7 @@ form{
 @media only screen and (max-width: 1366px) {
 
     form{
+        padding: 30px 30px 30px 30px;
         gap: 20px;
     }
 
@@ -83,6 +85,7 @@ form{
 
 @media only screen and (max-width: 1024px) {
     form{
+        padding: 30px 30px 30px 30px;
         gap: 15px;
     }
 
@@ -145,7 +148,6 @@ form h2{
 }
 
 .title-login{
-    margin-top: 40px;
     display: flex;
     justify-content: center;
     color: #002447;
