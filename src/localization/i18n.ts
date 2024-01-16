@@ -117,7 +117,7 @@ i18n
           apellidoNombre: 'Apellido y nombre',
           manager: 'Manager',
           startDate: 'Start Date',
-          nombreEmpleado: 'Apellido y nombre',
+          nombreEmpleado: 'Apellido y Nombre',
           documentoPersonal: 'Documento Personal',
           nombreyapellido: 'Nombre',
           fechaEgresoExternal: 'Fecha de Egreso',
