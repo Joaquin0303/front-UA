@@ -3,18 +3,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 30px;
+    width: 80%;
+    align-items: flex-start;
+    margin: auto;
 }
 
 h2{
     margin: 50px 0px 10px 0px
 }
 
-h4{
-    margin: 20px 0px 50px 0px
-}
-
 .div-cards{
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;

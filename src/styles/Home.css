@@ -1,10 +1,12 @@
-.bloque_principal{
+.bloque_principal-home{
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    margin-top: 30px;
     gap: 30px;
+    width: 80%;
+    align-items: flex-start;
+    margin: auto;
 }
 
 .container-img{
@@ -14,17 +16,23 @@
     margin: auto;
 }
 
-.imgHome{
-    width: 80%;
+h1{
+    margin: auto;
+    margin-top: 50px;
 }
 
-@media only screen and (max-width: 768px) {
-    .container-img{
-        width: 90vw;
-        max-width: none;
-    }
+.imgHome{
+    width: 100%;
+}
 
+@media only screen and (max-width: 1366px) {
     .imgHome{
         width: 80%;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .imgHome{
+        width: 70%;
     }
 }
