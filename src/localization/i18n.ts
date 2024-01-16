@@ -133,7 +133,9 @@ i18n
           paisLicencia: 'País',
           centroDeCosto: 'Centro de costo',
           estadoLicencia: 'Estado licencia',
-          estadoEmpleado: 'Estado empleado'
+          estadoEmpleado: 'Estado empleado',
+          fechaIngresoDesde: 'Fecha Ingreso Desde',
+          fechaIngresoHasta: 'Fecha Ingreso Hasta'
         }
       }
     }
