@@ -98,7 +98,7 @@ i18n
           'international-data-collection': 'International Data Collection',
           licencias: 'Licencias',
           codigoEstadoEmpleado: 'Estado',
-          codigoParentesco: 'Paretesco',
+          codigoParentesco: 'Parentesco',
           numeroDocumento: 'Nro. Doc',
           Parametros: 'Parámetros',
           paises: 'País',
