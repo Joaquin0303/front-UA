@@ -47,6 +47,14 @@ const ModelDefinition = [
     {
         fieldName: 'fechaIngresoHasta',
         type: 'calendar'
+    },
+    {
+        fieldName: 'fechaIngresoReconocida',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'fechaEgreso',
+        type: 'calendar'
     }
 ]
 
@@ -91,15 +99,15 @@ const pageConfiguration = {
             'pais',
             'codigoDireccion',
             'estado',
-            'fechaDesde',
+            'fechaIngresoDesde',
             'fechaHasta'
         ],
         inactiveFields: [
             'pais',
             'codigoDireccion',
             'estado',
-            'fechaDesde',
-            'fechaHasta'
+            'fechaIngresoDesde',
+            'fechaIngresoHasta'
         ]
     }
 }

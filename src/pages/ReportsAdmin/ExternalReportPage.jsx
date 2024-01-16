@@ -89,6 +89,15 @@ const pageConfiguration = {
             'fechaIngreso',
             'fechaEgreso',
             'email'
+        ],
+        sortRow: [
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'apellidoNombre',
+            'codigoProveedor',
+            'codigoPuesto',
+            'fechaIngreso',
+            'fechaEgreso'
         ]
     },
     formConfiguration: {
