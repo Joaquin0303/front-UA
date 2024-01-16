@@ -106,7 +106,7 @@ i18n
           Puesto: 'Puestos',
           external: "Empleado Externo",
           cambioDePuesto: "Historial de Cambios de Puesto",
-          pais: 'Pais',
+          pais: 'País',
           cantidadHijos: 'Hijos',
           edades: 'Edades',
           direccion: 'Dirección',
@@ -121,15 +121,19 @@ i18n
           documentoPersonal: 'Documento Personal',
           nombreyapellido: 'Nombre',
           fechaEgresoExternal: 'Fecha de Egreso',
-          empleadoPais: 'Pais',
-          descripcionPais: 'Pais',
+          empleadoPais: 'País',
+          descripcionPais: 'País',
           descripcionPuesto: 'Puesto',
           descripcionManagerJefe: 'Manager/Jefe',
           descripcionCargoManagerJefe: 'Cargo Manager/Jefe',
           descripcionDireccion: 'Dirección',
           descripcionLicencia: 'Licencia',
           estado: 'Estado',
-          jefatura: 'Jefatura'
+          jefatura: 'Jefatura',
+          paisLicencia: 'País',
+          centroDeCosto: 'Centro de costo',
+          estadoLicencia: 'Estado licencia',
+          estadoEmpleado: 'Estado empleado'
         }
       }
     }
