@@ -73,6 +73,13 @@ const pageConfiguration = {
             'descripcion',
             'texto1',
             'texto2'
+        ],
+        sortRow: [
+            'tipoParametro',
+            'descripcion',
+            'codigo',
+            'texto1',
+            'texto2'
         ]
     },
     formConfiguration: {
