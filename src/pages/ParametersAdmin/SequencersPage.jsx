@@ -26,7 +26,11 @@ const ModelDefinition = [
     },
     {
         fieldName: 'secuencia',
-        type: 'number'
+        type: 'number',
+        disabled: {
+            edit: true,
+            add: false
+        }
     }
 ]
 

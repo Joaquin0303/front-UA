@@ -64,13 +64,14 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) =>
         const cells = Object.keys(data).map((key, i) => {
             if (showField(key)) {
                 const fieldType = formConfiguration.getFieldTypeByName(key);
+                const fieldDisabled = fieldType.disabled && fieldType.disabled.edit && data.id && data.id > 0;
                 switch (fieldType.type) {
                     case 'fileNumber':
                         return <InputFileNumber key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
                     case 'string':
                         return <InputText key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />
                     case 'number':
-                        return <InputNumber key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />
+                        return <InputNumber disabled={fieldDisabled} key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />
                     case 'parameter':
                         return <InputParameter key={i} validation={validation} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == fieldType.code)} updateFormData={updateFormData} />
                     case 'calendar':
