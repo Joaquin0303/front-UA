@@ -82,7 +82,7 @@ const ModelDefinition = [
     {
         fieldName: 'codigoGenero',
         type: 'parameter',
-        code: 6
+        code: 11
     },
     {
         fieldName: 'fechaIngreso',
