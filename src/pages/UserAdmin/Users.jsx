@@ -99,6 +99,7 @@ const pageConfiguration = {
 }
 
 const Users = () => {
+
     const [userList, setUserList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
 

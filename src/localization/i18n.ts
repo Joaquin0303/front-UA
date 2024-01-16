@@ -121,7 +121,15 @@ i18n
           documentoPersonal: 'Documento Personal',
           nombreyapellido: 'Nombre',
           fechaEgresoExternal: 'Fecha de Egreso',
-          empleadoPais: 'Pais'
+          empleadoPais: 'Pais',
+          descripcionPais: 'Pais',
+          descripcionPuesto: 'Puesto',
+          descripcionManagerJefe: 'Manager/Jefe',
+          descripcionCargoManagerJefe: 'Cargo Manager/Jefe',
+          descripcionDireccion: 'Dirección',
+          descripcionLicencia: 'Licencia',
+          estado: 'Estado',
+          jefatura: 'Jefatura'
         }
       }
     }

@@ -21,6 +21,14 @@ const ModelDefinition = [
                 label: 'Inactivo'
             }
         ]
+    },
+    {
+        fieldName: 'fechaIngreso',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'fechaEgreso',
+        type: 'calendar'
     }
 ]
 
@@ -31,13 +39,23 @@ const getFieldTypeByName = (fieldName) => {
 }
 
 const defaultFilter = {
-    activo: [1]
+    estado: [1]
 }
 
 const pageConfiguration = {
     name: 'externos',
     tableConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
+        hiddenRows: [
+            'numeroLegajo',
+            'codigoPais',
+            'codigoJefatura',
+            'codigoDivision',
+            'manager',
+            'codigoGenero',
+            'activo',
+            'email'
+        ],
         activeRows: [
             'numeroLegajo',
             'codigoTipoDocumento',
@@ -53,7 +71,7 @@ const pageConfiguration = {
             'activo',
             'fechaIngreso',
             'fechaEgreso',
-            'emailPersonal'
+            'email'
         ],
         inactiveRows: [
             'numeroLegajo',
@@ -70,7 +88,7 @@ const pageConfiguration = {
             'activo',
             'fechaIngreso',
             'fechaEgreso',
-            'emailPersonal'
+            'email'
         ]
     },
     formConfiguration: {

@@ -30,8 +30,8 @@ export const costCenterReportService = async (filter) => {
         method: 'post',
         url: host + '/ua/reporte/centrodecosto/generar',
         data: {
-            "idDireccion": filter.codigoDireccion.id,
-            "idCentroDeCosto": filter.centroDeCosto.id,
+            "idDireccion": filter.codigoDireccion ? filter.codigoDireccion.id : null,
+            "idCentroDeCosto": filter.centroDeCosto ? filter.centroDeCosto.id : null,
             "estado": filter.estado
         }
     }).then(response => {
@@ -82,13 +82,13 @@ export const internationalDataCollectionReportService = async (filter) => {
 }
 
 export const externalReportService = async (filter) => {
-    console.log("Filter externalReportService");
+    console.log("Filter externalReportService: ", filter);
     //if (useMock) return externalMockData;
     const result = await axios({
         method: 'post',
         url: host + '/ua/reporte/externos/generar',
         data: {
-            activo: filter.activo
+            activo: filter.estado
         }
     }).then(response => {
         return response;
@@ -142,7 +142,7 @@ export const licencesReportService = async (filter) => {
         url: host + '/ua/reporte/licencias/generar',
         data: {
             'pais': filter.paisLicencia,
-            'estadoEmpleado': filter.estado,
+            'estadoEmpleado': filter.estadoEmpleado,
             'direccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
             'estadoLicencia': filter.estadoLicencia
         }

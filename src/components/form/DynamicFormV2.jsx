@@ -80,7 +80,7 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) =>
                     case 'position':
                         return <InputPosition key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} fieldUpdated={fieldUpdated} />
                     case 'leaderPosition':
-                        return <InputPositionLead key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} fieldUpdated={fieldUpdated} />
+                        return <InputPositionLead key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} fieldUpdated={fieldUpdated} currentPositionId={formData['id']} />
                     case 'role':
                         return <InputRole key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
                     case 'permission':
@@ -88,7 +88,7 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) =>
                     case 'select':
                         return <InputSelect key={i} multivalue={fieldType.multivalue} validation={validation} name={key} value={formData[key]} options={fieldType.options} updateFormData={updateFormData} />;
                     case 'country':
-                        return <InputCountry key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />;
+                        return <InputCountry key={i} multiple={fieldType.multivalue} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />;
                     case 'sequencer':
                         return <InputSequencer key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
                     default:

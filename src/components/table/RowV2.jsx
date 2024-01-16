@@ -23,7 +23,7 @@ const RowV2 = ({ columnsKey, tableConfiguration, data, openModalForm }) => {
 
         const cells = columnsKey.map((key, i) => {
             if (showColum(key)) {
-                return createCell(key, i);
+                return createCell(key, i, tableConfiguration.hiddenRows && tableConfiguration.hiddenRows.find(r => r == key) != null);
             } else {
                 return null;
             }
@@ -31,22 +31,22 @@ const RowV2 = ({ columnsKey, tableConfiguration, data, openModalForm }) => {
         return cells;
     }
 
-    const createCell = (key, i) => {
+    const createCell = (key, i, hidden) => {
         const fieldType = tableConfiguration.getFieldTypeByName(key);
         if (!fieldType) {
-            return <Cell key={i} value={data[key]} />
+            return <Cell key={i} hidden={hidden} value={data[key]} />
         }
         switch (fieldType.type) {
             case 'parameter':
                 return <CellParameter key={i} parameter={data[key]} />
             case 'calendar':
-                return <CellDate key={i} value={data[key]} />
+                return <CellDate key={i} hidden={hidden} value={data[key]} />
             case 'parameterType':
                 return <CellParameterType key={i} tipoParametroData={data[key]} />
             case 'position':
                 return <CellPositionCode key={i} position={data[key]} />
             case 'numberNonCero':
-                return <Cell key={i} value={data[key] == 0 ? '' : data[key]} />
+                return <Cell key={i} hidden={hidden} value={data[key] == 0 ? '' : data[key]} />
             case 'leaderPosition':
                 return <CellPositionCode key={i} position={data[key]} />
             case 'role':
@@ -62,7 +62,7 @@ const RowV2 = ({ columnsKey, tableConfiguration, data, openModalForm }) => {
             case 'employee':
                 return <CellDynamicEmployee key={i} employee={data[fieldType.employee]} fields={fieldType.employeeFields} />
             default:
-                return <Cell key={i} value={data[key]} />
+                return <Cell hidden={hidden} key={i} value={data[key]} labels={fieldType.labels} />
         }
     }
 

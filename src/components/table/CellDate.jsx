@@ -1,10 +1,9 @@
 import React from 'react';
 import { parseDate } from '../../utils/Utils';
 
-const CellDate = ({ value }) => {
-
+const CellDate = ({ value, hidden }) => {
     return (
-        <td>{value && parseDate(value)}</td>
+        <td hidden={hidden}>{value && value != 'null' && parseDate(value)}</td>
     );
 }
 

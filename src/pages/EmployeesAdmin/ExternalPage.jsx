@@ -89,6 +89,10 @@ const ModelDefinition = [
         type: 'calendar'
     },
     {
+        fieldName: 'fechaEgreso',
+        type: 'calendar'
+    },
+    {
         fieldName: 'codigoPais',
         type: 'country'
     },

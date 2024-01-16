@@ -59,7 +59,7 @@ const getFieldTypeByName = (fieldName) => {
 const defaultFilter = {
     pais: [1],
     codigoDireccion: null,
-    estadoEmpleado: [87],
+    estado: [87],
     fechaDesde: null,
     fechaHasta: null
 }

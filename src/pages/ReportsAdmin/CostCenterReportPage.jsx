@@ -3,12 +3,8 @@ import ReportPage from "../ReportPage";
 import { costCenterReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    codigoDireccion: {
-        id: 0
-    },
-    centroDeCosto: {
-        id: 0
-    },
+    codigoDireccion: null,
+    centroDeCosto: null,
     estado: [87]
 }
 
@@ -47,13 +43,9 @@ const getFieldTypeByName = (fieldName) => {
 }
 
 const defaultFilter = {
-    codigoDireccion: {
-        id: 0
-    },
-    codigoCentroDeCosto: {
-        id: 0
-    },
-    estado: [1]
+    codigoDireccion: null,
+    centroDeCosto: null,
+    estado: [87]
 }
 
 const pageConfiguration = {

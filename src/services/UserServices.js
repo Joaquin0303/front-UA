@@ -5,7 +5,18 @@ export const loginUser = async (credentials) => {
 
     if (credentials.userName == "admin" && credentials.password == "8U4RRHH&") {
         return {
-            token: "pzj2ycLX3EI4SxV3bysSPtz0EMMQzPtqoZ8pIZcytr4CgUxfZisGoTQBouXHhzoL"
+            token: "pzj2ycLX3EI4SxV3bysSPtz0EMMQzPtqoZ8pIZcytr4CgUxfZisGoTQBouXHhzoL",
+            role: "admin"
+        }
+    } else if (credentials.userName == "director" && credentials.password == "8U4RRHH&") {
+        return {
+            token: "pzj2ycLX3EI4SxV3bysSPtz0EMMQzPtqoZ8pIZcytr4CgUxfZisGoTQBouXHhzoL",
+            role: "director"
+        }
+    } else if (credentials.userName == "country" && credentials.password == "8U4RRHH&") {
+        return {
+            token: "pzj2ycLX3EI4SxV3bysSPtz0EMMQzPtqoZ8pIZcytr4CgUxfZisGoTQBouXHhzoL",
+            role: "country-manager"
         }
     } else {
         throw "Usuario o password inválido";

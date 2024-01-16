@@ -42,8 +42,9 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
                         <th key={i + "b"}>{i18n.t('nombre')}</th>
                     </>
                 } else {
+                    const hidden = tableConfiguration.hiddenRows && tableConfiguration.hiddenRows.find(r => r == key) != null;
                     const label = tableConfiguration.getHeaderLabel ? tableConfiguration.getHeaderLabel(key) : key;
-                    return <th key={i}>{i18n.t(label)}</th>
+                    return <th hidden={hidden} key={i}>{i18n.t(label)}</th>
                 }
             }
         });

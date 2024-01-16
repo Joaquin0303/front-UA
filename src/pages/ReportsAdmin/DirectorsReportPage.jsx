@@ -3,7 +3,7 @@ import ReportPage from "../ReportPage";
 import { directorsReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    estado: [1],
+    estado: [87],
     codigoDireccion: null,
     codigoGerencia: null
 }
@@ -33,6 +33,14 @@ const ModelDefinition = [
         fieldName: 'codigoGerencia',
         type: 'parameter',
         code: 12
+    },
+    {
+        fieldName: 'fechaIngreso',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'fechaIngresoReconocida',
+        type: 'calendar'
     }
 ]
 
@@ -43,7 +51,7 @@ const getFieldTypeByName = (fieldName) => {
 }
 
 const defaultFilter = {
-    estado: [1],
+    estado: [87],
     codigoDireccion: null,
     codigoGerencia: null
 }
@@ -52,14 +60,26 @@ const pageConfiguration = {
     name: 'directores',
     tableConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
+        hiddenRows: [
+            'fechaIngreso',
+            'fechaIngresoReconocida',
+            'emailLaboral',
+            'descripcionOficina',
+            'descripcionCategoria',
+            'descripcionGerencia',
+            'descripcionJefatura',
+            'descripcionDivision',
+            'descripcionCentroDeCostos',
+            'descripcionConvenio'
+        ],
         activeRows: [
             'numeroLegajo',
             'apellidoNombre',
             'fechaIngreso',
             'fechaIngresoReconocida',
             'descripcionPais',
-            'descripcionLugarDeTrabajo',
             'emailLaboral',
+            'descripcionOficina',
             'descripcionPuesto',
             'descripcionCategoria',
             'descripcionManagerJefe',
@@ -77,8 +97,8 @@ const pageConfiguration = {
             'fechaIngreso',
             'fechaIngresoReconocida',
             'descripcionPais',
-            'descripcionLugarDeTrabajo',
             'emailLaboral',
+            'descripcionOficina',
             'descripcionPuesto',
             'descripcionCategoria',
             'descripcionManagerJefe',

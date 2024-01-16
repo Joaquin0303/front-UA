@@ -6,19 +6,19 @@ const FilterDataModel = {
     paisLicencia: 1,
     estadoLicencia: 1,
     codigoDireccion: null,
-    estado: [1]
+    estadoEmpleado: [88]
 }
 
 const ModelDefinition = [
     {
         fieldName: 'paisLicencia',
         type: 'country',
-        multivalue: true
+        multivalue: false
     },
     {
         fieldName: 'estadoLicencia',
         type: 'select',
-        multivalue: true,
+        multivalue: false,
         options: [
             {
                 value: 1,
@@ -36,7 +36,7 @@ const ModelDefinition = [
         code: 6
     },
     {
-        fieldName: 'estado',
+        fieldName: 'estadoEmpleado',
         type: 'select',
         multivalue: true,
         options: [
@@ -49,6 +49,28 @@ const ModelDefinition = [
                 label: 'Inactivo'
             }
         ]
+    },
+    {
+        fieldName: 'estado',
+        type: 'string',
+        labels: [
+            {
+                value: 'true',
+                label: 'Activo'
+            },
+            {
+                value: 'false',
+                label: 'Inactivo'
+            }
+        ]
+    },
+    {
+        fieldName: 'fechaInicio',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'fechaFin',
+        type: 'calendar'
     }
 ]
 
@@ -62,7 +84,7 @@ const defaultFilter = {
     paisLicencia: 1,
     estadoLicencia: 1,
     codigoDireccion: null,
-    estado: [1]
+    estadoEmpleado: [88]
 }
 
 const pageConfiguration = {
@@ -104,13 +126,13 @@ const pageConfiguration = {
             'estadoLicencia',
             'paisLicencia',
             'codigoDireccion',
-            'estado'
+            'estadoEmpleado'
         ],
         inactiveFields: [
             'estadoLicencia',
             'paisLicencia',
             'codigoDireccion',
-            'estado'
+            'estadoEmpleado'
         ]
     }
 }
