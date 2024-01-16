@@ -75,6 +75,13 @@ const pageConfiguration = {
         ],
         aditionalRows: [
             'nombreyapellido'
+        ],
+        sortRow: [
+            'numeroLegajo',
+            'nombreyapellido',
+            'tipoLicencia',
+            'fechaInicio',
+            'fechaFin'
         ]
     },
     formConfiguration: {
