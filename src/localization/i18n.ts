@@ -119,7 +119,7 @@ i18n
           startDate: 'Start Date',
           nombreEmpleado: 'Apellido y Nombre',
           documentoPersonal: 'Documento Personal',
-          nombreyapellido: 'Nombre',
+          nombreyapellido: 'Apellido y Nombre',
           fechaEgresoExternal: 'Fecha de Egreso',
           empleadoPais: 'País',
           descripcionPais: 'País',

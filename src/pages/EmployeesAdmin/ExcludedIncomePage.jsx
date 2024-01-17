@@ -73,6 +73,7 @@ const pageConfiguration = {
                 TABLE_ACTIONS.VIEW
             ],
             inactiveActions: [
+                TABLE_ACTIONS.VIEW
             ],
         },
         activeRows: [
