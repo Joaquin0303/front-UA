@@ -152,6 +152,16 @@ const pageConfiguration = {
     }
 }
 
+const compare = (a, b) => {
+    if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
+        return -1;
+    }
+    if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()) {
+        return 1;
+    }
+    return 0;
+}
+
 const PositionsPage = () => {
     const [positionList, setPositionList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
@@ -163,7 +173,7 @@ const PositionsPage = () => {
     const loadPositions = () => {
         getPositions().then(result => {
             if (result.list)
-                setPositionList(result.list.filter(d => d.activo == statusActive));
+                setPositionList(result.list.filter(d => d.activo == statusActive).sort(compare));
         });
     }
 
