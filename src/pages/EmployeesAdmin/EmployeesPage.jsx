@@ -425,6 +425,10 @@ const EmployeesPage = ({ }) => {
             result.error = true;
             result.validation.tipoLicencia = "Ingrese motivo de licencia"
         }
+        if (data.fechaEgreso && compareStrDates(data.fechaIngreso, data.fechaEgreso) < 1) {
+            result.error = true;
+            result.validation.fechaIngreso = "Ingrese fecha de egreso valida"
+        }
         if (oldLicence && data.fechaInicio) {
             const lDate1 = parseInputDate(data.fechaInicio);
             const lDate2 = parseInputDate(oldLicence.fechaFin);
