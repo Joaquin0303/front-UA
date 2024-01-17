@@ -73,11 +73,12 @@ const pageConfiguration = {
                 TABLE_ACTIONS.VIEW
             ],
             inactiveActions: [
+                TABLE_ACTIONS.VIEW
             ],
         },
         activeRows: [
             'documentoPersonal',
-            'nombreyapellido',
+            'apellidoNombre',
             'puesto',
             'direccion',
             'fechaEgreso',
@@ -85,7 +86,7 @@ const pageConfiguration = {
         ],
         inactiveRows: [
             'documentoPersonal',
-            'nombreyapellido',
+            'apellidoNombre',
             'puesto',
             'direccion',
             'fechaEgreso',
@@ -93,7 +94,7 @@ const pageConfiguration = {
         ],
         aditionalRows: [
             'documentoPersonal',
-            'nombreyapellido',
+            'apellidoNombre',
             'puesto',
             'direccion',
             'fechaEgreso'
