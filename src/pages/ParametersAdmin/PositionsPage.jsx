@@ -93,7 +93,6 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
-            'id',
             'codigoCentroDeCosto',
             'descripcion',
             'codigoDireccion',
