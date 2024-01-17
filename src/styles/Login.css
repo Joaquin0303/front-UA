@@ -1,11 +1,11 @@
-body{
+body {
     padding: 0;
     margin: 0;
     font-family: 'Ubuntu';
     background-color: white;
 }
 
-.header{
+.header {
     background-color: #002447;
     color: white;
     display: flex;
@@ -15,7 +15,7 @@ body{
     box-shadow: 2px 5px 17px 1px rgba(0, 0, 0, 0.45)
 }
 
-#logo-empresa{
+#logo-empresa {
     width: auto;
     height: 24px;
 }
@@ -28,17 +28,17 @@ body{
     justify-content: center;
 }
 
-#gif{
+#gif {
     width: 50%;
 }
 
 @media (max-width: 768px) {
-    #gif{
+    #gif {
         width: 40%;
     }
 }
 
-form{
+form {
     border-radius: 15px;
     background: linear-gradient(90deg, #002447 0.34%, #008091 99.86%);
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.45);
@@ -53,43 +53,12 @@ form{
 
 @media only screen and (max-width: 1700px) {
 
-    form{
+    form {
         padding: 30px 30px 30px 30px;
         gap: 20px;
     }
 
-    .form-control{
-        font-size: 16px;
-        border-radius: 6px;
-        background-color: #fff;
-        width: 350px;
-        border: none;
-    }
-}
-
-@media only screen and (max-width: 1366px) {
-
-    form{
-        padding: 30px 30px 30px 30px;
-        gap: 20px;
-    }
-
-    .form-control{
-        font-size: 16px;
-        border-radius: 6px;
-        background-color: #fff;
-        width: 350px;
-        border: none;
-    }
-}
-
-@media only screen and (max-width: 1024px) {
-    form{
-        padding: 30px 30px 30px 30px;
-        gap: 15px;
-    }
-
-    .form-control{
+    .form-control {
         font-size: 16px;
         border-radius: 6px;
         background-color: #fff;
@@ -98,10 +67,43 @@ form{
     }
 }
 
-form h2{
+@media only screen and (max-width: 1366px) {
+
+    form {
+        padding: 30px 30px 30px 30px;
+        gap: 20px;
+    }
+
+    .form-control {
+        font-size: 16px;
+        border-radius: 6px;
+        background-color: #fff;
+        width: 300px;
+        border: none;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    form {
+        padding: 30px 30px 30px 30px;
+        gap: 15px;
+    }
+
+    .form-control {
+        font-size: 16px;
+        border-radius: 6px;
+        background-color: #fff;
+        width: 300px;
+        border: none;
+    }
+}
+
+form h2 {
     text-align: center;
     font-weight: 500;
     font-size: 32px;
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
 
@@ -113,7 +115,7 @@ form h2{
     justify-content: flex-start;
 }
 
-.form-control{
+.form-control {
     padding: 12px 12px;
     font-size: 16px;
     border-radius: 6px;
@@ -122,9 +124,9 @@ form h2{
     border: none;
 }
 
-.form-control:focus{
-    outline:none;
-} 
+.form-control:focus {
+    outline: none;
+}
 
 .login-wrapper .form-group-login input {
     margin-right: 0;
@@ -134,7 +136,7 @@ form h2{
     color: red;
 }
 
-.btn-login{
+.btn-login {
     border: none;
     background-color: #00C4DF;
     color: #fff;
@@ -147,7 +149,7 @@ form h2{
     cursor: pointer;
 }
 
-.title-login{
+.title-login {
     display: flex;
     justify-content: center;
     color: #002447;
