@@ -5,10 +5,9 @@
     transition: 0.5s;
     box-shadow: 8px 9px 20px #00000073;
     color: rgb(0, 0, 0);
-    margin-bottom: 30px;
     width: min-content;
     height: 290px;
-    margin-right: 30px;
+    margin: 10px 10px 10px 12px;
 }
 .cards:hover{
     background: #00528f;
