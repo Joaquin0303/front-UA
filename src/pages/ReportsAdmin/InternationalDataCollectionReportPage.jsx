@@ -18,7 +18,7 @@ const ModelDefinition = [
     {
         fieldName: 'estado',
         type: 'select',
-        multivalue: true,
+        multivalue: false,
         options: [
             {
                 value: 87,
@@ -47,9 +47,8 @@ const ModelDefinition = [
         type: 'calendar'
     },
     {
-        fieldName: 'title',
-        type: 'titleByGender',
-        gender: 'gender'
+        fieldName: 'startDate',
+        type: 'calendar'
     }
 ]
 

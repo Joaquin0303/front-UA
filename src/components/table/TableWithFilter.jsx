@@ -12,7 +12,8 @@ import '../../styles/Filter.css'
 const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, loadReportData }) => {
     const [showModalForm, setShowModalForm] = useState(false);
     const [formData, setFormData] = useState();
-
+    const [filter, setFilter] = useState(filterDataModel ? JSON.parse(JSON.stringify(filterDataModel)) : {});
+    console.log('filterDataModel', filterDataModel)
     const targetRef = useRef();
 
     const closeModalForm = () => {
@@ -25,12 +26,13 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     }
 
     const onSubmitForm = (data) => {
+        setFilter(data)
         loadReportData(data);
     }
     return (
         <>
             <div className='bloque-search'>
-                <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><FaFilter />Filtros</button>
+                <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(filter) }}><FaFilter />Filtros</button>
             </div>
             {reportDataList.length > 0 && <div className='export-buttons-container'>
                 <button className='btns' title='Descargar PDF' onClick={() => generatePDF(targetRef, { filename: 'reporte.' + pageConfiguration.name + '.pdf' })}>PDF</button>
