@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import CellPositionCode from "./CellPositionCode";
 import CellParameter from "./CellParameter";
 import CellDate from "./CellDate";
 
 
 const CellDynamicEmployee = ({ employee, fields }) => {
+    const [emp, setEmp] = useState();
+
+    let promise = Promise.resolve(employee);
+    promise.then(function (val) {
+        setEmp(val);
+    });
+
+    const getFieldValue = (field) => {
+        if (emp)
+            return emp[field];
+        else
+            return '';
+    }
 
     const buildCell = () => {
         if (fields.length > 1) {
@@ -12,7 +25,7 @@ const CellDynamicEmployee = ({ employee, fields }) => {
                 <td>
                     <span>
                         {fields.map(f => {
-                            return employee[f] + ' ';
+                            return getFieldValue([f]) + ' ';
                         })}
                     </span>
                 </td>
@@ -20,17 +33,17 @@ const CellDynamicEmployee = ({ employee, fields }) => {
         } else {
             switch (fields[0]) {
                 case 'codigoPuesto':
-                    return <CellPositionCode position={employee[fields[0]]} />
+                    return <CellPositionCode position={getFieldValue([fields[0]])} />
                 case 'codigoDireccion':
-                    return <CellParameter parameter={employee[fields[0]]} />
+                    return <CellParameter parameter={getFieldValue([fields[0]])} />
                 case 'fechaEgreso':
-                    return <CellDate value={employee[fields[0]]} />
+                    return <CellDate value={getFieldValue([fields[0]])} />
                 default:
                     return (
                         <td>
                             <span>
                                 {fields.map(f => {
-                                    return employee[f] + ' ';
+                                    return getFieldValue([f]) + ' ';
                                 })}
                             </span>
                         </td>
