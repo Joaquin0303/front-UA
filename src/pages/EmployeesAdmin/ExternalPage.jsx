@@ -265,6 +265,16 @@ const pageConfiguration = {
     }
 }
 
+const compare = (a, b) => {
+    if (a.codigoProveedor.toLowerCase() < b.codigoProveedor.toLowerCase()) {
+        return -1;
+    }
+    if (a.codigoProveedor.toLowerCase() > b.codigoProveedor.toLowerCase()) {
+        return 1;
+    }
+    return 0;
+}
+
 const ExternalPage = () => {
     const [extarnalList, setExternalList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
@@ -276,7 +286,7 @@ const ExternalPage = () => {
     const loadExternals = () => {
         getExternals().then(result => {
             if (result.list)
-                setExternalList(result.list.filter(d => d.activo == statusActive));
+                setExternalList(result.list.filter(d => d.activo == statusActive).sort(compare));
         });
     }
 
