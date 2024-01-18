@@ -188,7 +188,8 @@ i18n
           nombres: 'Apellido Y Nombre',
           dni: 'Documento',
           fechaDesde: 'Fecha Desde',
-          fechaHasta: 'Fecha Hasta'
+          fechaHasta: 'Fecha Hasta',
+          apellidoynombre: 'Apellido y Nombre'
         }
       }
     }

@@ -62,3 +62,18 @@ export const removeEmployee = async (employeeId) => {
     })
     return result.data;
 }
+
+export const searchEmployee = async (numeroLegajo) => {
+    const result = await axios({
+        method: 'get',
+        url: host + '/ua/empleado/buscar?',
+        params: {
+            numeroLegajo: numeroLegajo
+        }
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}

@@ -13,7 +13,7 @@ const ModelDefinition = [
         type: 'string'
     },
     {
-        fieldName: 'nombreyapellido',
+        fieldName: 'apellidoynombre',
         type: 'employee',
         employeeFields: ['apellido', 'nombre'],
         employee: "empleado"
@@ -62,7 +62,7 @@ const pageConfiguration = {
         },
         activeRows: [
             'numeroLegajo',
-            'nombreyapellido',
+            'apellidoynombre',
             'codigoPais',
             'codigoDireccion',
             'codigoPuesto',
@@ -72,11 +72,11 @@ const pageConfiguration = {
         inactiveRows: [
         ],
         aditionalRows: [
-            'nombreyapellido'
+            'apellidoynombre'
         ],
         sortRow: [
             'numeroLegajo',
-            'nombreyapellido',
+            'apellidoynombre',
             'codigoPais',
             'codigoDireccion',
             'codigoPuesto',
@@ -128,8 +128,9 @@ const PositionChangesPage = () => {
 
     const loadPositionChanges = () => {
         getPositionChanges().then(result => {
-            if (result.list)
-                setPositionChangeList(result.list.filter(d => d.activo == statusActive));
+            console.log('LOS RES', result)
+            if (result)
+                setPositionChangeList(result.filter(d => d.activo == statusActive));
         });
     }
 

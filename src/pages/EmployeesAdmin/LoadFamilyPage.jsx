@@ -43,6 +43,12 @@ const ModelDefinition = [
     {
         fieldName: 'fechaNacimiento',
         type: 'calendar'
+    },
+    {
+        fieldName: 'apellidoynombre',
+        type: 'employee',
+        employeeFields: ['apellido', 'nombre'],
+        employee: "empleado"
     }
 ]
 
@@ -76,10 +82,22 @@ const pageConfiguration = {
             'codigoParentesco',
             'codigoTipoDocumento',
             'numeroDocumento',
-            'fechaNacimiento'
+            'fechaNacimiento',
+            'apellidoynombre'
         ],
         inactiveRows: [
-        ]
+            'numeroLegajo',
+            'nombre',
+            'apellido',
+            'codigoParentesco',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'fechaNacimiento',
+            'apellidoynombre'
+        ],
+        aditionalRows: [
+            'apellidoynombre'
+        ],
     },
     formConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
@@ -131,8 +149,8 @@ const LoadFamilyPage = () => {
 
     const loadLoadFamilies = () => {
         getLoadFamilies().then(result => {
-            if (result.list)
-                setLoadFamilyList(result.list.filter(d => d.activo == statusActive));
+            if (result)
+                setLoadFamilyList(result.filter(d => d.activo == statusActive));
         });
     }
 
