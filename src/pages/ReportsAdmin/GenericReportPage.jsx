@@ -3,37 +3,228 @@ import ReportPage from "../ReportPage";
 import { genericReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    codigoEstadoEmpleado: {
-        id: 0
-    },
-    codigoDireccion: {
-        id: 0
-    },
-    codigoGerencia: {
-        id: 0
-    }
+    estado: [87],
+    codigoDireccion: null,
+    codigoGerencia: null
 }
 
 const defaultFilter = {
-    f1: 0
+    estado: [87],
+    direccion: null,
+    gerencia: null
+}
+
+const ModelDefinition = [
+    {
+        fieldName: 'estado',
+        type: 'select',
+        multivalue: true,
+        options: [
+            {
+                value: 87,
+                label: 'Activo'
+            },
+            {
+                value: 88,
+                label: 'Inactivo'
+            },
+            {
+                value: 89,
+                label: 'Baja'
+            }
+        ]
+    },
+    {
+        fieldName: 'codigoDireccion',
+        type: 'parameter',
+        code: 6
+    },
+    {
+        fieldName: 'codigoGerencia',
+        type: 'parameter',
+        code: 12
+    },
+    {
+        fieldName: 'fechaNacimiento',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'fechaIngreso',
+        type: 'calendar'
+    },
+    {
+        fieldName: 'fechaIngresoReconocida',
+        type: 'calendar'
+    }
+]
+
+const getFieldTypeByName = (fieldName) => {
+    const field = ModelDefinition.find(d => d.fieldName == fieldName);
+    if (field) return field;
+    else return null;
 }
 
 const pageConfiguration = {
     name: 'generico',
     tableConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
+        hiddenRows: [
+            'nombrePreferido',
+            'fechaNacimiento',
+            'generacion',
+            'nacionalidad',
+            'genero',
+            'title',
+            'cuil',
+            'domicilio',
+            'numeroResidencia',
+            'localidadResidencia',
+            'provincia',
+            'emailPersonal',
+            'fechaIngreso',
+            'fechaIngresoReconocida',
+            'tipoContratacion',
+            'horasSemanales',
+            'fte',
+            'frecuenciaLiquidacion',
+            'tipoEmpleo',
+            'tipoJornada',
+            'pais',
+            'lugarDeTrabajo',
+            'emailLaboral',
+            'categoria',
+            'gerencia',
+            'jefatura',
+            'division',
+            'centroDeCosto',
+            'prepaga',
+            'obraSocial',
+            'planPrepaga',
+            'banco',
+            'cbu',
+            'convenio',
+            'afiliadoSindicato',
+            'finFechaContrat',
+            'fechaEgreso',
+            'tipoEgreso',
+            'estadoCivil',
+            'grado',
+            'manager',
+            'cargoManager',
+            'cargasDeFamilia'
+        ],
         activeRows: [
+            'nombrePreferido',
+            'fechaNacimiento',
+            'generacion',
+            'nacionalidad',
+            'genero',
+            'title',
+            'cuil',
+            'domicilio',
+            'numeroResidencia',
+            'localidadResidencia',
+            'provincia',
+            'emailPersonal',
+            'fechaIngreso',
+            'fechaIngresoReconocida',
+            'tipoContratacion',
+            'horasSemanales',
+            'fte',
+            'frecuenciaLiquidacion',
+            'tipoEmpleo',
+            'tipoJornada',
+            'pais',
+            'lugarDeTrabajo',
+            'emailLaboral',
+            'categoria',
+            'gerencia',
+            'jefatura',
+            'division',
+            'centroDeCosto',
+            'prepaga',
+            'obraSocial',
+            'planPrepaga',
+            'banco',
+            'cbu',
+            'convenio',
+            'afiliadoSindicato',
+            'finFechaContrat',
+            'fechaEgreso',
+            'tipoEgreso',
+            'estadoCivil',
+            'grado',
+            'manager',
+            'cargoManager',
+            'cargasDeFamilia',
+            'numeroLegajo',
+            'nombres',
+            'dni',
+            'pisoResidencia',
+            'direccion',
+            'puesto'
         ],
         inactiveRows: [
+            'nombrePreferido',
+            'fechaNacimiento',
+            'generacion',
+            'nacionalidad',
+            'genero',
+            'title',
+            'cuil',
+            'domicilio',
+            'numeroResidencia',
+            'localidadResidencia',
+            'provincia',
+            'emailPersonal',
+            'fechaIngreso',
+            'fechaIngresoReconocida',
+            'tipoContratacion',
+            'horasSemanales',
+            'fte',
+            'frecuenciaLiquidacion',
+            'tipoEmpleo',
+            'tipoJornada',
+            'pais',
+            'lugarDeTrabajo',
+            'emailLaboral',
+            'categoria',
+            'gerencia',
+            'jefatura',
+            'division',
+            'centroDeCosto',
+            'prepaga',
+            'obraSocial',
+            'planPrepaga',
+            'banco',
+            'cbu',
+            'convenio',
+            'afiliadoSindicato',
+            'finFechaContrat',
+            'fechaEgreso',
+            'tipoEgreso',
+            'estadoCivil',
+            'grado',
+            'manager',
+            'cargoManager',
+            'cargasDeFamilia',
+            'numeroLegajo',
+            'nombres',
+            'dni',
+            'pisoResidencia',
+            'direccion',
+            'puesto'
         ]
     },
     formConfiguration: {
+        getFieldTypeByName: getFieldTypeByName,
         activeFields: [
-            'codigoEstadoEmpleado',
+            'estado',
             'codigoDireccion',
             'codigoGerencia'
         ],
         inactiveFields: [
-            'codigoEstadoEmpleado',
+            'estado',
             'codigoDireccion',
             'codigoGerencia'
         ]
@@ -41,18 +232,12 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (a.codigoPais.codigo.toLowerCase() < b.codigoPais.codigo.toLowerCase()) {
+    if (a.numeroLegajo < b.numeroLegajo) {
         return -1;
-    } else if (a.codigoPais.codigo.toLowerCase() > b.codigoPais.codigo.toLowerCase()) {
+    } else if (a.numeroLegajo > b.numeroLegajo) {
         return 1;
     } else {
-        if (a.numeroLegajo < b.numeroLegajo) {
-            return -1;
-        } else if (a.numeroLegajo > b.numeroLegajo) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return 0;
     }
 }
 

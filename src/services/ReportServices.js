@@ -11,7 +11,6 @@ export const backToSchoolReportService = async (filter) => {
         method: 'post',
         url: host + '/ua/reporte/vueltaalcolegio/generar',
         data: {
-            'estadoEmpleado': 1,
             'pais': filter.empleadoPais
         }
     }).then(response => {
@@ -65,13 +64,17 @@ export const employmentHistoryReportService = async (filter) => {
 }
 
 export const internationalDataCollectionReportService = async (filter) => {
-    console.log("Filter internationalDataCollectionReportService");
-    if (useMock) return internationalDataCollectionMockData;
+    console.log("Filter internationalDataCollectionReportService", filter);
+    //if (useMock) return internationalDataCollectionMockData;
     const result = await axios({
         method: 'post',
-        url: host + '/ua/report',
+        url: host + '/ua/reporte/idc/generar',
         data: {
-            filter
+            estadoActivo: filter.estado.find(e => e == 87),
+            estadoInactivo: filter.estado.find(e => e == 88),
+            estadoBaja: filter.estado.find(e => e == 89),
+            fechaDesde: filter.fechaDesde,
+            fechaHasta: filter.fechaHasta
         }
     }).then(response => {
         return response;
@@ -118,13 +121,15 @@ export const directorsReportService = async (filter) => {
 }
 
 export const genericReportService = async (filter) => {
-    console.log("Filter genericReportService");
-    if (useMock) return genericMockData;
+    console.log("Filter genericReportService:", filter);
+    //if (useMock) return genericMockData;
     const result = await axios({
         method: 'post',
-        url: host + '/ua/report',
+        url: host + '/ua/reporte/generico/generar',
         data: {
-            filter
+            'estadoEmpleado': filter.estado,
+            'idDireccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
+            'idGerencia': filter.codigoGerencia ? filter.codigoGerencia.id : null
         }
     }).then(response => {
         return response;
