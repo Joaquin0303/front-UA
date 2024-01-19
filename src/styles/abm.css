@@ -142,6 +142,10 @@
     margin-left: 10px;
 }
 
+.search-checkbox {
+    display: flex;
+    justify-content: space-between;
+}
 
 .bloque-search {
     width: 80%;

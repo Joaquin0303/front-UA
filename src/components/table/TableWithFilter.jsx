@@ -29,20 +29,22 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     }
     return (
         <>
-            <div className='bloque-search'>
-                <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><FaFilter />Filtros</button>
-            </div>
-            {reportDataList.length > 0 && <div className='export-buttons-container'>
-                <button className='btns' title='Descargar PDF' onClick={() => generatePDF(targetRef, { filename: 'reporte.' + pageConfiguration.name + '.pdf' })}>PDF</button>
-                <DownloadTableExcel
-                    filename={'reporte.' + pageConfiguration.name}
-                    sheet={i18n.t(pageConfiguration.name)}
-                    currentTableRef={targetRef.current}
-                >
-                    <button className='btns' title='Descargar Excel'> XLS </button>
+            <div className="search-download">
+                <div className='bloque-search'>
+                    <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><FaFilter />Filtros</button>
+                </div>
+                {reportDataList.length > 0 && <div className='export-buttons-container'>
+                    <button className='btns' title='Descargar PDF' onClick={() => generatePDF(targetRef, { filename: 'reporte.' + pageConfiguration.name + '.pdf' })}>PDF</button>
+                    <DownloadTableExcel
+                        filename={'reporte.' + pageConfiguration.name}
+                        sheet={i18n.t(pageConfiguration.name)}
+                        currentTableRef={targetRef.current}
+                    >
+                        <button className='btns' title='Descargar Excel'> XLS </button>
 
-                </DownloadTableExcel>
-            </div>}
+                    </DownloadTableExcel>
+                </div>}
+            </div>
             <div className='export-container' ref={targetRef}>
                 <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={reportDataList} />
             </div>

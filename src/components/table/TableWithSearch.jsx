@@ -63,19 +63,21 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
     }, [searchTerm, dataList]);
     return (
         <>
-            <div className='bloque-search'>
-                {pageConfiguration.show_search && <div className='search'>
-                    <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                    <i className="fa-solid fa-magnifying-glass icon"></i>
+            <div className='search-checkbox'>
+                <div className='bloque-search'>
+                    {pageConfiguration.show_search && <div className='search'>
+                        <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                        <i className="fa-solid fa-magnifying-glass icon"></i>
+                    </div>}
+                    {pageConfiguration.show_add_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(pageName == 'Empleados' ? MODAL_FORM.EMPLOYEEMODAL : MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADD, dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
+                </div >
+                {pageConfiguration.show_active_button && <div className='active-users'>
+                    {setActive && <div className='form-check form-switch'>
+                        {pageName === 'Empleados' ? (showActives ? 'Activos / Licencias' : 'Bajas') : (showActives ? 'Activos' : 'Inactivos')}
+                        <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />
+                    </div>}
                 </div>}
-                {pageConfiguration.show_add_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(pageName == 'Empleados' ? MODAL_FORM.EMPLOYEEMODAL : MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADD, dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
-            </div >
-            {pageConfiguration.show_active_button && <div className='active-users'>
-                {setActive && <div className='form-check form-switch'>
-                    {pageName === 'Empleados' ? (showActives ? 'Activos / Licencias' : 'Bajas') : (showActives ? 'Activos' : 'Inactivos')}
-                    <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />
-                </div>}
-            </div>}
+            </div>
 
 
             {pageName != 'Empleados' && <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={filteredDataList} openModalForm={openModalForm} />}
