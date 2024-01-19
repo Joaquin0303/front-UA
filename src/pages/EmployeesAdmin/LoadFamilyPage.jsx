@@ -77,23 +77,23 @@ const pageConfiguration = {
         },
         activeRows: [
             'numeroLegajo',
+            'apellidoynombre',
             'nombre',
             'apellido',
             'codigoParentesco',
             'codigoTipoDocumento',
             'numeroDocumento',
             'fechaNacimiento',
-            'apellidoynombre'
         ],
         inactiveRows: [
             'numeroLegajo',
+            'apellidoynombre',
             'nombre',
             'apellido',
             'codigoParentesco',
             'codigoTipoDocumento',
             'numeroDocumento',
             'fechaNacimiento',
-            'apellidoynombre'
         ],
         aditionalRows: [
             'apellidoynombre'
