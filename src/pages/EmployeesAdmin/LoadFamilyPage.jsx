@@ -205,7 +205,7 @@ const LoadFamilyPage = () => {
             result.error = true;
             result.validation.fechaNacimiento = "Ingrese fecha de nacimiento"
         }
-        if (!data.codigoParentesco) {
+        if (!data.codigoParentesco || data.codigoParentesco.id <= 0) {
             result.error = true;
             result.validation.codigoParentesco = "Ingrese un parentesco"
         }
