@@ -12,7 +12,8 @@ import '../../styles/Filter.css'
 const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, loadReportData }) => {
     const [showModalForm, setShowModalForm] = useState(false);
     const [formData, setFormData] = useState();
-
+    const [filter, setFilter] = useState(filterDataModel ? JSON.parse(JSON.stringify(filterDataModel)) : {});
+    console.log('filterDataModel', filterDataModel)
     const targetRef = useRef();
 
     const closeModalForm = () => {
@@ -25,6 +26,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     }
 
     const onSubmitForm = (data) => {
+        setFilter(data)
         loadReportData(data);
     }
     return (

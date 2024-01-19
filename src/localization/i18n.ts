@@ -187,8 +187,9 @@ i18n
           cargasDeFamilia: 'Cargas De Familia',
           nombres: 'Apellido Y Nombre',
           dni: 'Documento',
-          fechaDesde: 'Fecha Baja Desde',
-          fechaHasta: 'Fecha Baja Hasta'
+          fechaDesde: 'Fecha Desde',
+          fechaHasta: 'Fecha Hasta',
+          apellidoynombre: 'Apellido y Nombre'
         }
       }
     }

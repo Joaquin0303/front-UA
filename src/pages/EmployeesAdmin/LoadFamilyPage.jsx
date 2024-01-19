@@ -43,6 +43,12 @@ const ModelDefinition = [
     {
         fieldName: 'fechaNacimiento',
         type: 'calendar'
+    },
+    {
+        fieldName: 'apellidoynombre',
+        type: 'employee',
+        employeeFields: ['apellido', 'nombre'],
+        employee: "empleado"
     }
 ]
 
@@ -71,15 +77,27 @@ const pageConfiguration = {
         },
         activeRows: [
             'numeroLegajo',
+            'apellidoynombre',
             'nombre',
             'apellido',
             'codigoParentesco',
             'codigoTipoDocumento',
             'numeroDocumento',
-            'fechaNacimiento'
+            'fechaNacimiento',
         ],
         inactiveRows: [
-        ]
+            'numeroLegajo',
+            'apellidoynombre',
+            'nombre',
+            'apellido',
+            'codigoParentesco',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'fechaNacimiento',
+        ],
+        aditionalRows: [
+            'apellidoynombre'
+        ],
     },
     formConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
@@ -131,8 +149,8 @@ const LoadFamilyPage = () => {
 
     const loadLoadFamilies = () => {
         getLoadFamilies().then(result => {
-            if (result.list)
-                setLoadFamilyList(result.list.filter(d => d.activo == statusActive));
+            if (result)
+                setLoadFamilyList(result.filter(d => d.activo == statusActive));
         });
     }
 
@@ -187,7 +205,7 @@ const LoadFamilyPage = () => {
             result.error = true;
             result.validation.fechaNacimiento = "Ingrese fecha de nacimiento"
         }
-        if (!data.codigoParentesco) {
+        if (!data.codigoParentesco || data.codigoParentesco.id <= 0) {
             result.error = true;
             result.validation.codigoParentesco = "Ingrese un parentesco"
         }
