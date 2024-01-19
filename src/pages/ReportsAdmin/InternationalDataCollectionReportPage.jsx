@@ -3,37 +3,16 @@ import ReportPage from "../ReportPage";
 import { internationalDataCollectionReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    estado: [87],
     fechaDesde: null,
     fechaHasta: null
 }
 
 const defaultFilter = {
-    estado: [87],
     fechaDesde: null,
     fechaHasta: null
 }
 
 const ModelDefinition = [
-    {
-        fieldName: 'estado',
-        type: 'select',
-        multivalue: false,
-        options: [
-            {
-                value: 87,
-                label: 'Activo'
-            },
-            {
-                value: 88,
-                label: 'Inactivo'
-            },
-            {
-                value: 89,
-                label: 'Baja'
-            }
-        ]
-    },
     {
         fieldName: 'fechaDesde',
         type: 'calendar'
@@ -155,12 +134,10 @@ const pageConfiguration = {
     formConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
         activeFields: [
-            'estado',
             'fechaDesde',
             'fechaHasta'
         ],
         inactiveFields: [
-            'estado',
             'fechaDesde',
             'fechaHasta'
         ]

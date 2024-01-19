@@ -70,9 +70,6 @@ export const internationalDataCollectionReportService = async (filter) => {
         method: 'post',
         url: host + '/ua/reporte/idc/generar',
         data: {
-            estadoActivo: filter.estado.find(e => e == 87),
-            estadoInactivo: filter.estado.find(e => e == 88),
-            estadoBaja: filter.estado.find(e => e == 89),
             fechaDesde: filter.fechaDesde,
             fechaHasta: filter.fechaHasta
         }
