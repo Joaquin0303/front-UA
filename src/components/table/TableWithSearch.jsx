@@ -6,6 +6,7 @@ import ModalForm from '../modal/ModalForm';
 import TableEmployee from './TableEmploee';
 import { ModalFormEmployees } from '../modal/ModalFormEmployees';
 import { MODAL_FORM, TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import { IoIosClose } from "react-icons/io";
 
 const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onAdd, onEdit, onRemove, setActive, matchHandler }) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -17,6 +18,8 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
     const [actionForm, setActionForm] = useState();
     const [showActives, setShowActives] = useState(true);
     const [filteredDataList, setFilteredDataList] = useState(dataList);
+
+    const [showClearIcon, setShowClearIcon] = useState(false);
 
     const closeModalForm = () => {
         setShowModalForm(false);
@@ -66,7 +69,12 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
             <div className='search-checkbox'>
                 <div className='bloque-search'>
                     {pageConfiguration.show_search && <div className='search'>
-                        <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                        <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => {const value = e.target.value; setSearchTerm(value); setShowClearIcon(value.length > 0)}} />
+                        {showClearIcon && (
+                            <span className='clear-icon' onClick={() => {setSearchTerm(""); setShowClearIcon(false);}}>
+                                <IoIosClose />
+                            </span>
+                        )}
                         <i className="fa-solid fa-magnifying-glass icon"></i>
                     {pageConfiguration.show_active_button && <div className='active-users'>
                         {setActive && <div className='form-check form-switch'>
