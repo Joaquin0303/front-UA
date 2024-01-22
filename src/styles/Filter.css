@@ -11,6 +11,9 @@
 .search-download {
     display: flex;
     justify-content: space-between;
+    width: 80%;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .form-filter-container .form-filter .form-group {
