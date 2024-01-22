@@ -16,6 +16,12 @@ export const compareStrDates = (strDate1, strDate2) => {
 
 }
 
+export const trimDate = (d) => {
+    if (d)
+        return new Date(d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' GMT-0300');
+    else
+        return null;
+}
 
 export const parseDate = (d) => {
     if (d) {

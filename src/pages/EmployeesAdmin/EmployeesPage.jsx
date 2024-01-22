@@ -6,7 +6,7 @@ import { getCountries } from '../../services/CountryServices';
 import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
 import { addLicense, updateLicense } from '../../services/LicenseServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
-import { compareStrDates, parseDate, parseInputDate } from '../../utils/Utils';
+import { compareStrDates, parseDate, parseInputDate, parseToday } from '../../utils/Utils';
 import { addPositionChange, searchPositionChange } from '../../services/PositionChangeServices';
 import { addLoadFamily } from '../../services/LoadFamilyServices';
 import PopUp from '../../components/modal/PopUp';
@@ -338,7 +338,7 @@ const EmployeesPage = ({ }) => {
                             }
                             console.log('startPositionDate', startPositionDate)
                             if (startPositionDate < new Date()) {
-                                addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, startPositionDate, new Date(), true).then(r => {
+                                addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, startPositionDate, parseToday(), true).then(r => {
                                     console.log('Position History Updated', r)
                                 });
                                 data.codigoCentroDeCosto = data.codigoPuesto.codigoCentroDeCosto;

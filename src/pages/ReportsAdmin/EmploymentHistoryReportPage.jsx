@@ -5,9 +5,9 @@ import { employmentHistoryReportService } from "../../services/ReportServices";
 const FilterDataModel = {
     pais: [1],
     codigoDireccion: null,
-    estado: [87],
-    fechaIngresoDesde: null,
-    fechaIngresoHasta: null
+    estado: [87, 88],
+    fechaDesde: null,
+    fechaHasta: null
 }
 
 const ModelDefinition = [
@@ -41,15 +41,15 @@ const ModelDefinition = [
         code: 6
     },
     {
-        fieldName: 'fechaIngresoDesde',
+        fieldName: 'fechaDesde',
         type: 'calendar'
     },
     {
-        fieldName: 'fechaIngresoHasta',
+        fieldName: 'fechaHasta',
         type: 'calendar'
     },
     {
-        fieldName: 'fechaIngresoReconocida',
+        fieldName: 'fechaIngreso',
         type: 'calendar'
     },
     {
@@ -67,7 +67,7 @@ const getFieldTypeByName = (fieldName) => {
 const defaultFilter = {
     pais: [1],
     codigoDireccion: null,
-    estado: [87],
+    estado: [87, 88],
     fechaDesde: null,
     fechaHasta: null
 }
@@ -81,7 +81,8 @@ const pageConfiguration = {
             'apellido',
             'nombre',
             'puesto',
-            'fechaIngresoReconocida',
+            'direccion',
+            'fechaIngreso',
             'fechaEgreso'
         ],
         inactiveRows: [
@@ -89,7 +90,8 @@ const pageConfiguration = {
             'apellido',
             'nombre',
             'puesto',
-            'fechaIngresoReconocida',
+            'direccion',
+            'fechaIngreso',
             'fechaEgreso'
         ]
     },
@@ -99,15 +101,15 @@ const pageConfiguration = {
             'pais',
             'codigoDireccion',
             'estado',
-            'fechaIngresoDesde',
+            'fechaDesde',
             'fechaHasta'
         ],
         inactiveFields: [
             'pais',
             'codigoDireccion',
             'estado',
-            'fechaIngresoDesde',
-            'fechaIngresoHasta'
+            'fechaDesde',
+            'fechaHasta'
         ]
     }
 }
