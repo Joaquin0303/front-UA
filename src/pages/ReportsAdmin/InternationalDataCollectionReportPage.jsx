@@ -64,7 +64,10 @@ const pageConfiguration = {
             'age',
             'generation',
             'division',
-            'jefatura'
+            'jefatura',
+            'gerencia',
+            'subgerencia',
+            'oficina'
         ],
         activeRows: [
             'positionTitle',
@@ -91,6 +94,10 @@ const pageConfiguration = {
             'generation',
             'division',
             'jefatura',
+            'gerencia',
+            'subgerencia',
+            'direccion',
+            'oficina',
             'globalId',
             'title',
             'surname',
@@ -123,6 +130,10 @@ const pageConfiguration = {
             'generation',
             'division',
             'jefatura',
+            'gerencia',
+            'subgerencia',
+            'direccion',
+            'oficina',
             'globalId',
             'title',
             'surname',
