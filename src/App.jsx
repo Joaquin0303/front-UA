@@ -106,8 +106,6 @@ function App() {
         {<Route path="/administracion-empleados/empleados" element={<EmployeesPage />} />}
         {<Route path="/administracion-empleados/cargas-de-familia" element={<LoadFamilyPage />} />}
         {<Route path="/administracion-empleados/externos" element={<ExternalPage />} />}
-        {<Route path="/administracion-empleados/historial-licencias" element={<LicensesPage />} />}
-        {<Route path="/administracion-empleados/cambios-puestos" element={<PositionChangesPage />} />}
         {<Route path="/administracion-empleados/ingreso-caido" element={<ExcludedIncomePage />} />}
 
         {/* Reportes */}

@@ -63,8 +63,6 @@ export const AdminEmployees = ({ roles }) => {
                 <Card img={logoEmpleados} title={'Empleados'} path={'/administracion-empleados/empleados'} />
                 <Card img={logoFamilia} title={'Carga de Familia'} path={'/administracion-empleados/cargas-de-familia'} />
                 <Card img={logoExterno} title={'Empleado Externo'} path={'/administracion-empleados/externos'} />
-                <Card img={logoLicencias} title={'Historial de Licencias'} path={'/administracion-empleados/historial-licencias'} />
-                <Card img={logoHisPuesto} title={'Historial de Cambios de Puesto'} path={'/administracion-empleados/cambios-puestos'} />
                 <Card img={logoHisIngreso} title={'Historial de Ingresos Caídos'} path={'/administracion-empleados/ingreso-caido'} />
             </div>
         </div>
