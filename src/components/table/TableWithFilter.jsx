@@ -30,6 +30,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const removeFilter = (filterToRemove) => {
         const updatedFilters = appliedFilters.filter(filter => filter !== filterToRemove);
         setAppliedFilters(updatedFilters);
+        loadReportData(data)
     };
 
     const closeModalForm = () => {
