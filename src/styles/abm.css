@@ -176,15 +176,10 @@
     left: 10px;
 }
 
-.clear-icon {
+.fa-xmark {
     position: absolute;
     right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #888;
-    font-size: 14px; 
-  }
+}
 
 .switches {
     display: flex;
