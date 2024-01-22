@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import i18n from "../../localization/i18n";
 import InputText from './InputText';
-import InputSwitch from './InputSwitch';
 import InputSequencer from './InputSequencer';
 import InputParameterType from './InputParameterType';
 import InputParameter from './InputParameter';
 import { getParameters } from '../../services/ParameterServices';
 import InputRole from './InputRole';
 import InputPermission from './InputPermission';
-import InputPositionCode from './InputPositionCode';
 import InputDate from './InputDate';
 import InputNumber from './InputNumber';
 import InputCountry from './InputCountry';
 import InputFileNumber from './InputFileNumber';
-import InputParameterSearch from './InputParameterSearch';
-import InputCountryMulti from './InputCountryMulti';
-import InputStatusMulti from './InputStatusMulti';
-import InputActiveMulti from './InputActiveMulti';
-import InputStatusEmployee from './InputStatusEmployee';
 import InputSelect from './InputSelect';
 import InputPosition from './InputPosition';
 import InputPositionLead from './InputPositionLead';
+import InputParameterSearch from './InputParameterSearch';
 
 const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
 
@@ -74,6 +67,8 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) =>
                         return <InputNumber disabled={fieldDisabled} key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />
                     case 'parameter':
                         return <InputParameter key={i} validation={validation} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == fieldType.code)} updateFormData={updateFormData} />
+                    case 'parameter.search':
+                        return <InputParameterSearch key={i} validation={validation} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == fieldType.code)} updateFormData={updateFormData} />
                     case 'calendar':
                         return <InputDate key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />
                     case 'parameterType':

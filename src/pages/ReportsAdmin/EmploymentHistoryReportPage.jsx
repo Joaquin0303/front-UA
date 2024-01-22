@@ -113,13 +113,7 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (parseInt(a.numeroLegajo) < parseInt(b.numeroLegajo)) {
-        return -1;
-    } else if (parseInt(a.numeroLegajo) > parseInt(b.numeroLegajo)) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return (a.apellido + a.nombre).localeCompare(b.apellido + b.nombre);
 }
 
 const EmploymentHistoryReportPage = ({ }) => {

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import DynamicForm from '../form/DynamicForm';
 import '../../styles/Modal.css'
 import DynamicView from '../form/DynamicView';
 import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';

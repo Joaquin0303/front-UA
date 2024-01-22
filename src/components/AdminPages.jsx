@@ -23,53 +23,70 @@ import generico from '../img/generico.png'
 
 import '../styles/AdminUsers.css';
 import Card from "./cards";
+import { ROLES } from "../utils/Roles";
 
-export const AdminUsers = () =>
-    <div className='bloque_principal'>
-        <h2>Administración de Usuarios</h2>
-        <div className='div-cards'>
-            <Card img={logoGrupo} title={'Usuarios'} path={'/administracion-usuarios/usuarios'} />
-            <Card img={logoRoles} title={'Roles'} path={'/administracion-usuarios/roles'} />
-            <Card img={logoPermisos} title={'Permisos'} path={'/administracion-usuarios/permisos'} />
+export const AdminUsers = ({ roles }) => {
+    if (roles && roles.includes(ROLES.USER_ADMIN.id))
+        return <div className='bloque_principal'>
+            <h2>Administración de Usuarios</h2>
+            <div className='div-cards'>
+                <Card img={logoGrupo} title={'Usuarios'} path={'/administracion-usuarios/usuarios'} />
+                <Card img={logoRoles} title={'Roles'} path={'/administracion-usuarios/roles'} />
+                <Card img={logoPermisos} title={'Permisos'} path={'/administracion-usuarios/permisos'} />
+            </div>
         </div>
-    </div>
+    else
+        return <div>No tiene autorizacion</div>
+}
 
-export const AdminParam = () =>
-    <div className='bloque_principal'>
-        <h2>Administración de Parámetros</h2>
-        <div className='div-cards'>
-            <Card img={logoParam} title={'Tipo de Parámetros'} path={'/administracion-parametros/tipo-de-parametros'} />
-            <Card img={logoParamTipo} title={'Parámetros'} path={'/administracion-parametros/parametros'} />
-            <Card img={logoSecuen} title={'Secuenciador'} path={'/administracion-parametros/secuenciador'} />
-            <Card img={logoPuestos} title={'Puestos'} path={'/administracion-parametros/puestos'} />
-            <Card img={logoPais} title={'País'} path={'/administracion-parametros/pais'} />
-        </div>
-    </div>
+export const AdminParam = ({ roles }) => {
+    if (roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id))
+        return <div className='bloque_principal' >
+            <h2>Administración de Parámetros</h2>
+            <div className='div-cards'>
+                <Card img={logoParam} title={'Tipo de Parámetros'} path={'/administracion-parametros/tipo-de-parametros'} />
+                <Card img={logoParamTipo} title={'Parámetros'} path={'/administracion-parametros/parametros'} />
+                <Card img={logoSecuen} title={'Secuenciador'} path={'/administracion-parametros/secuenciador'} />
+                <Card img={logoPuestos} title={'Puestos'} path={'/administracion-parametros/puestos'} />
+                <Card img={logoPais} title={'País'} path={'/administracion-parametros/pais'} />
+            </div>
+        </div >
+    else
+        return <div>No tiene autorizacion</div>
+}
 
-export const AdminEmployees = () =>
-    <div className='bloque_principal'>
-        <h2>Administración de Empleados</h2>
-        <div className='div-cards'>
-            <Card img={logoEmpleados} title={'Empleados'} path={'/administracion-empleados/empleados'} />
-            <Card img={logoFamilia} title={'Carga de Familia'} path={'/administracion-empleados/cargas-de-familia'} />
-            <Card img={logoExterno} title={'Empleado Externo'} path={'/administracion-empleados/externos'} />
-            <Card img={logoLicencias} title={'Historial de Licencias'} path={'/administracion-empleados/historial-licencias'} />
-            <Card img={logoHisPuesto} title={'Historial de Cambios de Puesto'} path={'/administracion-empleados/cambios-puestos'} />
-            <Card img={logoHisIngreso} title={'Historial de Ingresos Caídos'} path={'/administracion-empleados/ingreso-caido'} />
+export const AdminEmployees = ({ roles }) => {
+    if (roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id))
+        return <div className='bloque_principal'>
+            <h2>Administración de Empleados</h2>
+            <div className='div-cards'>
+                <Card img={logoEmpleados} title={'Empleados'} path={'/administracion-empleados/empleados'} />
+                <Card img={logoFamilia} title={'Carga de Familia'} path={'/administracion-empleados/cargas-de-familia'} />
+                <Card img={logoExterno} title={'Empleado Externo'} path={'/administracion-empleados/externos'} />
+                <Card img={logoLicencias} title={'Historial de Licencias'} path={'/administracion-empleados/historial-licencias'} />
+                <Card img={logoHisPuesto} title={'Historial de Cambios de Puesto'} path={'/administracion-empleados/cambios-puestos'} />
+                <Card img={logoHisIngreso} title={'Historial de Ingresos Caídos'} path={'/administracion-empleados/ingreso-caido'} />
+            </div>
         </div>
-    </div>
+    else
+        return <div>No tiene autorizacion</div>
+}
 
-export const Reports = () =>
-    <div className='bloque_principal'>
-        <h2>Reportes</h2>
-        <div className='div-cards'>
-            <Card img={vueltaColegio} title={'Vuelta al Colegio'} path={'/reportes/vuelta-al-colegio'} />
-            <Card img={centralCosto} title={'Central de Costo'} path={'/reportes/central-costo'} />
-            <Card img={historialLaboral} title={'Historial laboral'} path={'/reportes/historial-laboral'} />
-            <Card img={International} title={'International Data Collection'} path={'/reportes/international'} />
-            <Card img={logoExterno} title={'Externos'} path={'/reportes/externos'} />
-            <Card img={directores} title={'Directores'} path={'/reportes/directores'} />
-            <Card img={generico} title={'Genérico'} path={'/reportes/generico'} />
-            <Card img={logoLicencias} title={'Licencias'} path={'/reportes/licencias'} />
+export const Reports = ({ roles }) => {
+    if (roles && (roles.includes(ROLES.EMPLOYEE_ADMIN.id) || roles.includes(ROLES.REPORT_DIRECTOR.id)))
+        return <div className='bloque_principal'>
+            <h2>Reportes</h2>
+            <div className='div-cards'>
+                {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={vueltaColegio} title={'Vuelta al Colegio'} path={'/reportes/vuelta-al-colegio'} />}
+                {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={centralCosto} title={'Central de Costo'} path={'/reportes/central-costo'} />}
+                {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={historialLaboral} title={'Historial laboral'} path={'/reportes/historial-laboral'} />}
+                {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={International} title={'International Data Collection'} path={'/reportes/international'} />}
+                {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={logoExterno} title={'Externos'} path={'/reportes/externos'} />}
+                {roles && (roles.includes(ROLES.EMPLOYEE_ADMIN.id) || roles.includes(ROLES.REPORT_DIRECTOR.id)) && <Card img={directores} title={'Directores'} path={'/reportes/directores'} />}
+                {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={generico} title={'Genérico'} path={'/reportes/generico'} />}
+                {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={logoLicencias} title={'Licencias'} path={'/reportes/licencias'} />}
+            </div>
         </div>
-    </div>
+    else
+        return <div>No tiene autorizacion</div>
+}

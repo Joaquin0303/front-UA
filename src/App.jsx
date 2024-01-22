@@ -36,6 +36,14 @@ import ExternalReportPage from './pages/ReportsAdmin/ExternalReportPage';
 import DirectorsReportPage from './pages/ReportsAdmin/DirectorsReportPage';
 import GenericReportPage from './pages/ReportsAdmin/GenericReportPage';
 import LicencesReportPage from './pages/ReportsAdmin/LicencesReportPage';
+import { ROLES } from './utils/Roles';
+import { jwtDecode } from "jwt-decode";
+import { decodeToken } from './utils/Utils';
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ2YWx1ZSI6InNlciJ9._RCDTTuGvtXwENLAHhQvvJuoYSbkXP_JPoGv2wzoQQo";
+const decoded = jwtDecode(token);
+
+console.log(decoded);
 
 function App() {
 
@@ -44,6 +52,14 @@ function App() {
   if (!token) {
     // Uncomment to enable Login
     return <Login setToken={setToken} />
+  }
+
+  let roles = [];
+  try {
+    const tokenDecoded = decodeToken(token);
+    roles = tokenDecoded.roles;
+  } catch (error) {
+    console.error(error);
   }
 
   return (
@@ -59,25 +75,25 @@ function App() {
       <nav>
         <div className="nav-links">
           <Link to="/">Inicio</Link>
-          <Link to="/administracion-usuarios">Administración de Usuarios</Link>
-          <Link to="/administracion-parametros">Administración de Parámetros</Link>
-          <Link to="/administracion-empleados">Administración de Empleados</Link>
-          <Link to="/reportes">Reportes</Link>
+          {roles && roles.includes(ROLES.USER_ADMIN.id) && < Link to="/administracion-usuarios">Administración de Usuarios</Link>}
+          {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Link to="/administracion-parametros">Administración de Parámetros</Link>}
+          {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Link to="/administracion-empleados">Administración de Empleados</Link>}
+          {roles && (roles.includes(ROLES.EMPLOYEE_ADMIN.id) || roles.includes(ROLES.REPORT_DIRECTOR.id)) && < Link to="/reportes">Reportes</Link>}
         </div>
-      </nav>
+      </nav >
       <Routes>
         <Route path="/" element={<Home />} />
 
         {/* Administracion de Usuarios */}
         {/* -------------------------- */}
-        <Route path="/administracion-usuarios" element={<AdminUsers />} />
+        <Route path="/administracion-usuarios" element={<AdminUsers roles={roles} />} />
         <Route path="/administracion-usuarios/usuarios" element={<Users />} />
         <Route path="/administracion-usuarios/permisos" element={<Permisos />} />
         <Route path="/administracion-usuarios/roles" element={<Roles />} />
 
         {/* Administracion de Parametros */}
         {/* -------------------------- */}
-        <Route path="/administracion-parametros" element={<AdminParam />} />
+        <Route path="/administracion-parametros" element={<AdminParam roles={roles} />} />
         {<Route path="/administracion-parametros/tipo-de-parametros" element={<ParameterTypesPage />} />}
         {<Route path="/administracion-parametros/parametros" element={<ParametersPage />} />}
         {<Route path="/administracion-parametros/secuenciador" element={<SequencersPage />} />}
@@ -86,7 +102,7 @@ function App() {
 
         {/* Administracion de Empleados */}
         {/* -------------------------- */}
-        <Route path="/administracion-empleados" element={<AdminEmployees />} />
+        <Route path="/administracion-empleados" element={<AdminEmployees roles={roles} />} />
         {<Route path="/administracion-empleados/empleados" element={<EmployeesPage />} />}
         {<Route path="/administracion-empleados/cargas-de-familia" element={<LoadFamilyPage />} />}
         {<Route path="/administracion-empleados/externos" element={<ExternalPage />} />}
@@ -96,7 +112,7 @@ function App() {
 
         {/* Reportes */}
         {/* -------------------------- */}
-        <Route path="/reportes" element={<Reports />} />
+        <Route path="/reportes" element={<Reports roles={roles} />} />
         {<Route path="/reportes/vuelta-al-colegio" element={<BackToSchoolReportPage />} />}
         {<Route path="/reportes/central-costo" element={<CostCenterReportPage />} />}
         {<Route path="/reportes/historial-laboral" element={<EmploymentHistoryReportPage />} />}

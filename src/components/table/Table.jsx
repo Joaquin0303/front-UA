@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Row from './Row'
 import '../../styles/abm.css'
 import i18n from '../../localization/i18n'
 import RowV2 from './RowV2';

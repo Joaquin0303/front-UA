@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReportPage from "../ReportPage";
 import { directorsReportService } from "../../services/ReportServices";
+import useToken from "../../useToken";
+
+
 
 const FilterDataModel = {
     estado: [87],
@@ -137,6 +140,10 @@ const compare = (a, b) => {
 }
 
 const DirectorsReportPage = ({ }) => {
+    const { token } = useToken();
+
+    console.log('user token', token);
+
     const [reportDataList, setReportDataList] = useState([]);
     console.log('reportDataList', reportDataList)
 

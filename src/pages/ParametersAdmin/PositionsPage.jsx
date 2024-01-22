@@ -45,7 +45,7 @@ const ModelDefinition = [
     },
     {
         fieldName: 'codigoGerencia',
-        type: 'parameter',
+        type: 'parameter.search',
         code: 12
     },
     {
@@ -55,7 +55,7 @@ const ModelDefinition = [
     },
     {
         fieldName: 'codigoJefatura',
-        type: 'parameter',
+        type: 'parameter.search',
         code: 14
     },
     {

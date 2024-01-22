@@ -4,7 +4,7 @@ import { licencesReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
     paisLicencia: 1,
-    estadoLicencia: 1,
+    estadoLicencia: [1],
     codigoDireccion: null,
     estadoEmpleado: [88]
 }
@@ -18,7 +18,7 @@ const ModelDefinition = [
     {
         fieldName: 'estadoLicencia',
         type: 'select',
-        multivalue: false,
+        multivalue: true,
         options: [
             {
                 value: 1,
@@ -82,7 +82,7 @@ const getFieldTypeByName = (fieldName) => {
 
 const defaultFilter = {
     paisLicencia: 1,
-    estadoLicencia: 1,
+    estadoLicencia: [1],
     codigoDireccion: null,
     estadoEmpleado: [88]
 }

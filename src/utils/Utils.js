@@ -1,4 +1,5 @@
 
+import { jwtDecode } from "jwt-decode";
 
 export const compareStrDates = (strDate1, strDate2) => {
     const d1 = parseInputDate(strDate1);
@@ -48,3 +49,6 @@ export const diffBetweenDates = (date1, date2) => {
     return diffTime;
 }
 
+export const decodeToken = (token) => {
+    return jwtDecode(token);
+}
