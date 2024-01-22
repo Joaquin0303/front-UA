@@ -68,11 +68,11 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
             <div className='search-checkbox'>
                 <div className='bloque-search'>
                     {pageConfiguration.show_search && <div className='search'>
-                        <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => {const value = e.target.value; setSearchTerm(value); setShowClearIcon(value.length > 0)}} />
-                        <i className="fa-solid fa-magnifying-glass icon"></i>
                         {showClearIcon && (
                             <i className="fa-solid fa-xmark"></i>
                         )}
+                        <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => {const value = e.target.value; setSearchTerm(value); setShowClearIcon(value.length > 0)}} />
+                        <i className="fa-solid fa-magnifying-glass icon"></i>
                     {pageConfiguration.show_active_button && <div className='active-users'>
                         {setActive && <div className='form-check form-switch'>
                             {pageName === 'Empleados' ? (showActives ? 'Activos / Licencias' : 'Bajas') : (showActives ? 'Activos' : 'Inactivos')}
