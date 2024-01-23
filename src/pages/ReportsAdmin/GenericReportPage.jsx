@@ -9,7 +9,7 @@ const FilterDataModel = {
 }
 
 const defaultFilter = {
-    estado: [87],
+    estado: [87, 88],
     direccion: null,
     gerencia: null
 }
@@ -99,7 +99,6 @@ const pageConfiguration = {
             'centroDeCosto',
             'prepaga',
             'obraSocial',
-            'planPrepaga',
             'banco',
             'cbu',
             'convenio',
@@ -144,7 +143,6 @@ const pageConfiguration = {
             'centroDeCosto',
             'prepaga',
             'obraSocial',
-            'planPrepaga',
             'banco',
             'cbu',
             'convenio',
@@ -195,7 +193,6 @@ const pageConfiguration = {
             'centroDeCosto',
             'prepaga',
             'obraSocial',
-            'planPrepaga',
             'banco',
             'cbu',
             'convenio',
