@@ -98,6 +98,16 @@ const pageConfiguration = {
         aditionalRows: [
             'apellidoynombre'
         ],
+        sortRow: [
+            'numeroLegajo',
+            'apellidoynombre',
+            'nombre',
+            'apellido',
+            'codigoParentesco',
+            'codigoTipoDocumento',
+            'numeroDocumento',
+            'fechaNacimiento',
+        ]
     },
     formConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
