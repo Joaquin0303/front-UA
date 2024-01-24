@@ -172,6 +172,7 @@ i18n
           tipoJornada: 'Tipo Jornada',
           lugarDeTrabajo: 'Lugar De Trabajo',
           categoria: 'Categoría',
+          descripcionCategoria: 'Categoría',
           prepaga: 'Prepaga',
           obraSocial: 'Obra Social',
           planPrepaga: 'Plan Prepaga',

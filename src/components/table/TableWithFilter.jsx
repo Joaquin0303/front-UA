@@ -7,6 +7,7 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { FaFilter } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import ModalForm from "../modal/ModalForm";
+import PartialReportMessage from "./PartialReportMessage";
 import '../../styles/Filter.css'
 
 const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, loadReportData }) => {
@@ -59,6 +60,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
                     </DownloadTableExcel>
                 </div>}
             </div>
+            {pageConfiguration.tableConfiguration.hiddenRows && <PartialReportMessage />}
             <div className='export-container' ref={targetRef}>
                 <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={reportDataList} />
             </div>

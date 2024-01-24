@@ -84,7 +84,7 @@ const pageConfiguration = {
             'emailLaboral',
             'oficina',
             'descripcionPuesto',
-            'categoria',
+            'descripcionCategoria',
             'descripcionManagerJefe',
             'descripcionCargoManagerJefe',
             'descripcionDireccion',
