@@ -54,7 +54,7 @@ const getFieldTypeByName = (fieldName) => {
 }
 
 const defaultFilter = {
-    estado: [87],
+    estado: [87, 88],
     codigoDireccion: null,
     codigoGerencia: null
 }
@@ -67,13 +67,13 @@ const pageConfiguration = {
             'fechaIngreso',
             'fechaIngresoReconocida',
             'emailLaboral',
-            'descripcionOficina',
-            'descripcionCategoria',
-            'descripcionGerencia',
+            'oficina',
+            'categoria',
+            'gerencia',
             'descripcionJefatura',
-            'descripcionDivision',
-            'descripcionCentroDeCostos',
-            'descripcionConvenio'
+            'division',
+            'centroDeCostos',
+            'convenio'
         ],
         activeRows: [
             'numeroLegajo',
@@ -82,17 +82,17 @@ const pageConfiguration = {
             'fechaIngresoReconocida',
             'descripcionPais',
             'emailLaboral',
-            'descripcionOficina',
+            'oficina',
             'descripcionPuesto',
-            'descripcionCategoria',
+            'categoria',
             'descripcionManagerJefe',
             'descripcionCargoManagerJefe',
             'descripcionDireccion',
-            'descripcionGerencia',
+            'gerencia',
             'descripcionJefatura',
-            'descripcionDivision',
-            'descripcionCentroDeCostos',
-            'descripcionConvenio'
+            'division',
+            'centroDeCostos',
+            'convenio'
         ],
         inactiveRows: [
             'numeroLegajo',
@@ -101,17 +101,17 @@ const pageConfiguration = {
             'fechaIngresoReconocida',
             'descripcionPais',
             'emailLaboral',
-            'descripcionOficina',
+            'oficina',
             'descripcionPuesto',
-            'descripcionCategoria',
+            'categoria',
             'descripcionManagerJefe',
             'descripcionCargoManagerJefe',
             'descripcionDireccion',
-            'descripcionGerencia',
+            'gerencia',
             'descripcionJefatura',
-            'descripcionDivision',
-            'descripcionCentroDeCostos',
-            'descripcionConvenio'
+            'division',
+            'centroDeCostos',
+            'convenio'
         ]
     },
     formConfiguration: {
