@@ -252,12 +252,12 @@
 
 .form-check-input:checked[type=checkbox] {
     background-color: #00C4DF;
-    margin-left: 0px;
+    margin-left: 10px;
 }
 
 .form-check-input[type=checkbox] {
     background-color: rgb(255, 255, 255);
-    margin-left: 0px;
+    margin-left: 10px;
 }
 
 .active-users {
