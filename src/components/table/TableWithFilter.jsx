@@ -31,6 +31,10 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
         loadReportData(data);
     }
 
+    const deleteFilters = () => {
+        setFilter({})
+        loadReportData();
+    }
 
     return (
         <>
@@ -38,7 +42,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
                 <div className='bloque-search'>
                     <div className="filters-btn">
                         <button className='btns-add' title='Aplicar Filtros' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><FaFilter />Filtros</button>
-                        <button className='btns-delete-filters' title='Quitar Filtros' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><MdDelete />Quitar Filtros</button>
+                        <button className='btns-delete-filters' title='Quitar Filtros' onClick={(e) => { e.stopPropagation(); deleteFilters() }}><MdDelete />Quitar Filtros</button>
                     </div>
                 </div>
                 {reportDataList.length > 0 && <div className='export-buttons-container'>
