@@ -76,7 +76,7 @@ export const Reports = ({ roles }) => {
             <h2>Reportes</h2>
             <div className='div-cards'>
                 {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={vueltaColegio} title={'Vuelta al Colegio'} path={'/reportes/vuelta-al-colegio'} />}
-                {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={centralCosto} title={'Centro de costo'} path={'/reportes/central-costo'} />}
+                {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={centralCosto} title={'Centro de Costo'} path={'/reportes/central-costo'} />}
                 {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={historialLaboral} title={'Historial laboral'} path={'/reportes/historial-laboral'} />}
                 {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={International} title={'International Data Collection'} path={'/reportes/international'} />}
                 {roles && roles.includes(ROLES.EMPLOYEE_ADMIN.id) && <Card img={logoExterno} title={'Externos'} path={'/reportes/externos'} />}
