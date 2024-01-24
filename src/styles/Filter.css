@@ -66,3 +66,8 @@
     font-size: 14px;
     margin-left: 10px;
 }
+
+.filters-btn{
+    display: flex;
+    gap: 10px;
+}
