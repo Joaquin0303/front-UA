@@ -18,6 +18,16 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     console.log('filterDataModel', filterDataModel)
     const targetRef = useRef();
 
+    // Intento de borrar los filtros parte 10
+
+    const [originalData, setOriginalData] = useState([]);
+
+    useEffect(() => {
+        setOriginalData(reportDataList);
+    }, [reportDataList]);
+
+    // ----------------------------------------------------
+
     const closeModalForm = () => {
         setShowModalForm(false);
     }
@@ -36,7 +46,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const deleteFilters = () => {
         setShowButtonDelete(false)
         setFilter({})
-        loadReportData({})
+        loadReportData(originalData)
     }
 
     return (
