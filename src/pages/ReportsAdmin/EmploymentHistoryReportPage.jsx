@@ -127,6 +127,7 @@ const EmploymentHistoryReportPage = ({ }) => {
     }, []);
 
     const loadReportData = (filter) => {
+        if (!filter) filter = defaultFilter;
         employmentHistoryReportService(filter).then(result => {
             console.log('Report Result', result)
             if (result.list) {

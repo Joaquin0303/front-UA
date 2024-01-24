@@ -117,6 +117,7 @@ const CostCenterReportPage = ({ }) => {
     }, []);
 
     const loadReportData = (filter) => {
+        if (!filter) filter = defaultFilter;
         costCenterReportService(filter).then(result => {
             console.log('result', result)
             if (result.list) {

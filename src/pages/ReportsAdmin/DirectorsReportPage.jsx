@@ -152,6 +152,7 @@ const DirectorsReportPage = ({ }) => {
     }, []);
 
     const loadReportData = (filter) => {
+        if (!filter) filter = defaultFilter;
         directorsReportService(filter).then(result => {
             if (result.list) {
                 setReportDataList(result.list.sort(compare));

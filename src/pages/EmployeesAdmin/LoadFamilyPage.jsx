@@ -191,7 +191,7 @@ const LoadFamilyPage = () => {
 
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return lowerCaseSearchTerm == lowerCaseSearchTerm;
+        return !lowerCaseSearchTerm || !data || !data.empleado || data.numeroLegajo == lowerCaseSearchTerm;
     }
 
     const validate = (data) => {

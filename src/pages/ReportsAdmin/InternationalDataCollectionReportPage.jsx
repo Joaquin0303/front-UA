@@ -174,6 +174,7 @@ const InternationalDataCollectionReportPage = ({ }) => {
     }, []);
 
     const loadReportData = (filter) => {
+        if (!filter) filter = defaultFilter;
         internationalDataCollectionReportService(filter).then(result => {
             if (result.list) {
                 setReportDataList(result.list.sort(compare));

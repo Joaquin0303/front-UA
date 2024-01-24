@@ -103,6 +103,7 @@ const BackToSchoolReportPage = ({ }) => {
     }, []);
 
     const loadReportData = (filter) => {
+        if (!filter) filter = defaultFilter;
         backToSchoolReportService(filter).then(result => {
             if (result) {
                 setReportDataList(result.list.sort(compare));

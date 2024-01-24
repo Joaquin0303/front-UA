@@ -138,6 +138,7 @@ const ExternalReportPage = ({ }) => {
     }, []);
 
     const loadReportData = (filter) => {
+        if (!filter) filter = defaultFilter;
         externalReportService(filter).then(result => {
             if (result.list) {
                 setReportDataList(result.list.sort(compare));
