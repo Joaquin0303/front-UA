@@ -42,8 +42,8 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
         setAreFiltersActive(false)
     }
 
-    const dataToDisplay = areFiltersActive ? filterData(reportDataList, filter) : reportDataList;
-
+    //const dataToDisplay = areFiltersActive ? filterDataModel(reportDataList, filter) : reportDataList;
+    const dataToDisplay = false;
     return (
         <>
             <div className="search-download">

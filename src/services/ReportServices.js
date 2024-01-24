@@ -143,7 +143,7 @@ export const licencesReportService = async (filter) => {
         method: 'post',
         url: host + '/ua/reporte/licencias/generar',
         data: {
-            'pais': filter.paisLicencia[0],
+            'pais': filter.paisLicencia.id,
             'estadoEmpleado': filter.estadoEmpleado,
             'direccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
             'estadoLicencia': filter.estadoLicencia

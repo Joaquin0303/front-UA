@@ -3,7 +3,9 @@ import ReportPage from "../ReportPage";
 import { licencesReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    paisLicencia: [1],
+    paisLicencia: {
+        id: 1
+    },
     estadoLicencia: [1],
     codigoDireccion: null,
     estadoEmpleado: [88]
@@ -81,7 +83,9 @@ const getFieldTypeByName = (fieldName) => {
 }
 
 const defaultFilter = {
-    paisLicencia: [1],
+    paisLicencia: {
+        id: 1
+    },
     estadoLicencia: [1],
     codigoDireccion: null,
     estadoEmpleado: [88]

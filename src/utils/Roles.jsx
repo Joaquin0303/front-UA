@@ -9,12 +9,8 @@ export const ROLES = {
         id: 2,
         name: 'employee-admin'
     },
-    REPORT_BACK_TO_SCHOOL: {
-        id: 3,
-        name: 'rrhh-report'
-    },
     REPORT_DIRECTOR: {
-        id: 4,
+        id: 3,
         name: 'director-report'
     }
 }
