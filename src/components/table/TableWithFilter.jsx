@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "./Table";
 import generatePDF from 'react-to-pdf';
 import { useRef } from 'react';
@@ -15,16 +15,18 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const [showButtonDelete, setShowButtonDelete] = useState(false);
     const [formData, setFormData] = useState();
     const [filter, setFilter] = useState(filterDataModel ? JSON.parse(JSON.stringify(filterDataModel)) : {});
-    console.log('filterDataModel', filterDataModel)
+    //console.log('filterDataModel', filterDataModel)
     const targetRef = useRef();
 
     // Intento de borrar los filtros parte 10
 
     const [originalData, setOriginalData] = useState([]);
 
+    console.log('originalData', originalData)
     useEffect(() => {
-        setOriginalData(reportDataList);
-    }, [reportDataList]);
+        console.log('filterDataModel', filterDataModel)
+        setOriginalData(JSON.parse(JSON.stringify(filterDataModel)));
+    }, [filterDataModel]);
 
     // ----------------------------------------------------
 
@@ -46,6 +48,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const deleteFilters = () => {
         setShowButtonDelete(false)
         setFilter({})
+        console.log('originalData enviada', originalData)
         loadReportData(originalData)
     }
 
