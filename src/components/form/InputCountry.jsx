@@ -12,11 +12,9 @@ const InputCountry = ({ multiple, validation, name, value, disabled, updateFormD
             const values = options.map(option => option.value);
             updateFormData(name, values);
         } else {
-            if (e.target.value > 0) {
-                updateFormData(name, countryList.find(c => c.id == e.target.value));
-            } else {
-                updateFormData(name, null);
-            }
+            const options = [...e.target.selectedOptions];
+            const values = options.map(option => option.value);
+            updateFormData(name, values);
         }
     }
 

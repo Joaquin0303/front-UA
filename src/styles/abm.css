@@ -111,6 +111,24 @@
     margin-right: 7px;
 }
 
+.btns-delete-filters{
+    color: rgb(255, 255, 255);
+    background-color: #FC5959;
+    border: none;
+    font-family: 'Ubuntu';
+    border-radius: 56px;
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    font-weight: 700;
+    height: fit-content;
+}
+
+.btns-delete-filters svg {
+    margin-right: 7px;
+    color: white;
+}
+
 .btns-close {
     margin-top: 1rem;
     border: none;
@@ -194,7 +212,6 @@
     flex-direction: row-reverse;
     align-items: center;
     padding: 0;
-    margin-left: 50px;
     gap: 10px;
 }
 
@@ -235,10 +252,12 @@
 
 .form-check-input:checked[type=checkbox] {
     background-color: #00C4DF;
+    margin-left: 0px;
 }
 
 .form-check-input[type=checkbox] {
     background-color: rgb(255, 255, 255);
+    margin-left: 0px;
 }
 
 .active-users {

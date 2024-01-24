@@ -5,7 +5,7 @@ import { costCenterReportService } from "../../services/ReportServices";
 const FilterDataModel = {
     codigoDireccion: null,
     centroDeCosto: null,
-    estado: [87]
+    estado: [87, 88]
 }
 
 const ModelDefinition = [
@@ -45,7 +45,7 @@ const getFieldTypeByName = (fieldName) => {
 const defaultFilter = {
     codigoDireccion: null,
     centroDeCosto: null,
-    estado: [87]
+    estado: [87, 88]
 }
 
 const pageConfiguration = {

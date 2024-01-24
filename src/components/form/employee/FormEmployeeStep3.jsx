@@ -9,7 +9,7 @@ const FormEmployeeStep3 = ({ parameterList, validation, formData, updateFormData
     return (
         <div className="form-field-container">
             <InputParameter validation={validation} name="codigoTipoContratacion" value={formData["codigoTipoContratacion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 26)} updateFormData={updateFormData} />
-            <InputNumber validation={validation} name="horasSemanales" updateFormData={updateFormData} value={formData["horasSemanales"]} />
+            <InputParameter validation={validation} name="horasSemanales" value={formData["horasSemanales"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 13)} updateFormData={updateFormData} />
             <InputParameter validation={validation} name="fte" value={formData["fte"]} valueName="texto2" parameterList={parameterList.filter(p => p.tipoParametro.id == 13)} updateFormData={updateFormData} country={formData["codigoPais"]} />
             <InputParameter validation={validation} name="codigoFrecuenciaLiquidacion" value={formData["codigoFrecuenciaLiquidacion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 9)} updateFormData={updateFormData} />
             <InputParameter validation={validation} name="codigoTipoEmpleo" value={formData["codigoTipoEmpleo"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 28)} updateFormData={updateFormData} />

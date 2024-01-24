@@ -5,33 +5,20 @@ import { useRef } from 'react';
 import i18n from '../../localization/i18n'
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { FaFilter } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import ModalForm from "../modal/ModalForm";
 import '../../styles/Filter.css'
 
-import { FilterBubble } from "../FilterBubble";
-
 const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, loadReportData }) => {
     const [showModalForm, setShowModalForm] = useState(false);
+    const [showButtonDelete, setShowButtonDelete] = useState(false);
     const [formData, setFormData] = useState();
     const [filter, setFilter] = useState(filterDataModel ? JSON.parse(JSON.stringify(filterDataModel)) : {});
+
+    const [areFiltersActive, setAreFiltersActive] = useState(false);
+
     console.log('filterDataModel', filterDataModel)
     const targetRef = useRef();
-
-    {/*------------------------------------------ */}
-    const [appliedFilters, setAppliedFilters] = useState([]);
-
-    {/*------------------------------------------ */}
-    const addFilter = (newFilter) => {
-        setAppliedFilters([...appliedFilters, newFilter]);
-        loadReportData(newFilter);
-    };
-
-    {/*------------------------------------------ */}
-    const removeFilter = (filterToRemove) => {
-        const updatedFilters = appliedFilters.filter(filter => filter !== filterToRemove);
-        setAppliedFilters(updatedFilters);
-        loadReportData(data)
-    };
 
     const closeModalForm = () => {
         setShowModalForm(false);
@@ -44,27 +31,29 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
 
     const onSubmitForm = (data) => {
         setFilter(data)
-        addFilter(data)
-        loadReportData(data);
+        setShowButtonDelete(true)
+        setAreFiltersActive(true);
+        loadReportData(data)
     }
 
+    const deleteFilters = () => {
+        setFilter({})
+        setShowButtonDelete(false)
+        setAreFiltersActive(false)
+    }
+
+    const dataToDisplay = areFiltersActive ? filterData(reportDataList, filter) : reportDataList;
 
     return (
         <>
             <div className="search-download">
                 <div className='bloque-search'>
-                    <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><FaFilter />Filtros</button>
-                </div>
-                {/*------------------------------------------ */}
-                {appliedFilters.length > 0 && (
-                    <div className='applied-filters-container'>
-                        {appliedFilters.map((appliedFilter, index) => (
-                            <FilterBubble key={index} filter={appliedFilter} onRemove={removeFilter} />
-                        ))}
+                    <div className="filters-btn">
+                        <button className='btns-add' title='Aplicar Filtros' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><FaFilter />Filtros</button>
+                        {showButtonDelete && <button className='btns-delete-filters' title='Quitar Filtros' onClick={(e) => { e.stopPropagation(); deleteFilters() }}><MdDelete />Quitar Filtros</button>}
                     </div>
-                )}
-                {/*------------------------------------------ */}
-                {reportDataList.length > 0 && <div className='export-buttons-container'>
+                </div>
+                {dataToDisplay.length > 0 && <div className='export-buttons-container'>
                     <button className='btns' title='Descargar PDF' onClick={() => generatePDF(targetRef, { filename: 'reporte.' + pageConfiguration.name + '.pdf' })}>PDF</button>
                     <DownloadTableExcel
                         filename={'reporte.' + pageConfiguration.name}
