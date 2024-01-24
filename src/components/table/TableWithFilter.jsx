@@ -11,6 +11,7 @@ import '../../styles/Filter.css'
 
 const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, loadReportData }) => {
     const [showModalForm, setShowModalForm] = useState(false);
+    const [showButtonDelete, setShowButtonDelete] = useState(false);
     const [formData, setFormData] = useState();
     const [filter, setFilter] = useState(filterDataModel ? JSON.parse(JSON.stringify(filterDataModel)) : {});
     console.log('filterDataModel', filterDataModel)
@@ -27,12 +28,14 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
 
     const onSubmitForm = (data) => {
         setFilter(data)
+        setShowButtonDelete(true)
         // addFilter(data)
         loadReportData(data);
     }
 
     const deleteFilters = () => {
         setFilter({})
+        setShowButtonDelete(false)
         loadReportData();
     }
 
@@ -42,7 +45,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
                 <div className='bloque-search'>
                     <div className="filters-btn">
                         <button className='btns-add' title='Aplicar Filtros' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><FaFilter />Filtros</button>
-                        <button className='btns-delete-filters' title='Quitar Filtros' onClick={(e) => { e.stopPropagation(); deleteFilters() }}><MdDelete />Quitar Filtros</button>
+                        {showButtonDelete && <button className='btns-delete-filters' title='Quitar Filtros' onClick={(e) => { e.stopPropagation(); deleteFilters() }}><MdDelete />Quitar Filtros</button>}
                     </div>
                 </div>
                 {reportDataList.length > 0 && <div className='export-buttons-container'>
