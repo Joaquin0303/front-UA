@@ -183,8 +183,7 @@
 .search-input {
     padding: 0px 10px;
     border: none;
-    height: 40px;
-    width: 450px;
+    width: 28px;
     color: #00528F;
 }
 
@@ -203,15 +202,15 @@
     border: none;
 }
 
-.icon {
+/* .icon {
     position: absolute;
     left: 10px;
-}
+} */
 
-.fa-xmark {
+/* .fa-xmark {
     position: absolute;
     right: 300px;
-}
+} */
 
 .switches {
     display: flex;
@@ -315,6 +314,8 @@ input:disabled {
     display: flex;
     align-items: center;
     border: solid 1px #00528F;
-    padding: 0px 10px;
+    padding: 0 10px;
     border-radius: 56px;
+    width: 500px;
+    height: 45px;
 }
