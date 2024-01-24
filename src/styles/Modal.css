@@ -157,9 +157,11 @@ label {
 
 .switch-wrap {
     display: flex;
-    align-items: flex-end;
     width: 100%;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
 }
 
 /*********** Estilos del nuevo Modal ***********/
