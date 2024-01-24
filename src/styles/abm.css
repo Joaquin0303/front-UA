@@ -252,6 +252,7 @@
 
 .form-check-input:checked[type=checkbox] {
     background-color: #00C4DF;
+    margin-left: 0px;
 }
 
 .form-check-input[type=checkbox] {
