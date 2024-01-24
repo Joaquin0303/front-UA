@@ -210,10 +210,6 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
             result.error = true;
             result.validation.codigoPais = "Ingrese pais"
         }
-        if (!data.codigoCategoriaEmpleado || data.codigoCategoriaEmpleado.id <= 0) {
-            result.error = true;
-            result.validation.codigoCategoriaEmpleado = "Ingrese cateogría de empleado"
-        }
         if (!data.codigoDireccion || data.codigoDireccion.id <= 0) {
             result.error = true;
             result.validation.codigoDireccion = "Ingrese dirección"
