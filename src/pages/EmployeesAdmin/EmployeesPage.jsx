@@ -186,7 +186,7 @@ export const findByIdentity = (docTypeId, docNumber) => {
 }
 
 export const filterByIdentity = (docTypeId, docNumber) => {
-    return employeeTotalList.filter(e => e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoPersonal == docNumber);
+    return employeeTotalList.filter(e => e.codigoTipoDocumento.id && e.codigoTipoDocumento.id > 0 && e.codigoTipoDocumento.id == docTypeId && e.numeroDocumentoPersonal == docNumber);
 }
 
 export const findByLaboralIdentity = (docTypeId, docNumber) => {
