@@ -5,7 +5,6 @@ import { getCountries } from "../../services/CountryServices";
 const InputCountry = ({ multiple, validation, name, value, disabled, updateFormData }) => {
 
     const [countryList, setCountryList] = useState([]);
-
     const countrySelectorChangeHandler = (e) => {
         if (multiple) {
             const options = [...e.target.selectedOptions];
@@ -14,7 +13,7 @@ const InputCountry = ({ multiple, validation, name, value, disabled, updateFormD
         } else {
             const options = [...e.target.selectedOptions];
             const values = options.map(option => option.value);
-            updateFormData(name, values);
+            updateFormData(name, countryList.find(c => c.id == values[0]));
         }
     }
 
@@ -28,8 +27,8 @@ const InputCountry = ({ multiple, validation, name, value, disabled, updateFormD
     return (
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
-            <select className={multiple ? "select-multiple" : ""} multiple={multiple} disabled={disabled} value={value} default={multiple ? value : value ? value.id : 0} name={name} onChange={countrySelectorChangeHandler}>
-                {!multiple && <option disabled className='default' value={0}>Pais</option>}
+            <select className={multiple ? "select-multiple" : ""} multiple={multiple} disabled={disabled} value={multiple ? value : value ? value.id : 0} default={multiple ? value : value ? value.id : 0} name={name} onChange={countrySelectorChangeHandler}>
+                {!multiple && <option disabled className='default' value={0}></option>}
                 {countryList.map((s, i) => {
                     return <option key={i} value={s.id}>{s.descripcion}</option>
                 })}

@@ -14,9 +14,6 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const [showButtonDelete, setShowButtonDelete] = useState(false);
     const [formData, setFormData] = useState();
     const [filter, setFilter] = useState(filterDataModel ? JSON.parse(JSON.stringify(filterDataModel)) : {});
-
-    const [areFiltersActive, setAreFiltersActive] = useState(false);
-
     console.log('filterDataModel', filterDataModel)
     const targetRef = useRef();
 
@@ -32,17 +29,14 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const onSubmitForm = (data) => {
         setFilter(data)
         setShowButtonDelete(true)
-        setAreFiltersActive(true);
-        loadReportData(data)
+        loadReportData(data);
     }
 
     const deleteFilters = () => {
-        setFilter({})
         setShowButtonDelete(false)
-        setAreFiltersActive(false)
+        setFilter({})
+        loadReportData({});
     }
-
-    const dataToDisplay = areFiltersActive ? filterData(reportDataList, filter) : reportDataList;
 
     return (
         <>
@@ -53,7 +47,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
                         {showButtonDelete && <button className='btns-delete-filters' title='Quitar Filtros' onClick={(e) => { e.stopPropagation(); deleteFilters() }}><MdDelete />Quitar Filtros</button>}
                     </div>
                 </div>
-                {dataToDisplay.length > 0 && <div className='export-buttons-container'>
+                {reportDataList.length > 0 && <div className='export-buttons-container'>
                     <button className='btns' title='Descargar PDF' onClick={() => generatePDF(targetRef, { filename: 'reporte.' + pageConfiguration.name + '.pdf' })}>PDF</button>
                     <DownloadTableExcel
                         filename={'reporte.' + pageConfiguration.name}
