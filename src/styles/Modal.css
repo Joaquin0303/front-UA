@@ -161,7 +161,7 @@ label {
     flex-wrap: wrap;
     justify-content: flex-start;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 /*********** Estilos del nuevo Modal ***********/
