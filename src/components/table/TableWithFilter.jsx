@@ -36,7 +36,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const deleteFilters = () => {
         setShowButtonDelete(false)
         setFilter({})
-        loadReportData({});
+        loadReportData({})
     }
 
     return (
