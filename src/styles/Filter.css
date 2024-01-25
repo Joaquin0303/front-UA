@@ -67,7 +67,11 @@
     margin-left: 10px;
 }
 
-.filters-btn{
+.filters-btn {
     display: flex;
     gap: 10px;
+}
+
+.message {
+    font-size: larger;
 }
