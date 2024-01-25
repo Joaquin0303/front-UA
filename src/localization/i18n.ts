@@ -134,7 +134,7 @@ i18n
           estadoLicencia: 'Estado licencia',
           estadoEmpleado: 'Estado empleado',
           globalId: 'Global Id',
-          title: 'Title',
+          title: 'Denominacion',
           surname: 'Surname',
           firstName: 'First Name',
           country: 'Country',
@@ -188,7 +188,8 @@ i18n
           dni: 'Documento',
           fechaDesde: 'Fecha Desde',
           fechaHasta: 'Fecha Hasta',
-          apellidoynombre: 'Apellido y Nombre'
+          apellidoynombre: 'Apellido y Nombre',
+          finFechaContrato: 'Fecha Fin De Contrato'
         }
       }
     }

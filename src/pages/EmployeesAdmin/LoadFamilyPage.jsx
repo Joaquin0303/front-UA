@@ -130,6 +130,7 @@ const pageConfiguration = {
     },
     viewConfiguration: {
         activeFields: [
+            'numeroLegajo',
             'nombre',
             'apellido',
             'codigoParentesco',
@@ -149,6 +150,16 @@ const pageConfiguration = {
     }
 }
 
+const compare = (a, b) => {
+    if (a.numeroLegajo.toLowerCase() < b.numeroLegajo.toLowerCase()) {
+        return -1;
+    }
+    if (a.numeroLegajo.toLowerCase() > b.numeroLegajo.toLowerCase()) {
+        return 1;
+    }
+    return 0;
+}
+
 const LoadFamilyPage = () => {
     const [loadFamilyList, setLoadFamilyList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
@@ -160,7 +171,7 @@ const LoadFamilyPage = () => {
     const loadLoadFamilies = () => {
         getLoadFamilies().then(result => {
             if (result)
-                setLoadFamilyList(result.filter(d => d.activo == statusActive));
+                setLoadFamilyList(result.filter(d => d.activo == statusActive).sort(compare));
         });
     }
 

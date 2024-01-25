@@ -3,12 +3,10 @@ import ReportPage from "../ReportPage";
 import { internationalDataCollectionReportService } from "../../services/ReportServices";
 
 const FilterDataModel = {
-    fechaDesde: null,
     fechaHasta: null
 }
 
 const defaultFilter = {
-    fechaDesde: null,
     fechaHasta: null
 }
 
@@ -28,6 +26,20 @@ const ModelDefinition = [
     {
         fieldName: 'startDate',
         type: 'calendar'
+    },
+    {
+        fieldName: 'activo',
+        type: 'string',
+        labels: [
+            {
+                value: 'true',
+                label: 'Activo'
+            },
+            {
+                value: 'false',
+                label: 'Inactivo'
+            }
+        ]
     }
 ]
 
@@ -41,6 +53,7 @@ const pageConfiguration = {
     tableConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
         hiddenRows: [
+            'direccion',
             'positionTitle',
             'managerToReport',
             'cargoManagerToReport',
@@ -103,7 +116,8 @@ const pageConfiguration = {
             'surname',
             'firstName',
             'country',
-            'department'
+            'department',
+            'activo'
         ],
         inactiveRows: [
             'positionTitle',
@@ -139,17 +153,16 @@ const pageConfiguration = {
             'surname',
             'firstName',
             'country',
-            'department'
+            'department',
+            'activo'
         ]
     },
     formConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
         activeFields: [
-            'fechaDesde',
             'fechaHasta'
         ],
         inactiveFields: [
-            'fechaDesde',
             'fechaHasta'
         ]
     }
@@ -167,7 +180,6 @@ const compare = (a, b) => {
 
 const InternationalDataCollectionReportPage = ({ }) => {
     const [reportDataList, setReportDataList] = useState([]);
-    console.log('reportDataList', reportDataList)
 
     useEffect(() => {
         loadReportData(defaultFilter);

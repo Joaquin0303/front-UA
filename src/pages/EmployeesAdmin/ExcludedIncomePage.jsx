@@ -20,7 +20,7 @@ const ModelDefinition = [
         employee: "empleado"
     },
     {
-        fieldName: 'nombreyapellido',
+        fieldName: 'apellidoNombre',
         type: 'employee',
         employeeFields: ['apellido', 'nombre'],
         employee: "empleado"
@@ -48,11 +48,6 @@ const ModelDefinition = [
         type: 'employee',
         employeeFields: ['fechaEgreso'],
         employee: "empleado"
-    },
-    {
-        fieldName: 'observaciones',
-        type: 'parameter',
-        code: 17
     }
 ]
 
@@ -98,6 +93,14 @@ const pageConfiguration = {
             'puesto',
             'direccion',
             'fechaEgreso'
+        ],
+        sortRow: [
+            'documentoPersonal',
+            'apellidoNombre',
+            'puesto',
+            'direccion',
+            'fechaEgreso',
+            'observaciones'
         ]
     },
     formConfiguration: {

@@ -105,8 +105,8 @@ const BackToSchoolReportPage = ({ }) => {
     const loadReportData = (filter) => {
         if (!filter) filter = defaultFilter;
         backToSchoolReportService(filter).then(result => {
-            if (result) {
-                setReportDataList(result.list.sort(compare));
+            if (result && result.list) {
+                setReportDataList(result.list.filter(r => r.cantidadHijos > 0).sort(compare));
             }
         });
     }

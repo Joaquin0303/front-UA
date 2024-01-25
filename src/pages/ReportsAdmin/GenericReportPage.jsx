@@ -56,6 +56,11 @@ const ModelDefinition = [
         fieldName: 'fechaIngresoReconocida',
         type: 'calendar'
     }
+    ,
+    {
+        fieldName: 'finFechaContrato',
+        type: 'calendar'
+    }
 ]
 
 const getFieldTypeByName = (fieldName) => {
@@ -74,7 +79,7 @@ const pageConfiguration = {
             'generacion',
             'nacionalidad',
             'genero',
-            'denominacion',
+            'title',
             'cuil',
             'domicilio',
             'numeroResidencia',
@@ -110,7 +115,8 @@ const pageConfiguration = {
             'grado',
             'manager',
             'cargoManager',
-            'cargasDeFamilia'
+            'cargasDeFamilia',
+            'finFechaContrato'
         ],
         activeRows: [
             'nombrePreferido',
@@ -118,7 +124,7 @@ const pageConfiguration = {
             'generacion',
             'nacionalidad',
             'genero',
-            'denominacion',
+            'title',
             'cuil',
             'domicilio',
             'numeroResidencia',
@@ -160,7 +166,8 @@ const pageConfiguration = {
             'dni',
             'pisoResidencia',
             'direccion',
-            'puesto'
+            'puesto',
+            'finFechaContrato'
         ],
         inactiveRows: [
             'nombrePreferido',
@@ -168,7 +175,7 @@ const pageConfiguration = {
             'generacion',
             'nacionalidad',
             'genero',
-            'denominacion',
+            'title',
             'cuil',
             'domicilio',
             'numeroResidencia',
@@ -210,7 +217,8 @@ const pageConfiguration = {
             'dni',
             'pisoResidencia',
             'direccion',
-            'puesto'
+            'puesto',
+            'finFechaContrato'
         ]
     },
     formConfiguration: {
