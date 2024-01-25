@@ -151,13 +151,13 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (a.numeroLegajo.toLowerCase() < b.numeroLegajo.toLowerCase()) {
+    if (parseInt(a.numeroLegajo) < parseInt(b.numeroLegajo)) {
         return -1;
-    }
-    if (a.numeroLegajo.toLowerCase() > b.numeroLegajo.toLowerCase()) {
+    } else if (parseInt(a.numeroLegajo) > parseInt(b.numeroLegajo)) {
         return 1;
+    } else {
+        return 0;
     }
-    return 0;
 }
 
 const LoadFamilyPage = () => {
