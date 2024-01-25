@@ -15,20 +15,13 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const [showButtonDelete, setShowButtonDelete] = useState(false);
     const [formData, setFormData] = useState();
     const [filter, setFilter] = useState(filterDataModel ? JSON.parse(JSON.stringify(filterDataModel)) : {});
-    //console.log('filterDataModel', filterDataModel)
     const targetRef = useRef();
-
-    // Intento de borrar los filtros parte 10
 
     const [originalData, setOriginalData] = useState([]);
 
-    console.log('originalData', originalData)
     useEffect(() => {
-        console.log('filterDataModel', filterDataModel)
         setOriginalData(JSON.parse(JSON.stringify(filterDataModel)));
     }, [filterDataModel]);
-
-    // ----------------------------------------------------
 
     const closeModalForm = () => {
         setShowModalForm(false);
@@ -40,15 +33,13 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     }
 
     const onSubmitForm = (data) => {
-        setFilter(data)
         setShowButtonDelete(true)
         loadReportData(data);
     }
 
     const deleteFilters = () => {
         setShowButtonDelete(false)
-        setFilter({})
-        console.log('originalData enviada', originalData)
+        setFilter(JSON.parse(JSON.stringify(originalData)));
         loadReportData(originalData)
     }
 
@@ -57,7 +48,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
             <div className="search-download">
                 <div className='bloque-search'>
                     <div className="filters-btn">
-                        <button className='btns-add' title='Aplicar Filtros' onClick={(e) => { e.stopPropagation(); openModalForm(filterDataModel) }}><FaFilter />Filtros</button>
+                        <button className='btns-add' title='Aplicar Filtros' onClick={(e) => { e.stopPropagation(); openModalForm(filter) }}><FaFilter />Filtros</button>
                         {showButtonDelete && <button className='btns-delete-filters' title='Quitar Filtros' onClick={(e) => { e.stopPropagation(); deleteFilters() }}><MdDelete />Quitar Filtros</button>}
                     </div>
                 </div>

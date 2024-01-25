@@ -5,9 +5,8 @@ import { parseToday, parseTodayStr } from '../utils/Utils';
 const useMock = true;
 
 export const backToSchoolReportService = async (filter) => {
-    console.log("Filter backToSchoolReportService");
+    console.log("Filter backToSchoolReportService:", filter);
     //if (useMock) return backToSchoolMockData;
-    console.log('filter', filter)
     const result = await axios({
         method: 'post',
         url: host + '/ua/reporte/vueltaalcolegio/generar',
@@ -23,9 +22,8 @@ export const backToSchoolReportService = async (filter) => {
 }
 
 export const costCenterReportService = async (filter) => {
-    console.log("Filter costCenterReportService");
+    console.log("Filter costCenterReportService:", filter);
     //if (useMock) return costCenterMockData;
-    console.log('filter', filter)
     const result = await axios({
         method: 'post',
         url: host + '/ua/reporte/centrodecosto/generar',

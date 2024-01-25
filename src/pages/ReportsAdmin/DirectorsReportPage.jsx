@@ -67,13 +67,13 @@ const pageConfiguration = {
             'fechaIngreso',
             'fechaIngresoReconocida',
             'emailLaboral',
-            'oficina',
-            'categoria',
-            'gerencia',
+            'descripcionOficina',
+            'descripcionCategoria',
+            'descripcionGerencia',
             'descripcionJefatura',
-            'division',
-            'centroDeCostos',
-            'convenio'
+            'descripcionDivision',
+            'descripcionCentroDeCostos',
+            'descripcionConvenio'
         ],
         activeRows: [
             'numeroLegajo',
@@ -82,17 +82,17 @@ const pageConfiguration = {
             'fechaIngresoReconocida',
             'descripcionPais',
             'emailLaboral',
-            'oficina',
+            'descripcionOficina',
             'descripcionPuesto',
             'descripcionCategoria',
             'descripcionManagerJefe',
             'descripcionCargoManagerJefe',
             'descripcionDireccion',
-            'gerencia',
+            'descripcionGerencia',
             'descripcionJefatura',
-            'division',
-            'centroDeCostos',
-            'convenio'
+            'descripcionDivision',
+            'descripcionCentroDeCostos',
+            'descripcionConvenio'
         ],
         inactiveRows: [
             'numeroLegajo',
@@ -101,17 +101,17 @@ const pageConfiguration = {
             'fechaIngresoReconocida',
             'descripcionPais',
             'emailLaboral',
-            'oficina',
+            'descripcionOficina',
             'descripcionPuesto',
-            'categoria',
+            'descripcionCategoria',
             'descripcionManagerJefe',
             'descripcionCargoManagerJefe',
             'descripcionDireccion',
-            'gerencia',
+            'descripcionGerencia',
             'descripcionJefatura',
-            'division',
-            'centroDeCostos',
-            'convenio'
+            'descripcionDivision',
+            'descripcionCentroDeCostos',
+            'descripcionConvenio'
         ]
     },
     formConfiguration: {
