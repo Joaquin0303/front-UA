@@ -159,7 +159,7 @@ i18n
           antiguedad: 'Antigüedad',
           age: 'Age',
           generation: 'Generation',
-          division: 'Divition',
+          division: 'Division',
           generacion: 'Generación',
           nacionalidad: 'Nacionalidad',
           genero: 'Género',
