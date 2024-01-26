@@ -13,7 +13,7 @@ export const putDownLicenceModel = {
 export const LicenseModel = {
     numeroLegajo: null,
     fechaInicio: null,
-    fechaFin: null,
+    fechaFin: '',
     tipoLicencia: '',
     activo: true
 }
