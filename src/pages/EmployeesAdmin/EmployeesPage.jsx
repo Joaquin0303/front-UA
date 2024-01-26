@@ -7,7 +7,7 @@ import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
 import { addLicense, updateLicense } from '../../services/LicenseServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import { compareStrDates, parseDate, parseInputDate, parseToday } from '../../utils/Utils';
-import { addPositionChange, searchPositionChange } from '../../services/PositionChangeServices';
+import { addPositionChange, updatePositionChange, searchPositionChange } from '../../services/PositionChangeServices';
 import { addLoadFamily } from '../../services/LoadFamilyServices';
 import PopUp from '../../components/modal/PopUp';
 
@@ -60,6 +60,10 @@ const ModelDefinition = [
         type: 'employee',
         employeeFields: ['apellido', 'nombre'],
         employee: "empleado"
+    },
+    {
+        fieldName: 'fechaInicioPuesto',
+        type: 'calendar'
     }
 ]
 
@@ -102,7 +106,8 @@ const pageConfiguration = {
             'codigoParentesco',
             'codigoTipoDocumento',
             'numeroDocumento',
-            'fechaNacimiento'
+            'fechaNacimiento',
+            'fechaInicioPuesto'
         ],
         inactiveFields: [
         ]
@@ -329,33 +334,56 @@ const EmployeesPage = ({ }) => {
                 getEmployeeById(data.id).then(oldEmp => {
                     if (oldEmp.model.codigoPuesto.id != data.codigoPuesto.id) {
                         searchPositionChange(oldEmp.model.numeroLegajo).then(hp => {
-                            let startPositionDate = parseInputDate(oldEmp.model.fechaIngresoReconocida);
-                            if (hp.list) {
-                                startPositionDate = new Date(Math.max.apply(null, hp.list.map(p => {
-                                    return parseInputDate(p.fechaEgreso);
-                                })));
-                                startPositionDate.setDate(startPositionDate.getDate() + 1);
-                            }
-                            console.log('startPositionDate', startPositionDate)
-                            if (startPositionDate < new Date()) {
-                                addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, startPositionDate, parseToday(), true).then(r => {
+                            const fechaFinLastPuesto = parseToday();
+                            if (hp && hp.list) {
+                                // HAY UN PUESTO GUARDADO
+                                const lastPosition = hp.list.find(p => p.fechaEgreso == null);
+                                lastPosition.fechaEgreso = fechaFinLastPuesto;
+                                updatePositionChange(lastPosition.id, lastPosition).then(r => {
                                     console.log('Position History Updated', r)
                                 });
-                                data.codigoCentroDeCosto = data.codigoPuesto.codigoCentroDeCosto;
-                                updateEmployee(data.id, data).then(r => {
-                                    console.log('Employee updated=', r);
-                                    loadEmployees();
-                                });
                             } else {
-                                setShowPopup(true);
-                                console.log(`No es posible cambiar de puesto a un empleado mas de una vez en el mismo día`);
-                                setPopupMessage(`No es posible cambiar de puesto a un empleado mas de una vez en el mismo día`);
-
-                                setTimeout(() => {
-                                    setShowPopup(false);
-                                }, 10000);
+                                addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, oldEmp.model.fechaIngresoReconocida, fechaFinLastPuesto, true).then(r => {
+                                    console.log('Old Position History Added', r)
+                                });
                             }
+                            addPositionChange(data.numeroLegajo, data.codigoPais, data.codigoOficina, data.codigoPuesto.codigoDireccion, data.codigoPuesto.codigoGerencia, data.codigoPuesto.codigoJefatura, data.codigoPuesto, data.fechaInicioPuesto, null, true).then(r => {
+                                console.log('New Position History Added', r)
+                            });
 
+                            updateEmployee(data.id, data).then(r => {
+                                console.log('Employee updated=', r);
+                                loadEmployees();
+                            });
+                            /*
+                                                        let startPositionDate = parseInputDate(oldEmp.model.fechaIngresoReconocida);
+                                                        if (hp.list) {
+                                                            startPositionDate = new Date(Math.max.apply(null, hp.list.map(p => {
+                                                                return parseInputDate(p.fechaEgreso);
+                                                            })));
+                                                            startPositionDate.setDate(startPositionDate.getDate() + 1);
+                                                        }
+                                                        console.log('startPositionDate', startPositionDate)
+                                                        if (startPositionDate < new Date()) {
+                                                            addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, startPositionDate, parseToday(), true).then(r => {
+                                                                console.log('Position History Updated', r)
+                                                            });
+                            
+                                                            data.codigoCentroDeCosto = data.codigoPuesto.codigoCentroDeCosto;
+                                                            updateEmployee(data.id, data).then(r => {
+                                                                console.log('Employee updated=', r);
+                                                                loadEmployees();
+                                                            });
+                                                        } else {
+                                                            setShowPopup(true);
+                                                            console.log(`No es posible cambiar de puesto a un empleado mas de una vez en el mismo día`);
+                                                            setPopupMessage(`No es posible cambiar de puesto a un empleado mas de una vez en el mismo día`);
+                            
+                                                            setTimeout(() => {
+                                                                setShowPopup(false);
+                                                            }, 10000);
+                                                        }
+                            */
                         })
 
                     }

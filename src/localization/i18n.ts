@@ -196,7 +196,8 @@ i18n
           descripcionDivision: 'División',
           descripcionCentroDeCostos: 'Centro De Costos',
           descripcionConvenio: 'Convenio',
-          departamento: 'Departamento'
+          departamento: 'Departamento',
+          fechaInicioPuesto: 'Fecha De Inicio'
         }
       }
     }

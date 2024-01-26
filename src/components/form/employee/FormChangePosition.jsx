@@ -4,6 +4,8 @@ import InputCountry from "../InputCountry";
 import InputPositionCode from "../InputPositionCode";
 import InputParameter from "../InputParameter";
 import '../../../styles/Modal.css'
+import InputDate from '../InputDate';
+import { parseInputDate, parseToday } from '../../../utils/Utils';
 
 const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
@@ -51,6 +53,18 @@ const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) =
             result.error = true;
             result.validation.codigoPuesto = "Ingrese puesto"
         }
+        if (!data.fechaInicioPuesto || data.fechaInicioPuesto.trim().length <= 0) {
+            result.error = true;
+            result.validation.fechaInicioPuesto = "Ingrese una fecha"
+        }
+        if (data.fechaInicioPuesto) {
+            const fechaInicioPuesto = parseInputDate(data.fechaInicioPuesto);
+            if (fechaInicioPuesto <= parseToday()) {
+                result.error = true;
+                result.validation.fechaInicioPuesto = "Ingrese una fecha mayor"
+            }
+        }
+
         if (result.error) throw result;
     }
 
@@ -64,6 +78,7 @@ const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) =
                         <InputParameter validation={validation} name="codigoOficina" value={formData["codigoOficina"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 19)} updateFormData={updateFormData} country={formData["codigoPais"]} />
                         <InputParameter validation={validation} name="codigoDireccion" value={formData["codigoDireccion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
                         <InputParameter validation={validation} name="codigoCategoriaEmpleado" value={formData["codigoCategoriaEmpleado"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 3)} updateFormData={updateFormData} />
+                        <InputDate validation={validation} name="fechaInicioPuesto" value={formData["fechaInicioPuesto"]} updateFormData={updateFormData} />
                         <InputPositionCode validation={validation} name="codigoPuesto" value={formData["codigoPuesto"]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} countryCode={formData['codigoPais']} categoryCode={formData['codigoCategoriaEmpleado']} currentPositionId={formData['id']} />
 
                         <InputText disabled={true} validation={validation} name="A quien reporta" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoPuestoAlQueReporta ? formData['codigoPuesto'].codigoPuestoAlQueReporta.descripcion : ""} />
