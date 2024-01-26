@@ -55,7 +55,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     return (
         <>
             {loading && (
-                <div>
+                <div className="spinner-div">
                     <Spinner color="primary"></Spinner>
                 </div>
             )}
