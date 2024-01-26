@@ -266,10 +266,10 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (a.codigoProveedor.toLowerCase() < b.codigoProveedor.toLowerCase()) {
+    if (a.codigoProveedor < b.codigoProveedor) {
         return -1;
     }
-    if (a.codigoProveedor.toLowerCase() > b.codigoProveedor.toLowerCase()) {
+    if (a.codigoProveedor > b.codigoProveedor) {
         return 1;
     }
     return 0;
