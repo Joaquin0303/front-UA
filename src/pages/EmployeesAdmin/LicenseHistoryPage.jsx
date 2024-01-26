@@ -5,6 +5,11 @@ import ABMPage from '../ABMPage';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import { compareStrDates } from '../../utils/Utils';
 
+export const putDownLicenceModel = {
+    fechaFin: '',
+    activo: true
+}
+
 export const LicenseModel = {
     numeroLegajo: null,
     fechaInicio: null,

@@ -10,6 +10,7 @@ import { LoadFamilyModel } from "../../pages/EmployeesAdmin/LoadFamilyPage";
 import { MdFamilyRestroom } from "react-icons/md";
 import { TbStatusChange } from "react-icons/tb";
 import { searchByEmployeeId } from "../../services/LicenseServices";
+import { putDownLicenceModel } from "../../pages/EmployeesAdmin/LicenseHistoryPage";
 
 const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
 
@@ -34,8 +35,9 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
     }
 
     const openPutdownLicenceModal = (emp) => {
+        const putDownLicence = {...putDownLicenceModel};
         searchByEmployeeId(emp.id).then(licence => {
-            openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.PUTDOWNLICENCE, licence.model);
+            openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.PUTDOWNLICENCE, putDownLicence);
         })
     }
 
