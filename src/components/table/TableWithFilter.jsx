@@ -46,7 +46,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
         loadReportData(data);
     }
 
-    const deleteFilters = () => {
+    const deleteFilters = (data) => {
         setLoading(data)
         setShowButtonDelete(false)
         setFilter(JSON.parse(JSON.stringify(originalData)));
