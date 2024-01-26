@@ -18,7 +18,6 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const [filter, setFilter] = useState(filterDataModel ? JSON.parse(JSON.stringify(filterDataModel)) : {});
     const targetRef = useRef();
     const [loading, setLoading] = useState(true);
-
     const [originalData, setOriginalData] = useState([]);
 
     useEffect(() => {
@@ -26,9 +25,9 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     }, [filterDataModel]);
 
     useEffect(() => {
-        if (reportDataList.length === 0) {
+        console.log('reportDataList loading', reportDataList)
+        if (reportDataList)
             setLoading(false);
-        }
     }, [reportDataList]);
 
     const closeModalForm = () => {
@@ -46,8 +45,8 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
         loadReportData(data);
     }
 
-    const deleteFilters = (data) => {
-        setLoading(data)
+    const deleteFilters = () => {
+        setLoading(true)
         setShowButtonDelete(false)
         setFilter(JSON.parse(JSON.stringify(originalData)));
         loadReportData(originalData)
@@ -60,7 +59,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
                     <Spinner color="primary"></Spinner>
                 </div>
             )}
-            {!loading &&( 
+            {!loading && (
                 <div className="search-download">
                     <div className='bloque-search'>
                         <div className="filters-btn">
@@ -70,8 +69,8 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
                     </div>
                 </div>
             )}
-            
-            {reportDataList.length > 0 && <div className='export-buttons-container'>
+
+            {!loading && reportDataList && reportDataList.length > 0 && <div className='export-buttons-container'>
                 <button className='btns' title='Descargar PDF' onClick={() => generatePDF(targetRef, { filename: 'reporte.' + pageConfiguration.name + '.pdf' })}>PDF</button>
                 <DownloadTableExcel
                     filename={'reporte.' + pageConfiguration.name}
@@ -81,9 +80,9 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
                     <button className='btns' title='Descargar Excel'> XLS </button>
 
                 </DownloadTableExcel>
-                </div>}
+            </div>}
 
-            {pageConfiguration.tableConfiguration.hiddenRows && <PartialReportMessage />}
+            {!loading && pageConfiguration.tableConfiguration.hiddenRows && <PartialReportMessage />}
 
             {!loading && reportDataList.length > 0 && (
                 <div className='export-container' ref={targetRef}>

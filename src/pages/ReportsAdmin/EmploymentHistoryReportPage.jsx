@@ -119,7 +119,7 @@ const compare = (a, b) => {
 }
 
 const EmploymentHistoryReportPage = ({ }) => {
-    const [reportDataList, setReportDataList] = useState([]);
+    const [reportDataList, setReportDataList] = useState();
     console.log('reportDataList', reportDataList)
 
     useEffect(() => {

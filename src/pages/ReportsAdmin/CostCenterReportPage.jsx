@@ -109,7 +109,7 @@ const compare = (a, b) => {
 }
 
 const CostCenterReportPage = ({ }) => {
-    const [reportDataList, setReportDataList] = useState([]);
+    const [reportDataList, setReportDataList] = useState();
     console.log('reportDataList', reportDataList)
 
     useEffect(() => {

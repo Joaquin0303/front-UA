@@ -120,9 +120,9 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (parseInt(a.numeroLegajo) < parseInt(b.numeroLegajo)) {
+    if (codigoProveedor < codigoProveedor) {
         return -1;
-    } else if (parseInt(a.numeroLegajo) > parseInt(b.numeroLegajo)) {
+    } else if (codigoProveedor > codigoProveedor) {
         return 1;
     } else {
         return 0;
@@ -130,7 +130,7 @@ const compare = (a, b) => {
 }
 
 const ExternalReportPage = ({ }) => {
-    const [reportDataList, setReportDataList] = useState([]);
+    const [reportDataList, setReportDataList] = useState();
     console.log('reportDataList', reportDataList)
 
     useEffect(() => {

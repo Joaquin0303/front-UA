@@ -144,7 +144,7 @@ const DirectorsReportPage = ({ }) => {
 
     console.log('user token', token);
 
-    const [reportDataList, setReportDataList] = useState([]);
+    const [reportDataList, setReportDataList] = useState();
     console.log('reportDataList', reportDataList)
 
     useEffect(() => {

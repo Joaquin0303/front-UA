@@ -153,7 +153,7 @@ const compare = (a, b) => {
 }
 
 const LicencesReportPage = ({ }) => {
-    const [reportDataList, setReportDataList] = useState([]);
+    const [reportDataList, setReportDataList] = useState();
     console.log('reportDataList', reportDataList)
 
     useEffect(() => {

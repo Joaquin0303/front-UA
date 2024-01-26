@@ -179,7 +179,7 @@ const compare = (a, b) => {
 }
 
 const InternationalDataCollectionReportPage = ({ }) => {
-    const [reportDataList, setReportDataList] = useState([]);
+    const [reportDataList, setReportDataList] = useState();
 
     useEffect(() => {
         loadReportData(defaultFilter);

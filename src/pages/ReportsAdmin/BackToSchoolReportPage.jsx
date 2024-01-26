@@ -95,7 +95,7 @@ const compare = (a, b) => {
 }
 
 const BackToSchoolReportPage = ({ }) => {
-    const [reportDataList, setReportDataList] = useState([]);
+    const [reportDataList, setReportDataList] = useState();
     console.log('reportDataList', reportDataList)
 
     useEffect(() => {
