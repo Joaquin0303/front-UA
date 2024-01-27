@@ -337,8 +337,8 @@ const EmployeesPage = ({ }) => {
                             const fechaFinLastPuesto = parseToday();
                             if (hp && hp.list) {
                                 // HAY UN PUESTO GUARDADO
-                                const lastPosition = hp.list.find(p => p.fechaEgreso == null);
-                                lastPosition.fechaEgreso = fechaFinLastPuesto;
+                                const lastPosition = hp.list.find(p => p.fechaFinPuesto == null);
+                                lastPosition.fechaFinPuesto = fechaFinLastPuesto;
                                 updatePositionChange(lastPosition.id, lastPosition).then(r => {
                                     console.log('Position History Updated', r)
                                 });
