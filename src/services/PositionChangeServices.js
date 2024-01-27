@@ -51,7 +51,7 @@ export const updatePositionChange = async (positionChangeId, positionChangeData)
     return result.data;
 }
 
-export const addPositionChange = async (numeroLegajo, codigoPais, codigoOficina, codigoDireccion, codigoGerencia, codigoJefatura, codigoPuesto, fechaIngresoReconocida, fechaEgreso, activo) => {
+export const addPositionChange = async (numeroLegajo, codigoPais, codigoOficina, codigoDireccion, codigoGerencia, codigoJefatura, codigoPuesto, fechaInicioPuesto, fechaFinPuesto, activo) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/historialpuestos',
@@ -63,8 +63,8 @@ export const addPositionChange = async (numeroLegajo, codigoPais, codigoOficina,
             'codigoGerencia': codigoGerencia,
             'codigoJefatura': codigoJefatura,
             'codigoPuesto': codigoPuesto,
-            'fechaIngresoReconocida': fechaIngresoReconocida,
-            'fechaEgreso': fechaEgreso,
+            'fechaInicioPuesto': fechaInicioPuesto,
+            'fechaFinPuesto': fechaFinPuesto,
             'activo': activo
         }
     }).then(response => {
