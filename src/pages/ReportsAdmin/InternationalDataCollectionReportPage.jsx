@@ -28,7 +28,7 @@ const ModelDefinition = [
         type: 'calendar'
     },
     {
-        fieldName: 'activo',
+        fieldName: 'active',
         type: 'string',
         labels: [
             {
@@ -117,7 +117,7 @@ const pageConfiguration = {
             'firstName',
             'country',
             'department',
-            'activo'
+            'active'
         ],
         inactiveRows: [
             'positionTitle',
@@ -154,7 +154,7 @@ const pageConfiguration = {
             'firstName',
             'country',
             'department',
-            'activo'
+            'active'
         ]
     },
     formConfiguration: {

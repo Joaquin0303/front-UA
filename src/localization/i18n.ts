@@ -17,6 +17,7 @@ i18n
       es: {
         translation: {
           activo: "Activo",
+          active: "Active",
           nombreUsuario: "Nombre de Usuario",
           numeroLegajo: 'Legajo',
           fechaAlta: "Fecha de Alta",
