@@ -49,11 +49,11 @@ const ModelDefinition = [
         type: 'calendar'
     },
     {
-        fieldName: 'fechaIngreso',
+        fieldName: 'fechaInicioPuesto',
         type: 'calendar'
     },
     {
-        fieldName: 'fechaEgreso',
+        fieldName: 'fechaFinPuesto',
         type: 'calendar'
     }
 ]
@@ -82,8 +82,8 @@ const pageConfiguration = {
             'nombre',
             'puesto',
             'direccion',
-            'fechaIngreso',
-            'fechaEgreso'
+            'fechaInicioPuesto',
+            'fechaFinPuesto'
         ],
         inactiveRows: [
             'numeroLegajo',
@@ -91,8 +91,8 @@ const pageConfiguration = {
             'nombre',
             'puesto',
             'direccion',
-            'fechaIngreso',
-            'fechaEgreso'
+            'fechaInicioPuesto',
+            'fechaFinPuesto'
         ]
     },
     formConfiguration: {

@@ -134,7 +134,8 @@ i18n
           estadoLicencia: 'Estado licencia',
           estadoEmpleado: 'Estado empleado',
           globalId: 'Global Id',
-          title: 'Denominación',
+          title: 'Title',
+          denominacion: 'Denominación',
           surname: 'Surname',
           firstName: 'First Name',
           country: 'Country',
@@ -197,7 +198,8 @@ i18n
           descripcionCentroDeCostos: 'Centro De Costos',
           descripcionConvenio: 'Convenio',
           departamento: 'Departamento',
-          fechaInicioPuesto: 'Fecha De Inicio'
+          fechaInicioPuesto: 'Fecha Desde',
+          fechaFinPuesto: 'Fecha Hasta'
         }
       }
     }

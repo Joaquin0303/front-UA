@@ -84,11 +84,13 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
 
             {!loading && pageConfiguration.tableConfiguration.hiddenRows && <PartialReportMessage />}
 
-            {!loading && reportDataList.length > 0 && (
-                <div className='export-container' ref={targetRef}>
+            <div className='export-container' ref={targetRef}>
+                {!loading && reportDataList.length > 0 && (
+
                     <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={reportDataList} />
-                </div>
-            )}
+
+                )}
+            </div>
             {showModalForm && <ModalForm pageConfiguration={pageConfiguration} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} />}
         </>
     )
