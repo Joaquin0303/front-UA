@@ -7,23 +7,11 @@ export const getLoadFamilies = async () => {
         method: 'get',
         url: host + '/ua/cargadefamilia'
     }).then(response => {
-        if (response) {
-            let r = Promise.all(response.data.list.map(hp => {
-                hp.empleado = searchEmployee(hp.numeroLegajo).then(r => {
-                    return r.list.findLast(e => e.numeroLegajo == hp.numeroLegajo);
-                });
-                return hp;
-            })).then(elr => {
-                return elr;
-            });
-            return r;
-        } else {
-            return response;
-        }
+        return response;
     }).catch(error => {
         throw error;
     })
-    return result;
+    return result.data;
 }
 
 export const getLoadFamilyById = async (loadFamilyId) => {

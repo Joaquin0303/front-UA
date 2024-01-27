@@ -170,8 +170,8 @@ const LoadFamilyPage = () => {
 
     const loadLoadFamilies = () => {
         getLoadFamilies().then(result => {
-            if (result)
-                setLoadFamilyList(result.filter(d => d.activo == statusActive).sort(compare));
+            if (result && result.list)
+                setLoadFamilyList(result.list.filter(d => d.activo == statusActive && (d.empleado.codigoEstadoEmpleado.id == 87 || d.empleado.codigoEstadoEmpleado.id == 88)).sort(compare));
         });
     }
 
