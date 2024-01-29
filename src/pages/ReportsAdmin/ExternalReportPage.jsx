@@ -120,9 +120,9 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (codigoProveedor < codigoProveedor) {
+    if (a.codigoProveedor < b.codigoProveedor) {
         return -1;
-    } else if (codigoProveedor > codigoProveedor) {
+    } else if (a.codigoProveedor > b.codigoProveedor) {
         return 1;
     } else {
         return 0;
