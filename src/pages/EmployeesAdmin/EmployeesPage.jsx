@@ -416,7 +416,8 @@ const EmployeesPage = ({ }) => {
             case TABLE_ACTIONS.PUTDOWNLICENCE:
                 let putdownLicence = confirm("Desea dar de baja la licencia y reactivar el empleado?");
                 if (putdownLicence) {
-                    updateLicense(data.id, data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, false).then(result => {
+                    console.log('Data Licencia=', data)
+                    updateLicense(data.licence.id, data.licence.empleado, data.licence.numeroLegajo, data.licence.fechaInicio, data.fechaFin, data.licence.tipoLicencia, false).then(result => {
                         console.log('Putdown Licence=', result);
                         result.model.empleado.codigoEstadoEmpleado = {
                             id: 87 // ACTIVATE EMPLOYEE

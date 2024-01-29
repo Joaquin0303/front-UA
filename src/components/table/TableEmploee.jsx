@@ -35,8 +35,9 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
     }
 
     const openPutdownLicenceModal = (emp) => {
-        const putDownLicence = {...putDownLicenceModel};
+        const putDownLicence = { ...putDownLicenceModel };
         searchByEmployeeId(emp.id).then(licence => {
+            putDownLicence.licence = licence.model;
             openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.PUTDOWNLICENCE, putDownLicence);
         })
     }
