@@ -77,7 +77,6 @@ const ModalForm = ({ pageConfiguration, data, closeModal, onSubmitForm, actionFo
         return actionForm == TABLE_ACTIONS.VIEW
             || actionForm == TABLE_ACTIONS.ACTIVATE
             || actionForm == TABLE_ACTIONS.INACTIVATE
-            || actionForm == TABLE_ACTIONS.PUTDOWNLICENCE;
     }
 
     const showForm = () => {
