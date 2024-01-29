@@ -80,7 +80,7 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) =>
                     case 'role':
                         return <InputRole key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
                     case 'permission':
-                        return <InputPermission key={i} validation={validation} value={formData[key]} updateFormData={updateFormData} />
+                        return <InputPermission key={i} validation={validation} value={formData[key]} name={key} updateFormData={updateFormData} />
                     case 'select':
                         return <InputSelect key={i} multivalue={fieldType.multivalue} validation={validation} name={key} value={formData[key]} options={fieldType.options} updateFormData={updateFormData} />;
                     case 'country':
