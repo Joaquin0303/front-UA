@@ -65,7 +65,7 @@ const Login = ({ setToken }) => {
                 {showChangePassword ? (<ChangePassword />) : (
                     <>
                         <img src={gifWork} alt="gif-work" id='gif' />
-                        <form className='form' onSubmit={handleSubmit}>
+                        <form className='form-login' onSubmit={handleSubmit}>
                             <h2>Iniciar Sesión</h2>
                             <div className="form-group-login">
                                 <label htmlFor="login-user">Nombre de Usuario</label>
