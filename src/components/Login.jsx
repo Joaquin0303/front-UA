@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Login.css';
+import '../styles/changePassword.css'
 import axios from 'axios';
 import logoempresa from '../img/logo-empresa.png';
 import gifWork from '../img/work-team.gif';
@@ -61,27 +62,31 @@ const Login = ({ setToken }) => {
             </div>
 
             <div className="login-wrapper">
-                <img src={gifWork} alt="gif-work" id='gif' />
-                {!showChangePassword && <form onSubmit={handleSubmit}>
-                    <h2>Iniciar Sesión</h2>
-                    <div className="form-group-login">
-                        <label htmlFor="login-user">Nombre de Usuario</label>
-                        <input type="text" className="form-control" id="login-user" placeholder="Usuario" onChange={e => setUserName(e.target.value)} />
-                    </div>
-                    <div className="form-group-login">
-                        <label htmlFor="password-user">Contraseña</label>
-                        <input type="password" className="form-control" id="password-user" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} />
-                    </div>
-                    <p className="authFail">
-                        {errorMessage}
-                    </p>
-                    <button type="submit" className="btn-login">Ingresar</button>
-                </form>}
-                {showChangePassword && <ChangePassword />}
+                {showChangePassword ? (<ChangePassword />) : (
+                    <>
+                        <img src={gifWork} alt="gif-work" id='gif' />
+                        <form onSubmit={handleSubmit}>
+                            <h2>Iniciar Sesión</h2>
+                            <div className="form-group-login">
+                                <label htmlFor="login-user">Nombre de Usuario</label>
+                                <input type="text" className="form-control" id="login-user" placeholder="Usuario" onChange={(e) => setUserName(e.target.value)} />
+                            </div>
+                            <div className="form-group-login">
+                                <label htmlFor="password-user">Contraseña</label>
+                                <input type="password" className="form-control" id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
+                            </div>
+                            <p className="authFail">
+                                {errorMessage}
+                            </p>
+                            <button type="submit" className="btn-login">
+                                Ingresar
+                            </button>
+                        </form>
+                    </>
+                )}
             </div>
-
         </>
-    )
-}
+    );
+};
 
 export default Login;
