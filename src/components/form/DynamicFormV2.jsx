@@ -15,6 +15,7 @@ import InputPosition from './InputPosition';
 import InputPositionLead from './InputPositionLead';
 import InputParameterSearch from './InputParameterSearch';
 import InputParameterByDirection from './InputParameterByDirection';
+import InputPassword from './InputPassword';
 
 const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
 
@@ -64,8 +65,8 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) =>
                         return <InputFileNumber key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
                     case 'string':
                         return <InputText key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />
-                    /*case 'password':
-                        return <InputPassword key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />*/
+                    case 'password':
+                        return <InputPassword key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />
                     case 'number':
                         return <InputNumber disabled={fieldDisabled} key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />
                     case 'parameter':

@@ -7,8 +7,8 @@ import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 const UserModel = {
     numeroLegajo: '',
     nombreUsuario: '',
-    // contraseña: '',
-    // confirmarContraseña: '',
+    contrasena: '',
+    confirmarContrasena: '',
     roles: [],
     activo: true
 }
@@ -35,11 +35,11 @@ const ModelDefinition = [
         type: 'calendar'
     },
     {
-        fieldName: 'contraseña',
+        fieldName: 'contrasena',
         type: 'password'
     },
     {
-        fieldName: 'confirmarContraseña',
+        fieldName: 'confirmarContrasena',
         type: 'password'
     },
 ]
@@ -86,7 +86,9 @@ const pageConfiguration = {
         activeFields: [
             'numeroLegajo',
             'nombreUsuario',
-            'roles'
+            'roles',
+            'contrasena',
+            'confirmarContrasena'
         ],
         inactiveFields: [
         ]
