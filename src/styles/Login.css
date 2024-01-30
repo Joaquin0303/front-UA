@@ -155,3 +155,11 @@ form h2 {
     color: #002447;
     font-weight: bold;
 }
+
+.login-fail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    text-align: center;
+}

@@ -7,6 +7,8 @@ import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 const UserModel = {
     numeroLegajo: '',
     nombreUsuario: '',
+    // contraseña: '',
+    // confirmarContraseña: '',
     roles: [],
     activo: true
 }
@@ -31,7 +33,15 @@ const ModelDefinition = [
     {
         fieldName: 'fechaBaja',
         type: 'calendar'
-    }
+    },
+    {
+        fieldName: 'contraseña',
+        type: 'password'
+    },
+    {
+        fieldName: 'confirmarContraseña',
+        type: 'password'
+    },
 ]
 
 const getFieldTypeByName = (fieldName) => {
