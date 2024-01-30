@@ -16,4 +16,4 @@ const InputPassword = ({ validation, name, value, updateFormData, disabled }) =>
     );
 }
 
-export default InputText;
+export default InputPassword;
