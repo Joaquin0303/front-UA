@@ -175,6 +175,7 @@ i18n
           tipoJornada: 'Tipo Jornada',
           lugarDeTrabajo: 'Lugar De Trabajo',
           categoria: 'Categoría',
+          category: 'Category',
           descripcionCategoria: 'Categoría',
           prepaga: 'Prepaga',
           obraSocial: 'Obra Social',
