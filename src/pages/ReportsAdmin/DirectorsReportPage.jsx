@@ -6,7 +6,7 @@ import useToken from "../../useToken";
 
 
 const FilterDataModel = {
-    estado: [87],
+    estado: [87, 88],
     codigoDireccion: null,
     codigoGerencia: null
 }
@@ -34,8 +34,9 @@ const ModelDefinition = [
     },
     {
         fieldName: 'codigoGerencia',
-        type: 'parameter',
-        code: 12
+        type: 'parameterByDirection',
+        code: 12,
+        direction: 'codigoDireccion'
     },
     {
         fieldName: 'fechaIngreso',

@@ -14,6 +14,7 @@ import InputSelect from './InputSelect';
 import InputPosition from './InputPosition';
 import InputPositionLead from './InputPositionLead';
 import InputParameterSearch from './InputParameterSearch';
+import InputParameterByDirection from './InputParameterByDirection';
 
 const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
 
@@ -67,6 +68,8 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) =>
                         return <InputNumber disabled={fieldDisabled} key={i} validation={validation} name={key} updateFormData={updateFormData} value={formData[key]} />
                     case 'parameter':
                         return <InputParameter key={i} validation={validation} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == fieldType.code)} updateFormData={updateFormData} />
+                    case 'parameterByDirection':
+                        return <InputParameterByDirection key={i} validation={validation} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == fieldType.code)} updateFormData={updateFormData} direction={formData[fieldType.direction]} />
                     case 'parameter.search':
                         return <InputParameterSearch key={i} validation={validation} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == fieldType.code)} updateFormData={updateFormData} />
                     case 'calendar':

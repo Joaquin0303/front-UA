@@ -198,9 +198,11 @@ i18n
           descripcionDivision: 'División',
           descripcionCentroDeCostos: 'Centro De Costos',
           descripcionConvenio: 'Convenio',
-          departamento: 'Departamento',
+          departamento: 'Dirección',
           fechaInicioPuesto: 'Fecha Desde',
-          fechaFinPuesto: 'Fecha Hasta'
+          fechaFinPuesto: 'Fecha Hasta',
+          subgerencia: 'Subgerencia',
+          oficina: 'Oficina'
         }
       }
     }

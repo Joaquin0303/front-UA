@@ -80,7 +80,8 @@ const pageConfiguration = {
             'jefatura',
             'gerencia',
             'subgerencia',
-            'oficina'
+            'oficina',
+            'categoria'
         ],
         activeRows: [
             'positionTitle',
@@ -117,7 +118,8 @@ const pageConfiguration = {
             'firstName',
             'country',
             'department',
-            'active'
+            'active',
+            'categoria'
         ],
         inactiveRows: [
             'positionTitle',
@@ -154,7 +156,47 @@ const pageConfiguration = {
             'firstName',
             'country',
             'department',
+            'active',
+            'categoria'
+        ],
+        sortRows: [
+            'globalId',
+            'positionTitle',
+            'managerToReport',
+            'cargoManagerToReport',
+            'title',
+            'surname',
+            'firstName',
+            'middleName',
+            'otherName',
+            'preferedName',
+            'dateOfBirth',
+            'gender',
+            'country',
+            'mailLaboral',
+            'startDate',
+            'horasDeTrabajo',
+            'fte',
+            'rateFrecuency',
+            'salaryBasePayRate',
+            'reasonForSalaryChange',
+            'employmentType',
+            'personnelType',
+            'department',
+            'termDate',
+            'termReason',
+            'antiguedad',
+            'age',
+            'generation',
+            'division',
+            'categoria',
+            'direccion',
+            'gerencia',
+            'subgerencia',
+            'jefatura',
+            'oficina',
             'active'
+
         ]
     },
     formConfiguration: {
