@@ -81,7 +81,7 @@ const pageConfiguration = {
             'gerencia',
             'subgerencia',
             'oficina',
-            'categoria'
+            'category'
         ],
         activeRows: [
             'positionTitle',
@@ -119,7 +119,7 @@ const pageConfiguration = {
             'country',
             'department',
             'active',
-            'categoria'
+            'category'
         ],
         inactiveRows: [
             'positionTitle',
@@ -157,7 +157,7 @@ const pageConfiguration = {
             'country',
             'department',
             'active',
-            'categoria'
+            'category'
         ],
         sortRow: [
             'globalId',
@@ -189,7 +189,7 @@ const pageConfiguration = {
             'age',
             'generation',
             'division',
-            'categoria',
+            'category',
             'direccion',
             'gerencia',
             'subgerencia',
