@@ -4,8 +4,12 @@ import axios from 'axios';
 import logoempresa from '../img/logo-empresa.png';
 import gifWork from '../img/work-team.gif';
 import { loginUser } from '../services/UserServices';
+import { login } from '../services/LoginAndSecurityServices'
+import { LOGIN_MESSAGES } from '../utils/LoginConstants';
+import { ChangePassword } from './changePassword';
 
 const Login = ({ setToken }) => {
+    const [showChangePassword, setShowChangePassword] = useState(true);
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [errorMessage, setErrorMessage] = useState();
@@ -13,12 +17,32 @@ const Login = ({ setToken }) => {
     const handleSubmit = async e => {
         try {
             e.preventDefault();
-            const token = await loginUser({
-                "userName": username,
-                "password": password
+            const response = await login(username, password).then(response => {
+                console.log('login response: ', response)
+                if (response.codigo == 200) {
+                    setToken({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WzEsMiwzXSwiZW1wbGVhZG8iOnsiY29kaWdvRGlyZWNjaW9uIjoxMjM0LCJjb2RpZ29Fc3RhZG9FbXBsZWFkbyI6ODcsImNvZGlnb0NhdGVnb3JpYUVtcGxlYWRvIjoxMjM0LCJjb2RpZ29QYWlzIjoxMjM0LCJub21icmUiOiJBZG1pbmlzdHJhZG9yIiwiYXBlbGxpZG8iOiJTaXRpbyJ9fQ.lzoKvLBSVNrwOJTWTstpRFJnm_RjMdmIBxYI-NIYaWU" });
+                    setErrorMessage('');
+                } else if (response.codigo == 400) {
+                    switch (response.mensajes[0]) {
+                        case LOGIN_MESSAGES.USER_BLOCKED:
+                            setErrorMessage(response.mensajes[0]);
+                            break;
+                        case REPEATED_PASSWORD:
+                            setErrorMessage(response.mensajes[0]);
+                            break;
+                        case USER_NOT_FOUND:
+                            setErrorMessage(response.mensajes[0]);
+                            break;
+                        case PATTERN_NO_VALID:
+                            setErrorMessage(response.mensajes[0]);
+                            break;
+                        case IS_FIRST_ACCESS:
+                            break;
+                    }
+                }
+                return response;
             });
-            setToken(token);
-            setErrorMessage('');
+
         } catch (e) {
             setErrorMessage(e);
         }
@@ -38,7 +62,7 @@ const Login = ({ setToken }) => {
 
             <div className="login-wrapper">
                 <img src={gifWork} alt="gif-work" id='gif' />
-                <form onSubmit={handleSubmit}>
+                {!showChangePassword && <form onSubmit={handleSubmit}>
                     <h2>Iniciar Sesión</h2>
                     <div className="form-group-login">
                         <label htmlFor="login-user">Nombre de Usuario</label>
@@ -52,8 +76,10 @@ const Login = ({ setToken }) => {
                         {errorMessage}
                     </p>
                     <button type="submit" className="btn-login">Ingresar</button>
-                </form>
+                </form>}
+                {showChangePassword && <ChangePassword />}
             </div>
+
         </>
     )
 }

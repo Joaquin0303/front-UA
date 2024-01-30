@@ -2,13 +2,13 @@ import axios from 'axios'
 import { host } from '../Configs';
 
 
-export const login = async (nombreUsuario, contrasena) => {
+export const login = async (userName, password) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/login',
         data: {
-            'nombreUsuario': nombreUsuario,
-            'contrasena': contrasena
+            'nombreUsuario': userName,
+            'contrasena': password
         }
     }).then(response => {
         return response;
@@ -42,15 +42,15 @@ export const getPaswordSecurity = async () => {
     return result.data;
 }
 
-export const addPaswordSecurity = async (patron, fechaValidezInicio, regla, activo) => {
+export const addPaswordSecurity = async (pattern, startDate, rule, active) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/seguridadcontrasena',
         data: {
-            'patron': patron,
-            'fechaValidezInicio': fechaValidezInicio,
-            'regla': regla,
-            'activo': activo
+            'patron': pattern,
+            'fechaValidezInicio': startDate,
+            'regla': rule,
+            'activo': active
         }
     }).then(response => {
         return response;
