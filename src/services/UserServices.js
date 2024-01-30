@@ -139,3 +139,42 @@ export const SearchUser = async () => {
     })
     return result.data;
 }
+
+export const updatePassword = async (userId, password) => {
+    const result = await axios({
+        method: 'put',
+        url: host + '/cambiarContrasena/' + userId,
+        data: {
+            'password': password
+        }
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}
+
+export const resetPassword = async (userId) => {
+    const result = await axios({
+        method: 'get',
+        url: host + '/ua/resetear/' + userId
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}
+
+export const unblockUser = async (userId) => {
+    const result = await axios({
+        method: 'get',
+        url: host + '/ua/desbloquear/' + userId
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}

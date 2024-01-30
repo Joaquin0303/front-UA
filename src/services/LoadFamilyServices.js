@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { host } from '../Configs';
-import { searchEmployee } from './EmployeeServices';
 
 export const getLoadFamilies = async () => {
     const result = await axios({

@@ -159,7 +159,7 @@ const pageConfiguration = {
             'active',
             'categoria'
         ],
-        sortRows: [
+        sortRow: [
             'globalId',
             'positionTitle',
             'managerToReport',

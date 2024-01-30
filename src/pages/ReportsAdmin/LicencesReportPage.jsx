@@ -121,7 +121,7 @@ const pageConfiguration = {
             'gerencia',
             'jefatura'
         ],
-        sortRows: [
+        sortRow: [
             'numeroLegajo',
             'apellido',
             'nombre',
