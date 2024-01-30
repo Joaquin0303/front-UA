@@ -6,9 +6,8 @@ const FilterDataModel = {
     paisLicencia: {
         id: 1
     },
-    estadoLicencia: [1],
-    codigoDireccion: null,
-    estadoEmpleado: [88]
+    estadoLicencia: [0, 1],
+    codigoDireccion: null
 }
 
 const ModelDefinition = [
@@ -86,9 +85,8 @@ const defaultFilter = {
     paisLicencia: {
         id: 1
     },
-    estadoLicencia: [1],
-    codigoDireccion: null,
-    estadoEmpleado: [88]
+    estadoLicencia: [0, 1],
+    codigoDireccion: null
 }
 
 const pageConfiguration = {
@@ -122,6 +120,20 @@ const pageConfiguration = {
             'direccion',
             'gerencia',
             'jefatura'
+        ],
+        sortRows: [
+            'numeroLegajo',
+            'apellido',
+            'nombre',
+            'descripcionLicencia',
+            'fechaInicio',
+            'fechaFin',
+            'estado',
+            'pais',
+            'direccion',
+            'gerencia',
+            'jefatura',
+            'puesto'
         ]
     },
     formConfiguration: {
