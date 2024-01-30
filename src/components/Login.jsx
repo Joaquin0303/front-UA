@@ -10,7 +10,7 @@ import { LOGIN_MESSAGES } from '../utils/LoginConstants';
 import { ChangePassword } from './changePassword';
 
 const Login = ({ setToken }) => {
-    const [showChangePassword, setShowChangePassword] = useState(true);
+    const [showChangePassword, setShowChangePassword] = useState(false);
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [errorMessage, setErrorMessage] = useState();
@@ -21,23 +21,20 @@ const Login = ({ setToken }) => {
             const response = await login(username, password).then(response => {
                 console.log('login response: ', response)
                 if (response.codigo == 200) {
-                    setToken({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WzEsMiwzXSwiZW1wbGVhZG8iOnsiY29kaWdvRGlyZWNjaW9uIjoxMjM0LCJjb2RpZ29Fc3RhZG9FbXBsZWFkbyI6ODcsImNvZGlnb0NhdGVnb3JpYUVtcGxlYWRvIjoxMjM0LCJjb2RpZ29QYWlzIjoxMjM0LCJub21icmUiOiJBZG1pbmlzdHJhZG9yIiwiYXBlbGxpZG8iOiJTaXRpbyJ9fQ.lzoKvLBSVNrwOJTWTstpRFJnm_RjMdmIBxYI-NIYaWU" });
-                    setErrorMessage('');
+                    if (response.model.pusoAcceder) {
+                        setToken({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WzEsMiwzXSwiZW1wbGVhZG8iOnsiY29kaWdvRGlyZWNjaW9uIjoxMjM0LCJjb2RpZ29Fc3RhZG9FbXBsZWFkbyI6ODcsImNvZGlnb0NhdGVnb3JpYUVtcGxlYWRvIjoxMjM0LCJjb2RpZ29QYWlzIjoxMjM0LCJub21icmUiOiJBZG1pbmlzdHJhZG9yIiwiYXBlbGxpZG8iOiJTaXRpbyJ9fQ.lzoKvLBSVNrwOJTWTstpRFJnm_RjMdmIBxYI-NIYaWU" });
+                        setErrorMessage('');
+                    } else if (response.model.primerAcceso) {
+                        setShowChangePassword(true);
+                    } else {
+                        setErrorMessage("Contraseña invalida.");
+                    }
                 } else if (response.codigo == 400) {
                     switch (response.mensajes[0]) {
                         case LOGIN_MESSAGES.USER_BLOCKED:
                             setErrorMessage(response.mensajes[0]);
                             break;
-                        case REPEATED_PASSWORD:
-                            setErrorMessage(response.mensajes[0]);
-                            break;
-                        case USER_NOT_FOUND:
-                            setErrorMessage(response.mensajes[0]);
-                            break;
-                        case PATTERN_NO_VALID:
-                            setErrorMessage(response.mensajes[0]);
-                            break;
-                        case IS_FIRST_ACCESS:
+                        case LOGIN_MESSAGES.IS_FIRST_ACCESS:
                             break;
                     }
                 }
