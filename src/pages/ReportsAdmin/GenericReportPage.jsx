@@ -41,8 +41,9 @@ const ModelDefinition = [
     },
     {
         fieldName: 'codigoGerencia',
-        type: 'parameter',
-        code: 12
+        type: 'parameterByDirection',
+        code: 12,
+        direction: 'codigoDireccion'
     },
     {
         fieldName: 'fechaNacimiento',
@@ -76,6 +77,7 @@ const pageConfiguration = {
         hiddenRows: [
             'nombrePreferido',
             'fechaNacimiento',
+            'edad',
             'generacion',
             'nacionalidad',
             'genero',
@@ -116,11 +118,13 @@ const pageConfiguration = {
             'manager',
             'cargoManager',
             'cargasDeFamilia',
-            'finFechaContrato'
+            'finFechaContrato',
+            'pisoResidencia'
         ],
         activeRows: [
             'nombrePreferido',
             'fechaNacimiento',
+            'edad',
             'generacion',
             'nacionalidad',
             'genero',
@@ -172,6 +176,7 @@ const pageConfiguration = {
         inactiveRows: [
             'nombrePreferido',
             'fechaNacimiento',
+            'edad',
             'generacion',
             'nacionalidad',
             'genero',
@@ -220,11 +225,12 @@ const pageConfiguration = {
             'puesto',
             'finFechaContrato'
         ],
-        sortRows: [
+        sortRow: [
             'numeroLegajo',
             'nombres',
             'nombrePreferido',
             'fechaNacimiento',
+            'edad',
             'generacion',
             'nacionalidad',
             'genero',
