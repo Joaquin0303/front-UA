@@ -7,8 +7,8 @@ import { Home } from './pages/Home';
 import Users from './pages/UserAdmin/Users';
 import { Permisos } from './pages/UserAdmin/Permisos';
 import Roles from './pages/UserAdmin/Roles';
-import { PasswordSecurity } from './pages/UserAdmin/PasswordSecurity';
-
+import PasswordSecurity from './pages/UserAdmin/PasswordSecurity';
+import ParameterSercurityPassword from './pages/ParametersAdmin/PasswordSecurityParameter'
 import { Reports } from './components/AdminPages';
 
 import logoempresa from './img/logo-empresa.png';
@@ -23,7 +23,6 @@ import ParametersPage from './pages/ParametersAdmin/ParametersPage';
 import CountriesPage from './pages/ParametersAdmin/CountriesPage';
 import PositionsPage from './pages/ParametersAdmin/PositionsPage';
 import SequencersPage from './pages/ParametersAdmin/SequencersPage';
-import { ParameterPassword } from './pages/ParametersAdmin/PasswordSecurityParameter';
 import EmployeesPage from './pages/EmployeesAdmin/EmployeesPage';
 import ExcludedIncomePage from './pages/EmployeesAdmin/ExcludedIncomePage';
 import LoadFamilyPage from './pages/EmployeesAdmin/LoadFamilyPage';
@@ -102,7 +101,7 @@ function App() {
         {<Route path="/administracion-parametros/secuenciador" element={<SequencersPage />} />}
         {<Route path="/administracion-parametros/puestos" element={<PositionsPage />} />}
         {<Route path="/administracion-parametros/pais" element={<CountriesPage />} />}
-        {<Route path="/administracion-parametros/contrasena" element={< ParameterPassword />} />}
+        {<Route path="/administracion-parametros/contrasena" element={<ParameterSercurityPassword />} />}
 
         {/* Administracion de Empleados */}
         {/* -------------------------- */}

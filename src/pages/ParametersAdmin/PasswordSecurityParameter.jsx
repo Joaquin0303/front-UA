@@ -20,6 +20,12 @@ const ModelDefinition = [
   }
 ]
 
+const getFieldTypeByName = (fieldName) => {
+  const field = ModelDefinition.find(d => d.fieldName == fieldName);
+  if (field) return field;
+  else return null;
+}
+
 const pageConfiguration = {
   show_search: false,
   show_add_button: true,
@@ -61,7 +67,7 @@ const pageConfiguration = {
 
 
 
-const ParameterPassword = () => {
+const ParameterSercurityPassword = () => {
 
   const [ParameterPasswordList, setParameterPasswordList] = useState([]);
   const [statusActive, setStatusActive] = useState(true);
@@ -124,4 +130,4 @@ const ParameterPassword = () => {
   )
 }
 
-export default ParameterPassword;
+export default ParameterSercurityPassword;

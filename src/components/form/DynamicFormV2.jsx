@@ -57,7 +57,6 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) =>
 
     const createInputFields = () => {
         const cells = Object.keys(data).map((key, i) => {
-            console.log("Key=", key)
             if (showField(key)) {
                 const fieldType = formConfiguration.getFieldTypeByName(key);
                 const fieldDisabled = fieldType.disabled && fieldType.disabled.edit && data.id && data.id > 0;

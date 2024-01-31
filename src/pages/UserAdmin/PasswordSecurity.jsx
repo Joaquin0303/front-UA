@@ -82,7 +82,7 @@ const pageConfiguration = {
   }
 }
 
-const PasswordSecurityPage = () => {
+const PasswordSecurity = () => {
   const [loadPasswordSecurityList, setPasswordSecurityList] = useState([]);
   const [statusActive, setStatusActive] = useState(true);
 
@@ -147,4 +147,4 @@ const PasswordSecurityPage = () => {
 
 }
 
-export default PasswordSecurityPage;
+export default PasswordSecurity;
