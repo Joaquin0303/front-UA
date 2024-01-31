@@ -7,6 +7,7 @@ import { Home } from './pages/Home';
 import Users from './pages/UserAdmin/Users';
 import { Permisos } from './pages/UserAdmin/Permisos';
 import Roles from './pages/UserAdmin/Roles';
+import { PasswordSecurity } from './pages/UserAdmin/PasswordSecurity';
 
 import { Reports } from './components/AdminPages';
 
@@ -101,7 +102,7 @@ function App() {
         {<Route path="/administracion-parametros/secuenciador" element={<SequencersPage />} />}
         {<Route path="/administracion-parametros/puestos" element={<PositionsPage />} />}
         {<Route path="/administracion-parametros/pais" element={<CountriesPage />} />}
-        {<Route path="/administracion-parametros/contrasena" element={< ParameterPassword/>} />}
+        {<Route path="/administracion-parametros/contrasena" element={< ParameterPassword />} />}
 
         {/* Administracion de Empleados */}
         {/* -------------------------- */}

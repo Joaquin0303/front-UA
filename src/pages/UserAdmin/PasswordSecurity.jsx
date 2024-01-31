@@ -94,7 +94,7 @@ const PasswordSecurityPage = () => {
   const loadPasswordSecurity = () => {
     getPaswordSecurity().then(result => {
       if (result && result.list) {
-        // setPasswordSecurityList(result.list.filter(d => d.activo == statusActive && (d.empleado.codigoEstadoEmpleado.id == 87 || d.empleado.codigoEstadoEmpleado.id == 88)).sort(compare));
+        setPasswordSecurityList(result.list.filter(d => d.activo == statusActive));
       }
     })
   }
