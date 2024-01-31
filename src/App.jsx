@@ -91,7 +91,7 @@ function App() {
         <Route path="/administracion-usuarios/usuarios" element={<Users />} />
         <Route path="/administracion-usuarios/permisos" element={<Permisos />} />
         <Route path="/administracion-usuarios/roles" element={<Roles />} />
-        {/* <Route path="/administracion-usuarios/contrasena-seguridad" element={ParameterContrasena} /> */}
+        <Route path="/administracion-usuarios/contrasena-seguridad" element={<PasswordSecurity />} />
 
         {/* Administracion de Parametros */}
         {/* -------------------------- */}
