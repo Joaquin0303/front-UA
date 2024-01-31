@@ -22,7 +22,7 @@ import ParametersPage from './pages/ParametersAdmin/ParametersPage';
 import CountriesPage from './pages/ParametersAdmin/CountriesPage';
 import PositionsPage from './pages/ParametersAdmin/PositionsPage';
 import SequencersPage from './pages/ParametersAdmin/SequencersPage';
-import { PasswordSecurityParamater } from './pages/ParametersAdmin/PasswordSecurityParameter';
+import { ParameterPassword } from './pages/ParametersAdmin/PasswordSecurityParameter';
 import EmployeesPage from './pages/EmployeesAdmin/EmployeesPage';
 import ExcludedIncomePage from './pages/EmployeesAdmin/ExcludedIncomePage';
 import LoadFamilyPage from './pages/EmployeesAdmin/LoadFamilyPage';
@@ -101,7 +101,7 @@ function App() {
         {<Route path="/administracion-parametros/secuenciador" element={<SequencersPage />} />}
         {<Route path="/administracion-parametros/puestos" element={<PositionsPage />} />}
         {<Route path="/administracion-parametros/pais" element={<CountriesPage />} />}
-        {<Route path="/administracion-parametros/contrasena" element={< PasswordSecurityParamater/>} />}
+        {<Route path="/administracion-parametros/contrasena" element={< ParameterPassword/>} />}
 
         {/* Administracion de Empleados */}
         {/* -------------------------- */}
