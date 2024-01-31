@@ -11,6 +11,7 @@ import { ChangePassword } from './changePassword';
 import { codeToken } from '../utils/Utils';
 import { ROLES, getRoleIdByName } from '../utils/Roles';
 
+
 const Login = ({ setToken }) => {
     const [showChangePassword, setShowChangePassword] = useState(false);
     const [username, setUserName] = useState();
@@ -72,6 +73,10 @@ const Login = ({ setToken }) => {
         }
     }
 
+    const handleChangePassword = () => {
+        setShowChangePassword(false);
+    }
+
     return (
         <>
             <header>
@@ -85,7 +90,7 @@ const Login = ({ setToken }) => {
             </div>
 
             <div className="login-wrapper">
-                {showChangePassword ? (<ChangePassword userId={userId} />) : (
+                {showChangePassword ? (<ChangePassword userId={userId} handleChangePassword={handleChangePassword} />) : (
                     <>
                         <img src={gifWork} alt="gif-work" id='gif' />
                         <form className='form-login' onSubmit={handleSubmit}>
