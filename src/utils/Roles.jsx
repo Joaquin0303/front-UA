@@ -3,7 +3,7 @@ export const ROLES = {
     USER_ADMIN:
     {
         id: 1,
-        name: 'user-admin'
+        name: 'Administrador Usuarios'
     },
     EMPLOYEE_ADMIN: {
         id: 2,
@@ -13,4 +13,8 @@ export const ROLES = {
         id: 3,
         name: 'director-report'
     }
+}
+
+export const getRoleIdByName = (name) => {
+    return Object.keys(ROLES).find(key => ROLES[key].name == name);
 }

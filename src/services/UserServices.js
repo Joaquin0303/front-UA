@@ -107,7 +107,7 @@ export const editUser = async (userId, numeroLegajo, nombreUsuario, activo, role
     return result.data;
 }
 
-export const addUser = async (numeroLegajo, nombreUsuario, activo, roles) => {
+export const addUser = async (numeroLegajo, nombreUsuario, activo, roles, contrasena) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/usuario',
@@ -118,7 +118,8 @@ export const addUser = async (numeroLegajo, nombreUsuario, activo, roles) => {
             'numeroLegajo': numeroLegajo,
             'nombreUsuario': nombreUsuario,
             'activo': activo,
-            'roles': roles
+            'roles': roles,
+            'contrasena': contrasena
         })
     }).then(response => {
         return response;
@@ -143,9 +144,9 @@ export const SearchUser = async () => {
 export const updatePassword = async (userId, password) => {
     const result = await axios({
         method: 'put',
-        url: host + '/cambiarContrasena/' + userId,
+        url: host + '/ua/usuario/cambiarcontrasena/' + userId,
         data: {
-            'password': password
+            'contrasena': password
         }
     }).then(response => {
         return response;

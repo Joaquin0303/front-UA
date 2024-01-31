@@ -1,5 +1,8 @@
 
 import { jwtDecode } from "jwt-decode";
+import Base64 from 'crypto-js/enc-base64';
+import Utf8 from 'crypto-js/enc-utf8'
+import HmacSHA256 from 'crypto-js/hmac-sha256';
 
 export const compareStrDates = (strDate1, strDate2) => {
     const d1 = parseInputDate(strDate1);
@@ -57,4 +60,22 @@ export const diffBetweenDates = (date1, date2) => {
 
 export const decodeToken = (token) => {
     return jwtDecode(token);
+}
+
+export const codeToken = (header, payload) => {
+    return base64url(header) + '.' + base64url(payload)
+}
+
+export const base64url = (source) => {
+    var wordArray = Utf8.parse(source);
+    // Encode in classical base64
+    let encodedSource = Base64.stringify(wordArray);
+    // Remove padding equal characters
+    encodedSource = encodedSource.replace(/=+$/, '');
+
+    // Replace characters according to base64url specifications
+    encodedSource = encodedSource.replace(/\+/g, '-');
+    encodedSource = encodedSource.replace(/\//g, '_');
+
+    return encodedSource;
 }

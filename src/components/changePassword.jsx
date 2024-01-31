@@ -1,7 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { updatePassword } from '../services/UserServices'
 
+export const ChangePassword = ({ userId }) => {
 
-export const ChangePassword = () => {
+  const [password, setPassword] = useState();
+  const [repeatPassword, setRepeatPassword] = useState();
+  const [errorMessage, setErrorMessage] = useState();
+
+  const handleSubmit = async e => {
+    try {
+      e.preventDefault();
+      console.log("cambio de contrasena " + password);
+      if (password != repeatPassword) {
+        setErrorMessage('Las contraseñas ingresadas no coinciden.');
+        return;
+      }
+      if (password) {
+        const response = await updatePassword(userId, password).then(response => {
+          console.log('change password response: ', response)
+          return response;
+        });
+      }
+
+    } catch (e) {
+      setErrorMessage(e);
+    }
+  }
+
   return (
     <>
       <div>
@@ -15,14 +40,18 @@ export const ChangePassword = () => {
             <p>&#8226; Mayúsculas (A...Z) </p>
             <p>&#8226; Símbolos (!...?)</p>
           </div>
-          <form className="change-pass">
+          <form className="change-pass" onSubmit={handleSubmit}>
             <h1>Cambio de Contraseña</h1>
             <p>Nueva Contraseña</p>
-            <input type="text" name="" placeholder="" id=""></input>
+            <input type="password" name="" placeholder="" id="" onChange={e => setPassword(e.target.value)} />
             <p>Repita Nueva Contraseña</p>
-            <input type="text" name="" placeholder="" id=""></input>
+            <input type="password" name="" placeholder="" id="" onChange={e => setRepeatPassword(e.target.value)}></input>
+            <p className="authFail">
+              {errorMessage}
+            </p>
             <button type="submit">Confirmar</button>
           </form>
+
         </div>
       </div>
 

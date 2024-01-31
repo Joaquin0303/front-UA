@@ -8,11 +8,14 @@ import { loginUser } from '../services/UserServices';
 import { login } from '../services/LoginAndSecurityServices'
 import { LOGIN_MESSAGES } from '../utils/LoginConstants';
 import { ChangePassword } from './changePassword';
+import { codeToken } from '../utils/Utils';
+import { ROLES, getRoleIdByName } from '../utils/Roles';
 
 const Login = ({ setToken }) => {
     const [showChangePassword, setShowChangePassword] = useState(false);
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
+    const [userId, setUserId] = useState();
     const [errorMessage, setErrorMessage] = useState();
 
     const handleSubmit = async e => {
@@ -20,21 +23,44 @@ const Login = ({ setToken }) => {
             e.preventDefault();
             const response = await login(username, password).then(response => {
                 console.log('login response: ', response)
+
                 if (response.codigo == 200) {
-                    if (response.model.pusoAcceder) {
-                        setToken({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WzEsMiwzXSwiZW1wbGVhZG8iOnsiY29kaWdvRGlyZWNjaW9uIjoxMjM0LCJjb2RpZ29Fc3RhZG9FbXBsZWFkbyI6ODcsImNvZGlnb0NhdGVnb3JpYUVtcGxlYWRvIjoxMjM0LCJjb2RpZ29QYWlzIjoxMjM0LCJub21icmUiOiJBZG1pbmlzdHJhZG9yIiwiYXBlbGxpZG8iOiJTaXRpbyJ9fQ.lzoKvLBSVNrwOJTWTstpRFJnm_RjMdmIBxYI-NIYaWU" });
-                        setErrorMessage('');
+                    if (response.model.pudoAcceder) {
+                        const roleIds = [];
+                        response.model.roles.map(r => {
+                            const roleKey = getRoleIdByName(r);
+                            if (roleKey)
+                                roleIds.push(ROLES[roleKey].id);
+                        })
+                        try {
+                            const header = '{"alg": "HS256","typ": "JWT"}';
+                            const payload = '{"userId": ' + response.model.idUsuario + ',"roles": [' + roleIds + '],"iat": 1516239022}';
+                            const jwtToken = codeToken(header, payload);
+                            console.log("JWT=", jwtToken);
+
+                            //setToken({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WzEsMiwzXSwiZW1wbGVhZG8iOnsiY29kaWdvRGlyZWNjaW9uIjoxMjM0LCJjb2RpZ29Fc3RhZG9FbXBsZWFkbyI6ODcsImNvZGlnb0NhdGVnb3JpYUVtcGxlYWRvIjoxMjM0LCJjb2RpZ29QYWlzIjoxMjM0LCJub21icmUiOiJBZG1pbmlzdHJhZG9yIiwiYXBlbGxpZG8iOiJTaXRpbyJ9fQ.lzoKvLBSVNrwOJTWTstpRFJnm_RjMdmIBxYI-NIYaWU" });
+                            setToken({ token: jwtToken });
+                            setErrorMessage('');
+                        } catch (e) {
+                            console.error(e);
+                        }
                     } else if (response.model.primerAcceso) {
+                        setUserId(response.model.idUsuario);
                         setShowChangePassword(true);
                     } else {
                         setErrorMessage("Contraseña invalida.");
                     }
                 } else if (response.codigo == 400) {
+                    console.log(response.mensajes[0]);
                     switch (response.mensajes[0]) {
                         case LOGIN_MESSAGES.USER_BLOCKED:
                             setErrorMessage(response.mensajes[0]);
                             break;
-                        case LOGIN_MESSAGES.IS_FIRST_ACCESS:
+                        case LOGIN_MESSAGES.USER_NOT_FOUND:
+                            setErrorMessage(response.mensajes[0]);
+                            break;
+                        case LOGIN_MESSAGES.EXPIRE_PASSWORD:
+                            setErrorMessage(response.mensajes[0]);
                             break;
                     }
                 }
@@ -59,7 +85,7 @@ const Login = ({ setToken }) => {
             </div>
 
             <div className="login-wrapper">
-                {showChangePassword ? (<ChangePassword />) : (
+                {showChangePassword ? (<ChangePassword userId={userId} />) : (
                     <>
                         <img src={gifWork} alt="gif-work" id='gif' />
                         <form className='form-login' onSubmit={handleSubmit}>

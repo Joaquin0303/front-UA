@@ -126,10 +126,10 @@ const Users = () => {
         });
     }
 
-    const onAdd = (data) => {
-        const validation = validate(data);
+    const onAdd = (data, action) => {
+        const validation = validate(data, action);
         if (validation.error) throw validation;
-        addUser(data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
+        addUser(data.numeroLegajo, data.nombreUsuario, data.activo, data.roles, data.contrasena).then(result => {
             console.log('user saved=', result);
             data.roles && data.roles.forEach(userRole => {
                 assignRoleToUser(userRole.codigo, result.model.id).then(result => {
@@ -143,8 +143,8 @@ const Users = () => {
         });
     }
 
-    const onEdit = (data) => {
-        const validation = validate(data);
+    const onEdit = (data, action) => {
+        const validation = validate(data, action);
         if (validation.error) throw validation;
 
         editUser(data.id, data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
@@ -174,7 +174,7 @@ const Users = () => {
         return data.nombreUsuario?.toLowerCase().includes(lowerCaseSearchTerm);
     }
 
-    const validate = (data) => {
+    const validate = (data, action) => {
         const result = {
             error: false,
             validation: {}
@@ -194,6 +194,20 @@ const Users = () => {
         if (!data.roles || data.roles.length <= 0) {
             result.error = true;
             result.validation.roles = "Seleccione al menos un rol"
+        }
+        if (action == TABLE_ACTIONS.ADD) {
+            if (!data.contrasena?.trim()) {
+                result.error = true;
+                result.validation.contrasena = "Ingrese contraseña de usuario"
+            }
+            if (!data.confirmarContrasena?.trim()) {
+                result.error = true;
+                result.validation.confirmarContrasena = "Ingrese confirmación de contraseña"
+            }
+            if (data.contrasena?.trim() && data.confirmarContrasena?.trim() && data.contrasena != data.confirmarContrasena) {
+                result.error = true;
+                result.validation.confirmarContrasena = "No coincide con la contraseña"
+            }
         }
         return result;
     }
