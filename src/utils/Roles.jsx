@@ -9,7 +9,7 @@ export const ROLES = {
         id: 2,
         name: 'Administrador de empleados'
     },
-    REPORT_DIRECTOR: {
+    REPORT_REPORTES: {
         id: 3,
         name: 'Reportes RRHH'
     },
@@ -17,7 +17,7 @@ export const ROLES = {
         id: 4,
         name: 'Reportes Directores'
     },
-    REPORT_DIRECTOR: {
+    REPORT_PARAMETRICAS: {
         id: 5,
         name: 'Administrador Tablas Paramétricas'
     }
