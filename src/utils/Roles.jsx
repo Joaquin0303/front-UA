@@ -7,12 +7,21 @@ export const ROLES = {
     },
     EMPLOYEE_ADMIN: {
         id: 2,
-        name: 'employee-admin'
+        name: 'Administrador de empleados'
     },
     REPORT_DIRECTOR: {
         id: 3,
-        name: 'director-report'
+        name: 'Reportes RRHH'
+    },
+    REPORT_DIRECTOR: {
+        id: 4,
+        name: 'Reportes Directores'
+    },
+    REPORT_DIRECTOR: {
+        id: 5,
+        name: 'Administrador Tablas Paramétricas'
     }
+
 }
 
 export const getRoleIdByName = (name) => {
