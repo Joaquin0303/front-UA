@@ -13,7 +13,7 @@ import logoExterno from '../img/externo.png'
 import logoLicencias from '../img/licencias.png'
 import logoHisPuesto from '../img/historial-puesto.png'
 import logoHisIngreso from '../img/historial-ingresos.png'
-
+import logoContrasena from '../img/contrasena.png'
 import vueltaColegio from '../img/vueltaColegio.png'
 import centralCosto from '../img/centralCosto.png'
 import historialLaboral from '../img/historialLaboral.png'
@@ -33,6 +33,7 @@ export const AdminUsers = ({ roles }) => {
                 <Card img={logoGrupo} title={'Usuarios'} path={'/administracion-usuarios/usuarios'} />
                 <Card img={logoRoles} title={'Roles'} path={'/administracion-usuarios/roles'} />
                 <Card img={logoPermisos} title={'Permisos'} path={'/administracion-usuarios/permisos'} />
+                <Card img={logoContrasena} title={'Seguridad Contraseña'} path={'/administracion-usuarios/contrasena-seguridad'}/>
             </div>
         </div>
     else
@@ -49,6 +50,7 @@ export const AdminParam = ({ roles }) => {
                 <Card img={logoSecuen} title={'Secuenciador'} path={'/administracion-parametros/secuenciador'} />
                 <Card img={logoPuestos} title={'Puestos'} path={'/administracion-parametros/puestos'} />
                 <Card img={logoPais} title={'País'} path={'/administracion-parametros/pais'} />
+                <Card img={logoContrasena} title={'Parámetros Contraseña'} path={'/administracion-parametros/contrasena'} />
             </div>
         </div >
     else
