@@ -8,11 +8,11 @@ const ABMPage = ({ pageConfiguration, pageName, dataList, dataModel, onAdd, onEd
     let seccion;
     let to;
 
-    if (pageName === 'Empleados' || pageName === 'cargaDeFamilia' || pageName === 'external' || pageName === 'licenciaHistory' || pageName === 'cambioDePuesto' || pageName === 'ingresoCaido' || pageName === 'seguridadContrasena' || pageName === 'PasswordSecurityParam') {
+    if (pageName === 'Empleados' || pageName === 'cargaDeFamilia' || pageName === 'external' || pageName === 'licenciaHistory' || pageName === 'cambioDePuesto' || pageName === 'ingresoCaido') {
         seccion = '/ Administración de Empleados';
         to = '/administracion-empleados'
     }
-    else if (pageName === 'Usuarios' || pageName === 'Roles' || pageName === 'Permisos') {
+    else if (pageName === 'Usuarios' || pageName === 'Roles' || pageName === 'Permisos' || pageName === 'seguridadContrasena' || pageName === 'PasswordSecurityParam') {
         seccion = '/ Administración de Usuarios';
         to = '/administracion-usuarios'
     }

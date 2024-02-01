@@ -214,7 +214,7 @@ i18n
           fechaValidezFin: 'Válido Hasta',
           regla: 'Regla',
           seguridadContrasena: 'Seguridad Contraseña',
-          PasswordSecurityParam: 'Parametros de Security'
+          PasswordSecurityParam: 'Parametros Contraseña'
         }
       }
     }
