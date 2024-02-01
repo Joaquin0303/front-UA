@@ -165,7 +165,6 @@ const PasswordSecurity = () => {
     return result;
   }
 
-  console.log('passwordSecurityList', passwordSecurityList)
   return (
     <ABMPage pageConfiguration={pageConfiguration} pageName="seguridadContrasena" dataList={passwordSecurityList} dataModel={LoadPasswordSecurityModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
   );

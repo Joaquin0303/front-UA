@@ -33,7 +33,8 @@ export const AdminUsers = ({ roles }) => {
                 <Card img={logoGrupo} title={'Usuarios'} path={'/administracion-usuarios/usuarios'} />
                 <Card img={logoRoles} title={'Roles'} path={'/administracion-usuarios/roles'} />
                 <Card img={logoPermisos} title={'Permisos'} path={'/administracion-usuarios/permisos'} />
-                <Card img={logoContrasena} title={'Seguridad Contraseña'} path={'/administracion-usuarios/contrasena-seguridad'}/>
+                <Card img={logoContrasena} title={'Seguridad Contraseña'} path={'/administracion-usuarios/contrasena-seguridad'} />
+                <Card img={logoContrasena} title={'Parámetros Contraseña'} path={'/administracion-usuarios/contrasena'} />
             </div>
         </div>
     else
@@ -50,7 +51,6 @@ export const AdminParam = ({ roles }) => {
                 <Card img={logoSecuen} title={'Secuenciador'} path={'/administracion-parametros/secuenciador'} />
                 <Card img={logoPuestos} title={'Puestos'} path={'/administracion-parametros/puestos'} />
                 <Card img={logoPais} title={'País'} path={'/administracion-parametros/pais'} />
-                <Card img={logoContrasena} title={'Parámetros Contraseña'} path={'/administracion-parametros/contrasena'} />
             </div>
         </div >
     else

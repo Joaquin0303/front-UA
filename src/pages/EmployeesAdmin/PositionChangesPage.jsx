@@ -120,15 +120,12 @@ const PositionChangesPage = () => {
     const [positionChangeList, setPositionChangeList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
 
-    console.log('positionChangeList:', positionChangeList)
-
     useEffect(() => {
         loadPositionChanges();
     }, [statusActive]);
 
     const loadPositionChanges = () => {
         getPositionChanges().then(result => {
-            console.log('LOS RES', result)
             if (result)
                 setPositionChangeList(result.filter(d => d.activo == statusActive));
         });

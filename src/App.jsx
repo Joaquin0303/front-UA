@@ -8,7 +8,7 @@ import Users from './pages/UserAdmin/Users';
 import { Permisos } from './pages/UserAdmin/Permisos';
 import Roles from './pages/UserAdmin/Roles';
 import PasswordSecurity from './pages/UserAdmin/PasswordSecurity';
-import ParameterSercurityPassword from './pages/ParametersAdmin/PasswordSecurityParameter'
+import ParameterSercurityPassword from './pages/UserAdmin/PasswordSecurityParameter'
 import { Reports } from './components/AdminPages';
 
 import logoempresa from './img/logo-empresa.png';
@@ -92,6 +92,7 @@ function App() {
         <Route path="/administracion-usuarios/permisos" element={<Permisos />} />
         <Route path="/administracion-usuarios/roles" element={<Roles />} />
         <Route path="/administracion-usuarios/contrasena-seguridad" element={<PasswordSecurity />} />
+        <Route path="/administracion-usuarios/contrasena" element={<ParameterSercurityPassword />} />
 
         {/* Administracion de Parametros */}
         {/* -------------------------- */}
@@ -101,7 +102,7 @@ function App() {
         {<Route path="/administracion-parametros/secuenciador" element={<SequencersPage />} />}
         {<Route path="/administracion-parametros/puestos" element={<PositionsPage />} />}
         {<Route path="/administracion-parametros/pais" element={<CountriesPage />} />}
-        {<Route path="/administracion-parametros/contrasena" element={<ParameterSercurityPassword />} />}
+
 
         {/* Administracion de Empleados */}
         {/* -------------------------- */}

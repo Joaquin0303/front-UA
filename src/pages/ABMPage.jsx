@@ -5,11 +5,10 @@ import TableWithSearch from '../components/table/TableWithSearch';
 import i18n from "../localization/i18n";
 
 const ABMPage = ({ pageConfiguration, pageName, dataList, dataModel, onAdd, onEdit, onRemove, searchKey, setActive, matchHandler, statusActive }) => {
-    console.log('dataList', dataList)
     let seccion;
     let to;
 
-    if (pageName === 'Empleados' || pageName === 'cargaDeFamilia' || pageName === 'external' || pageName === 'licenciaHistory' || pageName === 'cambioDePuesto' || pageName === 'ingresoCaido') {
+    if (pageName === 'Empleados' || pageName === 'cargaDeFamilia' || pageName === 'external' || pageName === 'licenciaHistory' || pageName === 'cambioDePuesto' || pageName === 'ingresoCaido' || pageName === 'seguridadContrasena' || pageName === 'PasswordSecurityParam') {
         seccion = '/ Administración de Empleados';
         to = '/administracion-empleados'
     }
