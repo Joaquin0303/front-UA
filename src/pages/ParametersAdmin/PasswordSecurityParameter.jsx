@@ -99,30 +99,30 @@ const ParameterSercurityPassword = () => {
       console.log('edited=', result);
       parameterPassword();
     });
+  }
 
-    const onRemove = () => {
-      console.log('removed')
-    }
+  const onRemove = () => {
+    console.log('removed')
+  }
 
-    const matchHandler = () => {
-      console.log('match')
-    }
+  const matchHandler = () => {
+    console.log('match')
+  }
 
-    const validate = (data) => {
-      const result = {
-        error: false,
-        validation: {}
-      }
-      if (!data.diasValidezContrasena || data.diasValidezContrasena <= 0) {
-        result.error = true;
-        result.validation.diasValidezContrasena = 'Ingrese un número de días valido'
-      }
-      if (!data.cantidadReintentos || data.cantidadReintentos <= 0) {
-        result.error = true;
-        result.validation.diasValidezContrasena = 'Ingrese una cantidad de reintentos valida'
-      }
-      return result;
+  const validate = (data) => {
+    const result = {
+      error: false,
+      validation: {}
     }
+    if (!data.diasValidezContrasena || data.diasValidezContrasena <= 0) {
+      result.error = true;
+      result.validation.diasValidezContrasena = 'Ingrese un número de días valido'
+    }
+    if (!data.cantidadReintentos || data.cantidadReintentos <= 0) {
+      result.error = true;
+      result.validation.diasValidezContrasena = 'Ingrese una cantidad de reintentos valida'
+    }
+    return result;
   }
 
   return (

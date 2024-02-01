@@ -26,7 +26,10 @@ const Login = ({ setToken }) => {
                 console.log('login response: ', response)
 
                 if (response.codigo == 200) {
-                    if (response.model.pudoAcceder) {
+                    if (response.model.primerAcceso) {
+                        setUserId(response.model.idUsuario);
+                        setShowChangePassword(true);
+                    } else if (response.model.pudoAcceder) {
                         const roleIds = [];
                         response.model.roles.map(r => {
                             const roleKey = getRoleIdByName(r);
@@ -45,9 +48,6 @@ const Login = ({ setToken }) => {
                         } catch (e) {
                             console.error(e);
                         }
-                    } else if (response.model.primerAcceso) {
-                        setUserId(response.model.idUsuario);
-                        setShowChangePassword(true);
                     } else {
                         setErrorMessage("Contraseña invalida.");
                     }
