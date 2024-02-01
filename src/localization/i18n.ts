@@ -204,7 +204,9 @@ i18n
           fechaInicioPuesto: 'Fecha Desde',
           fechaFinPuesto: 'Fecha Hasta',
           subgerencia: 'Subgerencia',
-          oficina: 'Oficina'
+          oficina: 'Oficina',
+          contrasena: 'Contraseña',
+          confirmarContrasena: 'Confirmar contraseña'
         }
       }
     }
