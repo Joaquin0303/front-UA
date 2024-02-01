@@ -5,19 +5,22 @@ import TableWithSearch from '../components/table/TableWithSearch';
 import i18n from "../localization/i18n";
 
 const ABMPage = ({ pageConfiguration, pageName, dataList, dataModel, onAdd, onEdit, onRemove, searchKey, setActive, matchHandler, statusActive }) => {
-
+    console.log('dataList', dataList)
     let seccion;
     let to;
 
-    if (pageName === 'Empleados' || pageName === 'cargaDeFamilia' || pageName === 'external' || pageName === 'licenciaHistory' || pageName === 'cambioDePuesto' || pageName === 'ingresoCaido'){
+    if (pageName === 'Empleados' || pageName === 'cargaDeFamilia' || pageName === 'external' || pageName === 'licenciaHistory' || pageName === 'cambioDePuesto' || pageName === 'ingresoCaido') {
         seccion = '/ Administración de Empleados';
-        to = '/administracion-empleados'}
-    else if (pageName === 'Usuarios' || pageName === 'Roles' || pageName === 'Permisos'){
+        to = '/administracion-empleados'
+    }
+    else if (pageName === 'Usuarios' || pageName === 'Roles' || pageName === 'Permisos') {
         seccion = '/ Administración de Usuarios';
-        to = '/administracion-usuarios'}
-    else if (pageName === 'parameterType' || pageName === 'Parametros' || pageName === 'Secuenciador' || pageName === 'Puesto' || pageName === 'paises'){
+        to = '/administracion-usuarios'
+    }
+    else if (pageName === 'parameterType' || pageName === 'Parametros' || pageName === 'Secuenciador' || pageName === 'Puesto' || pageName === 'paises') {
         seccion = '/ Administración de Parámetros';
-        to = '/administracion-parametros'}
+        to = '/administracion-parametros'
+    }
 
     return (
         <div className='bloque-principal'>

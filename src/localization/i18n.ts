@@ -206,7 +206,15 @@ i18n
           subgerencia: 'Subgerencia',
           oficina: 'Oficina',
           contrasena: 'Contraseña',
-          confirmarContrasena: 'Confirmar contraseña'
+          confirmarContrasena: 'Confirmar Contraseña',
+          diasValidezContrasena: 'Validez de Contraseña',
+          cantidadReintentos: 'Reintentos',
+          patron: 'Patrón',
+          fechaValidezInicio: 'Válido Desde',
+          fechaValidezFin: 'Válido Hasta',
+          regla: 'Regla',
+          seguridadContrasena: 'Seguridad Contraseña',
+          PasswordSecurityParam: 'Parametros de Security'
         }
       }
     }

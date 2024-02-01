@@ -37,7 +37,7 @@ const pageConfiguration = {
         TABLE_ACTIONS.EDIT
       ],
       inactiveActions: [
-
+        TABLE_ACTIONS.EDIT
       ],
     },
     activeRows: [
@@ -45,7 +45,8 @@ const pageConfiguration = {
       'cantidadReintentos'
     ],
     inactiveRows: [
-
+      'diasValidezContrasena',
+      'cantidadReintentos'
     ],
     aditionalRows: [
 
@@ -61,6 +62,8 @@ const pageConfiguration = {
       'cantidadReintentos'
     ],
     inactiveFields: [
+      'diasValidezContrasena',
+      'cantidadReintentos'
     ]
   }
 }
@@ -69,7 +72,7 @@ const pageConfiguration = {
 
 const ParameterSercurityPassword = () => {
 
-  const [ParameterPasswordList, setParameterPasswordList] = useState([]);
+  const [parameterPasswordList, setParameterPasswordList] = useState([]);
   const [statusActive, setStatusActive] = useState(true);
 
   useEffect(() => {
@@ -79,7 +82,7 @@ const ParameterSercurityPassword = () => {
   const parameterPassword = () => {
     getPaswordSecurityParam().then(result => {
       if (result && result.list)
-        setParameterPasswordList(result.list.filter(d => d.activo == statusActive));
+        setParameterPasswordList(result.list);
     });
   }
 
@@ -107,6 +110,7 @@ const ParameterSercurityPassword = () => {
 
   const matchHandler = () => {
     console.log('match')
+    return true;
   }
 
   const validate = (data) => {
@@ -120,13 +124,13 @@ const ParameterSercurityPassword = () => {
     }
     if (!data.cantidadReintentos || data.cantidadReintentos <= 0) {
       result.error = true;
-      result.validation.diasValidezContrasena = 'Ingrese una cantidad de reintentos valida'
+      result.validation.cantidadReintentos = 'Ingrese una cantidad de reintentos valida'
     }
     return result;
   }
 
   return (
-    <ABMPage pageConfiguration={pageConfiguration} pageName="PasswordSecurityParam" dataList={ParameterPasswordList} dataModel={PasswordParamModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+    <ABMPage pageConfiguration={pageConfiguration} pageName="PasswordSecurityParam" dataList={parameterPasswordList} dataModel={PasswordParamModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
   )
 }
 

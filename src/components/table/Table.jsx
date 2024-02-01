@@ -10,6 +10,7 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
     useEffect(() => {
         if (dataList && dataList.length > 0) {
             const keys = Object.keys(dataList[0]);
+
             const additinalKeys = tableConfiguration.aditionalRows ? tableConfiguration.aditionalRows : [];
             if (tableConfiguration.sortRow)
                 setColumsKeys(keys.concat(additinalKeys).sort(compareCol));

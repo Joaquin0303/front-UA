@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { addPaswordSecurity, getPaswordSecurity, updatePaswordSecurity } from '../../services/LoginAndSecurityServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import { compareStrDates } from '../../utils/Utils';
 
 export const LoadPasswordSecurityModel = {
   patron: '',
   fechaValidezInicio: '',
+  fechaValidezFin: '',
   regla: '',
   activo: true,
 }
@@ -17,7 +19,11 @@ const ModelDefinition = [
   },
   {
     fieldName: 'fechaValidezInicio',
-    type: 'string'
+    type: 'calendar'
+  },
+  {
+    fieldName: 'fechaValidezFin',
+    type: 'calendar'
   },
   {
     fieldName: 'regla',
@@ -45,20 +51,28 @@ const pageConfiguration = {
       activeActions: [
         TABLE_ACTIONS.EDIT
       ],
+      inactiveActions: [
+        TABLE_ACTIONS.EDIT
+      ],
     },
     activeRows: [
       'patron',
       'fechaValidezInicio',
-      'regla',
-      'activo'
+      'fechaValidezFin',
+      'regla'
     ],
-    inactiveRows: [],
+    inactiveRows: [
+      'patron',
+      'fechaValidezInicio',
+      'fechaValidezFin',
+      'regla'
+    ],
     aditionalRows: [],
     sortRow: [
       'patron',
       'fechaValidezInicio',
-      'regla',
-      'activo'
+      'fechaValidezFin',
+      'regla'
     ]
   },
   formConfiguration: {
@@ -66,8 +80,8 @@ const pageConfiguration = {
     activeFields: [
       'patron',
       'fechaValidezInicio',
-      'regla',
-      'activo'
+      'fechaValidezFin',
+      'regla'
     ],
     inactiveFields: []
   },
@@ -75,15 +89,15 @@ const pageConfiguration = {
     activeFields: [
       'patron',
       'fechaValidezInicio',
-      'regla',
-      'activo'
+      'fechaValidezFin',
+      'regla'
     ],
     inactiveFields: []
   }
 }
 
 const PasswordSecurity = () => {
-  const [loadPasswordSecurityList, setPasswordSecurityList] = useState([]);
+  const [passwordSecurityList, setPasswordSecurityList] = useState([]);
   const [statusActive, setStatusActive] = useState(true);
 
 
@@ -93,8 +107,8 @@ const PasswordSecurity = () => {
 
   const loadPasswordSecurity = () => {
     getPaswordSecurity().then(result => {
-      if (result && result.list) {
-        setPasswordSecurityList(result.list.filter(d => d.activo == statusActive));
+      if (result && result.model) {
+        setPasswordSecurityList([result.model]);
       }
     })
   }
@@ -119,7 +133,9 @@ const PasswordSecurity = () => {
 
   const onRemove = () => { }
 
-  const matchHandler = () => { }
+  const matchHandler = () => {
+    return true;
+  }
 
   const validate = (data) => {
     const result = {
@@ -132,7 +148,15 @@ const PasswordSecurity = () => {
     }
     if (!data.fechaValidezInicio || data.fechaValidezInicio.trim().length <= 0) {
       result.error = true;
-      result.validation.fechaValidezInicio = "Ingrese fechaValidezInicio"
+      result.validation.fechaValidezInicio = "Ingrese fecha de inicio de validez"
+    }
+    if (!data.fechaValidezFin || data.fechaValidezFin.trim().length <= 0) {
+      result.error = true;
+      result.validation.fechaValidezFin = "Ingrese fecha de fin de validez"
+    }
+    if (data.fechaValidezInicio && data.fechaValidezFin && compareStrDates(data.fechaValidezInicio, data.fechaValidezFin) < 1) {
+      result.error = true;
+      result.validation.fechaValidezFin = "Ingrese una fecha fin mayor a la fecha de inicio"
     }
     if (!data.regla || data.regla <= 0) {
       result.error = true;
@@ -141,8 +165,9 @@ const PasswordSecurity = () => {
     return result;
   }
 
+  console.log('passwordSecurityList', passwordSecurityList)
   return (
-    <ABMPage pageConfiguration={pageConfiguration} pageName="seguridadContrasena" dataList={loadPasswordSecurityList} dataModel={LoadPasswordSecurityModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+    <ABMPage pageConfiguration={pageConfiguration} pageName="seguridadContrasena" dataList={passwordSecurityList} dataModel={LoadPasswordSecurityModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
   );
 
 }

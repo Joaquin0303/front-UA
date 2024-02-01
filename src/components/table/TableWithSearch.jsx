@@ -60,12 +60,12 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
         setActive(e.target.checked);
     }
 
-    {/*---------------------------------------- */}
+    {/*---------------------------------------- */ }
     const handleClearIconClick = () => {
         setSearchTerm("");
         setShowClearIcon(false);
     }
-    
+
 
     useEffect(() => {
         setFilteredDataList(dataList.filter((data) => matchHandler(data, searchTerm)));
@@ -75,30 +75,28 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
             <div className='search-checkbox'>
                 <div className='bloque-search'>
                     {pageConfiguration.show_search && <div className='search'>
-                    <div className='search-div'>
-                        <i className="fa-solid fa-magnifying-glass icon"></i>
-                        <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => {
-                            const value = e.target.value;
-                            setSearchTerm(value);
-                            setShowClearIcon(value.length > 0);
-                        }}
-                        />
-                        {showClearIcon && (
-                        <i className="fa-solid fa-xmark" onClick={handleClearIconClick}></i>
-                        )}
-                    </div>
-                    {pageConfiguration.show_active_button && <div className='active-users'>
-                        {setActive && <div className='form-check form-switch'>
-                            {pageName === 'Empleados' ? (showActives ? 'Activos / Licencias' : 'Bajas') : (showActives ? 'Activos' : 'Inactivos')}
-                            <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />
+                        <div className='search-div'>
+                            <i className="fa-solid fa-magnifying-glass icon"></i>
+                            <input type="text" className='search-input' placeholder='Buscar' value={searchTerm} onChange={(e) => {
+                                const value = e.target.value;
+                                setSearchTerm(value);
+                                setShowClearIcon(value.length > 0);
+                            }}
+                            />
+                            {showClearIcon && (
+                                <i className="fa-solid fa-xmark" onClick={handleClearIconClick}></i>
+                            )}
+                        </div>
+                        {pageConfiguration.show_active_button && <div className='active-users'>
+                            {setActive && <div className='form-check form-switch'>
+                                {pageName === 'Empleados' ? (showActives ? 'Activos / Licencias' : 'Bajas') : (showActives ? 'Activos' : 'Inactivos')}
+                                <input type='checkbox' className='form-check-input' checked={showActives} onChange={handleActiveChange} />
+                            </div>}
                         </div>}
-                    </div>}
                     </div>}
                     {pageConfiguration.show_add_button && pageName != 'ingresoCaido' && pageName != 'licenciaHistory' && <button className='btns-add' onClick={(e) => { e.stopPropagation(); openModalForm(pageName == 'Empleados' ? MODAL_FORM.EMPLOYEEMODAL : MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.ADD, dataModel ? JSON.parse(JSON.stringify(dataModel)) : {}) }}><FaPlus />Agregar</button>}
                 </div >
             </div>
-
-
             {pageName != 'Empleados' && <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={filteredDataList} openModalForm={openModalForm} />}
             {showModalForm && <ModalForm pageConfiguration={pageConfiguration} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} actionForm={actionForm} />}
             {pageName == 'Empleados' && <TableEmployee tableConfiguration={pageConfiguration.tableConfiguration} dataList={filteredDataList} openModalForm={openModalForm} />}
