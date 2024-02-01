@@ -21,6 +21,26 @@ const Login = ({ setToken }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
 
+    const createAccessToken = (login) => {
+        const roleIds = [];
+        login.roles.map(r => {
+            const roleKey = getRoleIdByName(r);
+            if (roleKey)
+                roleIds.push(ROLES[roleKey].id);
+        })
+        try {
+            const header = '{"alg": "HS256","typ": "JWT"}';
+            const payload = '{"userId": ' + login.idUsuario + ',"roles": [' + roleIds + '],"iat": 1516239022}';
+            const jwtToken = codeToken(header, payload);
+            console.log("JWT=", jwtToken);
+
+            //setToken({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WzEsMiwzXSwiZW1wbGVhZG8iOnsiY29kaWdvRGlyZWNjaW9uIjoxMjM0LCJjb2RpZ29Fc3RhZG9FbXBsZWFkbyI6ODcsImNvZGlnb0NhdGVnb3JpYUVtcGxlYWRvIjoxMjM0LCJjb2RpZ29QYWlzIjoxMjM0LCJub21icmUiOiJBZG1pbmlzdHJhZG9yIiwiYXBlbGxpZG8iOiJTaXRpbyJ9fQ.lzoKvLBSVNrwOJTWTstpRFJnm_RjMdmIBxYI-NIYaWU" });
+            setToken({ token: jwtToken });
+            setErrorMessage('');
+        } catch (e) {
+            console.error(e);
+        }
+    }
     const handleSubmit = async e => {
         try {
             e.preventDefault();
@@ -32,24 +52,7 @@ const Login = ({ setToken }) => {
                         setUserId(response.model.idUsuario);
                         setShowChangePassword(true);
                     } else if (response.model.pudoAcceder) {
-                        const roleIds = [];
-                        response.model.roles.map(r => {
-                            const roleKey = getRoleIdByName(r);
-                            if (roleKey)
-                                roleIds.push(ROLES[roleKey].id);
-                        })
-                        try {
-                            const header = '{"alg": "HS256","typ": "JWT"}';
-                            const payload = '{"userId": ' + response.model.idUsuario + ',"roles": [' + roleIds + '],"iat": 1516239022}';
-                            const jwtToken = codeToken(header, payload);
-                            console.log("JWT=", jwtToken);
-
-                            //setToken({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WzEsMiwzXSwiZW1wbGVhZG8iOnsiY29kaWdvRGlyZWNjaW9uIjoxMjM0LCJjb2RpZ29Fc3RhZG9FbXBsZWFkbyI6ODcsImNvZGlnb0NhdGVnb3JpYUVtcGxlYWRvIjoxMjM0LCJjb2RpZ29QYWlzIjoxMjM0LCJub21icmUiOiJBZG1pbmlzdHJhZG9yIiwiYXBlbGxpZG8iOiJTaXRpbyJ9fQ.lzoKvLBSVNrwOJTWTstpRFJnm_RjMdmIBxYI-NIYaWU" });
-                            setToken({ token: jwtToken });
-                            setErrorMessage('');
-                        } catch (e) {
-                            console.error(e);
-                        }
+                        createAccessToken(response.model);
                     } else {
                         setErrorMessage("Contraseña invalida.");
                     }
