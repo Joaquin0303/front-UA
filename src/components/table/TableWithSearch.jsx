@@ -26,18 +26,22 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
     }
 
     const openModalForm = (modal, action, data) => {
+        console.log('modal', modal)
         setFormData(data);
         setActionForm(action);
         if (modal == MODAL_FORM.DYNAMICMODAL) {
             setShowModalForm(true);
-        } else {
+        } else if (modal == MODAL_FORM.EMPLOYEEMODAL) {
             setShowEmployeeModalForm(true);
+        } else if (modal == MODAL_FORM.NONE) {
+            onSubmitForm(data, action);
         }
     }
 
-    const onSubmitForm = (data) => {
-        console.log('action', actionForm)
-        switch (actionForm) {
+    const onSubmitForm = (data, defaultAction) => {
+        const action = actionForm ? actionForm : defaultAction;
+        console.log('action', action)
+        switch (action) {
             case TABLE_ACTIONS.ADD: onAdd(data, actionForm); break;
             case TABLE_ACTIONS.EDIT: onEdit(data, TABLE_ACTIONS.EDIT); break;
             case TABLE_ACTIONS.ACTIVATE: data.activo = true; onEdit(data, TABLE_ACTIONS.ACTIVATE); break;
@@ -50,8 +54,10 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
             case TABLE_ACTIONS.CHANGEPOSITION: onEdit(data, TABLE_ACTIONS.CHANGEPOSITION); break;
             case TABLE_ACTIONS.ADDFAMILY: onAdd(data, TABLE_ACTIONS.ADDFAMILY); break;
             case TABLE_ACTIONS.INACTIVATEEXTERN: onEdit(data, TABLE_ACTIONS.INACTIVATEEXTERN); break;
+            case TABLE_ACTIONS.UNBLOCK: onEdit(data, TABLE_ACTIONS.UNBLOCK); break;
             case 'remove': onRemove(data); break;
-            default: ;
+            default:
+                console.log("NON SUBMIT");
         }
     }
 
@@ -101,7 +107,6 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
             {showModalForm && <ModalForm pageConfiguration={pageConfiguration} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} actionForm={actionForm} />}
             {pageName == 'Empleados' && <TableEmployee tableConfiguration={pageConfiguration.tableConfiguration} dataList={filteredDataList} openModalForm={openModalForm} />}
             {showEmployeeModalForm && <ModalFormEmployees action={actionForm} data={formData} closeModal={closeModalForm} onSubmitForm={onSubmitForm} />}
-
         </>
     );
 }

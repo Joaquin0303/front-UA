@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getUsers, addUser, editUser, removeUser } from '../../services/UserServices';
 import { assignRoleToUser } from '../../services/RoleServices';
 import ABMPage from '../ABMPage';
-import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const UserModel = {
     numeroLegajo: '',
@@ -11,6 +11,12 @@ const UserModel = {
     confirmarContrasena: '',
     roles: [],
     activo: true
+}
+
+export const PasswordModel = {
+    userId: null,
+    contrasena: '',
+    confirmarContrasena: '',
 }
 
 const ModelDefinition = [
@@ -60,7 +66,8 @@ const pageConfiguration = {
             activeActions: [
                 TABLE_ACTIONS.VIEW,
                 TABLE_ACTIONS.EDIT,
-                TABLE_ACTIONS.INACTIVATE
+                TABLE_ACTIONS.INACTIVATE,
+                TABLE_ACTIONS.UNBLOCK
             ],
             inactiveActions: [
                 TABLE_ACTIONS.VIEW,
@@ -91,6 +98,8 @@ const pageConfiguration = {
             'confirmarContrasena'
         ],
         inactiveFields: [
+            'contrasena',
+            'confirmarContrasena'
         ]
     },
     viewConfiguration: {
@@ -144,22 +153,30 @@ const Users = () => {
     }
 
     const onEdit = (data, action) => {
-        const validation = validate(data, action);
-        if (validation.error) throw validation;
+        switch (action) {
+            case TABLE_ACTIONS.EDIT:
+                const validation = validate(data, action);
+                if (validation.error) throw validation;
+                editUser(data.id, data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
+                    if (result.codigo == 200) {
+                        data.roles && data.roles.forEach(userRole => {
+                            assignRoleToUser(userRole.codigo, result.model.id).then(result => {
+                                console.log('role user saved=', result);
+                                loadUsers();
+                            });
+                        });
+                        if (!data.roles || data.roles.length == 0) {
+                            loadUsers();
+                        }
+                    }
+                })
+                break;
+            case TABLE_ACTIONS.UNBLOCK:
+                console.log('UNBLOCK ', data)
 
-        editUser(data.id, data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
-            if (result.codigo == 200) {
-                data.roles && data.roles.forEach(userRole => {
-                    assignRoleToUser(userRole.codigo, result.model.id).then(result => {
-                        console.log('role user saved=', result);
-                        loadUsers();
-                    });
-                });
-                if (!data.roles || data.roles.length == 0) {
-                    loadUsers();
-                }
-            }
-        })
+                break;
+        }
+
     }
 
     const onRemove = (data) => {
@@ -213,7 +230,9 @@ const Users = () => {
     }
 
     return (
-        <ABMPage pageConfiguration={pageConfiguration} pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        <>
+            <ABMPage pageConfiguration={pageConfiguration} pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+        </>
     );
 }
 

@@ -10,7 +10,7 @@ import { LOGIN_MESSAGES } from '../utils/LoginConstants';
 import { ChangePassword } from './changePassword';
 import { codeToken } from '../utils/Utils';
 import { ROLES, getRoleIdByName } from '../utils/Roles';
-
+import PopUp from '../components/modal/PopUp';
 
 const Login = ({ setToken }) => {
     const [showChangePassword, setShowChangePassword] = useState(false);
@@ -18,6 +18,8 @@ const Login = ({ setToken }) => {
     const [password, setPassword] = useState();
     const [userId, setUserId] = useState();
     const [errorMessage, setErrorMessage] = useState();
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
 
     const handleSubmit = async e => {
         try {
@@ -74,7 +76,13 @@ const Login = ({ setToken }) => {
     }
 
     const handleChangePassword = () => {
+        setErrorMessage('');
         setShowChangePassword(false);
+        setPopupMessage(`La contrasaña se actualizó correctamente`);
+        setShowPopup(true);
+        setTimeout(() => {
+            setShowPopup(false);
+        }, timePopup);
     }
 
     return (
@@ -113,6 +121,7 @@ const Login = ({ setToken }) => {
                     </>
                 )}
             </div>
+            {showPopup && <PopUp message={popupMessage} />}
         </>
     );
 };

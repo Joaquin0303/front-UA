@@ -7,7 +7,7 @@ import { TbLicense } from "react-icons/tb";
 import { TbLicenseOff } from "react-icons/tb";
 import { MODAL_FORM, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import { arrowDownExternModel } from '../../pages/EmployeesAdmin/ExternalPage';
-
+import { PasswordModel } from '../../pages/UserAdmin/Users';
 const CellAction = ({ actions, data, openModalForm }) => {
 
     const showAction = (actionName) => {
@@ -21,6 +21,7 @@ const CellAction = ({ actions, data, openModalForm }) => {
         external.empleado = emp;
         openModalForm(MODAL_FORM.DYNAMICMODAL, TABLE_ACTIONS.INACTIVATEEXTERN, external);
     }
+
     return (
         <td className='expand'>
             <span className='actions'>
@@ -38,6 +39,9 @@ const CellAction = ({ actions, data, openModalForm }) => {
                 </div>}
                 {showAction(TABLE_ACTIONS.INACTIVATEEXTERN) && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); openExternalModel(data) }}>
                     <FaArrowDown />
+                </div>}
+                {showAction(TABLE_ACTIONS.UNBLOCK) && <div title="Desbloquear" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.NONE, TABLE_ACTIONS.UNBLOCK, data) }}>
+                    <IoEyeSharp />
                 </div>}
             </span>
         </td >
