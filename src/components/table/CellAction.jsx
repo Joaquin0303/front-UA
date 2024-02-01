@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/abm.css'
 import { IoEyeSharp } from "react-icons/io5";
 import { BsFillPencilFill } from 'react-icons/bs'
-import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp, FaUnlock } from "react-icons/fa";
 import { TbLicense } from "react-icons/tb";
 import { TbLicenseOff } from "react-icons/tb";
 import { MODAL_FORM, TABLE_ACTIONS } from '../../utils/GeneralConstants';
@@ -41,7 +41,7 @@ const CellAction = ({ actions, data, openModalForm }) => {
                     <FaArrowDown />
                 </div>}
                 {showAction(TABLE_ACTIONS.UNBLOCK) && <div title="Desbloquear" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.NONE, TABLE_ACTIONS.UNBLOCK, data) }}>
-                    <IoEyeSharp />
+                    <FaUnlock />
                 </div>}
             </span>
         </td >

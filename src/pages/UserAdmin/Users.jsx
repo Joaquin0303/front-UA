@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getUsers, addUser, editUser, removeUser } from '../../services/UserServices';
+import { getUsers, addUser, editUser, removeUser, unblockUser } from '../../services/UserServices';
 import { assignRoleToUser } from '../../services/RoleServices';
 import ABMPage from '../ABMPage';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import PopUp from '../../components/modal/PopUp';
 
 const UserModel = {
     numeroLegajo: '',
@@ -123,6 +124,9 @@ const Users = () => {
 
     const [userList, setUserList] = useState([]);
     const [statusActive, setStatusActive] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
+    const [counter, setCounter] = useState(10000);
 
     useEffect(() => {
         loadUsers();
@@ -173,11 +177,27 @@ const Users = () => {
                 break;
             case TABLE_ACTIONS.UNBLOCK:
                 console.log('UNBLOCK ', data)
+                let continuar = confirm("¿Desea desbloquear y generar una nueva contrasena para el usuario " + data.nombreUsuario + "?");
+                if (continuar) {
+                    unblockUser(data.id).then(result => {
+                        if (result.code == 200) {
+                            setPopupMessage(<>La vontrasena se ha generado correctamente.'<br /> Contraseña: 'blalba'</>);
 
+                        } else {
+                            setPopupMessage(<>No se pudo realizar la accion requerida.</>);
+                        }
+                        setShowPopup(true);
+                        setTimeout(() => {
+                            setShowPopup(false);
+                        }, 10000);
+                    });
+                }
                 break;
         }
 
     }
+
+    console.log('counter=', counter)
 
     const onRemove = (data) => {
         removeUser(data.id).then(result => {
@@ -231,7 +251,9 @@ const Users = () => {
 
     return (
         <>
+
             <ABMPage pageConfiguration={pageConfiguration} pageName="Usuarios" dataList={userList} dataModel={UserModel} onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} matchHandler={matchHandler} setActive={setStatusActive} statusActive={statusActive} />
+            {showPopup && <PopUp message={popupMessage} />}
         </>
     );
 }

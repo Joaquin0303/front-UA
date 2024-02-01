@@ -159,7 +159,7 @@ export const updatePassword = async (userId, password) => {
 export const resetPassword = async (userId) => {
     const result = await axios({
         method: 'get',
-        url: host + '/ua/resetear/' + userId
+        url: host + '/ua/usuario/resetear/' + userId
     }).then(response => {
         return response;
     }).catch(error => {
@@ -171,7 +171,7 @@ export const resetPassword = async (userId) => {
 export const unblockUser = async (userId) => {
     const result = await axios({
         method: 'get',
-        url: host + '/ua/desbloquear/' + userId
+        url: host + '/ua/usuario/desbloquear/' + userId
     }).then(response => {
         return response;
     }).catch(error => {
