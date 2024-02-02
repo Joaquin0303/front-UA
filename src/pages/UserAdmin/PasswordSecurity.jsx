@@ -59,20 +59,23 @@ const pageConfiguration = {
       'patron',
       'fechaValidezInicio',
       'fechaValidezFin',
-      'regla'
+      'regla',
+      'activo'
     ],
     inactiveRows: [
       'patron',
       'fechaValidezInicio',
       'fechaValidezFin',
-      'regla'
+      'regla',
+      'activo'
     ],
     aditionalRows: [],
     sortRow: [
       'patron',
       'fechaValidezInicio',
       'fechaValidezFin',
-      'regla'
+      'regla',
+      'activo'
     ]
   },
   formConfiguration: {
@@ -81,7 +84,8 @@ const pageConfiguration = {
       'patron',
       'fechaValidezInicio',
       'fechaValidezFin',
-      'regla'
+      'regla',
+      'activo'
     ],
     inactiveFields: []
   },
@@ -90,7 +94,8 @@ const pageConfiguration = {
       'patron',
       'fechaValidezInicio',
       'fechaValidezFin',
-      'regla'
+      'regla',
+      'activo'
     ],
     inactiveFields: []
   }
