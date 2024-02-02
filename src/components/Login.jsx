@@ -63,13 +63,13 @@ const Login = ({ setToken }) => {
                     console.log(response.mensajes[0]);
                     switch (response.mensajes[0]) {
                         case LOGIN_MESSAGES.USER_BLOCKED:
-                            setErrorMessage(response.mensajes[0]);
+                            setErrorMessage("Usuario inactivado, debe solicitar desbloqueo por Jira SM.")
                             break;
                         case LOGIN_MESSAGES.USER_NOT_FOUND:
-                            setErrorMessage(response.mensajes[0]);
+                            setErrorMessage("No se encontró usuario con ese nombre o contraseña.");
                             break;
                         case LOGIN_MESSAGES.EXPIRE_PASSWORD:
-                            setErrorMessage(response.mensajes[0]);
+                            setErrorMessage("La contraseña del usuario expiro. Comuníquese con Sistemas para recibir una nueva.");
                             break;
                     }
                 }
