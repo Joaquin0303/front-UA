@@ -42,7 +42,7 @@ import { PERMISSION } from './utils/PermissionLIst';
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ2YWx1ZSI6InNlciJ9._RCDTTuGvtXwENLAHhQvvJuoYSbkXP_JPoGv2wzoQQo";
 const decoded = jwtDecode(token);
 
-console.log(decoded);
+console.log('Decode=', decoded);
 
 function App() {
 
