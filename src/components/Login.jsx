@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import '../styles/Login.css';
 import '../styles/changePassword.css'
-import axios from 'axios';
 import logoempresa from '../img/logo-empresa.png';
 import gifWork from '../img/work-team.gif';
-import { loginUser } from '../services/UserServices';
 import { login } from '../services/LoginAndSecurityServices'
 import { LOGIN_MESSAGES } from '../utils/LoginConstants';
 import { ChangePassword } from './changePassword';
 import { codeToken } from '../utils/Utils';
-import { ROLES, getRoleIdByName } from '../utils/Roles';
 import PopUp from '../components/modal/PopUp';
+import { getPermissionIdByName, PERMISSION } from '../utils/PermissionList';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ setToken }) => {
     const [showChangePassword, setShowChangePassword] = useState(false);
@@ -22,21 +21,22 @@ const Login = ({ setToken }) => {
     const [popupMessage, setPopupMessage] = useState('');
 
     const createAccessToken = (login) => {
-        const roleIds = [];
-        login.roles.map(r => {
-            const roleKey = getRoleIdByName(r);
-            if (roleKey)
-                roleIds.push(ROLES[roleKey].id);
-        })
+        const permissionIds = [];
+        login.permisos.map(p => {
+            const permissionName = getPermissionIdByName(p);
+            if (permissionName)
+                permissionIds.push(PERMISSION[permissionName].id);
+        });
         try {
             const header = '{"alg": "HS256","typ": "JWT"}';
-            const payload = '{"userId": ' + login.idUsuario + ',"roles": [' + roleIds + '],"iat": 1516239022}';
+            const payload = '{"userId": ' + login.idUsuario + ',"permissions": [' + permissionIds + '],"iat": 1516239022}';
             const jwtToken = codeToken(header, payload);
             console.log("JWT=", jwtToken);
 
             //setToken({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WzEsMiwzXSwiZW1wbGVhZG8iOnsiY29kaWdvRGlyZWNjaW9uIjoxMjM0LCJjb2RpZ29Fc3RhZG9FbXBsZWFkbyI6ODcsImNvZGlnb0NhdGVnb3JpYUVtcGxlYWRvIjoxMjM0LCJjb2RpZ29QYWlzIjoxMjM0LCJub21icmUiOiJBZG1pbmlzdHJhZG9yIiwiYXBlbGxpZG8iOiJTaXRpbyJ9fQ.lzoKvLBSVNrwOJTWTstpRFJnm_RjMdmIBxYI-NIYaWU" });
             setToken({ token: jwtToken });
             setErrorMessage('');
+
         } catch (e) {
             console.error(e);
         }
@@ -52,6 +52,9 @@ const Login = ({ setToken }) => {
                         setUserId(response.model.idUsuario);
                         setShowChangePassword(true);
                     } else if (response.model.pudoAcceder) {
+                        // Inside the handleLogin function
+                        //const navigate = useNavigate();
+                        //navigate.push('/');
                         createAccessToken(response.model);
                     } else {
                         setErrorMessage("Contraseña invalida.");
@@ -81,11 +84,11 @@ const Login = ({ setToken }) => {
     const handleChangePassword = () => {
         setErrorMessage('');
         setShowChangePassword(false);
-        setPopupMessage(`La contrasaña se actualizó correctamente`);
+        setPopupMessage(<div className='message-min-popup'><div>La contrasaña se actualizó correctamente</div><div className='btns-container'><button className='btns-close' onClick={() => { setShowPopup(false); }}>Cerrar</button></div></div>);
         setShowPopup(true);
         setTimeout(() => {
             setShowPopup(false);
-        }, timePopup);
+        }, 10000);
     }
 
     return (

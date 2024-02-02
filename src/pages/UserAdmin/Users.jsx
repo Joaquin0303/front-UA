@@ -177,19 +177,16 @@ const Users = () => {
                 break;
             case TABLE_ACTIONS.UNBLOCK:
                 console.log('UNBLOCK ', data)
-                let continuar = confirm("¿Desea desbloquear y generar una nueva contrasena para el usuario " + data.nombreUsuario + "?");
+                let continuar = confirm("¿Desea desbloquear y generar una nueva contraseña para el usuario " + data.nombreUsuario + "?");
                 if (continuar) {
                     unblockUser(data.id).then(result => {
-                        if (result.code == 200) {
-                            setPopupMessage(<>La vontrasena se ha generado correctamente.'<br /> Contraseña: 'blalba'</>);
-
+                        console.log('Desbloqueo', result)
+                        if (result.codigo == 200 && result.model.contrasena) {
+                            setPopupMessage(<div className='message-min-popup'><div>La contraseña se ha generado correctamente</div><div className='password-view'> {result.model.contrasena}</div><div className='btns-container'><button className='btns-close' onClick={() => { setShowPopup(false); }}>Cerrar</button></div></div>);
                         } else {
-                            setPopupMessage(<>No se pudo realizar la accion requerida.</>);
+                            setPopupMessage(<div className='message-min-popup'><div>No se pudo realizar la accion requerida</div><div className='btns-container'><button className='btns-close' onClick={() => { setShowPopup(false); }}>Cerrar</button></div></div>);
                         }
                         setShowPopup(true);
-                        setTimeout(() => {
-                            setShowPopup(false);
-                        }, 10000);
                     });
                 }
                 break;
