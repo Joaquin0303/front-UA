@@ -177,12 +177,11 @@ const Users = () => {
                 break;
             case TABLE_ACTIONS.UNBLOCK:
                 console.log('UNBLOCK ', data)
-                let continuar = confirm("¿Desea desbloquear y generar una nueva contrasena para el usuario " + data.nombreUsuario + "?");
+                let continuar = confirm("¿Desea desbloquear y generar una nueva contraseña para el usuario " + data.nombreUsuario + "?");
                 if (continuar) {
                     unblockUser(data.id).then(result => {
-                        if (result.code == 200) {
-                            setPopupMessage(<>La vontrasena se ha generado correctamente.'<br /> Contraseña: 'blalba'</>);
-
+                        if (result.codigo == 200) {
+                            setPopupMessage(<>La vontrasena se ha generado correctamente.'<br /> Contraseña: {result.model.contrasena}</>);
                         } else {
                             setPopupMessage(<>No se pudo realizar la accion requerida.</>);
                         }

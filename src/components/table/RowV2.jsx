@@ -70,7 +70,7 @@ const RowV2 = ({ columnsKey, tableConfiguration, data, openModalForm }) => {
 
     return (
         <>
-            <tr>
+            <tr className={!data.activo ? 'table-row-status-blocked' : ''}>
                 {createCells()}
                 {openModalForm && <CellAction actions={tableConfiguration.actions} data={data} openModalForm={openModalForm} />}
             </tr>
