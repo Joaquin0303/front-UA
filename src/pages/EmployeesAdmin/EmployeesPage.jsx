@@ -416,11 +416,12 @@ const EmployeesPage = ({ }) => {
             case TABLE_ACTIONS.PUTDOWNLICENCE:
                 data.licence.fechaFin = data.fechaFin
                 const validationPutDownLicence = validatePutDownLicence(data.licence);
+                console.log(validationPutDownLicence)
                 if (validationPutDownLicence.error) throw validationPutDownLicence;
                 let putdownLicence = confirm("Desea dar de baja la licencia y reactivar el empleado?");
                 if (putdownLicence) {
                     console.log('Data Licencia=', data)
-                    updateLicense(data.licence.id, data.licence.empleado, data.licence.numeroLegajo, data.licence.fechaInicio, data.fechaFin, data.licence.licence.tipoLicencia, false).then(result => {
+                    updateLicense(data.licence.id, data.licence.empleado, data.licence.numeroLegajo, data.licence.fechaInicio, data.licence.fechaFin, data.licence.tipoLicencia, false).then(result => {
                         console.log('Putdown Licence=', result);
                         result.model.empleado.codigoEstadoEmpleado = {
                             id: 87 // ACTIVATE EMPLOYEE
@@ -472,6 +473,7 @@ const EmployeesPage = ({ }) => {
             result.error = true;
             result.validation.fechaFin = "Ingrese fecha de fin valida"
         }
+        return result;
     }
 
     const validateLicence = (data, oldLicence) => {
