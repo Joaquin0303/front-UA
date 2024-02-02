@@ -303,8 +303,7 @@ input:disabled {
 }
 
 .table-row-status-blocked {
-    color: #ffffff;
-    background-color: #ff0000;
+    background-color: #ffdede;
 }
 
 .form-group .select-multiple {
@@ -323,4 +322,15 @@ input:disabled {
     border-radius: 56px;
     width: 500px;
     height: 45px;
+}
+
+.message-min-popup .password-view {
+    margin-top: 10px;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+}
+
+.message-min-popup .btns-container {
+    text-align: center;
 }

@@ -84,11 +84,11 @@ const Login = ({ setToken }) => {
     const handleChangePassword = () => {
         setErrorMessage('');
         setShowChangePassword(false);
-        setPopupMessage(`La contrasaña se actualizó correctamente`);
+        setPopupMessage(<div className='message-min-popup'><div>La contrasaña se actualizó correctamente</div><div className='btns-container'><button className='btns-close' onClick={() => { setShowPopup(false); }}>Cerrar</button></div></div>);
         setShowPopup(true);
         setTimeout(() => {
             setShowPopup(false);
-        }, timePopup);
+        }, 10000);
     }
 
     return (
