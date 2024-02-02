@@ -180,8 +180,9 @@ const Users = () => {
                 let continuar = confirm("¿Desea desbloquear y generar una nueva contraseña para el usuario " + data.nombreUsuario + "?");
                 if (continuar) {
                     unblockUser(data.id).then(result => {
+                        console.log('Desbloqueo', result)
                         if (result.codigo == 200) {
-                            setPopupMessage(<>La vontrasena se ha generado correctamente.'<br /> Contraseña: {result.model.contrasena}</>);
+                            setPopupMessage(<>La contrasena se ha generado correctamente.'<br /> Contraseña: {result.model.contrasena}</>);
                         } else {
                             setPopupMessage(<>No se pudo realizar la accion requerida.</>);
                         }
