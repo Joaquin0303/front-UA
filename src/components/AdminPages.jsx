@@ -24,7 +24,7 @@ import generico from '../img/generico.png'
 import '../styles/AdminUsers.css';
 import Card from "./cards";
 import { ROLES } from "../utils/Roles";
-import { PERMISSION } from "../utils/PermissionLIst";
+import { PERMISSION } from "../utils/PermissionList";
 
 export const AdminUsers = ({ permissions }) => {
     if (permissions && permissions.includes(PERMISSION.PERMISO_SECCION_USUARIOS_ACCESO.id))

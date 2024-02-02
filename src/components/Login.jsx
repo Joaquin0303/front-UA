@@ -8,7 +8,7 @@ import { LOGIN_MESSAGES } from '../utils/LoginConstants';
 import { ChangePassword } from './changePassword';
 import { codeToken } from '../utils/Utils';
 import PopUp from '../components/modal/PopUp';
-import { getPermissionIdByName, PERMISSION } from '../utils/PermissionLIst';
+import { getPermissionIdByName, PERMISSION } from '../utils/PermissionList';
 import { useNavigate } from 'react-router-dom';
 
 const Login = ({ setToken }) => {
