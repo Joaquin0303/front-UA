@@ -1,8 +1,9 @@
 import React from 'react';
+import '../../styles/AdminUsers.css';
 
 const PasswordRules = () => {
     return (
-        <div className='normas'>
+        <div className='password-rules'>
             <p>Debe contener una longitud mínima de 8 (ocho) caracteres y un máximo de 16 (dieciséis) caracteres.</p>
             <p>Debe estar compuesta por la siguiente combinación caracteres:</p>
             <p>&#8226; Dígitos (0...9) </p>

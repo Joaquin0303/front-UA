@@ -11,8 +11,12 @@ export const ChangePassword = ({ userId, handleChangePassword }) => {
   const handleSubmit = async e => {
     try {
       e.preventDefault();
+      if (!password) {
+        setErrorMessage('Campo Contraseña no debe estar vacío');
+        return;
+      }
       if (password != confirmPassword) {
-        setErrorMessage('Las contraseñas ingresadas no coinciden.');
+        setErrorMessage('Las contraseñas no son idénticas, por favor ingresar la misma contraseña en ambos campos.');
         return;
       }
       console.log('change password: ', password);
@@ -21,7 +25,7 @@ export const ChangePassword = ({ userId, handleChangePassword }) => {
         updatePassword(userId, password).then(r => {
           console.log('change password response: ', r);
           if (r.codigo == 400) {
-            setErrorMessage(r.mensajes[0]);
+            setErrorMessage(r.mensajes[0] /* Ingrese una contraseña que cumpla con los requisitos indicados. */);
           } else {
             handleChangePassword();
           }
