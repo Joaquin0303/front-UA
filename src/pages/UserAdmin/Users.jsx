@@ -176,7 +176,7 @@ const Users = () => {
                 })
                 break;
             case TABLE_ACTIONS.UNBLOCK:
-                console.log('UNBLOCK ', data)
+
                 let continuar = confirm("¿Desea desbloquear y generar una nueva contraseña para el usuario " + data.nombreUsuario + "?");
                 if (continuar) {
                     unblockUser(data.id).then(result => {
@@ -187,6 +187,7 @@ const Users = () => {
                             setPopupMessage(<div className='message-min-popup'><div>No se pudo realizar la accion requerida</div><div className='btns-container'><button className='btns-close' onClick={() => { setShowPopup(false); }}>Cerrar</button></div></div>);
                         }
                         setShowPopup(true);
+                        loadUsers();
                     });
                 }
                 break;
