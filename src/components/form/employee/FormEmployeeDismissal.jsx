@@ -12,7 +12,7 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
 
     const handleOnChangeReason = (d, value) => {
         updateFormData(d, value);
-        if (value && value.id == 202) {
+        if (value && value.codigo == 'ME06') {
             setDisableEndDate(true);
             updateFormData('fechaEgreso', parseTodayStr());
 
@@ -30,7 +30,7 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
         console.log('Submit=', formData);
         try {
             validate(formData);
-            let dismissEmployee = confirm("Si usted da de baja al empleado no podrá reactivarlo.");
+            let dismissEmployee = confirm("¿Está seguro que desea dar de baja al empleado?");
             if (dismissEmployee) {
                 formData.codigoEstadoEmpleado = {
                     id: 89
@@ -58,7 +58,7 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
             result.error = true;
             result.validation.fechaEgreso = "Ingrese fecha de egreso";
         }
-        if (data.codigoTipoEgreso && data.codigoTipoEgreso.id != 202) {
+        if (data.codigoTipoEgreso && data.codigoTipoEgreso.codigo != 'ME06') {
             if (data.fechaEgreso && data.fechaEgreso.trim().length > 0) {
                 const fi = parseInputDate(data.fechaIngreso);
                 const fe = parseInputDate(data.fechaEgreso);

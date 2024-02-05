@@ -31,8 +31,19 @@ const ModelDefinition = [
   },
   {
     fieldName: 'activo',
-    type: 'string',
-  }
+    type: 'select',
+    multivalue: false,
+    options: [
+      {
+        value: 1,
+        label: 'Si'
+      },
+      {
+        value: 0,
+        label: 'No'
+      }
+    ]
+  },
 ]
 
 const getFieldTypeByName = (fieldName) => {
@@ -112,8 +123,8 @@ const PasswordSecurity = () => {
 
   const loadPasswordSecurity = () => {
     getPaswordSecurity().then(result => {
-      if (result && result.model) {
-        setPasswordSecurityList([result.model]);
+      if (result && result.list) {
+        setPasswordSecurityList(result.list);
       }
     })
   }
@@ -154,10 +165,6 @@ const PasswordSecurity = () => {
     if (!data.fechaValidezInicio || data.fechaValidezInicio.trim().length <= 0) {
       result.error = true;
       result.validation.fechaValidezInicio = "Ingrese fecha de inicio de validez"
-    }
-    if (!data.fechaValidezFin || data.fechaValidezFin.trim().length <= 0) {
-      result.error = true;
-      result.validation.fechaValidezFin = "Ingrese fecha de fin de validez"
     }
     if (data.fechaValidezInicio && data.fechaValidezFin && compareStrDates(data.fechaValidezInicio, data.fechaValidezFin) < 1) {
       result.error = true;

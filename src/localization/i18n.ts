@@ -110,6 +110,7 @@ i18n
           pais: 'País',
           cantidadHijos: 'Hijos',
           edades: 'Edades',
+          edad: 'Edad',
           direccion: 'Dirección',
           gerencia: 'Gerencia',
           descripcionCentroDeCosto: "Centro de Costo",

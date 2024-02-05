@@ -33,6 +33,18 @@ export const unblockLogin = async (id) => {
 export const getPaswordSecurity = async () => {
     const result = await axios({
         method: 'get',
+        url: host + '/ua/seguridadcontrasena'
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}
+
+export const getCurrentPaswordSecurity = async () => {
+    const result = await axios({
+        method: 'get',
         url: host + '/ua/seguridadcontrasena/vigente'
     }).then(response => {
         return response;
@@ -42,16 +54,11 @@ export const getPaswordSecurity = async () => {
     return result.data;
 }
 
-export const addPaswordSecurity = async (pattern, startDate, rule, active) => {
+export const addPaswordSecurity = async (data) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/seguridadcontrasena',
-        data: {
-            'patron': pattern,
-            'fechaValidezInicio': startDate,
-            'regla': rule,
-            'activo': active
-        }
+        data: data
     }).then(response => {
         return response;
     }).catch(error => {
@@ -60,16 +67,11 @@ export const addPaswordSecurity = async (pattern, startDate, rule, active) => {
     return result.data;
 }
 
-export const updatePaswordSecurity = async (id, patron, fechaValidezInicio, regla, activo) => {
+export const updatePaswordSecurity = async (id, data) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/seguridadcontrasena/' + id,
-        data: {
-            'patron': patron,
-            'fechaValidezInicio': fechaValidezInicio,
-            'regla': regla,
-            'activo': activo
-        }
+        data: data
     }).then(response => {
         return response;
     }).catch(error => {

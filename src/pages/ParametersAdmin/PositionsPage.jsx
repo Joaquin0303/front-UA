@@ -152,6 +152,7 @@ const pageConfiguration = {
     }
 }
 
+let positionTotalList = [];
 const compare = (a, b) => {
     if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()) {
         return -1;
@@ -172,8 +173,10 @@ const PositionsPage = () => {
 
     const loadPositions = () => {
         getPositions().then(result => {
-            if (result.list)
+            if (result.list) {
+                positionTotalList = result.list;
                 setPositionList(result.list.filter(d => d.activo == statusActive).sort(compare));
+            }
         });
     }
 
@@ -219,6 +222,10 @@ const PositionsPage = () => {
         if (!data.descripcion?.trim()) {
             result.error = true;
             result.validation.descripcion = "Ingrese descripción"
+        }
+        if (data.descripcion?.trim() && positionTotalList.find(p => p.descripcion == data.descripcion)) {
+            result.error = true;
+            result.validation.descripcion = "Ya existe un puesto con la descripción ingresada"
         }
         if (!data.codigoCategoria || data.codigoCategoria.id <= 0) {
             result.error = true;

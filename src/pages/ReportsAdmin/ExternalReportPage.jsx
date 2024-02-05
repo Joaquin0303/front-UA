@@ -29,6 +29,20 @@ const ModelDefinition = [
     {
         fieldName: 'fechaEgreso',
         type: 'calendar'
+    },
+    {
+        fieldName: 'activo',
+        type: 'string',
+        labels: [
+            {
+                value: 'true',
+                label: 'Si'
+            },
+            {
+                value: 'false',
+                label: 'No'
+            }
+        ]
     }
 ]
 

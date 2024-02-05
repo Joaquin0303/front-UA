@@ -9,7 +9,7 @@ import { parseInputDate, parseToday } from '../../../utils/Utils';
 
 const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
-    const [formData, setFormData] = useState(data);
+    const [formData, setFormData] = useState({ ...data });
 
     const updateFormData = (key, value) => {
         formData[key] = value;

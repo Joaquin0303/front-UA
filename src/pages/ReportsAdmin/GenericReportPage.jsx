@@ -61,6 +61,20 @@ const ModelDefinition = [
     {
         fieldName: 'finFechaContrato',
         type: 'calendar'
+    },
+    {
+        fieldName: 'afiliadoSindicato',
+        type: 'string',
+        labels: [
+            {
+                value: 'true',
+                label: 'Si'
+            },
+            {
+                value: 'false',
+                label: 'No'
+            }
+        ]
     }
 ]
 
@@ -269,8 +283,8 @@ const pageConfiguration = {
             'cbu',
             'cargasDeFamilia',
             'convenio',
-            'afiliadosSindicato',
-            'fechaFinContrato',
+            'afiliadoSindicato',
+            'finFechaContrato',
             'fechaEgreso',
             'tipoEgreso',
             'estadoCivil',

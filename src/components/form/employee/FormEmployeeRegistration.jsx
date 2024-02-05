@@ -52,7 +52,7 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                     numeroDocumentoPersonal: "Hay un empleado en licencia con esta identificación"
                 }
                 setValidation(errorValidation);
-            } else if (!employeeSearchResult || employeeSearchResult.length == 0 || employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 89 && e.codigoTipoEgreso.id == 202)) {
+            } else if (!employeeSearchResult || employeeSearchResult.length == 0 || employeeSearchResult.find(e => e.codigoEstadoEmpleado.id == 89 && e.codigoTipoEgreso.codigo == 'ME06')) {
                 setFormData({
                     codigoTipoDocumento: {
                         id: formData.codigoTipoDocumento.id
