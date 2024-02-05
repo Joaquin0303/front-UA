@@ -25,7 +25,7 @@ export const ChangePassword = ({ userId, handleChangePassword }) => {
         updatePassword(userId, password).then(r => {
           console.log('change password response: ', r);
           if (r.codigo == 400) {
-            setErrorMessage(r.mensajes[0] /* Ingrese una contraseña que cumpla con los requisitos indicados. */);
+            setErrorMessage("Ingrese una contraseña que cumpla con los requisitos indicados.");
           } else {
             handleChangePassword();
           }
