@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReportPage from "../ReportPage";
 import { directorsReportService } from "../../services/ReportServices";
 import useToken from "../../useToken";
-
+import { decodeToken } from "../../utils/Utils";
+import { searchEmployee } from '../../services/EmployeeServices';
 
 
 const FilterDataModel = {
@@ -142,6 +143,7 @@ const compare = (a, b) => {
 
 const DirectorsReportPage = ({ }) => {
     const { token } = useToken();
+    //const [numeroLegajo, setNumeroLegajo] = useState(0);
 
     console.log('user token', token);
 
@@ -154,12 +156,27 @@ const DirectorsReportPage = ({ }) => {
 
     const loadReportData = (filter) => {
         if (!filter) filter = defaultFilter;
-        directorsReportService(filter).then(result => {
-            if (result.list) {
-                setReportDataList(result.list.sort(compare));
-            }
-        });
+        let numeroLegajo = 0;
+        try {
+            const tokenDecoded = decodeToken(token);
+            numeroLegajo = tokenDecoded.numeroLegajo;
+        } catch (error) {
+            console.error(error);
+        }
+        if (numeroLegajo) {
+            searchEmployee(numeroLegajo).then(emp => {
+                if (emp.codigoDireccion && emp.codigoDireccion.codigo == 'DPRE' && emp.codigoPuesto && emp.codigoPuesto.codigoCategoria && emp.codigoPuesto.codigoCategoria.codigo == 'CDIR') {
+                    filter.codigoPais = emp.codigoPais;
+                }
+                directorsReportService(filter).then(result => {
+                    if (result.list) {
+                        setReportDataList(result.list.sort(compare));
+                    }
+                });
+            })
+        }
     }
+
     return (
         <ReportPage filterDataModel={FilterDataModel} pageConfiguration={pageConfiguration} reportDataList={reportDataList} loadReportData={loadReportData} />
     )

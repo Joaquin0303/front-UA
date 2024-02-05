@@ -29,7 +29,7 @@ const Login = ({ setToken }) => {
         });
         try {
             const header = '{"alg": "HS256","typ": "JWT"}';
-            const payload = '{"userId": ' + login.idUsuario + ',"permissions": [' + permissionIds + '],"iat": 1516239022}';
+            const payload = '{"userId": ' + login.idUsuario + ', "numeroLegajo":' + login.numeroLegajo + ',"permissions": [' + permissionIds + '],"iat": 1516239022}';
             const jwtToken = codeToken(header, payload);
             console.log("JWT=", jwtToken);
 

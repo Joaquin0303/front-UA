@@ -105,7 +105,8 @@ export const directorsReportService = async (filter) => {
         data: {
             'estado': filter.estado,
             'idDireccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
-            'idGerencia': filter.codigoGerencia ? filter.codigoGerencia.id : null
+            'idGerencia': filter.codigoGerencia ? filter.codigoGerencia.id : null,
+            'idPais': filter.codigoPais ? filter.codigoPais.id : null
         }
     }).then(response => {
         return response;
