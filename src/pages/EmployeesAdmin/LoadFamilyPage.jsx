@@ -14,6 +14,7 @@ export const LoadFamilyModel = {
     },
     numeroDocumento: '',
     fechaNacimiento: '',
+    empleado: null,
     activo: true
 }
 
