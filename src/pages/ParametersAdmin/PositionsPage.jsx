@@ -224,7 +224,7 @@ const PositionsPage = () => {
             result.error = true;
             result.validation.descripcion = "Ingrese descripción"
         }
-        if (data.descripcion?.trim() && positionTotalList.find(p => p.descripcion == data.descripcion)) {
+        if (data.descripcion?.trim() && positionTotalList.find(p => p.id != data.id && p.descripcion == data.descripcion)) {
             result.error = true;
             result.validation.descripcion = "Ya existe un puesto con la descripción ingresada"
         }

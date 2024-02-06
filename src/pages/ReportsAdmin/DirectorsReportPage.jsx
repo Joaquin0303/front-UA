@@ -164,9 +164,14 @@ const DirectorsReportPage = ({ }) => {
             console.error(error);
         }
         if (numeroLegajo) {
-            searchEmployee(numeroLegajo).then(emp => {
-                if (emp.codigoDireccion && emp.codigoDireccion.codigo == 'DPRE' && emp.codigoPuesto && emp.codigoPuesto.codigoCategoria && emp.codigoPuesto.codigoCategoria.codigo == 'CDIR') {
-                    filter.codigoPais = emp.codigoPais;
+            searchEmployee(numeroLegajo).then(response => {
+                console.log("response empleado=", response)
+                if (response && response.list) {
+                    const emp = response.list[0];
+                    console.log("emp=", emp)
+                    if (emp.codigoDireccion && emp.codigoPuesto && emp.codigoPuesto.codigoDireccion && emp.codigoPuesto.codigoDireccion.codigo == 'DPRE' && emp.codigoPuesto.codigoCategoria && emp.codigoPuesto.codigoCategoria.codigo == 'CDIR') {
+                        filter.codigoPais = emp.codigoPais;
+                    }
                 }
                 directorsReportService(filter).then(result => {
                     if (result.list) {
