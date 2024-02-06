@@ -57,30 +57,25 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
 
     return (
         <>
-            {!foundData &&
-                <div className='no-result'>
-                    <h4>No hay resultados para mostrar</h4>
-                </div>
-            }
-            {foundData &&
-                <div className='table-wrapper' >
-                    <table className='table' style={{ width: '80%' }}>
-                        <thead>
-                            <tr>
-                                {
-                                    buildHeader()
-                                }
-                                {openModalForm && <th style={{ width: '20%' }}>Acciones</th>}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dataList.map((d, i) => {
-                                return <RowV2 columnsKey={columnsKey} tableConfiguration={tableConfiguration} key={i} data={d} openModalForm={openModalForm} />
-                            })}
-                        </tbody>
-                    </table>
-                </div >
-            }
+
+            <div className='table-wrapper' >
+                <table className='table' style={{ width: '80%' }}>
+                    <thead>
+                        <tr>
+                            {
+                                buildHeader()
+                            }
+                            {openModalForm && <th style={{ width: '20%' }}>Acciones</th>}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {dataList.map((d, i) => {
+                            return <RowV2 columnsKey={columnsKey} tableConfiguration={tableConfiguration} key={i} data={d} openModalForm={openModalForm} />
+                        })}
+                    </tbody>
+                </table>
+            </div >
+
         </>
     );
 }
