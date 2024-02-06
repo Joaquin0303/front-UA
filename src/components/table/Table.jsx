@@ -6,6 +6,7 @@ import RowV2 from './RowV2';
 const Table = ({ tableConfiguration, dataList, openModalForm }) => {
 
     const [columnsKey, setColumsKeys] = useState([]);
+    const [foundData, setFoundData] = useState();
 
     useEffect(() => {
         if (dataList && dataList.length > 0) {
@@ -16,6 +17,8 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
                 setColumsKeys(keys.concat(additinalKeys).sort(compareCol));
             else
                 setColumsKeys(keys.concat(additinalKeys));
+        } else {
+            setFoundData(false);
         }
     }, [dataList]);
 
@@ -53,7 +56,12 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
 
     return (
         <>
-            {dataList && dataList.length > 0 &&
+            {!foundData &&
+                <div className='no-result'>
+                    <h4>No hay resultados para mostrar</h4>
+                </div>
+            }
+            {foundData &&
                 <div className='table-wrapper' >
                     <table className='table' style={{ width: '80%' }}>
                         <thead>
