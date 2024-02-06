@@ -157,7 +157,25 @@ const Users = () => {
     }
 
     const onEdit = (data, action) => {
+        console.log('action', action)
         switch (action) {
+            case TABLE_ACTIONS.INACTIVATE:
+                const inactivateValidation = validate(data, action);
+                if (inactivateValidation.error) throw inactivateValidation;
+                editUser(data.id, data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
+                    if (result.codigo == 200) {
+                        data.roles && data.roles.forEach(userRole => {
+                            assignRoleToUser(userRole.codigo, result.model.id).then(result => {
+                                console.log('role user saved=', result);
+                                loadUsers();
+                            });
+                        });
+                        if (!data.roles || data.roles.length == 0) {
+                            loadUsers();
+                        }
+                    }
+                })
+                break;
             case TABLE_ACTIONS.EDIT:
                 const validation = validate(data, action);
                 if (validation.error) throw validation;
