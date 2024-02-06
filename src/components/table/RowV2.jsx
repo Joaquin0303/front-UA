@@ -39,6 +39,8 @@ const RowV2 = ({ columnsKey, tableConfiguration, data, openModalForm }) => {
         switch (fieldType.type) {
             case 'parameter':
                 return <CellParameter key={i} parameter={data[key]} />
+            case 'parameterByDirection':
+                return <CellParameter key={i} parameter={data[key]} />
             case 'parameter.search':
                 return <CellParameter key={i} parameter={data[key]} />
             case 'calendar':

@@ -45,8 +45,9 @@ const ModelDefinition = [
     },
     {
         fieldName: 'codigoGerencia',
-        type: 'parameter.search',
-        code: 12
+        type: 'parameterByDirection',
+        code: 12,
+        direction: 'codigoDireccion'
     },
     {
         fieldName: 'codigoCentroDeCosto',
