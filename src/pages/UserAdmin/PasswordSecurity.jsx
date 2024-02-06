@@ -80,13 +80,6 @@ const pageConfiguration = {
       'regla',
       'activo'
     ],
-    aditionalRows: [
-      'patron',
-      'fechaValidezInicio',
-      'fechaValidezFin',
-      'regla',
-      'activo'
-    ],
     sortRow: [
       'patron',
       'fechaValidezInicio',

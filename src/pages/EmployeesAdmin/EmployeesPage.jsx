@@ -414,7 +414,8 @@ const EmployeesPage = ({ }) => {
 
                 break;
             case TABLE_ACTIONS.PUTDOWNLICENCE:
-                data.licence.fechaFin = data.fechaFin
+                console.log('data.licence', data.licence)
+                data.licence.fechaFin = data.fechaFin;
                 const validationPutDownLicence = validatePutDownLicence(data.licence);
                 console.log(validationPutDownLicence)
                 if (validationPutDownLicence.error) throw validationPutDownLicence;
