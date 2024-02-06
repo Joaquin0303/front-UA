@@ -30,7 +30,7 @@ label {
     /*   overflow-y: scroll;*/
 }
 
-.div-width{
+.div-width {
     width: 100%;
 }
 
@@ -94,6 +94,17 @@ label {
     text-align: left;
 }
 
+.form-group .undertext {
+    margin-left: 5px;
+    margin-top: 3px;
+    font-family: 'Ubuntu';
+    font-size: 14px;
+}
+
+.form-group .undertext .label {
+    font-weight: bold;
+}
+
 .form {
     display: flex;
     flex-wrap: wrap;
@@ -128,7 +139,7 @@ label {
     padding-bottom: 15px;
 }
 
-.modal-buttons-step{
+.modal-buttons-step {
     border-top: 1px solid #999;
     position: relative;
     margin-bottom: 0 !important;
@@ -199,7 +210,15 @@ label {
 }
 
 
-input:disabled{
+input:disabled {
     color: #ccc;
     background-color: transparent;
 }
+
+/*
+select:invalid,
+select option[value="0"] {
+    color: #ccc;
+    background-color: transparent;
+}
+*/
