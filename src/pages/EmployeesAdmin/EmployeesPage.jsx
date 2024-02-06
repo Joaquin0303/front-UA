@@ -390,7 +390,7 @@ const EmployeesPage = ({ }) => {
                 });
                 break;
             case TABLE_ACTIONS.PUTDOWN:
-                if (data.codigoTipoEgreso && data.codigoTipoEgreso.codigoParametro == 'ME06') {
+                if (data.codigoTipoEgreso && data.codigoTipoEgreso.codigo == 'ME06') {
                     data.fechaEgreso = data.fechaIngreso;
                     addExcludedIncome(data, data.codigoTipoEgreso.descripcion, data.observaciones, true).then(excludeResult => {
                         console.log('Excluded Income added=', excludeResult);
