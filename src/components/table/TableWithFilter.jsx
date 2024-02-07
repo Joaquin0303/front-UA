@@ -20,6 +20,22 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const [loading, setLoading] = useState(true);
     const [originalData, setOriginalData] = useState([]);
 
+    const [showExportToPDF, setShowExportToPDF] = useState(false);
+    const [exportFormats, setExportFormats] = useState('XLS')
+
+    useEffect(() => {
+        const includePdf = ['international-data-collection', 'generico'].indexOf(pageConfiguration.name) >= 0;
+        console.log('name', pageConfiguration.name);
+        console.log('includePdf', includePdf)
+        if (includePdf) {
+            setShowExportToPDF(false);
+        } else {
+            setShowExportToPDF(true);
+            setExportFormats('PDF, XLS');
+        }
+
+    }, []);
+
     useEffect(() => {
         setOriginalData(JSON.parse(JSON.stringify(filterDataModel)));
     }, [filterDataModel]);
@@ -71,7 +87,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
             )}
 
             {!loading && reportDataList && reportDataList.length > 0 && <div className='export-buttons-container'>
-                <button className='btns' title='Descargar PDF' onClick={() => generatePDF(targetRef, { filename: 'reporte.' + pageConfiguration.name + '.pdf' })}>PDF</button>
+                {showExportToPDF && <button className='btns' title='Descargar PDF' onClick={() => generatePDF(targetRef, { filename: 'reporte.' + pageConfiguration.name + '.pdf' })}>PDF</button>}
                 <DownloadTableExcel
                     filename={'reporte.' + pageConfiguration.name}
                     sheet={i18n.t(pageConfiguration.name)}
@@ -82,7 +98,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
                 </DownloadTableExcel>
             </div>}
 
-            {!loading && pageConfiguration.tableConfiguration.hiddenRows && <PartialReportMessage />}
+            {!loading && pageConfiguration.tableConfiguration.hiddenRows && <PartialReportMessage formats={exportFormats} />}
 
             <div className='export-container' ref={targetRef}>
                 {!loading && reportDataList.length > 0 && (

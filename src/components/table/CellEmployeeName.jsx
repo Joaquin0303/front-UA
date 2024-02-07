@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { getEmployees } from "../../services/EmployeeServices";
+import { searchEmployee } from "../../services/EmployeeServices";
 
 const CellEmployeeName = ({ numeroLegajo }) => {
     const [employees, setEmployees] = useState([]);
     const [employee, setEmployee] = useState();
 
     useEffect(() => {
-        getEmployees().then(r => {
-            if (r.list) {
-                setEmployees(r.list);
-            }
-        });
+        console.log('numeroLegajo', numeroLegajo)
+        if (numeroLegajo)
+            searchEmployee(numeroLegajo).then(r => {
+                if (r.list) {
+                    setEmployee(r.list[0]);
+                }
+            });
 
-    }, []);
-
-    useEffect(() => {
-        setEmployee(employees.find(e => e.numeroLegajo == numeroLegajo && (e.codigoEstadoEmpleado.id == 87 || e.codigoEstadoEmpleado.id == 88)));
-    }, [numeroLegajo, employees]);
+    }, [numeroLegajo]);
 
     return (
         <>

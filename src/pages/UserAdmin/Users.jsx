@@ -49,6 +49,12 @@ const ModelDefinition = [
         fieldName: 'confirmarContrasena',
         type: 'password'
     },
+    {
+        fieldName: 'apellidoynombre',
+        type: 'employee.by.legajo',
+        numeroLegajo: 'numeroLegajo'
+    },
+
 ]
 
 const getFieldTypeByName = (fieldName) => {
@@ -79,10 +85,23 @@ const pageConfiguration = {
             'numeroLegajo',
             'nombreUsuario',
             'fechaAlta',
-            'roles'
+            'roles',
+            'apellidoynombre'
         ],
         inactiveRows: [
             'numeroLegajo',
+            'nombreUsuario',
+            'fechaAlta',
+            'fechaBaja',
+            'roles',
+            'apellidoynombre'
+        ],
+        aditionalRows: [
+            'apellidoynombre'
+        ],
+        sortRow: [
+            'numeroLegajo',
+            'apellidoynombre',
             'nombreUsuario',
             'fechaAlta',
             'fechaBaja',
@@ -126,7 +145,6 @@ const Users = () => {
     const [statusActive, setStatusActive] = useState(true);
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
-    const [counter, setCounter] = useState(10000);
 
     useEffect(() => {
         loadUsers();
@@ -212,8 +230,6 @@ const Users = () => {
         }
 
     }
-
-    console.log('counter=', counter)
 
     const onRemove = (data) => {
         removeUser(data.id).then(result => {

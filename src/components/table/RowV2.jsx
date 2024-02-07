@@ -12,6 +12,7 @@ import CellCountry from './CellCountry';
 import CellEmployee from './CellEmployee';
 import CellAge from './CellAge';
 import CellDynamicEmployee from './CellDynamicEmployee';
+import CellEmployeeName from './CellEmployeeName';
 
 const RowV2 = ({ columnsKey, tableConfiguration, data, openModalForm }) => {
 
@@ -65,6 +66,8 @@ const RowV2 = ({ columnsKey, tableConfiguration, data, openModalForm }) => {
                 return <CellAge key={i} ageData={data[key]} separator={fieldType.separator} />;
             case 'employee':
                 return <CellDynamicEmployee key={i} employee={data[fieldType.employee]} fields={fieldType.employeeFields} />
+            case 'employee.by.legajo':
+                return <CellEmployeeName key={i} numeroLegajo={data[fieldType.numeroLegajo]} />
             default:
                 return <Cell hidden={hidden} key={i} value={data[key]} labels={fieldType.labels} />
         }
