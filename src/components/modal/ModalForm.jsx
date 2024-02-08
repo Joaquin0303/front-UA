@@ -8,7 +8,6 @@ import DynamicFormV2 from '../form/DynamicFormV2';
 const ModalForm = ({ pageConfiguration, data, closeModal, onSubmitForm, actionForm }) => {
 
     const showView = () => {
-        console.log('actionForm', actionForm);
         return actionForm == TABLE_ACTIONS.VIEW
             || actionForm == TABLE_ACTIONS.ACTIVATE
             || actionForm == TABLE_ACTIONS.INACTIVATE;
@@ -22,7 +21,7 @@ const ModalForm = ({ pageConfiguration, data, closeModal, onSubmitForm, actionFo
         <div className='modal-container' >
             <div className='modals'>
                 {showView() && <DynamicView viewConfiguration={pageConfiguration.viewConfiguration} data={data} closeModal={closeModal} onSubmitForm={actionForm == TABLE_ACTIONS.VIEW ? null : onSubmitForm} />}
-                {showForm() && <DynamicFormV2 formConfiguration={pageConfiguration.formConfiguration} data={data} closeModal={closeModal} onSubmitForm={onSubmitForm} />}
+                {showForm() && <DynamicFormV2 formConfiguration={pageConfiguration.formConfiguration} data={data} closeModal={closeModal} onSubmitForm={onSubmitForm} actionForm={actionForm} />}
             </div>
         </div >
     )

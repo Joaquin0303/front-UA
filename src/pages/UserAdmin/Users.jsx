@@ -77,8 +77,7 @@ const pageConfiguration = {
                 TABLE_ACTIONS.UNBLOCK
             ],
             inactiveActions: [
-                TABLE_ACTIONS.VIEW,
-                TABLE_ACTIONS.ACTIVATE,
+                TABLE_ACTIONS.VIEW
             ],
         },
         activeRows: [
@@ -118,6 +117,8 @@ const pageConfiguration = {
             'confirmarContrasena'
         ],
         inactiveFields: [
+        ],
+        ignoreOnEdit: [
             'contrasena',
             'confirmarContrasena'
         ]

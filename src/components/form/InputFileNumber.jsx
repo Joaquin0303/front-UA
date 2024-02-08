@@ -45,7 +45,7 @@ const InputFileNumber = ({ validation, name, value, updateFormData }) => {
             {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
             <datalist id="ice-cream-flavors">
                 {employeeList.map((emp, i) => {
-                    return <option key={i} value={emp.numeroLegajo} >{emp.apellido} {emp.apellido}</option>
+                    return <option key={i} value={emp.numeroLegajo} >{emp.apellido} {emp.nombre}</option>
                 })}
             </datalist>
         </div>

@@ -16,8 +16,9 @@ import InputPositionLead from './InputPositionLead';
 import InputParameterSearch from './InputParameterSearch';
 import InputParameterByDirection from './InputParameterByDirection';
 import InputPassword from './InputPassword';
+import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
-const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) => {
+const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm, actionForm }) => {
 
     const [validation, setValidation] = useState();
     const [formData, setFormData] = useState(data);
@@ -27,8 +28,11 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm }) =>
     console.log('formData=', formData);
 
     const showField = (fieldName) => {
-        return (formConfiguration.activeFields.includes(fieldName) && data.activo) ||
-            (formConfiguration.inactiveFields.includes(fieldName) && !data.activo);
+        if (!formConfiguration.ignoreOnEdit || actionForm != TABLE_ACTIONS.EDIT || !formConfiguration.ignoreOnEdit.includes(fieldName))
+            return (formConfiguration.activeFields.includes(fieldName) && data.activo) ||
+                (formConfiguration.inactiveFields.includes(fieldName) && !data.activo);
+        else
+            return false;
     }
 
     const updateFormData = (key, value) => {
