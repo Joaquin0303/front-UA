@@ -14,7 +14,7 @@ const InputPassword = ({ validation, name, value, updateFormData, disabled }) =>
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
             <input disabled={disabled} type="password" name={name} value={value ? value : ''} onChange={(e) => updateFormData(name, e.target.value)} onFocus={() => { setShowPasswordRules(true) }} onBlur={() => { setShowPasswordRules(false) }} />
-            {showPasswordRules && <PasswordRules />}
+            {showPasswordRules && <PasswordRules size={'small'} />}
             {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
         </div>
     );

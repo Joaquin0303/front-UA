@@ -104,6 +104,9 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
             case 2:
                 validateStep2(data);
                 break;
+            /* case 3:
+                validateStep3(data);
+                break; */
             default:
                 validateStep1(data);
                 validateStep2(data);
@@ -227,8 +230,36 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
             validation: {}
         }
         // VALIDATIONS
+        /* if (data.calleResidencia && !data.numeroResidencia) {
+            result.error = true;
+            result.validation.numeroResidencia = "Ingrese número de residencia"
+        }
+        if (data.calleResidencia && !data.localidadResidencia) {
+            result.error = true;
+            result.validation.localidadResidencia = "Ingrese localidad de residencia"
+        } */
         if (result.error) throw result;
     }
+
+    /* const validateStep3 = (data) => {
+        const result = {
+            error: false,
+            validation: {}
+        }
+        // VALIDATIONS
+        if (data.horasSemanales && !data.fte) {
+            result.error = true;
+            result.validation.fte = "Ingrese FTE"
+        }
+        if (data.codigoConvenio && !data.codigoCategoriaConvenio) {
+            result.error = true;
+            result.validation.codigoCategoriaConvenio = "Ingrese código de categoría de convenio"
+        }
+        if (data.codigoPrepaga && !data.codigoObraSocial) {
+            result.error = true;
+            result.validation.codigoObraSocial = "Ingrese código de obra social"
+        }
+    } */
 
     const nextStep = () => {
         try {
