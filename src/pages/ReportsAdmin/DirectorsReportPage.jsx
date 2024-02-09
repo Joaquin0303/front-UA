@@ -63,6 +63,7 @@ const defaultFilter = {
 
 const pageConfiguration = {
     name: 'directores',
+    director: {},
     tableConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
         hiddenRows: [
@@ -143,7 +144,6 @@ const compare = (a, b) => {
 
 const DirectorsReportPage = ({ }) => {
     const { token } = useToken();
-    //const [numeroLegajo, setNumeroLegajo] = useState(0);
 
     console.log('user token', token);
 
@@ -151,11 +151,6 @@ const DirectorsReportPage = ({ }) => {
     console.log('reportDataList', reportDataList)
 
     useEffect(() => {
-        loadReportData(defaultFilter);
-    }, []);
-
-    const loadReportData = (filter) => {
-        if (!filter) filter = defaultFilter;
         let numeroLegajo = 0;
         try {
             const tokenDecoded = decodeToken(token);
@@ -169,17 +164,37 @@ const DirectorsReportPage = ({ }) => {
                 if (response && response.list) {
                     const emp = response.list[0];
                     console.log("emp=", emp)
-                    if (emp.codigoDireccion && emp.codigoPuesto && emp.codigoPuesto.codigoDireccion && emp.codigoPuesto.codigoDireccion.codigo == 'DPRE' && emp.codigoPuesto.codigoCategoria && emp.codigoPuesto.codigoCategoria.codigo == 'CDIR') {
-                        filter.codigoPais = emp.codigoPais;
+                    if (emp.codigoPuesto) { // SI TIENE PUESTO
+                        pageConfiguration.director.categoria = emp.codigoPuesto.codigoCategoria;
+                        pageConfiguration.director.pais = emp.codigoPuesto.codigoPais;
+                        pageConfiguration.director.direccion = emp.codigoPuesto.codigoDireccion;
+                        if (emp.codigoPuesto.codigoCategoria.codigo == 'C01' && emp.codigoPuesto.codigoDireccion.codigo != 'DPRE') {
+                            pageConfiguration.formConfiguration.activeFields.splice(pageConfiguration.formConfiguration.activeFields.indexOf('codigoDireccion'), 1);
+                            pageConfiguration.formConfiguration.inactiveFields.splice(pageConfiguration.formConfiguration.inactiveFields.indexOf('codigoDireccion'), 1);
+                        }
                     }
                 }
-                directorsReportService(filter).then(result => {
-                    if (result.list) {
-                        setReportDataList(result.list.sort(compare));
-                    }
-                });
+                loadReportData(defaultFilter);
             })
         }
+    }, []);
+
+    const loadReportData = (filter) => {
+        if (!filter) filter = defaultFilter;
+        if (pageConfiguration.director.categoria && pageConfiguration.director.categoria.codigo == 'C01') {
+            if (pageConfiguration.director.direccion.codigo == 'DPRE') { // SI ES CEO O CM
+                filter.codigoPais = pageConfiguration.director.pais;
+            } else {
+                filter.codigoDireccion = pageConfiguration.director.direccion;
+                FilterDataModel.codigoDireccion = pageConfiguration.director.direccion;
+            }
+            console.log('DIR DATA MODEL=', FilterDataModel.codigoDireccion)
+        }
+        directorsReportService(filter).then(result => {
+            if (result.list) {
+                setReportDataList(result.list.sort(compare));
+            }
+        });
     }
 
     return (

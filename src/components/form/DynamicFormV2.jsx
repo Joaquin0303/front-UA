@@ -27,6 +27,8 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm, acti
 
     console.log('formData=', formData);
 
+    console.log("FILTER FIELDS=", formConfiguration.activeFields)
+
     const showField = (fieldName) => {
         if (!formConfiguration.ignoreOnEdit || actionForm != TABLE_ACTIONS.EDIT || !formConfiguration.ignoreOnEdit.includes(fieldName))
             return (formConfiguration.activeFields.includes(fieldName) && data.activo) ||
@@ -76,6 +78,7 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm, acti
                     case 'parameter':
                         return <InputParameter key={i} validation={validation} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == fieldType.code)} updateFormData={updateFormData} />
                     case 'parameterByDirection':
+                        console.log("DIR VALUE=", formData[fieldType.direction])
                         return <InputParameterByDirection key={i} validation={validation} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == fieldType.code)} updateFormData={updateFormData} direction={formData[fieldType.direction]} />
                     case 'parameter.search':
                         return <InputParameterSearch key={i} validation={validation} name={key} value={formData[key]} parameterList={parameterList.filter(p => p.tipoParametro.id == fieldType.code)} updateFormData={updateFormData} />

@@ -12,6 +12,7 @@ import { Spinner } from "reactstrap";
 import '../../styles/Filter.css'
 
 const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, loadReportData }) => {
+    console.log("filterDataModel=", filterDataModel)
     const [showModalForm, setShowModalForm] = useState(false);
     const [showButtonDelete, setShowButtonDelete] = useState(false);
     const [formData, setFormData] = useState();
@@ -22,7 +23,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
 
     const [showExportToPDF, setShowExportToPDF] = useState(false);
     const [exportFormats, setExportFormats] = useState('XLS')
-
+    console.log("formData model=", formData)
     useEffect(() => {
         const includePdf = ['international-data-collection', 'generico'].indexOf(pageConfiguration.name) >= 0;
         console.log('name', pageConfiguration.name);
@@ -33,11 +34,11 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
             setShowExportToPDF(true);
             setExportFormats('PDF, XLS');
         }
-
     }, []);
 
     useEffect(() => {
         setOriginalData(JSON.parse(JSON.stringify(filterDataModel)));
+        setFilter(filterDataModel);
     }, [filterDataModel]);
 
     useEffect(() => {
@@ -51,6 +52,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     }
 
     const openModalForm = (data) => {
+        console.log('open Form Modal with data=', data)
         setFormData(data);
         setShowModalForm(true);
     }
