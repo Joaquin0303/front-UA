@@ -10,6 +10,8 @@ import { codeToken } from '../utils/Utils';
 import PopUp from '../components/modal/PopUp';
 import { getPermissionIdByName, PERMISSION } from '../utils/PermissionList';
 import { useNavigate } from 'react-router-dom';
+import { FaEye } from 'react-icons/fa';
+import { isIE } from 'react-device-detect';
 
 const Login = ({ setToken }) => {
     const [showChangePassword, setShowChangePassword] = useState(false);
@@ -19,6 +21,7 @@ const Login = ({ setToken }) => {
     const [errorMessage, setErrorMessage] = useState();
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const createAccessToken = (login) => {
         const permissionIds = [];
@@ -91,6 +94,8 @@ const Login = ({ setToken }) => {
         }, 10000);
     }
 
+    const isEdge = isIE;
+
     return (
         <>
             <header>
@@ -113,10 +118,20 @@ const Login = ({ setToken }) => {
                                 <label htmlFor="login-user">Nombre de Usuario</label>
                                 <input type="text" className="form-control" id="login-user" placeholder="Usuario" onChange={(e) => setUserName(e.target.value)} />
                             </div>
-                            <div className="form-group-login">
-                                <label htmlFor="password-user">Contraseña</label>
-                                <input type="password" className="form-control" id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
-                            </div>
+                            {isEdge ?
+                                <div className="form-group-login">
+                                    <label htmlFor="password-user">Contraseña</label>
+                                    <input type="password" className="form-control" id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
+                                </div>
+                                :
+                                <div className="form-group-login">
+                                    <label htmlFor="password-user">Contraseña</label>
+                                    <div className='password-no-edge'>
+                                        <input type={showPassword ? "text" : "password"} className="form-control" id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
+                                        <FaEye className='eye-icon' onClick={() => setShowPassword(!showPassword)} />
+                                    </div>
+                                </div>
+                            }
                             <p className="authFail">
                                 {errorMessage}
                             </p>

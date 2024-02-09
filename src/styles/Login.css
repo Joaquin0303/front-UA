@@ -163,3 +163,7 @@ form h2 {
     height: 500px;
     text-align: center;
 }
+
+.password-no-edge {
+    display: flex;
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getCountries } from "../../services/CountryServices";
 
-const InputCountry = ({ multiple, validation, name, value, disabled, updateFormData }) => {
+const InputCountry = ({ multiple, validation, name, value, disabled, updateFormData, mandatory }) => {
 
     const [countryList, setCountryList] = useState([]);
     const countrySelectorChangeHandler = (e) => {
@@ -26,8 +26,8 @@ const InputCountry = ({ multiple, validation, name, value, disabled, updateFormD
 
     return (
         <div className='form-group'>
-            <label className='label' htmlFor="id">{i18n.t(name)}</label>
-            <select className={multiple ? "select-multiple" : ""} multiple={multiple} disabled={disabled} value={multiple ? value : value ? value.id : 0} default={multiple ? value : value ? value.id : 0} name={name} onChange={countrySelectorChangeHandler}>
+            <label className='label' htmlFor="id">{i18n.t(name)}{mandatory && "*"}</label>
+            <select className={multiple ? "select-multiple" : ""} multiple={multiple} disabled={disabled} value={multiple ? value : value ? value.id : 0} default={multiple ? value : value ? value.id : 0} name={name} onChange={countrySelectorChangeHandler} required={mandatory} >
                 {!multiple && <option disabled className='default' value={0}></option>}
                 {countryList.map((s, i) => {
                     return <option key={i} value={s.id}>{s.descripcion}</option>

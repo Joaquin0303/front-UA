@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getPositions } from "../../services/PositionServices";
-const InputPositionCode = ({ validation, name, value, disabled, updateFormData, directionCode, countryCode, categoryCode, currentPositionId }) => {
+const InputPositionCode = ({ validation, name, value, disabled, updateFormData, directionCode, countryCode, categoryCode, currentPositionId, mandatory }) => {
 
 
     const [fieldValue, setFieldValue] = useState(value && value.id > 0 ? value.descripcion : '')
@@ -51,8 +51,8 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
 
     return (
         <div className='form-group'>
-            <label className='label' htmlFor="id">{i18n.t(name)}</label>
-            <input onBlur={handleOnBlur} autoComplete="off" disabled={disabled} list="position-data-list" type="text" name={name} value={fieldValue} onChange={posSelectorChangeHandler} />
+            <label className='label' htmlFor="id">{i18n.t(name)}{mandatory && "*"}</label>
+            <input onBlur={handleOnBlur} autoComplete="off" disabled={disabled} list="position-data-list" type="text" name={name} value={fieldValue} onChange={posSelectorChangeHandler} required={mandatory} />
             {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
             <datalist id="position-data-list">
                 {positionListFiltered && positionListFiltered.map((p, i) => {

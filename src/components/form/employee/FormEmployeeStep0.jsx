@@ -6,7 +6,7 @@ const FormEmployeeStep0 = ({ validation, formData, updateFormData, parameterList
     console.log('formData', formData)
     return (
         <div className="form-field-container">
-            <InputParameter validation={validation} name="codigoTipoDocumento" value={formData["codigoTipoDocumento"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 29)} updateFormData={updateFormData} />
+            <InputParameter validation={validation} name="codigoTipoDocumento" value={formData["codigoTipoDocumento"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 29)} updateFormData={updateFormData} mandatory={true} />
             <InputText validation={validation} name="numeroDocumentoPersonal" updateFormData={updateFormData} value={formData["numeroDocumentoPersonal"] ? formData["numeroDocumentoPersonal"] : ""} mandatory={true} />
         </div>
     );
