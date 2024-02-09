@@ -22,7 +22,9 @@ const FormEmployeeStep1 = ({ action, parameterList, validation, formData, update
             <InputParameter validation={validation} name="codigoTipoDocumento" value={formData["codigoTipoDocumento"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 29)} updateFormData={updateFormData} mandatory={true} />
             <InputText validation={validation} name="numeroDocumentoPersonal" updateFormData={updateFormData} value={formData["numeroDocumentoPersonal"]} mandatory={true} />
             <InputText validation={validation} name="numeroDocumentoLaboral" updateFormData={updateFormData} value={formData["numeroDocumentoLaboral"]} mandatory={true} />
-
+            {action == TABLE_ACTIONS.EDIT && <>
+                <InputParameter validation={validation} name="codigoOficina" value={formData["codigoOficina"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 19)} updateFormData={updateFormData} country={formData["codigoPais"]} mandatory={true} />
+            </>}
             {action == TABLE_ACTIONS.ADD && <>
                 <InputCountry validation={validation} name="codigoPais" value={formData["codigoPais"]} updateFormData={updateFormData} mandatory={true} />
                 <InputParameter validation={validation} name="codigoOficina" value={formData["codigoOficina"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 19)} updateFormData={updateFormData} country={formData["codigoPais"]} mandatory={true} />
