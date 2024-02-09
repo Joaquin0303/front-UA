@@ -4,6 +4,7 @@ import { assignRoleToUser } from '../../services/RoleServices';
 import ABMPage from '../ABMPage';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 import PopUp from '../../components/modal/PopUp';
+import { parseToday } from '../../utils/Utils';
 
 const UserModel = {
     numeroLegajo: '',
@@ -51,9 +52,10 @@ const ModelDefinition = [
     },
     {
         fieldName: 'apellidoynombre',
-        type: 'employee.by.legajo',
-        numeroLegajo: 'numeroLegajo'
-    },
+        type: 'employee',
+        employeeFields: ['apellido', 'nombre'],
+        employee: "empleado"
+    }
 
 ]
 
@@ -152,9 +154,9 @@ const Users = () => {
     }, [statusActive]);
     const loadUsers = () => {
         getUsers().then(result => {
-            console.log('result', result.list)
-            if (result.list)
-                setUserList(result.list.filter(d => d.activo == statusActive));
+            console.log('RESULTADO DE CARGAR USUARIOS=', result)
+            if (result)
+                setUserList([...result.filter(d => d.activo == statusActive)]);
         });
     }
 
@@ -181,7 +183,8 @@ const Users = () => {
             case TABLE_ACTIONS.INACTIVATE:
                 const inactivateValidation = validate(data, action);
                 if (inactivateValidation.error) throw inactivateValidation;
-                editUser(data.id, data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
+                data.bloqueado = true;
+                editUser(data.id, data).then(result => {
                     if (result.codigo == 200) {
                         data.roles && data.roles.forEach(userRole => {
                             assignRoleToUser(userRole.codigo, result.model.id).then(result => {
@@ -198,7 +201,7 @@ const Users = () => {
             case TABLE_ACTIONS.EDIT:
                 const validation = validate(data, action);
                 if (validation.error) throw validation;
-                editUser(data.id, data.numeroLegajo, data.nombreUsuario, data.activo, data.roles).then(result => {
+                editUser(data.id, data).then(result => {
                     if (result.codigo == 200) {
                         data.roles && data.roles.forEach(userRole => {
                             assignRoleToUser(userRole.codigo, result.model.id).then(result => {

@@ -15,6 +15,11 @@ const InputParameter = ({ validation, name, value, valueName, parameterList, dis
             updateFormData(name, null);
         }
     }
+
+    useEffect(() => {
+        updateFormData(name, null);
+    }, [country]);
+
     return (
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}{mandatory && "*"}</label>

@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { host } from '../Configs';
+import { searchEmployee } from './EmployeeServices';
+import { parseToday, parseTodayStr } from '../utils/Utils';
 
 export const loginUser = async (credentials) => {
 
@@ -56,11 +58,28 @@ export const getUsers = async () => {
         method: 'get',
         url: host + '/ua/usuario'
     }).then(response => {
-        return response;
+        if (response) {
+            let r = Promise.all(response.data.list.map(u => {
+                u.empleado = searchEmployee(u.numeroLegajo).then(r => {
+                    if (r && r.list)
+                        return r.list.findLast(e => e.numeroLegajo == u.numeroLegajo);
+                    else
+                        return null;
+                });
+                console.log("EL U=", u)
+                return u;
+            })).then(eu => {
+                return eu;
+            });
+            console.log("EL R=", r)
+            return r;
+        } else {
+            return response;
+        }
     }).catch(error => {
         throw error;
     })
-    return result.data;
+    return result;
 }
 
 export const removeUser = async (userId) => {
@@ -87,18 +106,12 @@ export const getUserById = async (userId) => {
     return result.data;
 }
 
-export const editUser = async (userId, numeroLegajo, nombreUsuario, activo, roles) => {
-    const fechaBaja = activo ? null : new Date();
+export const editUser = async (userId, user) => {
+    user.fechaBaja = user.activo ? null : new Date();
     const result = await axios({
         method: 'put',
         url: host + '/ua/usuario/' + userId,
-        data: {
-            'numeroLegajo': numeroLegajo,
-            'nombreUsuario': nombreUsuario,
-            'activo': activo,
-            'roles': roles,
-            'fechaBaja': fechaBaja
-        }
+        data: user
     }).then(response => {
         return response;
     }).catch(error => {
