@@ -6,7 +6,9 @@ import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
 export const PasswordParamModel = {
   diasValidezContrasena: '',
   cantidadReintentos: '',
-  activo: true
+  fechaValidezInicio: null,
+  fechaValidezFin: null,
+  activo: 1
 }
 
 const ModelDefinition = [
@@ -17,6 +19,29 @@ const ModelDefinition = [
   {
     fieldName: 'cantidadReintentos',
     type: 'number'
+  },
+  {
+    fieldName: 'fechaValidezInicio',
+    type: 'calendar'
+  },
+  {
+    fieldName: 'fechaValidezFin',
+    type: 'calendar'
+  },
+  {
+    fieldName: 'activo',
+    type: 'select',
+    multivalue: false,
+    options: [
+      {
+        value: 1,
+        label: 'Si'
+      },
+      {
+        value: 0,
+        label: 'No'
+      }
+    ]
   }
 ]
 
@@ -42,11 +67,17 @@ const pageConfiguration = {
     },
     activeRows: [
       'diasValidezContrasena',
-      'cantidadReintentos'
+      'cantidadReintentos',
+      'fechaValidezInicio',
+      'fechaValidezFin',
+      'activo'
     ],
     inactiveRows: [
       'diasValidezContrasena',
-      'cantidadReintentos'
+      'cantidadReintentos',
+      'fechaValidezInicio',
+      'fechaValidezFin',
+      'activo'
     ],
     aditionalRows: [
 
@@ -59,11 +90,17 @@ const pageConfiguration = {
     getFieldTypeByName: getFieldTypeByName,
     activeFields: [
       'diasValidezContrasena',
-      'cantidadReintentos'
+      'cantidadReintentos',
+      'fechaValidezInicio',
+      'fechaValidezFin',
+      'activo'
     ],
     inactiveFields: [
       'diasValidezContrasena',
-      'cantidadReintentos'
+      'cantidadReintentos',
+      'fechaValidezInicio',
+      'fechaValidezFin',
+      'activo'
     ]
   }
 }
@@ -89,7 +126,7 @@ const ParameterSercurityPassword = () => {
   const onAdd = (data) => {
     const validation = validate(data);
     if (validation.error) throw validation;
-    addPaswordSecurityParam(data.diasValidezContrasena, data.cantidadReintentos).then(result => {
+    addPaswordSecurityParam(data).then(result => {
       console.log('saved=', result);
       parameterPassword();
     });
@@ -98,7 +135,7 @@ const ParameterSercurityPassword = () => {
   const onEdit = (data) => {
     const validation = validate(data);
     if (validation.error) throw validation;
-    updatePaswordSecurityParam(data.id, data.diasValidezContrasena, data.cantidadReintentos).then(result => {
+    updatePaswordSecurityParam(data.id, data).then(result => {
       console.log('edited=', result);
       parameterPassword();
     });
@@ -109,7 +146,6 @@ const ParameterSercurityPassword = () => {
   }
 
   const matchHandler = () => {
-    console.log('match')
     return true;
   }
 

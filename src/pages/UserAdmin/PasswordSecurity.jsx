@@ -43,7 +43,7 @@ const ModelDefinition = [
         label: 'No'
       }
     ]
-  },
+  }
 ]
 
 const getFieldTypeByName = (fieldName) => {

@@ -281,7 +281,7 @@ const EmployeesPage = ({ }) => {
                             });
                         } else {
                             setShowPopup(true);
-                            console.log(`Numero de secuencia ${data.numeroLegajo} exede el rango del secuenciador`);
+                            console.log(`Numero de secuencia ${seq1.model.secuencia} exede el rango del secuenciador`);
                             setPopupMessage(`El empleado ${data.nombre} ${data.apellido} no se ha podido dar de alta debido a que no hay número disponible para su legajo`);
 
                             setTimeout(() => {

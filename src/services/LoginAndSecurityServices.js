@@ -92,14 +92,11 @@ export const getPaswordSecurityParam = async () => {
     return result.data;
 }
 
-export const addPaswordSecurityParam = async (diasValidezContrasena, cantidadReintentos) => {
+export const addPaswordSecurityParam = async (passwordSercurity) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/parametrosseguridadcontrasena',
-        data: {
-            'diasValidezContrasena': diasValidezContrasena,
-            'cantidadReintentos': cantidadReintentos
-        }
+        data: passwordSercurity
     }).then(response => {
         return response;
     }).catch(error => {
@@ -108,14 +105,11 @@ export const addPaswordSecurityParam = async (diasValidezContrasena, cantidadRei
     return result.data;
 }
 
-export const updatePaswordSecurityParam = async (id, diasValidezContrasena, cantidadReintentos) => {
+export const updatePaswordSecurityParam = async (id, passwordSercurity) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/parametrosseguridadcontrasena/' + id,
-        data: {
-            'diasValidezContrasena': diasValidezContrasena,
-            'cantidadReintentos': cantidadReintentos
-        }
+        data: passwordSercurity
     }).then(response => {
         return response;
     }).catch(error => {
