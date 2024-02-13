@@ -4,6 +4,8 @@ import '../../styles/Modal.css';
 
 const InputParameter = ({ validation, name, value, valueName, parameterList, disabled, updateFormData, country, mandatory }) => {
 
+    const [firstCountryState, setFirstCountryState] = useState(true);
+
     const fieldDescription = valueName ? valueName : "descripcion";
 
     const parameterListByCountry = !country ? parameterList : parameterList.filter(p => p.texto1 == country.codigo);
@@ -17,7 +19,9 @@ const InputParameter = ({ validation, name, value, valueName, parameterList, dis
     }
 
     useEffect(() => {
-        updateFormData(name, null);
+        if (!firstCountryState)
+            updateFormData(name, null);
+        setFirstCountryState(false)
     }, [country]);
 
     return (
