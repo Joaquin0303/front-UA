@@ -11,7 +11,7 @@ import PopUp from '../components/modal/PopUp';
 import { getPermissionIdByName, PERMISSION } from '../utils/PermissionList';
 import { useNavigate } from 'react-router-dom';
 import { FaEye } from 'react-icons/fa';
-import { isIE } from 'react-device-detect';
+// import { isIE } from 'react-device-detect';
 
 const Login = ({ setToken }) => {
     const [showChangePassword, setShowChangePassword] = useState(false);
@@ -94,7 +94,8 @@ const Login = ({ setToken }) => {
         }, 10000);
     }
 
-    const isEdge = isIE;
+    const isEdge = navigator.userAgent.includes("Edg");
+    console.log(isEdge);
 
     return (
         <>
@@ -128,7 +129,9 @@ const Login = ({ setToken }) => {
                                     <label htmlFor="password-user">Contraseña</label>
                                     <div className='password-no-edge'>
                                         <input type={showPassword ? "text" : "password"} className="form-control" id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
-                                        <FaEye className='eye-icon' onClick={() => setShowPassword(!showPassword)} />
+                                        <span className='p-viewer'>
+                                            <FaEye className='eye-icon' onClick={() => setShowPassword(!showPassword)} />
+                                        </span>
                                     </div>
                                 </div>
                             }

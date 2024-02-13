@@ -78,9 +78,9 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
             <div className="modals-content">
                 <div className='form-view'>
                     <div className="form-field-container">
-                        <InputParameter validation={validation} name="codigoTipoEgreso" value={formData["codigoTipoEgreso"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 15)} updateFormData={handleOnChangeReason} />
+                        <InputParameter validation={validation} name="codigoTipoEgreso" value={formData["codigoTipoEgreso"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 15)} updateFormData={handleOnChangeReason} mandatory={true} />
                         <InputText name="observaciones" updateFormData={updateFormData} value={formData["observaciones"]} />
-                        <InputDate disabled={disableEndDate} validation={validation} name="fechaEgreso" updateFormData={updateFormData} value={formData["fechaEgreso"]} />
+                        <InputDate disabled={disableEndDate} validation={validation} name="fechaEgreso" updateFormData={updateFormData} value={formData["fechaEgreso"]} mandatory={true} />
                     </div>
                 </div>
             </div>
