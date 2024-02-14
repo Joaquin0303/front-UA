@@ -51,16 +51,16 @@ const FormEmployeeLicence = ({ parameterList, data, closeModal, onSubmitForm }) 
         }
         if (result.error) throw result;
     }
-
+    e
     return (
         <div>
             <div className='modal-title'>Licencia de empleado</div>
             <div className="modals-content">
                 <div className='form-view'>
                     <div className="form-field-container">
-                        <InputParameter validation={validation} name="tipoLicencia" value={formData["tipoLicencia"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 16)} updateFormData={updateFormData} />
-                        <InputDate validation={validation} name="fechaInicio" updateFormData={updateFormData} value={formData["fechaInicio"]} />
-                        <InputDate validation={validation} name="fechaFin" updateFormData={updateFormData} value={formData["fechaFin"]} />
+                        <InputParameter validation={validation} name="tipoLicencia" value={formData["tipoLicencia"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 16)} updateFormData={updateFormData} mandatory={true} />
+                        <InputDate validation={validation} name="fechaInicio" updateFormData={updateFormData} value={formData["fechaInicio"]} mandatory={true} />
+                        <InputDate validation={validation} name="fechaFin" updateFormData={updateFormData} value={formData["fechaFin"]} mandatory={true} />
                     </div>
                 </div>
             </div>

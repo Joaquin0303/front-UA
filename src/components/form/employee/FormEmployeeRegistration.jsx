@@ -230,18 +230,18 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
             validation: {}
         }
         // VALIDATIONS
-        /* if (data.calleResidencia && !data.numeroResidencia) {
+        if (data.calleResidencia && !data.numeroResidencia) {
             result.error = true;
             result.validation.numeroResidencia = "Ingrese número de residencia"
         }
         if (data.calleResidencia && !data.localidadResidencia) {
             result.error = true;
             result.validation.localidadResidencia = "Ingrese localidad de residencia"
-        } */
+        }
         if (result.error) throw result;
     }
 
-    /* const validateStep3 = (data) => {
+    const validateStep3 = (data) => {
         const result = {
             error: false,
             validation: {}
@@ -259,7 +259,7 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
             result.error = true;
             result.validation.codigoObraSocial = "Ingrese código de obra social"
         }
-    } */
+    }
 
     const nextStep = () => {
         try {

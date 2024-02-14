@@ -366,7 +366,7 @@ const ExternalPage = () => {
         }
         if (!data.codigoPais || data.codigoPais.id <= 0) {
             result.error = true;
-            result.validation.codigoPais = "Ingrese pais"
+            result.validation.codigoPais = "Ingrese país"
         }
         if (!data.codigoPuesto || data.codigoPuesto.id <= 0) {
             result.error = true;
@@ -394,7 +394,7 @@ const ExternalPage = () => {
         }
         if (!data.codigoGenero || data.codigoGenero.id <= 0) {
             result.error = true;
-            result.validation.codigoGenero = "Ingrese genero"
+            result.validation.codigoGenero = "Ingrese género"
         }
         if (!data.emailPersonal || data.emailPersonal.id <= 0) {
             result.error = true;
