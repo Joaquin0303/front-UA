@@ -5,12 +5,17 @@ import { FORM_ACTIONS, TABLE_ACTIONS } from '../../utils/GeneralConstants';
 
 const PermissionModel = {
     descripcion: '',
+    codigo: '',
     activo: true
 }
 
 const ModelDefinition = [
     {
         fieldName: 'descripcion',
+        type: 'string'
+    },
+    {
+        fieldName: 'codigo',
         type: 'string'
     }
 ]
@@ -48,17 +53,20 @@ const pageConfiguration = {
     formConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
         activeFields: [
-            'descripcion'
+            'descripcion',
+            'codigo'
         ],
         inactiveFields: [
         ]
     },
     viewConfiguration: {
         activeFields: [
-            'descripcion'
+            'descripcion',
+            'codigo'
         ],
         inactiveFields: [
-            'descripcion'
+            'descripcion',
+            'codigo'
         ]
     }
 }
@@ -81,7 +89,7 @@ export const Permisos = () => {
     const onAdd = (data) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        addPermission(data.descripcion, data.activo).then(result => {
+        addPermission(data.descripcion, data.codigo, data.activo).then(result => {
             console.log('saved=', result);
             loadPermissions();
         });
@@ -90,7 +98,7 @@ export const Permisos = () => {
     const onEdit = (data) => {
         const validation = validate(data);
         if (validation.error) throw validation;
-        updatePermission(data.id, data.descripcion, data.activo).then(result => {
+        updatePermission(data.id, data.descripcion, data.codigo, data.activo).then(result => {
             console.log('edited=', result);
             loadPermissions();
         });

@@ -13,12 +13,13 @@ export const getPermissions = async () => {
     return result.data;
 }
 
-export const addPermission = async (descripcion, activo) => {
+export const addPermission = async (descripcion, codigo, activo) => {
     const result = await axios({
         method: 'post',
         url: host + '/ua/permiso',
         data: {
             'descripcion': descripcion,
+            'codigo': codigo,
             'activo': activo
         }
     }).then(response => {
@@ -53,12 +54,13 @@ export const getPermissionById = async (permissionId) => {
     return result.data;
 }
 
-export const updatePermission = async (permissionId, descripcion, activo) => {
+export const updatePermission = async (permissionId, descripcion, codigo, activo) => {
     const result = await axios({
         method: 'put',
         url: host + '/ua/permiso/' + permissionId,
         data: {
             'descripcion': descripcion,
+            'codigo': codigo,
             'activo': activo
         }
     }).then(response => {
