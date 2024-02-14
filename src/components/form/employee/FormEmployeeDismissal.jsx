@@ -15,7 +15,7 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
         if (value && value.codigo == 'ME06') {
             console.log('data', data)
             setDisableEndDate(true);
-            updateFormData('fechaEgreso', parseDate(data.fechaIngreso));
+            updateFormData('fechaEgreso', data.fechaIngreso);
 
         } else {
             setDisableEndDate(false);
