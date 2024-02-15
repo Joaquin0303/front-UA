@@ -39,7 +39,7 @@ const Table = ({ tableConfiguration, dataList, openModalForm }) => {
     const buildHeader = () => {
 
         const cellHeader = columnsKey.map((key, i) => {
-            if (showColum(key, dataList[0])) {
+            if (dataList.length > 0 && showColum(key, dataList[0])) {
                 if (key == 'empleado') {
                     return <>
                         <th key={i + "a"}>{i18n.t('numeroLegajo')}</th>
