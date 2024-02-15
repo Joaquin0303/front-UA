@@ -95,7 +95,6 @@ const Login = ({ setToken }) => {
     }
 
     const isEdge = navigator.userAgent.includes("Edg");
-    console.log(isEdge);
 
     return (
         <>
@@ -110,7 +109,7 @@ const Login = ({ setToken }) => {
             </div>
 
             <div className="login-wrapper">
-                {showChangePassword ? (<ChangePassword userId={userId} handleChangePassword={handleChangePassword} />) : (
+                {showChangePassword ? (<ChangePassword userId={userId} handleChangePassword={handleChangePassword} isEdge={isEdge} />) : (
                     <>
                         <img src={gifWork} alt="gif-work" id='gif' />
                         <form className='form-login' onSubmit={handleSubmit}>

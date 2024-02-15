@@ -14,7 +14,7 @@ const FormEmployeeStep1 = ({ action, parameterList, validation, formData, update
             <InputText validation={validation} name="nombre" updateFormData={updateFormData} value={formData["nombre"]} mandatory={true} />
             <InputText validation={validation} name="segundoNombre" updateFormData={updateFormData} value={formData["segundoNombre"]} />
             <InputText validation={validation} name="nombrePreferido" updateFormData={updateFormData} value={formData["nombrePreferido"]} />
-            <InputParameter validation={validation} name="codigoGenero" value={formData["codigoGenero"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 11)} updateFormData={updateFormData} />
+            <InputParameter validation={validation} name="codigoGenero" value={formData["codigoGenero"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 11)} updateFormData={updateFormData} mandatory={true} />
             <InputDate validation={validation} name="fechaNacimiento" updateFormData={updateFormData} value={formData["fechaNacimiento"]} mandatory={true} />
             <InputParameter validation={validation} name="codigoGeneracion" value={formData["codigoGeneracion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 10)} updateFormData={updateFormData} mandatory={true} />
             <InputDate validation={validation} name="fechaIngreso" updateFormData={updateFormData} value={formData["fechaIngreso"]} mandatory={true} />

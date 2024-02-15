@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { updatePassword } from '../services/UserServices'
 import PasswordRules from '../pages/UserAdmin/PasswordRules';
 
-export const ChangePassword = ({ userId, handleChangePassword }) => {
+export const ChangePassword = ({ userId, handleChangePassword, isEdge }) => {
 
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -44,10 +44,32 @@ export const ChangePassword = ({ userId, handleChangePassword }) => {
           <PasswordRules />
           <form className="change-pass" onSubmit={handleSubmit}>
             <h1>Cambio de Contraseña</h1>
-            <p>Nueva Contraseña</p>
-            <input type="password" name="" placeholder="" id="" onChange={e => setPassword(e.target.value)} />
-            <p>Repita Nueva Contraseña</p>
-            <input type="password" name="" placeholder="" id="" onChange={e => setConfirmPassword(e.target.value)}></input>
+            {isEdge ?
+              <>
+                <p>Nueva Contraseña</p>
+                <input type="password" name="" placeholder="" id="" onChange={e => setPassword(e.target.value)} />
+                <p>Repita Nueva Contraseña</p>
+                <input type="password" name="" placeholder="" id="" onChange={e => setConfirmPassword(e.target.value)}></input>
+              </>
+              :
+              <>
+                <p>Nueva Contraseña</p>
+                <div className='password-no-edge'>
+                  <input type={showPassword ? "text" : "password"} className="form-control" id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
+                  <span className='p-viewer'>
+                    <FaEye className='eye-icon' onClick={() => setShowPassword(!showPassword)} />
+                  </span>
+                </div>
+                <p>Repita Nueva Contraseña</p>
+                <div className='password-no-edge'>
+                  <input type={showPassword ? "text" : "password"} className="form-control" id="password-user" placeholder="Contraseña" onChange={(e) => setConfirmPassword(e.target.value)} />
+                  <span className='p-viewer'>
+                    <FaEye className='eye-icon' onClick={() => setShowPassword(!showPassword)} />
+                  </span>
+                </div>
+              </>
+            }
+
             <p className="authFail">
               {errorMessage}
             </p>
