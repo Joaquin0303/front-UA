@@ -184,15 +184,7 @@ const Users = () => {
                 data.bloqueado = true;
                 editUser(data.id, data).then(result => {
                     if (result.codigo == 200) {
-                        data.roles && data.roles.forEach(userRole => {
-                            assignRoleToUser(userRole.codigo, result.model.id).then(result => {
-                                console.log('role user saved=', result);
-                                loadUsers();
-                            });
-                        });
-                        if (!data.roles || data.roles.length == 0) {
-                            loadUsers();
-                        }
+                        loadUsers();
                     }
                 })
                 break;
