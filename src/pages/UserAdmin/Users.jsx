@@ -181,8 +181,6 @@ const Users = () => {
         console.log('action', action)
         switch (action) {
             case TABLE_ACTIONS.INACTIVATE:
-                const inactivateValidation = validate(data, action);
-                if (inactivateValidation.error) throw inactivateValidation;
                 data.bloqueado = true;
                 editUser(data.id, data).then(result => {
                     if (result.codigo == 200) {

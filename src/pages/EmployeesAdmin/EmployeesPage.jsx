@@ -355,35 +355,6 @@ const EmployeesPage = ({ }) => {
                                 console.log('Employee updated=', r);
                                 loadEmployees();
                             });
-                            /*
-                                                        let startPositionDate = parseInputDate(oldEmp.model.fechaIngresoReconocida);
-                                                        if (hp.list) {
-                                                            startPositionDate = new Date(Math.max.apply(null, hp.list.map(p => {
-                                                                return parseInputDate(p.fechaEgreso);
-                                                            })));
-                                                            startPositionDate.setDate(startPositionDate.getDate() + 1);
-                                                        }
-                                                        console.log('startPositionDate', startPositionDate)
-                                                        if (startPositionDate < new Date()) {
-                                                            addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, startPositionDate, parseToday(), true).then(r => {
-                                                                console.log('Position History Updated', r)
-                                                            });
-                            
-                                                            data.codigoCentroDeCosto = data.codigoPuesto.codigoCentroDeCosto;
-                                                            updateEmployee(data.id, data).then(r => {
-                                                                console.log('Employee updated=', r);
-                                                                loadEmployees();
-                                                            });
-                                                        } else {
-                                                            setShowPopup(true);
-                                                            console.log(`No es posible cambiar de puesto a un empleado mas de una vez en el mismo día`);
-                                                            setPopupMessage(`No es posible cambiar de puesto a un empleado mas de una vez en el mismo día`);
-                            
-                                                            setTimeout(() => {
-                                                                setShowPopup(false);
-                                                            }, 10000);
-                                                        }
-                            */
                         })
 
                     }
@@ -448,7 +419,7 @@ const EmployeesPage = ({ }) => {
 
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return data.numeroLegajo == lowerCaseSearchTerm || (data.nombre + data.apellido).toLowerCase().includes(lowerCaseSearchTerm);
+        return data.numeroLegajo.toString().includes(lowerCaseSearchTerm) || (data.nombre + data.apellido).toLowerCase().includes(lowerCaseSearchTerm);
     }
 
     const validate = (data) => {
