@@ -26,20 +26,6 @@ const ModelDefinition = [
     {
         fieldName: 'startDate',
         type: 'calendar'
-    },
-    {
-        fieldName: 'active',
-        type: 'string',
-        labels: [
-            {
-                value: 'true',
-                label: 'Activo'
-            },
-            {
-                value: 'false',
-                label: 'Inactivo'
-            }
-        ]
     }
 ]
 
