@@ -57,6 +57,14 @@ export const parseTodayStr = () => {
     return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' GMT-0300';
 }
 
+export const parseTodayStr2 = () => {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const day = d.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 export const diffBetweenDates = (date1, date2) => {
     const diffTime = Math.abs(date2 - date1);
     return diffTime;

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { host } from '../Configs';
-import { parseToday, parseTodayStr } from '../utils/Utils';
+import { parseToday, parseTodayStr, parseTodayStr2 } from '../utils/Utils';
 
 const useMock = true;
 
@@ -69,7 +69,7 @@ export const internationalDataCollectionReportService = async (filter) => {
         method: 'post',
         url: host + '/ua/reporte/idc/generar',
         data: {
-            fechaHasta: filter.fechaHasta ? filter.fechaHasta : parseTodayStr()
+            fechaHasta: filter.fechaHasta ? filter.fechaHasta : parseTodayStr2()
         }
     }).then(response => {
         return response;
