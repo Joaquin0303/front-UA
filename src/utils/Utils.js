@@ -63,7 +63,7 @@ export const parseTodayStr2 = () => {
     const month = (d.getMonth() + 1).toString().padStart(2, '0');
     const day = d.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
-}
+};
 
 export const diffBetweenDates = (date1, date2) => {
     const diffTime = Math.abs(date2 - date1);

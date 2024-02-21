@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { host } from '../Configs';
 import { searchEmployee } from './EmployeeServices';
-import { parseToday, parseTodayStr } from '../utils/Utils';
 
 export const loginUser = async (credentials) => {
 
