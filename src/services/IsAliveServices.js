@@ -10,6 +10,6 @@ export const isAlive = async () => {
     }).catch(error => {
         throw error;
     })
-    console.log(result.data.activo);
-    return;
+    console.log(result.data);
+    return result.data;
 }
