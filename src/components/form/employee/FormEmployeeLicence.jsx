@@ -3,6 +3,7 @@ import '../../../styles/Modal.css'
 import InputParameter from '../InputParameter';
 import InputText from '../InputText';
 import InputDate from '../InputDate';
+import { parseTodayStr2 } from "../../utils/Utils.js"
 
 const FormEmployeeLicence = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
@@ -22,6 +23,8 @@ const FormEmployeeLicence = ({ parameterList, data, closeModal, onSubmitForm }) 
                 formData.codigoEstadoEmpleado = {
                     id: 88
                 }
+                formData.fechaInicio = parseTodayStr2(formData.fechaInicio);
+                formData.fechaFin = parseTodayStr2(formData.fechaFin);
                 onSubmitForm(formData)
             }
             closeModal();
