@@ -3,7 +3,7 @@ import '../../../styles/Modal.css'
 import InputParameter from '../InputParameter';
 import InputText from '../InputText';
 import InputDate from '../InputDate';
-import { parseTodayStr2 } from "../../utils/Utils.js"
+import { parseTodayStr2 } from '../../../utils/Utils';
 
 const FormEmployeeLicence = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
