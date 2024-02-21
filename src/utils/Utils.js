@@ -3,7 +3,6 @@ import { jwtDecode } from "jwt-decode";
 import Base64 from 'crypto-js/enc-base64';
 import Utf8 from 'crypto-js/enc-utf8'
 import HmacSHA256 from 'crypto-js/hmac-sha256';
-import { format } from 'date-fns';
 
 export const compareStrDates = (strDate1, strDate2) => {
     const d1 = parseInputDate(strDate1);
@@ -60,7 +59,10 @@ export const parseTodayStr = () => {
 
 export const parseTodayStr2 = () => {
     const d = new Date();
-    return format(d, 'yyyy-MM-dd');
+    const year = d.getFullYear();
+    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const day = d.getDate().toString().padStart(2, '0');
+    return `${day}-${month}-${year}`;
 };
 
 export const diffBetweenDates = (date1, date2) => {
