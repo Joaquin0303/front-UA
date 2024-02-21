@@ -69,7 +69,7 @@ export const internationalDataCollectionReportService = async (filter) => {
         method: 'post',
         url: host + '/ua/reporte/idc/generar',
         data: {
-            fechaHasta: filter.fechaHasta ? filter.fechaHasta : parseTodayStr2()
+            fechaHasta: filter.fechaHasta ? filter.fechaHasta : parseTodayStr()
         }
     }).then(response => {
         return response;
