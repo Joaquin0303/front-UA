@@ -60,7 +60,7 @@ function App() {
             console.log('en else', response.model.activo)
           }
         });
-      }, 30000);
+      }, 600000);
     }
   }, [token]);
 
