@@ -6,10 +6,10 @@ import useToken from '../useToken';
 
 export const getCountries = async () => {
     const { token, setToken } = useToken();
-    if (isAlive() === false){
-        setToken(null);
-    }
-    else{
+    const active = isAlive().then(active => {
+        return active
+    })
+    if( active === true){
         const result = await axios({
             method: 'get',
             url: host + '/ua/pais'
@@ -19,6 +19,9 @@ export const getCountries = async () => {
             throw error;
         })
         return result.data;
+    }
+    else{
+        setToken(null);
     }
 }
 
