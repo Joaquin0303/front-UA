@@ -60,16 +60,15 @@ function App() {
   } catch (error) {
     console.error(error);
   }
-  
+
   const handleClickAnywhere = () => {
     isAlive().then(response => {
-      console.log('antes del if', response.model.activo)
       if(response.model.activo === false){
         alert('La sesion ha expirado. Ingrese nuevamente');
         setToken(null)
       }
       else{
-        console.log('en else', response.model.activo)
+        console.log(response.model.activo)
       }
     })
   };
