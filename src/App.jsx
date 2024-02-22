@@ -51,8 +51,13 @@ function App() {
     if(token){
       const interval = setInterval(() => {
         isAlive().then(response => {
+          console.log('antes del if', response.model.activo)
           if(response.model.activo === false){
             setToken(null)
+            clearInterval(interval)
+          }
+          else{
+            console.log('en else', response.model.activo)
           }
         });
       }, 30000);
