@@ -47,22 +47,6 @@ function App() {
 
   const { token, setToken } = useToken();
 
-  useEffect(() => {
-    if(token){
-      const interval = setInterval(() => {
-        isAlive().then(response => {
-          console.log('antes del if', response.model.activo)
-          if(response.model.activo === false){
-            setToken(null)
-            clearInterval(interval)
-          }
-          else{
-            console.log('en else', response.model.activo)
-          }
-        });
-      }, 600000);
-    }
-  }, [token]);
 
   if (!token) {
     // Uncomment to enable Login
@@ -76,9 +60,18 @@ function App() {
   } catch (error) {
     console.error(error);
   }
-
+  
   const handleClickAnywhere = () => {
-    alert('¡Has hecho clic en la pantalla!');
+    isAlive().then(response => {
+      console.log('antes del if', response.model.activo)
+      if(response.model.activo === false){
+        alert('La sesion ha expirado. Ingrese nuevamente');
+        setToken(null)
+      }
+      else{
+        console.log('en else', response.model.activo)
+      }
+    })
   };
 
   return (
