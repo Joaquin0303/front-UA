@@ -77,7 +77,12 @@ function App() {
     console.error(error);
   }
 
+  const handleClickAnywhere = () => {
+    alert('¡Has hecho clic en la pantalla!');
+  };
+
   return (
+    <div onClick={handleClickAnywhere}>
     <>
       <header>
         <div className="header">
@@ -186,6 +191,7 @@ function App() {
 
       </Routes>
     </>
+    </div>
   )
 }
 
