@@ -50,8 +50,8 @@ function App() {
   useEffect(() => {
     if(token){
       const interval = setInterval(() => {
-        isAlive().then(activo => {
-          if(activo === false){
+        isAlive().then(response => {
+          if(response.model.activo === false){
             setToken(null)
           }
         });
