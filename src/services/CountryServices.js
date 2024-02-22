@@ -3,9 +3,9 @@ import { host } from '../Configs';
 import { isAlive } from './IsAliveServices';
 import useToken from '../useToken';
 
-const { token, setToken } = useToken();
 
 export const getCountries = async () => {
+    const { token, setToken } = useToken();
     if (isAlive() === false){
         setToken(null);
     }
