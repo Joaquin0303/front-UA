@@ -11,7 +11,6 @@ import { MdFamilyRestroom } from "react-icons/md";
 import { TbStatusChange } from "react-icons/tb";
 import { searchByEmployeeId } from "../../services/LicenseServices";
 import { putDownLicenceModel } from "../../pages/EmployeesAdmin/LicenseHistoryPage";
-import { isAlive } from "../../services/IsAliveServices";
 
 const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
 
@@ -73,28 +72,28 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                             <td>{d.codigoEstadoEmpleado.descripcion}</td>
                             <td className='expand'>
                                 <span className='actions'>
-                                    {<div title="Ver" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.VIEW, d); isAlive() }}>
+                                    {<div title="Ver" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.VIEW, d);}}>
                                         <IoEyeSharp />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Editar" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.EDIT, d); isAlive() }}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Editar" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.EDIT, d);}}>
                                         <BsFillPencilFill />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.PUTDOWN, d); isAlive() }}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.PUTDOWN, d);}}>
                                         <FaArrowDown />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); openLicenceModal(d); isAlive() }}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); openLicenceModal(d);}}>
                                         <TbLicense />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cargar Familia" onClick={(e) => { e.stopPropagation(); openAddFamilyModal(d); isAlive() }}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cargar Familia" onClick={(e) => { e.stopPropagation(); openAddFamilyModal(d);}}>
                                         <MdFamilyRestroom />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cambio De Puesto" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.CHANGEPOSITION, d); isAlive() }}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cambio De Puesto" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.CHANGEPOSITION, d);}}>
                                         <TbStatusChange />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Renovar Licencia" onClick={(e) => { e.stopPropagation(); openRenewLicenceModal(d); isAlive() }}>
+                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Renovar Licencia" onClick={(e) => { e.stopPropagation(); openRenewLicenceModal(d);}}>
                                         <TbLicense />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Finalizar Licencia" onClick={(e) => { e.stopPropagation(); openPutdownLicenceModal(d); isAlive() }}>
+                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Finalizar Licencia" onClick={(e) => { e.stopPropagation(); openPutdownLicenceModal(d);}}>
                                         <TbLicenseOff />
                                     </div>}
                                 </span>

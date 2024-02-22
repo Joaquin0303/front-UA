@@ -1,19 +1,32 @@
 import axios from 'axios'
 import { host } from '../Configs';
+import { isAlive } from './IsAliveServices';
+import useToken from '../useToken';
+
+const { token, setToken } = useToken();
 
 export const getCountries = async () => {
-    const result = await axios({
-        method: 'get',
-        url: host + '/ua/pais'
-    }).then(response => {
-        return response;
-    }).catch(error => {
-        throw error;
-    })
-    return result.data;
+    if (isAlive() === false){
+        setToken(null);
+    }
+    else{
+        const result = await axios({
+            method: 'get',
+            url: host + '/ua/pais'
+        }).then(response => {
+            return response;
+        }).catch(error => {
+            throw error;
+        })
+        return result.data;
+    }
 }
 
 export const getCountryById = async (countryId) => {
+    if (isAlive() === false){
+        setToken(null);
+    }
+    else{
     const result = await axios({
         method: 'get',
         url: host + '/ua/pais/' + countryId
@@ -23,6 +36,7 @@ export const getCountryById = async (countryId) => {
         throw error;
     })
     return result.data;
+    }
 }
 
 export const updateCountry = async (countryId, descripcion, codigo, secuenciador, activo) => {
