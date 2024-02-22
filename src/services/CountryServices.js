@@ -26,10 +26,6 @@ export const getCountries = async () => {
 }
 
 export const getCountryById = async (countryId) => {
-    if (isAlive() === false){
-        setToken(null);
-    }
-    else{
     const result = await axios({
         method: 'get',
         url: host + '/ua/pais/' + countryId
@@ -39,7 +35,6 @@ export const getCountryById = async (countryId) => {
         throw error;
     })
     return result.data;
-    }
 }
 
 export const updateCountry = async (countryId, descripcion, codigo, secuenciador, activo) => {
