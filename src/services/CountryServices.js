@@ -5,24 +5,15 @@ import useToken from '../useToken';
 
 
 export const getCountries = async () => {
-    const { token, setToken } = useToken();
-    const active = isAlive().then(active => {
-        return active
+    const result = await axios({
+        method: 'get',
+        url: host + '/ua/pais'
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
     })
-    if( active === true){
-        const result = await axios({
-            method: 'get',
-            url: host + '/ua/pais'
-        }).then(response => {
-            return response;
-        }).catch(error => {
-            throw error;
-        })
-        return result.data;
-    }
-    else{
-        setToken(null);
-    }
+    return result.data;
 }
 
 export const getCountryById = async (countryId) => {

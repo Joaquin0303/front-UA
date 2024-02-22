@@ -38,6 +38,7 @@ import LicencesReportPage from './pages/ReportsAdmin/LicencesReportPage';
 import { jwtDecode } from "jwt-decode";
 import { decodeToken } from './utils/Utils';
 import { PERMISSION } from './utils/PermissionList';
+import { isAlive } from './services/IsAliveServices';
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ2YWx1ZSI6InNlciJ9._RCDTTuGvtXwENLAHhQvvJuoYSbkXP_JPoGv2wzoQQo";
 const decoded = jwtDecode(token);
@@ -45,6 +46,18 @@ const decoded = jwtDecode(token);
 function App() {
 
   const { token, setToken } = useToken();
+
+  useEffect(() => {
+    if(token){
+      const interval = setInterval(() => {
+        isAlive().then(activo => {
+          if(activo === false){
+            setToken(null)
+          }
+        });
+      }, 30000);
+    }
+  }, [token]);
 
   if (!token) {
     // Uncomment to enable Login
