@@ -6,7 +6,7 @@ export const isAlive = async () => {
         method: 'get',
         url: host + '/ua/login/isalive'
     }).then(response => {
-        return JSON.parse(response);
+        return response;
     }).catch(error => {
         throw error;
     })
