@@ -45,7 +45,30 @@ const decoded = jwtDecode(token);
 
 function App() {
 
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
   const { token, setToken } = useToken();
+
+  useEffect(() => {
+    const handleOnline = () => {
+      setIsOnline(true);
+    };
+
+    const handleOffline = () => {
+      setIsOnline(false);
+      console.log('vpn disconectted');
+      alert('Se ha desconectado la VPN. Ingrese nuevamente');
+      setToken(null);
+    };
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
 
   if (!token) {
@@ -63,11 +86,11 @@ function App() {
 
   const handleClickAnywhere = () => {
     isAlive().then(response => {
-      if(response.model.activo === false){
+      if (response.model.activo === false) {
         alert('La sesion ha expirado. Ingrese nuevamente');
         setToken(null)
       }
-      else{
+      else {
         console.log(response.model.activo)
       }
     })
@@ -75,114 +98,114 @@ function App() {
 
   return (
     <div onClick={handleClickAnywhere}>
-    <>
-      <header>
-        <div className="header">
-          <img src={logoempresa} id="logo-empresa" alt="" />
-          <div className="close-sesion">
-            <a href="" onClick={() => { setToken(null); }}><img src={logoout} alt="" />Cerrar Sesión</a>
+      <>
+        <header>
+          <div className="header">
+            <img src={logoempresa} id="logo-empresa" alt="" />
+            <div className="close-sesion">
+              <a href="" onClick={() => { setToken(null); }}><img src={logoout} alt="" />Cerrar Sesión</a>
+            </div>
           </div>
-        </div>
-      </header>
-      <nav>
-        <div className="nav-links">
-          <Link to="/">Inicio</Link>
-          {permissions && permissions.includes(PERMISSION.PERMISO_SECCION_USUARIOS_ACCESO.id) && < Link to="/administracion-usuarios">Administración de Usuarios</Link>}
-          {permissions && permissions.includes(PERMISSION.PERMISO_SECCION_PARAMETROS_ACCESO.id) && <Link to="/administracion-parametros">Administración de Parámetros</Link>}
-          {permissions && permissions.includes(PERMISSION.PERMISO_SECCION_EMPLEADOS_ACCESO.id) && <Link to="/administracion-empleados">Administración de Empleados</Link>}
-          {permissions && permissions.includes(PERMISSION.PERMISO_SECCION_REPORTES_ACCESO.id) && < Link to="/reportes">Reportes</Link>}
-        </div>
-      </nav >
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
+        </header>
+        <nav>
+          <div className="nav-links">
+            <Link to="/">Inicio</Link>
+            {permissions && permissions.includes(PERMISSION.PERMISO_SECCION_USUARIOS_ACCESO.id) && < Link to="/administracion-usuarios">Administración de Usuarios</Link>}
+            {permissions && permissions.includes(PERMISSION.PERMISO_SECCION_PARAMETROS_ACCESO.id) && <Link to="/administracion-parametros">Administración de Parámetros</Link>}
+            {permissions && permissions.includes(PERMISSION.PERMISO_SECCION_EMPLEADOS_ACCESO.id) && <Link to="/administracion-empleados">Administración de Empleados</Link>}
+            {permissions && permissions.includes(PERMISSION.PERMISO_SECCION_REPORTES_ACCESO.id) && < Link to="/reportes">Reportes</Link>}
+          </div>
+        </nav >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
 
-        {/* Administracion de Usuarios */}
-        {/* -------------------------- */}
-        <Route path="/administracion-usuarios" element={<AdminUsers permissions={permissions} />} />
-        <Route path="/administracion-usuarios/usuarios" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_USUARIOS_ACCESO.id) ? <Users /> : <div>No tiene autorizacion</div>
-        } />
-        <Route path="/administracion-usuarios/permisos" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_PERMISOS_ACCESO.id) ? <Permisos /> : <div>No tiene autorizacion</div>
-        } />
-        <Route path="/administracion-usuarios/roles" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_ROLES_ACCESO.id) ? <Roles /> : <div>No tiene autorizacion</div>
-        } />
-        <Route path="/administracion-usuarios/contrasena-seguridad" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_SEGURIDAD_CONTRASENA_ACCESO.id) ? <PasswordSecurity /> : <div>No tiene autorizacion</div>
-        } />
-        <Route path="/administracion-usuarios/contrasena" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_PARAMETROS_CONTRASENA_ACCESO.id) ? <ParameterSercurityPassword /> : <div>No tiene autorizacion</div>
-        } />
+          {/* Administracion de Usuarios */}
+          {/* -------------------------- */}
+          <Route path="/administracion-usuarios" element={<AdminUsers permissions={permissions} />} />
+          <Route path="/administracion-usuarios/usuarios" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_USUARIOS_ACCESO.id) ? <Users /> : <div>No tiene autorizacion</div>
+          } />
+          <Route path="/administracion-usuarios/permisos" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_PERMISOS_ACCESO.id) ? <Permisos /> : <div>No tiene autorizacion</div>
+          } />
+          <Route path="/administracion-usuarios/roles" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_ROLES_ACCESO.id) ? <Roles /> : <div>No tiene autorizacion</div>
+          } />
+          <Route path="/administracion-usuarios/contrasena-seguridad" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_SEGURIDAD_CONTRASENA_ACCESO.id) ? <PasswordSecurity /> : <div>No tiene autorizacion</div>
+          } />
+          <Route path="/administracion-usuarios/contrasena" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_PARAMETROS_CONTRASENA_ACCESO.id) ? <ParameterSercurityPassword /> : <div>No tiene autorizacion</div>
+          } />
 
-        {/* Administracion de Parametros */}
-        {/* -------------------------- */}
-        <Route path="/administracion-parametros" element={<AdminParam permissions={permissions} />} />
-        {<Route path="/administracion-parametros/tipo-de-parametros" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_TIPO_PARAMETROS_ACCESO.id) ? <ParameterTypesPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/administracion-parametros/parametros" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_PARAMETROS_ACCESO.id) ? <ParametersPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/administracion-parametros/secuenciador" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_SECUENCIADOR_ACCESO.id) ? <SequencersPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/administracion-parametros/puestos" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_PUESTOS_ACCESO.id) ? <PositionsPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/administracion-parametros/pais" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_PAISES_ACCESO.id) ? <CountriesPage /> : <div>No tiene autorizacion</div>
-        } />}
-
-
-        {/* Administracion de Empleados */}
-        {/* -------------------------- */}
-        <Route path="/administracion-empleados" element={<AdminEmployees permissions={permissions} />} />
-        {<Route path="/administracion-empleados/empleados" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_EMPLEADOS_ACCESO.id) ? <EmployeesPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/administracion-empleados/cargas-de-familia" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_CARGAS_DE_FAMILIA_ACCESO.id) ? <LoadFamilyPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/administracion-empleados/externos" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_EXTERNOS_ACCESO.id) ? <ExternalPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/administracion-empleados/ingreso-caido" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_HISTORIAL_INGRESOS_CAIDOS_ACCESO.id) ? <ExcludedIncomePage /> : <div>No tiene autorizacion</div>
-        } />}
-
-        {/* Reportes */}
-        {/* -------------------------- */}
-        <Route path="/reportes" element={<Reports permissions={permissions} />} />
-        {<Route path="/reportes/vuelta-al-colegio" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_VUELTA_AL_COLE_ACCESO.id) ? <BackToSchoolReportPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/reportes/central-costo" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_CENTRO_DE_COSTO_ACCESO.id) ? <CostCenterReportPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/reportes/historial-laboral" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_HISTORIAL_LABORAL_ACCESO.id) ? <EmploymentHistoryReportPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/reportes/international" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_INTERNATIONAL_DATA_COLLECTION_ACCESO.id) ? <InternationalDataCollectionReportPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/reportes/externos" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_EXTERNOS_ACCESO.id) ? <ExternalReportPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/reportes/directores" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_DIRECTORES_ACCESO.id) ? <DirectorsReportPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/reportes/generico" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_GENERICO_ACCESO.id) ? <GenericReportPage /> : <div>No tiene autorizacion</div>
-        } />}
-        {<Route path="/reportes/licencias" element={
-          permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_LICENCIAS_ACCESO.id) ? <LicencesReportPage /> : <div>No tiene autorizacion</div>
-        } />}
+          {/* Administracion de Parametros */}
+          {/* -------------------------- */}
+          <Route path="/administracion-parametros" element={<AdminParam permissions={permissions} />} />
+          {<Route path="/administracion-parametros/tipo-de-parametros" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_TIPO_PARAMETROS_ACCESO.id) ? <ParameterTypesPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/administracion-parametros/parametros" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_PARAMETROS_ACCESO.id) ? <ParametersPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/administracion-parametros/secuenciador" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_SECUENCIADOR_ACCESO.id) ? <SequencersPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/administracion-parametros/puestos" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_PUESTOS_ACCESO.id) ? <PositionsPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/administracion-parametros/pais" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_PAISES_ACCESO.id) ? <CountriesPage /> : <div>No tiene autorizacion</div>
+          } />}
 
 
-      </Routes>
-    </>
+          {/* Administracion de Empleados */}
+          {/* -------------------------- */}
+          <Route path="/administracion-empleados" element={<AdminEmployees permissions={permissions} />} />
+          {<Route path="/administracion-empleados/empleados" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_EMPLEADOS_ACCESO.id) ? <EmployeesPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/administracion-empleados/cargas-de-familia" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_CARGAS_DE_FAMILIA_ACCESO.id) ? <LoadFamilyPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/administracion-empleados/externos" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_EXTERNOS_ACCESO.id) ? <ExternalPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/administracion-empleados/ingreso-caido" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_HISTORIAL_INGRESOS_CAIDOS_ACCESO.id) ? <ExcludedIncomePage /> : <div>No tiene autorizacion</div>
+          } />}
+
+          {/* Reportes */}
+          {/* -------------------------- */}
+          <Route path="/reportes" element={<Reports permissions={permissions} />} />
+          {<Route path="/reportes/vuelta-al-colegio" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_VUELTA_AL_COLE_ACCESO.id) ? <BackToSchoolReportPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/reportes/central-costo" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_CENTRO_DE_COSTO_ACCESO.id) ? <CostCenterReportPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/reportes/historial-laboral" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_HISTORIAL_LABORAL_ACCESO.id) ? <EmploymentHistoryReportPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/reportes/international" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_INTERNATIONAL_DATA_COLLECTION_ACCESO.id) ? <InternationalDataCollectionReportPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/reportes/externos" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_EXTERNOS_ACCESO.id) ? <ExternalReportPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/reportes/directores" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_DIRECTORES_ACCESO.id) ? <DirectorsReportPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/reportes/generico" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_GENERICO_ACCESO.id) ? <GenericReportPage /> : <div>No tiene autorizacion</div>
+          } />}
+          {<Route path="/reportes/licencias" element={
+            permissions && permissions.includes(PERMISSION.PERMISO_REPORTE_LICENCIAS_ACCESO.id) ? <LicencesReportPage /> : <div>No tiene autorizacion</div>
+          } />}
+
+
+        </Routes>
+      </>
     </div>
   )
 }
