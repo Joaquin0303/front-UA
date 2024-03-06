@@ -6,7 +6,7 @@ import { getCountries } from '../../services/CountryServices';
 import { addExcludedIncome } from '../../services/ExcludedIncomeServices';
 import { addLicense, updateLicense } from '../../services/LicenseServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
-import { compareStrDates, parseDate, parseInputDate, parseToday } from '../../utils/Utils';
+import { compareStrDates, parseInputDate, parseToday } from '../../utils/Utils';
 import { addPositionChange, updatePositionChange, searchPositionChange } from '../../services/PositionChangeServices';
 import { addLoadFamily } from '../../services/LoadFamilyServices';
 import PopUp from '../../components/modal/PopUp';

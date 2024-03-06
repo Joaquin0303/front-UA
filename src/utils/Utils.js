@@ -29,11 +29,8 @@ export const trimDate = (d) => {
 export const parseDate = (d) => {
     if (d) {
         try {
-            const date = new Date(d.substring(0, 10) + " GMT-0300");
-            const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-            const formatter = new Intl.DateTimeFormat('es-ES', options);
-            const formattedDate = formatter.format(date);
-            return formattedDate;
+            const da = d.substring(0, 10).split('-');
+            return [da[2], da[1], da[0]].join('/');
         } catch (error) {
             console.error(error);
         }
