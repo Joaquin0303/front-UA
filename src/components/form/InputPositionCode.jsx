@@ -18,7 +18,7 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
 
     const posSelectorChangeHandler = (e) => {
         setFieldValue(e.target.value);
-        const positionSelected = positionList.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
+        const positionSelected = positionListFiltered.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
         if (positionSelected && positionSelected.length == 1) {
             updateFormData(name, positionSelected[0]);
         } else {
