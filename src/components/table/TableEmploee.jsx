@@ -67,33 +67,33 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
                             <td>{d.nombre}</td>
                             <td>{d.codigoPais.descripcion}</td>
                             <td>{d.codigoPuesto.descripcion}</td>
-                            <td>{d.codigoDireccion.descripcion}</td>
+                            <td>{d.codigoPuesto.codigoDireccion.descripcion}</td>
                             <td>{d.codigoPuesto.codigoGerencia ? d.codigoPuesto.codigoGerencia.descripcion : ''}</td>
                             <td>{d.codigoEstadoEmpleado.descripcion}</td>
                             <td className='expand'>
                                 <span className='actions'>
-                                    {<div title="Ver" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.VIEW, d);}}>
+                                    {<div title="Ver" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.VIEW, d); }}>
                                         <IoEyeSharp />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Editar" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.EDIT, d);}}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Editar" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.EDIT, d); }}>
                                         <BsFillPencilFill />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.PUTDOWN, d);}}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.PUTDOWN, d); }}>
                                         <FaArrowDown />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); openLicenceModal(d);}}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); openLicenceModal(d); }}>
                                         <TbLicense />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cargar Familia" onClick={(e) => { e.stopPropagation(); openAddFamilyModal(d);}}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cargar Familia" onClick={(e) => { e.stopPropagation(); openAddFamilyModal(d); }}>
                                         <MdFamilyRestroom />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cambio De Puesto" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.CHANGEPOSITION, d);}}>
+                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cambio De Puesto" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.CHANGEPOSITION, d); }}>
                                         <TbStatusChange />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Renovar Licencia" onClick={(e) => { e.stopPropagation(); openRenewLicenceModal(d);}}>
+                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Renovar Licencia" onClick={(e) => { e.stopPropagation(); openRenewLicenceModal(d); }}>
                                         <TbLicense />
                                     </div>}
-                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Finalizar Licencia" onClick={(e) => { e.stopPropagation(); openPutdownLicenceModal(d);}}>
+                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Finalizar Licencia" onClick={(e) => { e.stopPropagation(); openPutdownLicenceModal(d); }}>
                                         <TbLicenseOff />
                                     </div>}
                                 </span>

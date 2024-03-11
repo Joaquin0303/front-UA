@@ -72,7 +72,7 @@ const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) =
                     <div className="form-field-container">
                         <InputCountry validation={validation} name="codigoPais" value={formData["codigoPais"]} updateFormData={updateFormData} />
                         <InputParameter validation={validation} name="codigoOficina" value={formData["codigoOficina"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 19)} updateFormData={updateFormData} country={formData["codigoPais"]} />
-                        <InputParameter validation={validation} name="codigoDireccion" value={formData["codigoDireccion"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
+                        <InputParameter validation={validation} name="codigoDireccion" value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoDireccion ? formData['codigoPuesto'].codigoDireccion : null} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} />
                         <InputDate validation={validation} name="fechaInicioPuesto" value={formData["fechaInicioPuesto"]} updateFormData={updateFormData} />
                         <InputPositionCode validation={validation} name="codigoPuesto" value={formData["codigoPuesto"]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} countryCode={formData['codigoPais']} categoryCode={formData['codigoCategoriaEmpleado']} currentPositionId={formData['id']} />
 
