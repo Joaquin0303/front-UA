@@ -159,7 +159,7 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
-            'numeroLegajo',
+            t('externalPage: numeroLegajo'),
             'nombre',
             'apellido',
             'codigoPais',
@@ -170,7 +170,7 @@ const pageConfiguration = {
             'fechaIngreso'
         ],
         inactiveRows: [
-            'numeroLegajo',
+            t('externalPage: numeroLegajo'),
             'nombre',
             'apellido',
             'codigoPais',

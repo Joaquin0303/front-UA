@@ -215,7 +215,10 @@ i18n
           fechaValidezFin: 'Válido Hasta',
           regla: 'Regla',
           seguridadContrasena: 'Seguridad Contraseña',
-          PasswordSecurityParam: 'Parametros Contraseña'
+          PasswordSecurityParam: 'Parametros Contraseña',
+          externalPage: {
+            numeroLegajo: 'ID'
+          }
         }
       }
     }
