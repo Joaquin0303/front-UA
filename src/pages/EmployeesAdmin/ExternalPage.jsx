@@ -159,7 +159,7 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
-            'numeroLegajo',
+            'numeroLegajoExterno',
             'nombre',
             'apellido',
             'codigoPais',
@@ -170,7 +170,7 @@ const pageConfiguration = {
             'fechaIngreso'
         ],
         inactiveRows: [
-            'numeroLegajo',
+            'numeroLegajoExterno',
             'nombre',
             'apellido',
             'codigoPais',
@@ -294,7 +294,7 @@ const ExternalPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         getNextFileNumber().then(r => {
-            data.numeroLegajo = r.model.numeroLegajo ? parseInt(r.model.numeroLegajo) + 1 : 1;
+            data.numeroLegajoExterno = r.model.numeroLegajoExterno ? parseInt(r.model.numeroLegajoExterno) + 1 : 1;
             addExternal(data).then(result => {
                 console.log('saved=', result);
                 loadExternals();
@@ -332,7 +332,7 @@ const ExternalPage = () => {
 
     const matchHandler = (data, searchTerm) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return data.numeroLegajo == lowerCaseSearchTerm || (data.nombre + data.apellido).toLowerCase().includes(lowerCaseSearchTerm);
+        return data.numeroLegajoExterno == lowerCaseSearchTerm || (data.nombre + data.apellido).toLowerCase().includes(lowerCaseSearchTerm);
     }
 
     const validate = (data) => {
