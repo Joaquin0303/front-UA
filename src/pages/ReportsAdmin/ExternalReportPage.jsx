@@ -61,7 +61,7 @@ const pageConfiguration = {
     tableConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
         hiddenRows: [
-            'numeroLegajo',
+            'numeroLegajoExterno',
             'codigoPais',
             'departamento',
             'codigoDivision',
@@ -69,9 +69,10 @@ const pageConfiguration = {
             'codigoGenero',
             'activo',
             'email'
+
         ],
         activeRows: [
-            'numeroLegajo',
+            'numeroLegajoExterno',
             'codigoTipoDocumento',
             'numeroDocumento',
             'codigoPais',
@@ -88,7 +89,7 @@ const pageConfiguration = {
             'email'
         ],
         inactiveRows: [
-            'numeroLegajo',
+            'numeroLegajoExterno',
             'codigoTipoDocumento',
             'numeroDocumento',
             'codigoPais',
@@ -105,7 +106,7 @@ const pageConfiguration = {
             'email'
         ],
         sortRow: [
-            'numeroLegajo',
+            'numeroLegajoExterno',
             'codigoTipoDocumento',
             'numeroDocumento',
             'codigoPais',
