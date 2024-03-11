@@ -162,11 +162,11 @@ const ParameterSercurityPassword = () => {
       result.error = true;
       result.validation.cantidadReintentos = 'Ingrese una cantidad de reintentos valida'
     }
-    if(!data.fechaValidezInicio || !data.fechaValidezInicio.trim().length <= 0){
+    if (!data.fechaValidezInicio || data.fechaValidezInicio.trim().length <= 0) {
       result.error = true;
       result.validation.fechaValidezInicio = 'Ingrese una fecha de inicio valida'
     }
-    if(!data.fechaValidezFin || !data.fechaValidezFin.trim().length <= 0){
+    if ((!data.fechaValidezFin || data.fechaValidezFin.trim().length <= 0) && data.activo == false) {
       result.error = true;
       result.validation.fechaValidezFin = 'Ingrese una fecha de fin valida'
     }
