@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ABMPage from '../ABMPage';
 import { getExternals, addExternal, updateExternal, removeExternal, getNextFileNumber } from '../../services/ExternalServices';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
-import { useTranslation } from 'react-i18next';
 
 export const arrowDownExternModel = {
     fechaEgresoExternal: '',
@@ -143,7 +142,6 @@ const getFieldTypeByName = (fieldName) => {
     else return null;
 }
 
-const { t } = useTranslation();
 const pageConfiguration = {
     show_search: true,
     show_add_button: true,
@@ -161,7 +159,7 @@ const pageConfiguration = {
             ],
         },
         activeRows: [
-            t('externalPage: numeroLegajo'),
+            'numeroLegajo',
             'nombre',
             'apellido',
             'codigoPais',
@@ -172,7 +170,7 @@ const pageConfiguration = {
             'fechaIngreso'
         ],
         inactiveRows: [
-            t('externalPage: numeroLegajo'),
+            'numeroLegajo',
             'nombre',
             'apellido',
             'codigoPais',

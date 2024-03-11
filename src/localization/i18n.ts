@@ -216,9 +216,6 @@ i18n
           regla: 'Regla',
           seguridadContrasena: 'Seguridad Contraseña',
           PasswordSecurityParam: 'Parametros Contraseña',
-          externalPage: {
-            numeroLegajo: 'ID'
-          }
         }
       }
     }
