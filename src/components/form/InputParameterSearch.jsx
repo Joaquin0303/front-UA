@@ -36,7 +36,7 @@ const InputParameterSearch = ({ validation, name, value, valueName, parameterLis
             {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
             <datalist id={name + "data-list"}>
                 {parameterListByCountry && parameterListByCountry.map((p, i) => {
-                    const v = p.codigo + ' - ' + p[fieldDescription]
+                    const v = p[fieldDescription]
                     return <option key={i} value={v}></option>
                 })}
             </datalist>
