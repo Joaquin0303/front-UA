@@ -43,15 +43,15 @@ const ViewEmployee = ({ data, closeModal }) => {
             {createCellInfo('Empleado', data['apellido'] + ' ' + data['segundoNombre'] + ' ' + data['nombre'] + ' (' + data['numeroLegajo'] + ')')}
             {createCellDataInfo('Estado', data['codigoEstadoEmpleado'], 'descripcion')}
             {createCellInfo('Nombre Preferido', data['nombrePreferido'])}
-            {createCellInfo('Genero', data['codigoGenero'].descripcion)}
+            {createCellInfo('Género', data['codigoGenero'].descripcion)}
             {createCellInfo('Documento Personal', data['codigoTipoDocumento'].descripcion + ' ' + data['numeroDocumentoPersonal'])}
             {createCellInfo('Documento Laboral', data['numeroDocumentoLaboral'])}
             {createCellDate('Fecha de Nacimiento', data, 'fechaNacimiento')}
-            {createCellDataInfo('Generacion', data['codigoGeneracion'], 'descripcion')}
+            {createCellDataInfo('Generación', data['codigoGeneracion'], 'descripcion')}
             {createCellDate('Fecha de Ingreso', data, 'fechaIngreso')}
-            {createCellDataInfo('Pais', data['codigoPais'], 'descripcion')}
+            {createCellDataInfo('País', data['codigoPais'], 'descripcion')}
             {createCellDataInfo('Oficina', data['codigoOficina'], 'descripcion')}
-            {createCellDataInfo('Direccion', data.codigoPuesto.codigoDireccion, 'descripcion')}
+            {createCellDataInfo('Dirección', data.codigoPuesto.codigoDireccion, 'descripcion')}
             {createCellDataInfo('CategoriaEmpleado', data['codigoCategoriaEmpleado'], 'descripcion')}
             {createCellDataInfo('Puesto', data['codigoPuesto'], 'descripcion')}
         </>
@@ -61,10 +61,10 @@ const ViewEmployee = ({ data, closeModal }) => {
         return <>
             <div className="modal-title">Datos Personales</div>
             {createCellDataInfo('Nacionalidad', data['codigoNacionalidad'], 'descripcion')}
-            {createCellDataInfo('Pais de Residencia', data['codigoPaisResidencia'], 'descripcion')}
+            {createCellDataInfo('País de Residencia', data['codigoPaisResidencia'], 'descripcion')}
             {createCellDataInfo('Provincia', data['codigoProvincia'], 'descripcion')}
-            {createCellInfo('calle de Residencia', data['calleResidencia'])}
-            {createCellInfo('Numero de Residencia', data['numeroResidencia'])}
+            {createCellInfo('Calle de Residencia', data['calleResidencia'])}
+            {createCellInfo('Número de Residencia', data['numeroResidencia'])}
             {createCellInfo('Departamento de Residencia', data['departamentoResidencia'])}
             {createCellInfo('Piso de Residencia', data['pisoResidencia'])}
             {createCellInfo('Localidad de Residencia', data['localidadResidencia'])}
@@ -79,18 +79,18 @@ const ViewEmployee = ({ data, closeModal }) => {
         return <>
             <div className="modal-title">Datos Laborales</div>
             {createCellDate('Fecha Ingreso Reconocida', data, 'fechaIngresoReconocida')}
-            {createCellDataInfo('Tipo Contratacion', data['codigoTipoContratacion'], 'descripcion')}
+            {createCellDataInfo('Tipo Contratación', data['codigoTipoContratacion'], 'descripcion')}
             {createCellDataInfo('Horas Semanales', data['horasSemanales'], 'descripcion')}
             {createCellDataInfo('FTE', data['fte'], 'texto2')}
-            {createCellDataInfo('Frecuencia de Liquidacion', data['codigoFrecuenciaLiquidacion'], 'descripcion')}
+            {createCellDataInfo('Frecuencia de Liquidación', data['codigoFrecuenciaLiquidacion'], 'descripcion')}
             {createCellDataInfo('Tipo Empleo', data['codigoTipoEmpleo'], 'descripcion')}
             {createCellDataInfo('Tipo Jornada', data['codigoTipoJornada'], 'descripcion')}
             {createCellInfo('Email Laboral', data['emailLaboral'])}
-            {createCellDataInfo('Division', data['codigoDivision'], 'descripcion')}
+            {createCellDataInfo('División', data['codigoDivision'], 'descripcion')}
             {createCellDataInfo('Prepaga', data['codigoPrepaga'], 'descripcion')}
             {createCellDataInfo('Obra Social', data['codigoObraSocial'], 'descripcion')}
             {createCellDataInfo('Convenio', data['codigoConvenio'], 'descripcion')}
-            {createCellDataInfo('Categoria Convenio', data['codigoCategoriaConvenio'], 'descripcion')}
+            {createCellDataInfo('Categoría Convenio', data['codigoCategoriaConvenio'], 'descripcion')}
             {createCellInfo('Afiliado al Sindicato', data['afiliadoSindicato'] ? 'Si' : 'No')}
             {createCellDataInfo('Grado', data['codigoGrado'], 'descripcion')}
         </>
