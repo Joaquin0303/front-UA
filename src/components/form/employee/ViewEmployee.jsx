@@ -52,7 +52,7 @@ const ViewEmployee = ({ data, closeModal }) => {
             {createCellDataInfo('País', data['codigoPais'], 'descripcion')}
             {createCellDataInfo('Oficina', data['codigoOficina'], 'descripcion')}
             {createCellDataInfo('Dirección', data.codigoPuesto.codigoDireccion, 'descripcion')}
-            {createCellDataInfo('CategoriaEmpleado', data['codigoCategoriaEmpleado'], 'descripcion')}
+            {createCellDataInfo('Categoría', data['codigoCategoriaEmpleado'], 'descripcion')}
             {createCellDataInfo('Puesto', data['codigoPuesto'], 'descripcion')}
         </>
     }
