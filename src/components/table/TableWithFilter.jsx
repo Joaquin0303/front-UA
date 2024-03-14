@@ -25,7 +25,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     const [exportFormats, setExportFormats] = useState('XLS')
 
     useEffect(() => {
-        const includePdf = ['international-data-collection', 'generico', 'directores', 'centro-de-costo', 'external'].indexOf(pageConfiguration.name) >= 0;
+        const includePdf = ['international-data-collection', 'generico', 'directores', 'centro-de-costo', 'externos'].indexOf(pageConfiguration.name) >= 0;
         if (includePdf) {
             setShowExportToPDF(false);
         } else {
