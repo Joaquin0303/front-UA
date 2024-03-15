@@ -35,12 +35,10 @@ const pageConfiguration = {
         actions: {
             activeActions: [
                 TABLE_ACTIONS.VIEW,
-                TABLE_ACTIONS.EDIT,
-                TABLE_ACTIONS.INACTIVATE
+                TABLE_ACTIONS.EDIT
             ],
             inactiveActions: [
-                TABLE_ACTIONS.VIEW,
-                TABLE_ACTIONS.ACTIVATE,
+                TABLE_ACTIONS.VIEW
             ],
         },
         activeRows: [
