@@ -62,7 +62,7 @@ const getFieldTypeByName = (fieldName) => {
 const pageConfiguration = {
     show_search: true,
     show_add_button: false,
-    show_active_button: false,
+    show_active_button: true,
     tableConfiguration: {
         getFieldTypeByName: getFieldTypeByName,
         actions: {
