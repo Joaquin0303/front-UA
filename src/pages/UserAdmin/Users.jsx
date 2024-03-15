@@ -154,7 +154,6 @@ const Users = () => {
     }, [statusActive]);
     const loadUsers = () => {
         getUsers().then(result => {
-            console.log('RESULTADO DE CARGAR USUARIOS=', result)
             if (result)
                 setUserList([...result.filter(d => d.activo == statusActive)]);
         });
@@ -164,10 +163,8 @@ const Users = () => {
         const validation = validate(data, action);
         if (validation.error) throw validation;
         addUser(data.numeroLegajo, data.nombreUsuario, data.activo, data.roles, data.contrasena).then(result => {
-            console.log('user saved=', result);
             data.roles && data.roles.forEach(userRole => {
                 assignRoleToUser(userRole.codigo, result.model.id).then(result => {
-                    console.log('role user saved=', result);
                     loadUsers();
                 });
             });
@@ -178,7 +175,6 @@ const Users = () => {
     }
 
     const onEdit = (data, action) => {
-        console.log('action', action)
         switch (action) {
             case TABLE_ACTIONS.INACTIVATE:
                 data.bloqueado = true;
@@ -195,7 +191,6 @@ const Users = () => {
                     if (result.codigo == 200) {
                         data.roles && data.roles.forEach(userRole => {
                             assignRoleToUser(userRole.codigo, result.model.id).then(result => {
-                                console.log('role user saved=', result);
                                 loadUsers();
                             });
                         });
@@ -210,7 +205,6 @@ const Users = () => {
                 let continuar = confirm("¿Desea desbloquear y generar una nueva contraseña para el usuario " + data.nombreUsuario + "?");
                 if (continuar) {
                     unblockUser(data.id).then(result => {
-                        console.log('Desbloqueo', result)
                         if (result.codigo == 200 && result.model.contrasena) {
                             setPopupMessage(<div className='message-min-popup'><div>La contraseña se ha generado correctamente</div><div className='password-view'> {result.model.contrasena}</div><div className='btns-container'><button className='btns-close' onClick={() => { setShowPopup(false); }}>Cerrar</button></div></div>);
                         } else {
@@ -227,7 +221,6 @@ const Users = () => {
 
     const onRemove = (data) => {
         removeUser(data.id).then(result => {
-            console.log('removed=', result);
             loadUsers();
         });
     }

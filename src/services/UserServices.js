@@ -65,12 +65,10 @@ export const getUsers = async () => {
                     else
                         return null;
                 });
-                console.log("EL U=", u)
                 return u;
             })).then(eu => {
                 return eu;
             });
-            console.log("EL R=", r)
             return r;
         } else {
             return response;

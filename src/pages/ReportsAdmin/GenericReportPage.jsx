@@ -318,7 +318,6 @@ const compare = (a, b) => {
 
 const GenericReportPage = ({ }) => {
     const [reportDataList, setReportDataList] = useState();
-    console.log('reportDataList', reportDataList)
 
     useEffect(() => {
         loadReportData(defaultFilter);

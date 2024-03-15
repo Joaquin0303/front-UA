@@ -146,7 +146,6 @@ const compare = (a, b) => {
 
 const ExternalReportPage = ({ }) => {
     const [reportDataList, setReportDataList] = useState();
-    console.log('reportDataList', reportDataList)
 
     useEffect(() => {
         loadReportData(defaultFilter);

@@ -127,7 +127,6 @@ const ParameterSercurityPassword = () => {
     const validation = validate(data);
     if (validation.error) throw validation;
     addPaswordSecurityParam(data).then(result => {
-      console.log('saved=', result);
       parameterPassword();
     });
   }
@@ -136,13 +135,11 @@ const ParameterSercurityPassword = () => {
     const validation = validate(data);
     if (validation.error) throw validation;
     updatePaswordSecurityParam(data.id, data).then(result => {
-      console.log('edited=', result);
       parameterPassword();
     });
   }
 
   const onRemove = () => {
-    console.log('removed')
   }
 
   const matchHandler = () => {

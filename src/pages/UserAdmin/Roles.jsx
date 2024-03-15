@@ -92,10 +92,8 @@ const Roles = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addRole(data.descripcion, data.activo).then(result => {
-            console.log('role saved=', result);
             data.permisos && data.permisos.forEach(permissionRole => {
                 assignPermissionToRole(result.model.codigo, permissionRole.id).then(result => {
-                    console.log('role permission saved=', result);
                     loadRoles();
                 });
             });
@@ -104,18 +102,15 @@ const Roles = () => {
     }
 
     const onEdit = (data, action) => {
-        console.log("action ss", action)
         switch (action) {
             case TABLE_ACTIONS.INACTIVATE:
                 updateRole(data.codigo, data.descripcion, data.activo).then(result => {
-                    console.log('role inactivated=', result);
                     loadRoles();
 
                 });
                 break;
             case TABLE_ACTIONS.ACTIVATE:
                 updateRole(data.codigo, data.descripcion, data.activo).then(result => {
-                    console.log('role activated=', result);
                     loadRoles();
                 });
                 break;
@@ -123,10 +118,8 @@ const Roles = () => {
                 const validation = validate(data);
                 if (validation.error) throw validation;
                 updateRole(data.codigo, data.descripcion, data.activo).then(result => {
-                    console.log('role edited=', result);
                     data.permisos && data.permisos.forEach(permissionRole => {
                         assignPermissionToRole(result.model.codigo, permissionRole.id).then(result => {
-                            console.log('role permission saved=', result);
                             loadRoles();
                         });
                     });
@@ -136,7 +129,6 @@ const Roles = () => {
 
     const onRemove = (data) => {
         removeRole(data.codigo).then(result => {
-            console.log('removed=', result);
             loadRoles();
         });
     }

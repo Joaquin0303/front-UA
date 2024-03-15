@@ -133,7 +133,6 @@ const ExcludedIncomePage = () => {
 
     const loadExcludedIcomes = () => {
         getExcludedIncomes().then(result => {
-            console.log("activos", statusActive)
             if (result.list)
                 setExcludedIncomeList(result.list);
         });
@@ -143,7 +142,6 @@ const ExcludedIncomePage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addExcludedIncome(data.employee, data.motivo, data.observaciones, data.activo).then(result => {
-            console.log('saved=', result);
             loadExcludedIcomes();
         });
     }
@@ -152,14 +150,12 @@ const ExcludedIncomePage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         updateExcludedIncome(data.id, data.employee, data.motivo, data.observaciones, data.activo).then(result => {
-            console.log('edited=', result);
             loadExcludedIcomes();
         });
     }
 
     const onRemove = (data) => {
         removeExcludedIncome(data.id).then(result => {
-            console.log('removed=', result);
             loadExcludedIcomes();
         });
     }

@@ -180,7 +180,6 @@ const LoadFamilyPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addLoadFamily(data).then(result => {
-            console.log('saved=', result);
             loadLoadFamilies();
         });
     }
@@ -189,14 +188,12 @@ const LoadFamilyPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         updateLoadFamily(data.id, data).then(result => {
-            console.log('edited=', result);
             loadLoadFamilies();
         });
     }
 
     const onRemove = (data) => {
         removeLoadFamily(data.id).then(result => {
-            console.log('removed=', result);
             loadLoadFamilies();
         });
     }

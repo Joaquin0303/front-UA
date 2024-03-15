@@ -34,7 +34,6 @@ const Login = ({ setToken }) => {
             const header = '{"alg": "HS256","typ": "JWT"}';
             const payload = '{"userId": ' + login.idUsuario + ', "numeroLegajo":' + login.numeroLegajo + ',"permissions": [' + permissionIds + '],"iat": 1516239022}';
             const jwtToken = codeToken(header, payload);
-            console.log("JWT=", jwtToken);
 
             //setToken({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WzEsMiwzXSwiZW1wbGVhZG8iOnsiY29kaWdvRGlyZWNjaW9uIjoxMjM0LCJjb2RpZ29Fc3RhZG9FbXBsZWFkbyI6ODcsImNvZGlnb0NhdGVnb3JpYUVtcGxlYWRvIjoxMjM0LCJjb2RpZ29QYWlzIjoxMjM0LCJub21icmUiOiJBZG1pbmlzdHJhZG9yIiwiYXBlbGxpZG8iOiJTaXRpbyJ9fQ.lzoKvLBSVNrwOJTWTstpRFJnm_RjMdmIBxYI-NIYaWU" });
             setToken({ token: jwtToken });
@@ -48,8 +47,6 @@ const Login = ({ setToken }) => {
         try {
             e.preventDefault();
             const response = await login(username, password).then(response => {
-                console.log('login response: ', response)
-
                 if (response.codigo == 200) {
                     if (response.model.primerAcceso) {
                         setUserId(response.model.idUsuario);
@@ -63,7 +60,7 @@ const Login = ({ setToken }) => {
                         setErrorMessage("Contraseña invalida.");
                     }
                 } else if (response.codigo == 400) {
-                    console.log(response.mensajes[0]);
+                    console.error(response.mensajes[0]);
                     switch (response.mensajes[0]) {
                         case LOGIN_MESSAGES.USER_BLOCKED:
                             setErrorMessage("Usuario inactivado, debe solicitar desbloqueo por Jira SM.")

@@ -8,14 +8,12 @@ import { parseTodayStr2 } from '../../../utils/Utils';
 const FormEmployeeLicence = ({ parameterList, data, closeModal, onSubmitForm }) => {
     const [validation, setValidation] = useState();
     const [formData, setFormData] = useState(data);
-    console.log('formData=', formData);
     const updateFormData = (key, value) => {
         formData[key] = value;
         setFormData({ ...formData });
     }
 
     const submitForm = () => {
-        console.log('Submit=', formData);
         try {
             validate(formData);
             let inactivateEmployee = confirm("El empleado será inactivado por licencia. Desea continuar?");

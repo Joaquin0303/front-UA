@@ -5,7 +5,6 @@ import { parseToday, parseTodayStr, parseTodayStr2 } from '../utils/Utils';
 const useMock = true;
 
 export const backToSchoolReportService = async (filter) => {
-    console.log("Filter backToSchoolReportService:", filter);
     //if (useMock) return backToSchoolMockData;
     const result = await axios({
         method: 'post',
@@ -22,7 +21,6 @@ export const backToSchoolReportService = async (filter) => {
 }
 
 export const costCenterReportService = async (filter) => {
-    console.log("Filter costCenterReportService:", filter);
     //if (useMock) return costCenterMockData;
     const result = await axios({
         method: 'post',
@@ -41,7 +39,6 @@ export const costCenterReportService = async (filter) => {
 }
 
 export const employmentHistoryReportService = async (filter) => {
-    console.log("Filter employmentHistoryReportService", filter);
     //if (useMock) return employmentHistoryMockData;
     const result = await axios({
         method: 'post',
@@ -63,7 +60,6 @@ export const employmentHistoryReportService = async (filter) => {
 }
 
 export const internationalDataCollectionReportService = async (filter) => {
-    console.log("Filter internationalDataCollectionReportService", filter);
     //if (useMock) return internationalDataCollectionMockData;
     const result = await axios({
         method: 'post',
@@ -80,7 +76,6 @@ export const internationalDataCollectionReportService = async (filter) => {
 }
 
 export const externalReportService = async (filter) => {
-    console.log("Filter externalReportService: ", filter);
     //if (useMock) return externalMockData;
     const result = await axios({
         method: 'post',
@@ -97,7 +92,6 @@ export const externalReportService = async (filter) => {
 }
 
 export const directorsReportService = async (filter) => {
-    console.log("Filter directorsReportService");
     //if (useMock) return directorsMockData;
     const result = await axios({
         method: 'post',
@@ -117,7 +111,6 @@ export const directorsReportService = async (filter) => {
 }
 
 export const genericReportService = async (filter) => {
-    console.log("Filter genericReportService:", filter);
     //if (useMock) return genericMockData;
     const result = await axios({
         method: 'post',
@@ -136,7 +129,6 @@ export const genericReportService = async (filter) => {
 }
 
 export const licencesReportService = async (filter) => {
-    console.log("Filter licencesReportService");
     //if (useMock) return licencesMockData;
     const result = await axios({
         method: 'post',

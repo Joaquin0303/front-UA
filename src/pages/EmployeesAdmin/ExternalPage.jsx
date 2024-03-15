@@ -296,7 +296,6 @@ const ExternalPage = () => {
         getNextFileNumber().then(r => {
             data.numeroLegajoExterno = r.model.numeroLegajoExterno ? parseInt(r.model.numeroLegajoExterno) + 1 : 1;
             addExternal(data).then(result => {
-                console.log('saved=', result);
                 loadExternals();
             });
         })
@@ -308,16 +307,13 @@ const ExternalPage = () => {
             const validation = validate(data);
             if (validation.error) throw validation;
             updateExternal(data.id, data).then(result => {
-                console.log('edited=', result);
                 loadExternals();
             })
         }
         else if (action === TABLE_ACTIONS.INACTIVATEEXTERN) {
-            console.log('acacacc', data)
             data.empleado.fechaEgreso = data.fechaEgresoExternal;
             data.empleado.activo = false;
             updateExternal(data.empleado.id, data.empleado).then(result => {
-                console.log('inactivated=', result);
                 loadExternals();
             })
         }
@@ -325,7 +321,6 @@ const ExternalPage = () => {
 
     const onRemove = (data) => {
         removeExternal(data.id).then(result => {
-            console.log('removed=', result);
             loadExternals();
         });
     }

@@ -120,7 +120,6 @@ const SequencersPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addSequencer(data.codigo, data.rangoDesde, data.rangoHasta, data.secuencia, data.activo).then(result => {
-            console.log('saved=', result);
             loadSequencers();
         });
     }
@@ -129,14 +128,12 @@ const SequencersPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         updateSequencer(data.id, data.codigo, data.rangoDesde, data.rangoHasta, data.secuencia, data.activo).then(result => {
-            console.log('edited=', result);
             loadSequencers();
         });
     }
 
     const onRemove = (data) => {
         removeSequencer(data.id).then(result => {
-            console.log('removed=', result);
             loadSequencers();
         });
     }

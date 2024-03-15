@@ -185,7 +185,6 @@ const PositionsPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addPosition(data.codigoPais, data.descripcion, data.codigoDireccion, data.codigoCentroDeCosto, data.codigoGerencia, data.codigoJefatura, data.codigoCategoria, data.codigoPuestoAlQueReporta, data.activo).then(result => {
-            console.log('saved=', result);
             loadPositions();
         });
     }
@@ -194,14 +193,12 @@ const PositionsPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         updatePosition(data.id, data.codigoPais, data.descripcion, data.codigoDireccion, data.codigoCentroDeCosto, data.codigoGerencia, data.codigoJefatura, data.codigoCategoria, data.codigoPuestoAlQueReporta, data.activo).then(result => {
-            console.log('edited=', result);
             loadPositions();
         });
     }
 
     const onRemove = (data) => {
         removePosition(data.id).then(result => {
-            console.log('removed=', result);
             loadPositions();
         });
     }

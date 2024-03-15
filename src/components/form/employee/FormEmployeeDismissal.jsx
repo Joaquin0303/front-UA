@@ -13,7 +13,6 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
     const handleOnChangeReason = (d, value) => {
         updateFormData(d, value);
         if (value && value.codigo == 'ME06') {
-            console.log('data', data)
             setDisableEndDate(true);
             updateFormData('fechaEgreso', data.fechaIngreso);
 
@@ -28,7 +27,6 @@ const FormEmployeeDismissal = ({ parameterList, data, closeModal, onSubmitForm }
     }
 
     const submitForm = () => {
-        console.log('Submit=', formData);
         try {
             validate(formData);
             let dismissEmployee = confirm("¿Está seguro que desea dar de baja al empleado?");

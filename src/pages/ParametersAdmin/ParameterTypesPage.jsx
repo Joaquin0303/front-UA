@@ -97,7 +97,6 @@ const ParameterTypesPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addParameterType(data.codigo, data.descripcion, data.activo).then(result => {
-            console.log('saved=', result);
             loadParameterTypes();
         });
     }
@@ -106,14 +105,12 @@ const ParameterTypesPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         updateParameterType(data.id, data.codigo, data.descripcion, data.activo).then(result => {
-            console.log('edited=', result);
             loadParameterTypes();
         });
     }
 
     const onRemove = (data) => {
         removeParameterType(data.id).then(result => {
-            console.log('removed=', result);
             loadParameterTypes();
         });
     }

@@ -144,7 +144,6 @@ const PasswordSecurity = () => {
     const validation = validate(data);
     if (validation.error) throw validation;
     addPaswordSecurity(data).then(result => {
-      console.log('saved=', result);
       loadPasswordSecurity();
     });
   }
@@ -153,7 +152,6 @@ const PasswordSecurity = () => {
     const validation = validate(data);
     if (validation.error) throw validation;
     updatePaswordSecurity(data.id, data).then(result => {
-      console.log('edited=', result);
       loadPasswordSecurity();
     });
   }

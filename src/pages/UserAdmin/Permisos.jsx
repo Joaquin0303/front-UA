@@ -90,7 +90,6 @@ export const Permisos = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addPermission(data.descripcion, data.codigo, data.activo).then(result => {
-            console.log('saved=', result);
             loadPermissions();
         });
     }
@@ -99,14 +98,12 @@ export const Permisos = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         updatePermission(data.id, data.descripcion, data.codigo, data.activo).then(result => {
-            console.log('edited=', result);
             loadPermissions();
         });
     }
 
     const onRemove = (data) => {
         removePermission(data.id).then(result => {
-            console.log('removed=', result);
             loadPermissions();
         });
     }

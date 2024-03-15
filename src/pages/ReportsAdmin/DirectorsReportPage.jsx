@@ -6,11 +6,7 @@ import { decodeToken } from "../../utils/Utils";
 import { searchEmployee } from '../../services/EmployeeServices';
 
 
-const FilterDataModel = {
-    estado: [87, 88],
-    codigoDireccion: null,
-    codigoGerencia: null
-}
+
 
 const ModelDefinition = [
     {
@@ -145,10 +141,13 @@ const compare = (a, b) => {
 const DirectorsReportPage = ({ }) => {
     const { token } = useToken();
 
-    console.log('user token', token);
+    const [filterDataModel, setFilterDataModel] = useState({
+        estado: [87, 88],
+        codigoDireccion: null,
+        codigoGerencia: null
+    });
 
     const [reportDataList, setReportDataList] = useState();
-    console.log('reportDataList', reportDataList)
 
     useEffect(() => {
         let numeroLegajo = 0;
@@ -160,17 +159,21 @@ const DirectorsReportPage = ({ }) => {
         }
         if (numeroLegajo) {
             searchEmployee(numeroLegajo).then(response => {
-                console.log("response empleado=", response)
                 if (response && response.list) {
                     const emp = response.list[0];
-                    console.log("emp=", emp)
                     if (emp.codigoPuesto) { // SI TIENE PUESTO
                         pageConfiguration.director.categoria = emp.codigoPuesto.codigoCategoria;
                         pageConfiguration.director.pais = emp.codigoPuesto.codigoPais;
                         pageConfiguration.director.direccion = emp.codigoPuesto.codigoDireccion;
                         if (emp.codigoPuesto.codigoCategoria.codigo == 'C01' && emp.codigoPuesto.codigoDireccion.codigo != 'DPRE') {
-                            pageConfiguration.formConfiguration.activeFields.splice(pageConfiguration.formConfiguration.activeFields.indexOf('codigoDireccion'), 1);
-                            pageConfiguration.formConfiguration.inactiveFields.splice(pageConfiguration.formConfiguration.inactiveFields.indexOf('codigoDireccion'), 1);
+                            if (pageConfiguration.formConfiguration.activeFields.indexOf('codigoDireccion') >= 0) {
+                                pageConfiguration.formConfiguration.activeFields.splice(pageConfiguration.formConfiguration.activeFields.indexOf('codigoDireccion'), 1);
+                                pageConfiguration.formConfiguration.inactiveFields.splice(pageConfiguration.formConfiguration.inactiveFields.indexOf('codigoDireccion'), 1);
+                            }
+                            if (filterDataModel) {
+                                filterDataModel.codigoDireccion = pageConfiguration.director.direccion;
+                                setFilterDataModel({ ...filterDataModel });
+                            }
                         }
                     }
                 }
@@ -186,9 +189,11 @@ const DirectorsReportPage = ({ }) => {
                 filter.codigoPais = pageConfiguration.director.pais;
             } else {
                 filter.codigoDireccion = pageConfiguration.director.direccion;
-                FilterDataModel.codigoDireccion = pageConfiguration.director.direccion;
+                if (filterDataModel) {
+                    filterDataModel.codigoDireccion = pageConfiguration.director.direccion;
+                    //setFilterDataModel({ ...filterDataModel });
+                }
             }
-            console.log('DIR DATA MODEL=', FilterDataModel.codigoDireccion)
         }
         directorsReportService(filter).then(result => {
             if (result.list) {
@@ -198,7 +203,7 @@ const DirectorsReportPage = ({ }) => {
     }
 
     return (
-        <ReportPage filterDataModel={FilterDataModel} pageConfiguration={pageConfiguration} reportDataList={reportDataList} loadReportData={loadReportData} />
+        <ReportPage filterDataModel={filterDataModel ? filterDataModel : {}} pageConfiguration={pageConfiguration} reportDataList={reportDataList} loadReportData={loadReportData} />
     )
 }
 

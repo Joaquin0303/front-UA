@@ -110,7 +110,6 @@ const compare = (a, b) => {
 
 const CostCenterReportPage = ({ }) => {
     const [reportDataList, setReportDataList] = useState();
-    console.log('reportDataList', reportDataList)
 
     useEffect(() => {
         loadReportData(defaultFilter);
@@ -119,7 +118,6 @@ const CostCenterReportPage = ({ }) => {
     const loadReportData = (filter) => {
         if (!filter) filter = defaultFilter;
         costCenterReportService(filter).then(result => {
-            console.log('result', result)
             if (result.list) {
                 setReportDataList(result.list.sort(compare));
             }

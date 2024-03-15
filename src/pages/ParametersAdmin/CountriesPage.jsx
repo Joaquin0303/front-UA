@@ -118,7 +118,6 @@ const CountriesPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addCountry(data.codigo, data.descripcion, data.secuenciador, data.activo).then(result => {
-            console.log('saved=', result);
             loadCountries();
         });
     }
@@ -127,14 +126,12 @@ const CountriesPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         updateCountry(data.id, data.descripcion, data.codigo, data.secuenciador, data.activo).then(result => {
-            console.log('edited=', result);
             loadCountries();
         });
     }
 
     const onRemove = (data) => {
         removeCountry(data.id).then(result => {
-            console.log('removed=', result);
             loadCountries();
         });
     }

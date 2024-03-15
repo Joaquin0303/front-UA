@@ -20,8 +20,6 @@ const InputParameterSearch = ({ validation, name, value, valueName, parameterLis
     const paramSelectorChangeHandler = (e) => {
         setFieldValue(e.target.value);
         const value = parameterListByCountry.find(p => e.target.value.indexOf(p[fieldDescription]) >= 0);
-        console.log("EL PARAMETRO = ", parameterListByCountry);
-        console.log("EL TARGET = ", e.target.value);
         if (value && value.id > 0) {
             updateFormData(name, {
                 id: value.id

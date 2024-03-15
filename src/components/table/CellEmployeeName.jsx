@@ -6,7 +6,6 @@ const CellEmployeeName = ({ numeroLegajo }) => {
     const [employee, setEmployee] = useState();
 
     useEffect(() => {
-        console.log('numeroLegajo', numeroLegajo)
         if (numeroLegajo)
             searchEmployee(numeroLegajo).then(r => {
                 if (r.list) {

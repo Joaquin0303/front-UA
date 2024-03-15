@@ -135,7 +135,6 @@ const PositionChangesPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addPositionChange(data).then(result => {
-            console.log('saved=', result);
             loadPositionChanges();
         });
     }
@@ -144,14 +143,12 @@ const PositionChangesPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         updatePositionChange(data.id, data).then(result => {
-            console.log('edited=', result);
             loadPositionChanges();
         });
     }
 
     const onRemove = (data) => {
         removePositionChange(data.id).then(result => {
-            console.log('removed=', result);
             loadPositionChanges();
         });
     }

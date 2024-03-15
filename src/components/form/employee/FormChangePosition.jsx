@@ -17,7 +17,6 @@ const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) =
     }
 
     const submitForm = () => {
-        console.log('Submit=', formData);
         try {
             validate(formData);
             let changePosition = confirm("Confirma el cambio de puesto?");

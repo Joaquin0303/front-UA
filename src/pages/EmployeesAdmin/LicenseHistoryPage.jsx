@@ -157,11 +157,8 @@ const LicensesPage = () => {
                 const validation = validateRenovation(data);
                 if (validation.error) throw validation;
                 addLicense(data.empleado, data.empleado.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, true).then(nLicenceResult => {
-                    console.log('Licence added=', nLicenceResult);
                     getLicenseById(data.id).then(originalLicence => {
-                        console.log('Original Licence', originalLicence)
                         updateLicense(originalLicence.model.id, originalLicence.model.empleado, originalLicence.model.numeroLegajo, originalLicence.model.fechaInicio, originalLicence.model.fechaFin, originalLicence.model.tipoLicencia, false).then(oLicenceResult => {
-                            console.log('Licence disabled=', oLicenceResult);
                             loadLicenses();
                         });
                     });
@@ -178,21 +175,17 @@ const LicensesPage = () => {
                 let putdownLicence = confirm("Desea dar de baja la licencia y reactivar el empleado?");
                 if (putdownLicence) {
                     updateLicense(data.id, data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, false).then(result => {
-                        console.log('Putdown Licence=', result);
                         result.model.empleado.codigoEstadoEmpleado = {
                             id: 87 // ACTIVATE EMPLOYEE
                         };
                         updateEmployee(result.model.empleado.id, result.model.empleado).then(resultEmp => {
-                            console.log('Update employee=', resultEmp);
                             loadLicenses();
                         })
                     });
                 }
                 break;
             case TABLE_ACTIONS.EDIT:
-                console.log('licence edit', data)
                 updateLicense(data.id, data.empleado, data.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, data.activo).then(result => {
-                    console.log('edited=', result);
                     loadLicenses();
                 });
                 break;
@@ -204,7 +197,6 @@ const LicensesPage = () => {
 
     const onRemove = (data) => {
         removeLicense(data.numeroLegajo).then(result => {
-            console.log('removed=', result);
             loadLicenses();
         });
     }

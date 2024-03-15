@@ -147,7 +147,6 @@ const ParametersPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         addParameter(data.codigo, data.tipoParametro, data.descripcion, data.texto1, data.texto2, data.activo).then(result => {
-            console.log('saved=', result);
             loadParameters();
         });
     }
@@ -156,14 +155,12 @@ const ParametersPage = () => {
         const validation = validate(data);
         if (validation.error) throw validation;
         updateParameter(data.id, data.tipoParametro, data.codigo, data.descripcion, data.texto1, data.texto2, data.activo).then(result => {
-            console.log('edited=', result);
             loadParameters();
         });
     }
 
     const onRemove = (data) => {
         removeParameter(data.id).then(result => {
-            console.log('removed=', result);
             loadParameters();
         });
     }

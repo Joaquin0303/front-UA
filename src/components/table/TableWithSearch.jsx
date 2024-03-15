@@ -26,7 +26,6 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
     }
 
     const openModalForm = (modal, action, data) => {
-        console.log('modal', modal)
         setFormData(data);
         setActionForm(action);
         if (modal == MODAL_FORM.DYNAMICMODAL) {
@@ -40,7 +39,6 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
 
     const onSubmitForm = (data, defaultAction) => {
         const action = actionForm ? actionForm : defaultAction;
-        console.log('action', action)
         switch (action) {
             case TABLE_ACTIONS.ADD: onAdd(data, actionForm); break;
             case TABLE_ACTIONS.EDIT: onEdit(data, TABLE_ACTIONS.EDIT); break;
@@ -57,7 +55,7 @@ const TableWithSearch = ({ pageConfiguration, pageName, dataList, dataModel, onA
             case TABLE_ACTIONS.UNBLOCK: onEdit(data, TABLE_ACTIONS.UNBLOCK); break;
             case 'remove': onRemove(data); break;
             default:
-                console.log("NON SUBMIT");
+                console.warn("NON SUBMIT");
         }
     }
 

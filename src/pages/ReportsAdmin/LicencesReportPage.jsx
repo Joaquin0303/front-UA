@@ -166,7 +166,6 @@ const compare = (a, b) => {
 
 const LicencesReportPage = ({ }) => {
     const [reportDataList, setReportDataList] = useState();
-    console.log('reportDataList', reportDataList)
 
     useEffect(() => {
         loadReportData(defaultFilter);

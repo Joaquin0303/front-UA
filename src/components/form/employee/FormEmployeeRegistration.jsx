@@ -16,15 +16,12 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
     const [validation, setValidation] = useState();
     const [formStep, setFormStep] = useState(action == TABLE_ACTIONS.ADD || action == TABLE_ACTIONS.ACTIVATE ? 0 : 1);
 
-    console.log('formData=', formData);
-
     const updateFormData = (key, value) => {
         formData[key] = value;
         setFormData({ ...formData });
     }
 
     const submitForm = () => {
-        console.log('Submit=', formData);
         try {
             validateStep(formData);
             onSubmitForm(formData)

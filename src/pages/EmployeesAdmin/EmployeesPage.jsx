@@ -259,14 +259,12 @@ const EmployeesPage = ({ }) => {
                         if (seq1.model.secuencia <= seq1.model.rangoHasta) {
                             data.numeroLegajo = seq1.model.secuencia;
                             addEmployee(data).then(result => {
-                                console.log('Employee added=', result);
                                 loadEmployees();
                                 getSequencerById(seq1.model.id).then(seq2 => {
                                     if (seq1.model.secuencia == seq2.model.secuencia + 1)
                                         updateSequencer(seq1.model.id, seq1.model.codigo, seq1.model.rangoDesde, seq1.model.rangoHasta, seq1.model.secuencia, seq1.model.activo);
                                 });
                                 setShowPopup(true);
-                                console.log(`Empleado con el numero de legajo: ${data.numeroLegajo} agregado correctamente`);
                                 let message = `Empleado con el numero de legajo: ${data.numeroLegajo} agregado correctamente`;
                                 let timePopup = 3000;
                                 if (seq1.model.secuencia == seq1.model.rangoHasta) {
@@ -281,7 +279,6 @@ const EmployeesPage = ({ }) => {
                             });
                         } else {
                             setShowPopup(true);
-                            console.log(`Numero de secuencia ${seq1.model.secuencia} exede el rango del secuenciador`);
                             setPopupMessage(`El empleado ${data.nombre} ${data.apellido} no se ha podido dar de alta debido a que no hay número disponible para su legajo`);
 
                             setTimeout(() => {
@@ -296,7 +293,6 @@ const EmployeesPage = ({ }) => {
                 const validationLicence = validateLicence(data);
                 if (validationLicence.error) throw validationLicence;
                 addLicense(data.empleado, data.empleado.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, true).then(licenceResult => {
-                    console.log('Licence added=', licenceResult);
                     data.empleado.codigoEstadoEmpleado = {
                         id: 88
                     }
@@ -309,7 +305,6 @@ const EmployeesPage = ({ }) => {
                 const validationFamily = validateFamily(data);
                 if (validationFamily.error) throw validationFamily;
                 addLoadFamily(data).then(result => {
-                    console.log('saved=', result);
                 });
                 break;
             default:
@@ -326,7 +321,6 @@ const EmployeesPage = ({ }) => {
                 const employeeId = data.id;
                 delete data["id"];
                 updateEmployee(employeeId, data).then(r => {
-                    console.log('Employee updated=', r);
                     loadEmployees();
                 });
                 break;
@@ -340,19 +334,15 @@ const EmployeesPage = ({ }) => {
                                 const lastPosition = hp.list.find(p => p.fechaFinPuesto == null);
                                 lastPosition.fechaFinPuesto = fechaFinLastPuesto;
                                 updatePositionChange(lastPosition.id, lastPosition).then(r => {
-                                    console.log('Position History Updated', r)
                                 });
                             } else {
                                 addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, oldEmp.model.fechaIngresoReconocida, fechaFinLastPuesto, true).then(r => {
-                                    console.log('Old Position History Added', r)
                                 });
                             }
                             addPositionChange(data.numeroLegajo, data.codigoPais, data.codigoOficina, data.codigoPuesto.codigoDireccion, data.codigoPuesto.codigoGerencia, data.codigoPuesto.codigoJefatura, data.codigoPuesto, data.fechaInicioPuesto, null, true).then(r => {
-                                console.log('New Position History Added', r)
                             });
 
                             updateEmployee(data.id, data).then(r => {
-                                console.log('Employee updated=', r);
                                 loadEmployees();
                             });
                         })
@@ -364,11 +354,9 @@ const EmployeesPage = ({ }) => {
                 if (data.codigoTipoEgreso && data.codigoTipoEgreso.codigo == 'ME06') {
                     data.fechaEgreso = data.fechaIngreso;
                     addExcludedIncome(data, data.codigoTipoEgreso.descripcion, data.observaciones, true).then(excludeResult => {
-                        console.log('Excluded Income added=', excludeResult);
                     });
                 }
                 updateEmployee(data.id, data).then(r => {
-                    console.log('Employee updated=', r);
                     loadEmployees();
                 });
                 break;
@@ -377,29 +365,22 @@ const EmployeesPage = ({ }) => {
                 const validationLicence = validateLicence(data, oldLicence);
                 if (validationLicence.error) throw validationLicence;
                 updateLicense(oldLicence.id, oldLicence.empleado, oldLicence.numeroLegajo, oldLicence.fechaInicio, oldLicence.fechaFin, oldLicence.tipoLicencia, false).then(r => {
-                    console.log('Licence inactivated=', r);
                     addLicense(data.empleado, data.empleado.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, true).then(r => {
-                        console.log('Licence added=', r);
                     });
                 });
 
                 break;
             case TABLE_ACTIONS.PUTDOWNLICENCE:
-                console.log('data.licence', data.licence)
                 data.licence.fechaFin = data.fechaFin;
                 const validationPutDownLicence = validatePutDownLicence(data.licence);
-                console.log(validationPutDownLicence)
                 if (validationPutDownLicence.error) throw validationPutDownLicence;
                 let putdownLicence = confirm("Desea dar de baja la licencia y reactivar el empleado?");
                 if (putdownLicence) {
-                    console.log('Data Licencia=', data)
                     updateLicense(data.licence.id, data.licence.empleado, data.licence.numeroLegajo, data.licence.fechaInicio, data.licence.fechaFin, data.licence.tipoLicencia, false).then(result => {
-                        console.log('Putdown Licence=', result);
                         result.model.empleado.codigoEstadoEmpleado = {
                             id: 87 // ACTIVATE EMPLOYEE
                         };
                         updateEmployee(result.model.empleado.id, result.model.empleado).then(resultEmp => {
-                            console.log('Update employee=', resultEmp);
                             loadEmployees();
                         })
                     });
@@ -412,7 +393,6 @@ const EmployeesPage = ({ }) => {
 
     const onRemove = (data) => {
         removeEmployee(data.id).then(result => {
-            console.log('Employee removed=', result);
             loadEmployees();
         });
     }

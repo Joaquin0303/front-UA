@@ -56,7 +56,6 @@ function App() {
 
     const handleOffline = () => {
       setIsOnline(false);
-      console.log('vpn disconectted');
       alert('Se ha desconectado la VPN. Ingrese nuevamente');
       setToken(null);
     };
@@ -91,7 +90,7 @@ function App() {
         setToken(null)
       }
       else {
-        console.log(response.model.activo)
+        //console.log(response.model.activo)
       }
     })
   };

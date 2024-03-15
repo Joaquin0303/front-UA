@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { updatePassword } from '../services/UserServices'
 import PasswordRules from '../pages/UserAdmin/PasswordRules';
+import { FaEye } from 'react-icons/fa';
 
 export const ChangePassword = ({ userId, handleChangePassword, isEdge }) => {
 
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [errorMessage, setErrorMessage] = useState();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async e => {
     try {
@@ -19,11 +21,9 @@ export const ChangePassword = ({ userId, handleChangePassword, isEdge }) => {
         setErrorMessage('Las contraseñas no son idénticas, por favor ingresar la misma contraseña en ambos campos.');
         return;
       }
-      console.log('change password: ', password);
       if (password) {
         setErrorMessage('');
         updatePassword(userId, password).then(r => {
-          console.log('change password response: ', r);
           if (r.codigo == 400) {
             setErrorMessage("Ingrese una contraseña que cumpla con los requisitos indicados.");
           } else {
@@ -32,7 +32,7 @@ export const ChangePassword = ({ userId, handleChangePassword, isEdge }) => {
         });
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
       setErrorMessage(e);
     }
   }

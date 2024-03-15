@@ -12,7 +12,6 @@ const useToken = () => {
 
     const saveToken = userToken => {
         if (userToken && userToken.token) {
-            console.log('userToken', userToken.token);
             sessionStorage.setItem('token', JSON.stringify(userToken));
             setToken(userToken.token);
         } else {

@@ -12,7 +12,6 @@ import { Spinner } from "reactstrap";
 import '../../styles/Filter.css'
 
 const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, loadReportData }) => {
-    console.log("filterDataModel=", filterDataModel)
     const [showModalForm, setShowModalForm] = useState(false);
     const [showButtonDelete, setShowButtonDelete] = useState(false);
     const [formData, setFormData] = useState();
@@ -40,7 +39,6 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     }, [filterDataModel]);
 
     useEffect(() => {
-        console.log('reportDataList loading', reportDataList)
         if (reportDataList)
             setLoading(false);
     }, [reportDataList]);
@@ -50,7 +48,6 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
     }
 
     const openModalForm = (data) => {
-        console.log('open Form Modal with data=', data)
         setFormData(data);
         setShowModalForm(true);
     }

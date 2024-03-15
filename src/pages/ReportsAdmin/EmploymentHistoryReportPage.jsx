@@ -120,7 +120,6 @@ const compare = (a, b) => {
 
 const EmploymentHistoryReportPage = ({ }) => {
     const [reportDataList, setReportDataList] = useState();
-    console.log('reportDataList', reportDataList)
 
     useEffect(() => {
         loadReportData(defaultFilter);
@@ -129,7 +128,6 @@ const EmploymentHistoryReportPage = ({ }) => {
     const loadReportData = (filter) => {
         if (!filter) filter = defaultFilter;
         employmentHistoryReportService(filter).then(result => {
-            console.log('Report Result', result)
             if (result.list) {
                 setReportDataList(result.list.sort(compare));
             }
