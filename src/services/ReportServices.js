@@ -293,9 +293,6 @@ const directorsMockData = {
             codigoPuesto: { // Descripcion
                 id: 1
             },
-            codigoCategoriaEmpleado: {
-                id: 1
-            },
             codigoPuestoJefe: { // A Quien reporta ?
                 id: 1
             },

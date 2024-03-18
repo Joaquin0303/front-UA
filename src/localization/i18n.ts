@@ -52,7 +52,6 @@ i18n
           numeroDocumentoPersonal: "Nro. Doc. Personal",
           numeroDocumentoLaboral: "Nro. Doc. Laboral",
           codigoOficina: "Oficina",
-          codigoCategoriaEmpleado: "Categoría del Empleado",
           codigoPuesto: "Puesto",
           codigoNacionalidad: "Nacionalidad",
           codigoPaisResidencia: "País Residencia",

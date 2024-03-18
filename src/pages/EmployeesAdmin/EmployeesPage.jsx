@@ -148,7 +148,6 @@ const pageConfiguration = {
             'codigoTipoEmpleo',
             'codigoTipoJornada',
             'emailLaboral',
-            'codigoCategoriaEmpleado',
             'codigoDivision',
             'codigoCentroDeCosto',
             'codigoPrepaga',
@@ -259,27 +258,32 @@ const EmployeesPage = ({ }) => {
                         if (seq1.model.secuencia <= seq1.model.rangoHasta) {
                             data.numeroLegajo = seq1.model.secuencia;
                             addEmployee(data).then(result => {
-                                loadEmployees();
-                                getSequencerById(seq1.model.id).then(seq2 => {
-                                    if (seq1.model.secuencia == seq2.model.secuencia + 1)
-                                        updateSequencer(seq1.model.id, seq1.model.codigo, seq1.model.rangoDesde, seq1.model.rangoHasta, seq1.model.secuencia, seq1.model.activo);
-                                });
-                                setShowPopup(true);
-                                let message = `Empleado con el numero de legajo: ${data.numeroLegajo} agregado correctamente`;
-                                let timePopup = 3000;
-                                if (seq1.model.secuencia == seq1.model.rangoHasta) {
-                                    message += `.\n Se ha llegado al máximo número de secuencia, recuerde actualizar el secuenciador antes de ingresar un nuevo empleado.`;
-                                    timePopup = 6000;
-                                }
-                                setPopupMessage(message);
+                                if (result.codigo == 200) {
+                                    loadEmployees();
+                                    getSequencerById(seq1.model.id).then(seq2 => {
+                                        if (seq1.model.secuencia == seq2.model.secuencia + 1)
+                                            updateSequencer(seq1.model.id, seq1.model.codigo, seq1.model.rangoDesde, seq1.model.rangoHasta, seq1.model.secuencia, seq1.model.activo);
+                                    });
+                                    setShowPopup(true);
+                                    let message = `Empleado con el numero de legajo: ${data.numeroLegajo} agregado correctamente`;
+                                    let timePopup = 3000;
+                                    if (seq1.model.secuencia == seq1.model.rangoHasta) {
+                                        message += `.\n Se ha llegado al máximo número de secuencia, recuerde actualizar el secuenciador antes de ingresar un nuevo empleado.`;
+                                        timePopup = 6000;
+                                    }
+                                    setPopupMessage(message);
 
-                                setTimeout(() => {
-                                    setShowPopup(false);
-                                }, timePopup);
+                                    setTimeout(() => {
+                                        setShowPopup(false);
+                                    }, timePopup);
+                                } else {
+                                    alert(result.mensajes);
+                                }
                             });
                         } else {
                             setShowPopup(true);
-                            setPopupMessage(`El empleado ${data.nombre} ${data.apellido} no se ha podido dar de alta debido a que no hay número disponible para su legajo`);
+                            setPopupMessage(`El empleado ${data.nombre
+                                } ${data.apellido} no se ha podido dar de alta debido a que no hay número disponible para su legajo`);
 
                             setTimeout(() => {
                                 setShowPopup(false);
