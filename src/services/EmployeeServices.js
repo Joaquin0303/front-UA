@@ -39,7 +39,6 @@ export const updateEmployee = async (employeeId, employee) => {
 }
 
 export const addEmployee = async (employee) => {
-    employee.nombre = null;
     const result = await axios({
         method: 'post',
         url: host + '/ua/empleado',
