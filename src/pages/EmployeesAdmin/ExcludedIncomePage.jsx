@@ -140,10 +140,16 @@ const ExcludedIncomePage = () => {
 
     const onAdd = (data) => {
         const validation = validate(data);
-        if (validation.error) throw validation;
-        addExcludedIncome(data.employee, data.motivo, data.observaciones, data.activo).then(result => {
-            loadExcludedIcomes();
-        });
+        if (validation.error) {
+            throw validation;
+        }
+        addExcludedIncome(data.employee, data.motivo, data.observaciones, data.activo)
+            .then(result => {
+                loadExcludedIcomes();
+            })
+            .catch(error => {
+                alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
+            });
     }
 
     const onEdit = (data) => {
@@ -151,12 +157,16 @@ const ExcludedIncomePage = () => {
         if (validation.error) throw validation;
         updateExcludedIncome(data.id, data.employee, data.motivo, data.observaciones, data.activo).then(result => {
             loadExcludedIcomes();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
     const onRemove = (data) => {
         removeExcludedIncome(data.id).then(result => {
             loadExcludedIcomes();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

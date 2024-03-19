@@ -277,7 +277,7 @@ const EmployeesPage = ({ }) => {
                                         setShowPopup(false);
                                     }, timePopup);
                                 } else {
-                                    alert(result.mensajes);
+                                    alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                                 }
                             });
                         } else {
@@ -302,6 +302,8 @@ const EmployeesPage = ({ }) => {
                     }
                     updateEmployee(data.empleado.id, data.empleado).then(empResult => {
                         loadEmployees();
+                    }).catch(error => {
+                        alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                     });
                 });
                 break;
@@ -309,6 +311,8 @@ const EmployeesPage = ({ }) => {
                 const validationFamily = validateFamily(data);
                 if (validationFamily.error) throw validationFamily;
                 addLoadFamily(data).then(result => {
+                }).catch(error => {
+                    alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                 });
                 break;
             default:
@@ -326,6 +330,8 @@ const EmployeesPage = ({ }) => {
                 delete data["id"];
                 updateEmployee(employeeId, data).then(r => {
                     loadEmployees();
+                }).catch(error => {
+                    alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                 });
                 break;
             case TABLE_ACTIONS.CHANGEPOSITION:
@@ -348,6 +354,8 @@ const EmployeesPage = ({ }) => {
 
                             updateEmployee(data.id, data).then(r => {
                                 loadEmployees();
+                            }).catch(error => {
+                                alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                             });
                         })
 
@@ -362,6 +370,8 @@ const EmployeesPage = ({ }) => {
                 }
                 updateEmployee(data.id, data).then(r => {
                     loadEmployees();
+                }).catch(error => {
+                    alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                 });
                 break;
             case TABLE_ACTIONS.RENEWLICENCE:
@@ -371,6 +381,8 @@ const EmployeesPage = ({ }) => {
                 updateLicense(oldLicence.id, oldLicence.empleado, oldLicence.numeroLegajo, oldLicence.fechaInicio, oldLicence.fechaFin, oldLicence.tipoLicencia, false).then(r => {
                     addLicense(data.empleado, data.empleado.numeroLegajo, data.fechaInicio, data.fechaFin, data.tipoLicencia, true).then(r => {
                     });
+                }).catch(error => {
+                    alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                 });
 
                 break;
@@ -387,6 +399,8 @@ const EmployeesPage = ({ }) => {
                         updateEmployee(result.model.empleado.id, result.model.empleado).then(resultEmp => {
                             loadEmployees();
                         })
+                    }).catch(error => {
+                        alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                     });
                 }
                 break;
@@ -398,6 +412,8 @@ const EmployeesPage = ({ }) => {
     const onRemove = (data) => {
         removeEmployee(data.id).then(result => {
             loadEmployees();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

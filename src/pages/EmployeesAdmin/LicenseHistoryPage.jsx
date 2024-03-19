@@ -161,6 +161,8 @@ const LicensesPage = () => {
                         updateLicense(originalLicence.model.id, originalLicence.model.empleado, originalLicence.model.numeroLegajo, originalLicence.model.fechaInicio, originalLicence.model.fechaFin, originalLicence.model.tipoLicencia, false).then(oLicenceResult => {
                             loadLicenses();
                         });
+                    }).catch(error => {
+                        alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                     });
                 });
                 break;
@@ -181,6 +183,8 @@ const LicensesPage = () => {
                         updateEmployee(result.model.empleado.id, result.model.empleado).then(resultEmp => {
                             loadLicenses();
                         })
+                    }).catch(error => {
+                        alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                     });
                 }
                 break;
@@ -198,6 +202,8 @@ const LicensesPage = () => {
     const onRemove = (data) => {
         removeLicense(data.numeroLegajo).then(result => {
             loadLicenses();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

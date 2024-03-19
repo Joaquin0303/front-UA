@@ -136,6 +136,8 @@ const PositionChangesPage = () => {
         if (validation.error) throw validation;
         addPositionChange(data).then(result => {
             loadPositionChanges();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -144,12 +146,16 @@ const PositionChangesPage = () => {
         if (validation.error) throw validation;
         updatePositionChange(data.id, data).then(result => {
             loadPositionChanges();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
     const onRemove = (data) => {
         removePositionChange(data.id).then(result => {
             loadPositionChanges();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

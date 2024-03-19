@@ -181,6 +181,8 @@ const LoadFamilyPage = () => {
         if (validation.error) throw validation;
         addLoadFamily(data).then(result => {
             loadLoadFamilies();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -189,12 +191,16 @@ const LoadFamilyPage = () => {
         if (validation.error) throw validation;
         updateLoadFamily(data.id, data).then(result => {
             loadLoadFamilies();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
     const onRemove = (data) => {
         removeLoadFamily(data.id).then(result => {
             loadLoadFamilies();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

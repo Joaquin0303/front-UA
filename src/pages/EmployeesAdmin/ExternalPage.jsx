@@ -298,8 +298,9 @@ const ExternalPage = () => {
             addExternal(data).then(result => {
                 loadExternals();
             });
-        })
-
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
+        });
     }
 
     const onEdit = (data, action) => {
@@ -308,20 +309,26 @@ const ExternalPage = () => {
             if (validation.error) throw validation;
             updateExternal(data.id, data).then(result => {
                 loadExternals();
-            })
+            }).catch(error => {
+                alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
+            });
         }
         else if (action === TABLE_ACTIONS.INACTIVATEEXTERN) {
             data.empleado.fechaEgreso = data.fechaEgresoExternal;
             data.empleado.activo = false;
             updateExternal(data.empleado.id, data.empleado).then(result => {
                 loadExternals();
-            })
+            }).catch(error => {
+                alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
+            });
         }
     }
 
     const onRemove = (data) => {
         removeExternal(data.id).then(result => {
             loadExternals();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
