@@ -6,7 +6,7 @@ const InputParameterSearch = ({ validation, name, value, valueName, parameterLis
 
     const fieldDescription = valueName ? valueName : "descripcion";
 
-    const [fieldValue, setFieldValue] = useState(value && value.id > 0 ? value.codigo + ' - ' + value[fieldDescription] : '')
+    const [fieldValue, setFieldValue] = useState(value && value.id > 0 ? value[fieldDescription] : '')
 
     const parameterListByCountry = !country ? parameterList : parameterList.filter(p => p.texto1 == country.codigo);
 
