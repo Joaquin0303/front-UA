@@ -19,7 +19,7 @@ const InputPositionLead = ({ validation, name, value, updateFormData, fieldUpdat
 
     const handleOnChange = (e) => {
         setFieldValue(e.target.value);
-        const positionSelected = positionList.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
+        const positionSelected = positionList.filter(p => p.descripcion == e.target.value.toLowerCase()) >= 0);
         if (positionSelected && positionSelected.length == 1) {
             updateFormData(name, positionSelected[0]);
         } else {
