@@ -119,6 +119,8 @@ const CountriesPage = () => {
         if (validation.error) throw validation;
         addCountry(data.codigo, data.descripcion, data.secuenciador, data.activo).then(result => {
             loadCountries();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -127,12 +129,16 @@ const CountriesPage = () => {
         if (validation.error) throw validation;
         updateCountry(data.id, data.descripcion, data.codigo, data.secuenciador, data.activo).then(result => {
             loadCountries();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
     const onRemove = (data) => {
         removeCountry(data.id).then(result => {
             loadCountries();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

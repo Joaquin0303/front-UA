@@ -186,6 +186,8 @@ const PositionsPage = () => {
         if (validation.error) throw validation;
         addPosition(data.codigoPais, data.descripcion, data.codigoDireccion, data.codigoCentroDeCosto, data.codigoGerencia, data.codigoJefatura, data.codigoCategoria, data.codigoPuestoAlQueReporta, data.activo).then(result => {
             loadPositions();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -194,12 +196,16 @@ const PositionsPage = () => {
         if (validation.error) throw validation;
         updatePosition(data.id, data.codigoPais, data.descripcion, data.codigoDireccion, data.codigoCentroDeCosto, data.codigoGerencia, data.codigoJefatura, data.codigoCategoria, data.codigoPuestoAlQueReporta, data.activo).then(result => {
             loadPositions();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
     const onRemove = (data) => {
         removePosition(data.id).then(result => {
             loadPositions();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

@@ -145,7 +145,9 @@ const PasswordSecurity = () => {
     if (validation.error) throw validation;
     addPaswordSecurity(data).then(result => {
       loadPasswordSecurity();
-    });
+    }).catch(error => {
+      alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
+  });
   }
 
   const onEdit = (data) => {
@@ -153,7 +155,9 @@ const PasswordSecurity = () => {
     if (validation.error) throw validation;
     updatePaswordSecurity(data.id, data).then(result => {
       loadPasswordSecurity();
-    });
+    }).catch(error => {
+      alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
+  });
   }
 
   const onRemove = () => { }

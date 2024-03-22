@@ -128,7 +128,9 @@ const ParameterSercurityPassword = () => {
     if (validation.error) throw validation;
     addPaswordSecurityParam(data).then(result => {
       parameterPassword();
-    });
+    }).catch(error => {
+      alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
+  });
   }
 
   const onEdit = (data) => {
@@ -136,7 +138,9 @@ const ParameterSercurityPassword = () => {
     if (validation.error) throw validation;
     updatePaswordSecurityParam(data.id, data).then(result => {
       parameterPassword();
-    });
+    }).catch(error => {
+      alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
+  });
   }
 
   const onRemove = () => {
