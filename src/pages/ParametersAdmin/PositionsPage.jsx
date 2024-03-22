@@ -237,7 +237,7 @@ const PositionsPage = () => {
             result.error = true;
             result.validation.codigoPais = "Seleccione un pais"
         }
-        if ((!data.codigoPuestoAlQueReporta || data.codigoPuestoAlQueReporta.id <= 0) && !data.codigoPuestoAlQueReporta.id == 193 ){
+        if ((!data.codigoPuestoAlQueReporta || data.codigoPuestoAlQueReporta.id <= 0) && (!data.id || (data.id && data.id != 193))) {
             result.error = true;
             result.validation.codigoPuestoAlQueReporta = "Seleccione puesto a quien reporta"
         }
