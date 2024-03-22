@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getPositions } from "../../services/PositionServices";
-const InputPositionCode = ({ validation, name, value, disabled, updateFormData, directionCode, countryCode, categoryCode, currentPositionId, mandatory }) => {
+
+const InputPositionCode = ({ validation, name, value, disabled, updateFormData, directionCode, countryCode, currentPositionId, mandatory }) => {
 
 
     const [fieldValue, setFieldValue] = useState(value && value.id > 0 ? value.descripcion : '')
-
+    const [firstLoad, setFirstLoad] = useState(true);
     const [positionList, setPositionList] = useState([]);
     const [positionListFiltered, setPositionListFiltered] = useState([]);
 
@@ -15,6 +16,12 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
         else
             setFieldValue(value.descripcion);
     }
+
+    useEffect(() => {
+        if (!firstLoad)
+            setFieldValue('');
+        setFirstLoad(false);
+    }, [directionCode, countryCode]);
 
     const posSelectorChangeHandler = (e) => {
         setFieldValue(e.target.value);
@@ -36,18 +43,17 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
     }, []);
 
     useEffect(() => {
-        if (directionCode || countryCode || categoryCode) {
+        if (directionCode || countryCode) {
             setPositionListFiltered(positionList.filter(d =>
                 d.activo == true
                 && (!currentPositionId || d.id != currentPositionId)
                 && (!directionCode || directionCode.id == 0 || d.codigoDireccion?.id == directionCode.id)
                 && (!countryCode || countryCode.id == 0 || d.codigoPais?.id == countryCode.id)
-                && (!categoryCode || categoryCode.id == 0 || d.codigoCategoria?.id == categoryCode.id)
             ));
         } else {
             setPositionListFiltered([]);
         }
-    }, [directionCode, countryCode, categoryCode, positionList]);
+    }, [directionCode, countryCode, positionList]);
 
     return (
         <div className='form-group'>
