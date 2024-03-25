@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getPositions } from "../../services/PositionServices";
+import { stringToInteger } from "../../utils/Utils";
 
-const InputPositionLead = ({ validation, name, value, updateFormData, fieldUpdated, currentPositionId }) => {
+const InputPositionLead = ({ validation, name, value, updateFormData, category, fieldUpdated, currentPositionId }) => {
 
     const [fieldValue, setFieldValue] = useState(value && value.id > 0 ? value.descripcion : '')
-
+    const [positionFilteredList, setPositionFilteredList] = useState([]);
     const [positionList, setPositionList] = useState([]);
-    const [positionListFiltered, setPositionListFiltered] = useState([]);
-    const [filter, setFilter] = useState([]);
+
+    useEffect(() => {
+        setPositionFilteredList(positionList.filter(p => !category || stringToInteger(p.codigoCategoria.texto2, 0) <= stringToInteger(category.texto2, 0)));
+    }, [category, positionList]);
 
     const handleOnBlur = (e) => {
         if (!value || value.id == 0)
@@ -36,71 +39,13 @@ const InputPositionLead = ({ validation, name, value, updateFormData, fieldUpdat
         });
     }, []);
 
-    useEffect(() => {
-        if (fieldUpdated && fieldUpdated.key == 'codigoCategoria') {
-            if (fieldUpdated.value.id == 24) {
-                setFilter([...filter, {
-                    key: 'codigoDireccion',
-                    value: {
-                        id: 81
-                    },
-                    source: 'codigoCategoria'
-                }]);
-            } else {
-                setFilter(filter.filter(f => !f.source || f.source != 'codigoCategoria'));
-            }
-            updateFormData(name, {
-                id: 0,
-            });
-            setFieldValue('');
-        } else if (fieldUpdated && fieldUpdated.key == 'codigoDireccion') {
-            if (!filter || filter.length == 0) {
-                setFilter([fieldUpdated]);
-            } else {
-                const dirFilter = filter.find(f => !f.source || f.source != 'codigoCategoria');
-                if (!dirFilter) {
-                    setFilter([...filter, fieldUpdated]);
-                } else {
-                    dirFilter.value = fieldUpdated.value;
-                    setFilter([...filter]);
-                }
-            }
-            updateFormData(name, {
-                id: 0,
-            });
-            setFieldValue('');
-        }
-    }, [fieldUpdated]);
-
-    useEffect(() => {
-        setPositionListFiltered(positionList.filter(d => {
-            let filtersToApplay = filter.filter(f => f.source == 'codigoCategoria');
-            if (filtersToApplay.length == 0) filtersToApplay = filter;
-
-            return d.activo == true
-                && (!currentPositionId || d.id != currentPositionId)
-                && filtersToApplay.find(f => f.value.id == d[f.key].id);
-        }
-        ));
-    }, [filter]);
-
-    useEffect(() => {
-        if (value && value.id > 0) {
-            setPositionListFiltered(positionList.filter(d =>
-                d.activo == true
-                && (!currentPositionId || d.id != currentPositionId)
-                && d.codigoDireccion.id == value.codigoDireccion.id
-            ));
-        }
-    }, [positionList]);
-
     return (
         <div className='form-group'>
             <label className='label' htmlFor="id">{i18n.t(name)}</label>
             <input onBlur={handleOnBlur} autoComplete="off" list="position-data-list" type="text" name={name} value={fieldValue} onChange={handleOnChange} />
             {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
             <datalist id="position-data-list">
-                {positionListFiltered && positionListFiltered.map((p, i) => {
+                {positionFilteredList && positionFilteredList.map((p, i) => {
                     return <option key={i} value={p.descripcion}></option>
                 })}
             </datalist>

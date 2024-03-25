@@ -97,7 +97,8 @@ const Roles = () => {
                     loadRoles();
                 });
             });
-
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -123,6 +124,8 @@ const Roles = () => {
                             loadRoles();
                         });
                     });
+                }).catch(error => {
+                    alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
                 });
         }
     }
@@ -130,6 +133,8 @@ const Roles = () => {
     const onRemove = (data) => {
         removeRole(data.codigo).then(result => {
             loadRoles();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

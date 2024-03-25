@@ -171,6 +171,8 @@ const Users = () => {
             if (!data.roles || data.roles.length == 0) {
                 loadUsers();
             }
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -198,7 +200,9 @@ const Users = () => {
                             loadUsers();
                         }
                     }
-                })
+                }).catch(error => {
+                    alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
+                });
                 break;
             case TABLE_ACTIONS.UNBLOCK:
 
@@ -222,6 +226,8 @@ const Users = () => {
     const onRemove = (data) => {
         removeUser(data.id).then(result => {
             loadUsers();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

@@ -96,6 +96,8 @@ const ParameterTypesPage = () => {
         if (validation.error) throw validation;
         addParameterType(data.codigo, data.descripcion, data.activo).then(result => {
             loadParameterTypes();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -104,12 +106,16 @@ const ParameterTypesPage = () => {
         if (validation.error) throw validation;
         updateParameterType(data.id, data.codigo, data.descripcion, data.activo).then(result => {
             loadParameterTypes();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
     const onRemove = (data) => {
         removeParameterType(data.id).then(result => {
             loadParameterTypes();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

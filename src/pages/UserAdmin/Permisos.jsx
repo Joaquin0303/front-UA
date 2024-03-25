@@ -91,6 +91,8 @@ export const Permisos = () => {
         if (validation.error) throw validation;
         addPermission(data.descripcion, data.codigo, data.activo).then(result => {
             loadPermissions();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -99,12 +101,16 @@ export const Permisos = () => {
         if (validation.error) throw validation;
         updatePermission(data.id, data.descripcion, data.codigo, data.activo).then(result => {
             loadPermissions();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
     const onRemove = (data) => {
         removePermission(data.id).then(result => {
             loadPermissions();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 

@@ -186,6 +186,8 @@ const PositionsPage = () => {
         if (validation.error) throw validation;
         addPosition(data.codigoPais, data.descripcion, data.codigoDireccion, data.codigoCentroDeCosto, data.codigoGerencia, data.codigoJefatura, data.codigoCategoria, data.codigoPuestoAlQueReporta, data.activo).then(result => {
             loadPositions();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -194,12 +196,16 @@ const PositionsPage = () => {
         if (validation.error) throw validation;
         updatePosition(data.id, data.codigoPais, data.descripcion, data.codigoDireccion, data.codigoCentroDeCosto, data.codigoGerencia, data.codigoJefatura, data.codigoCategoria, data.codigoPuestoAlQueReporta, data.activo).then(result => {
             loadPositions();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
     const onRemove = (data) => {
         removePosition(data.id).then(result => {
             loadPositions();
+        }).catch(error => {
+            alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
         });
     }
 
@@ -236,6 +242,10 @@ const PositionsPage = () => {
         if (!data.codigoPais || data.codigoPais.id <= 0) {
             result.error = true;
             result.validation.codigoPais = "Seleccione un pais"
+        }
+        if ((!data.codigoPuestoAlQueReporta || data.codigoPuestoAlQueReporta.id <= 0) && (!data.id || (data.id && data.id != 193))) {
+            result.error = true;
+            result.validation.codigoPuestoAlQueReporta = "Seleccione puesto a quien reporta"
         }
 
         return result;
