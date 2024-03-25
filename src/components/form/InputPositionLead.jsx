@@ -10,7 +10,7 @@ const InputPositionLead = ({ validation, name, value, updateFormData, category, 
     const [positionList, setPositionList] = useState([]);
 
     useEffect(() => {
-        setPositionFilteredList(positionList.filter(p => !category || stringToInteger(p.codigoCategoria.texto2, 0) >= stringToInteger(category.texto2, 0)));
+        setPositionFilteredList(positionList.filter(p => !category || stringToInteger(p.codigoCategoria.texto2, 0) <= stringToInteger(category.texto2, 0)));
     }, [category, positionList]);
 
     const handleOnBlur = (e) => {
