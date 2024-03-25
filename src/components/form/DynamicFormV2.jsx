@@ -83,7 +83,7 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm, acti
                     case 'position':
                         return <InputPosition key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} fieldUpdated={fieldUpdated} />
                     case 'leaderPosition':
-                        return <InputPositionLead key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} fieldUpdated={fieldUpdated} currentPositionId={formData['id']} />
+                        return <InputPositionLead key={i} validation={validation} name={key} value={formData[key]} category={formData['codigoCategoria']} updateFormData={updateFormData} fieldUpdated={fieldUpdated} currentPositionId={formData['id']} />
                     case 'role':
                         return <InputRole key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
                     case 'permission':

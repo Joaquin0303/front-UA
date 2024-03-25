@@ -88,3 +88,13 @@ export const base64url = (source) => {
 
     return encodedSource;
 }
+
+export const stringToInteger = (strNumber, defNumber) => {
+    const n = parseInt(strNumber, 10);
+    if (!isNaN(n)) {
+        return n;
+    } else {
+        console.warn('stringToInteger return default number.');
+        return defNumber;
+    }
+}
