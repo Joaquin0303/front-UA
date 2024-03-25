@@ -17,6 +17,8 @@ import InputParameterSearch from './InputParameterSearch';
 import InputParameterByDirection from './InputParameterByDirection';
 import InputPassword from './InputPassword';
 import { TABLE_ACTIONS } from '../../utils/GeneralConstants';
+import InputCheckbox from './InputCheckbox';
+import InputRadioButton from './InputRadioButton';
 
 const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm, actionForm }) => {
 
@@ -94,6 +96,10 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm, acti
                         return <InputCountry key={i} multiple={fieldType.multivalue} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />;
                     case 'sequencer':
                         return <InputSequencer key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
+                    case 'checkbox':
+                        return <InputCheckbox key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
+                    case 'radiobutton':
+                        return <InputRadioButton key={i} validation={validation} name={key} value={formData[key]} updateFormData={updateFormData} />
                     default:
                 }
             }
