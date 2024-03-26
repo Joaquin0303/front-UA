@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 
 const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list }) => {
 
-    const r0 = '(?=.*?[A-Z])';
-    const r1 = '(?=.*?[a-z])';
-    const r2 = '(?=.*?[0-9])';
-    const r3 = '(?=.*?[#?!@$%^&*-])';
-    const r4 = '.{8,16}';
+    const r0 = { pattern: '(?=.*?[A-Z])', rule: 'Mayúsculas (A...Z)' };
+    const r1 = { pattern: '(?=.*?[a-z])', rule: 'Minúsculas (a...z)' };
+    const r2 = { pattern: '(?=.*?[0-9])', rule: 'Dígitos (0...9)' };
+    const r3 = { pattern: '(?=.*?[#?!@$%^&*-])', rule: 'Símbolos (!...?)' };
+    const r4 = { pattern: '.{8,16}', rule: 'Longitud (8 a 16)' };
+
     const ruleDefinition = [r0, r1, r2, r3, r4];
 
     const [rules, setRules] = useState([
@@ -47,11 +48,15 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
         if (getRuleLength() > 0) {
             let result = '^';
             rules.forEach(rule => {
-                result += rule.name;
+                if (rule.name.pattern)
+                    result += rule.name.pattern;
             });
             result += '$';
+            updateFormData('patron', result);
+            //updateFormData('regla', result);
             setRuleResult(result);
         } else {
+            updateFormData('patron', "");
             setRuleResult("");
         }
     }
@@ -65,6 +70,7 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
                 const updatedValues = [...prevValues];
                 updatedValues[value].name = ruleDefinition[value];
                 updatedValues[value].active = true;
+                console.log('updatedValues', updatedValues)
                 return updatedValues;
             });
         } else {
@@ -74,6 +80,7 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
                     const updatedValues = [...prevValues];
                     updatedValues[value].name = '';
                     updatedValues[value].active = false;
+                    console.log('updatedValues', updatedValues)
                     return updatedValues;
                 });
             } else {
