@@ -51,6 +51,10 @@ const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) =
             result.error = true;
             result.validation.fechaInicioPuesto = "Ingrese una fecha"
         }
+        if (data.position != null && !data.position) {
+            result.error = true;
+            result.validation.codigoPuesto = "El puesto seleccionado ya esta asignado a otro empleado."
+        }
         if (data.fechaInicioPuesto) {
             const fechaInicioPuesto = parseInputDate(data.fechaInicioPuesto);
             if (fechaInicioPuesto <= parseToday()) {
@@ -72,7 +76,7 @@ const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) =
                         <InputParameter validation={validation} name="codigoOficina" value={formData["codigoOficina"]} parameterList={parameterList.filter(p => p.tipoParametro.id == 19)} updateFormData={updateFormData} country={formData["codigoPais"]} mandatory={true} />
                         <InputParameter validation={validation} name="codigoDireccion" value={formData['codigoDireccion']} parameterList={parameterList.filter(p => p.tipoParametro.id == 6)} updateFormData={updateFormData} mandatory={true} />
                         <InputDate validation={validation} name="fechaInicioPuesto" value={formData["fechaInicioPuesto"]} updateFormData={updateFormData} mandatory={true} />
-                        <InputPositionCode validation={validation} name="codigoPuesto" value={formData["codigoPuesto"]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} countryCode={formData['codigoPais']} currentPositionId={formData['id']} mandatory={true} />
+                        <InputPositionCode validation={validation} name="codigoPuesto" value={formData["codigoPuesto"]} updateFormData={updateFormData} directionCode={formData['codigoDireccion']} countryCode={formData['codigoPais']} currentPositionId={formData.codigoPuesto['id']} mandatory={true} />
 
                         <InputText disabled={true} validation={validation} name="Categoría" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoCategoria ? formData['codigoPuesto'].codigoCategoria.descripcion : ""} />
                         <InputText disabled={true} validation={validation} name="A quien reporta" updateFormData={() => { }} value={formData['codigoPuesto'] && formData['codigoPuesto'].codigoPuestoAlQueReporta ? formData['codigoPuesto'].codigoPuestoAlQueReporta.descripcion : ""} />

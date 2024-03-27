@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from "react";
 import i18n from "../../localization/i18n";
 import { getPositions } from "../../services/PositionServices";
+import { existsEmployeeWithPosition } from "../../services/EmployeeServices";
 
 const InputPositionCode = ({ validation, name, value, disabled, updateFormData, directionCode, countryCode, currentPositionId, mandatory }) => {
-
-
     const [fieldValue, setFieldValue] = useState(value && value.id > 0 ? value.descripcion : '')
     const [firstLoad, setFirstLoad] = useState(true);
     const [positionList, setPositionList] = useState([]);
     const [positionListFiltered, setPositionListFiltered] = useState([]);
+    const [originalPosition, setOriginalPosition] = useState(currentPositionId);
 
     const handleOnBlur = (e) => {
         if (!value || value.id == 0)
             setFieldValue('');
         else
             setFieldValue(value.descripcion);
+    }
+
+    const validateAndUpdatePosition = (position) => {
+        if ((originalPosition == position.id) || !position.codigoCategoria.texto1 || (position.codigoCategoria.texto1 && position.codigoCategoria.texto1.toLowerCase() != 'si')) {
+            updateFormData(name, position);
+        } else {
+            existsEmployeeWithPosition(position.id).then(response => {
+                if (!response) {
+                    updateFormData(name, position);
+                } else {
+                    updateFormData('position', false);
+                }
+            })
+        }
     }
 
     useEffect(() => {
@@ -25,9 +39,11 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
 
     const posSelectorChangeHandler = (e) => {
         setFieldValue(e.target.value);
+        updateFormData('position', null);
         const positionSelected = positionListFiltered.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
+
         if (positionSelected && positionSelected.length == 1) {
-            updateFormData(name, positionSelected[0]);
+            validateAndUpdatePosition(positionSelected[0]);
         } else {
             updateFormData(name, {
                 id: 0,
@@ -38,7 +54,7 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
     useEffect(() => {
         getPositions().then(result => {
             if (result.list)
-                setPositionList(result.list.filter(d => d.activo == true && (!currentPositionId || d.id != currentPositionId)));
+                setPositionList(result.list.filter(d => d.activo == true));
         });
     }, []);
 
@@ -46,7 +62,6 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
         if (directionCode || countryCode) {
             setPositionListFiltered(positionList.filter(d =>
                 d.activo == true
-                && (!currentPositionId || d.id != currentPositionId)
                 && (!directionCode || directionCode.id == 0 || d.codigoDireccion?.id == directionCode.id)
                 && (!countryCode || countryCode.id == 0 || d.codigoPais?.id == countryCode.id)
             ));
