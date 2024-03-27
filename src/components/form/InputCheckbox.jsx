@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 
 const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list }) => {
 
-    const r0 = { pattern: '(?=.*?[A-Z])', rule: 'Mayúsculas (A...Z)' };
-    const r1 = { pattern: '(?=.*?[a-z])', rule: 'Minúsculas (a...z)' };
-    const r2 = { pattern: '(?=.*?[0-9])', rule: 'Dígitos (0...9)' };
-    const r3 = { pattern: '(?=.*?[#?!@$%^&*-])', rule: 'Símbolos (!...?)' };
-    const r4 = { pattern: '.{8,16}', rule: 'Longitud (8 a 16)' };
+    const r0 = { pattern: '(?=.*?[A-Z])', nopattern: '', rule: 'Mayúsculas (A...Z)', norule: '' };
+    const r1 = { pattern: '(?=.*?[a-z])', nopattern: '', rule: 'Minúsculas (a...z)', norule: '' };
+    const r2 = { pattern: '(?=.*?[0-9])', nopattern: '', rule: 'Dígitos (0...9)', norule: '' };
+    const r3 = { pattern: '(?=.*?[#?!@$%^&*-])', nopattern: '', rule: 'Símbolos (!...?)', norule: '' };
+    const r4 = { pattern: '.{8,16}', nopattern: '.*', rule: 'Longitud (8 a 16)', norule: '' };
 
     const ruleDefinition = [r0, r1, r2, r3, r4];
 
@@ -52,6 +52,11 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
                 if (rule.active) {
                     resultPattern += rule.name.pattern;
                     resultRule += rule.name.rule + ", ";
+                } else {
+                    console.log('rule', rule.name)
+                    resultPattern += rule.name.nopattern;
+                    if (rule.name.norule)
+                        resultRule += rule.name.norule + ", ";
                 }
             });
             resultPattern += '$';
@@ -82,7 +87,7 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
                 console.log(`Uncheck ${value}`);
                 setRules((prevValues) => {
                     const updatedValues = [...prevValues];
-                    updatedValues[value].name = '';
+                    //updatedValues[value].name = '';
                     updatedValues[value].active = false;
                     console.log('updatedValues', updatedValues)
                     return updatedValues;
