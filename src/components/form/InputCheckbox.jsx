@@ -13,23 +13,23 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
     const [rules, setRules] = useState([
         {
             name: r0,
-            active: true
+            active: !value || value.includes(r0.rule)
         },
         {
             name: r1,
-            active: true
+            active: !value || value.includes(r1.rule)
         },
         {
             name: r2,
-            active: true
+            active: !value || value.includes(r2.rule)
         },
         {
             name: r3,
-            active: true
+            active: !value || value.includes(r3.rule)
         },
         {
             name: r4,
-            active: true
+            active: !value || value.includes(r4.rule)
         }
     ]);
     const [ruleResult, setRuleResult] = useState("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$");
@@ -49,10 +49,8 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
             let resultPattern = '^';
             let resultRule = '';
             rules.forEach(rule => {
-                if (rule.name.pattern) {
+                if (rule.active) {
                     resultPattern += rule.name.pattern;
-                }
-                if (rule.name.rule) {
                     resultRule += rule.name.rule + ", ";
                 }
             });
@@ -96,19 +94,30 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
     };
 
     return (
-        <div>
-            <input value="0" type="checkbox" onChange={updateRule} checked={rules[0].active} />Mayúsculas (A...Z)
-            <br />
-            <input value="1" type="checkbox" onChange={updateRule} checked={rules[1].active} />Minúsculas (a...z)
-            <br />
-            <input value="2" type="checkbox" onChange={updateRule} checked={rules[2].active} />Dígitos (0...9)
-            <br />
-            <input value="3" type="checkbox" onChange={updateRule} checked={rules[3].active} />Símbolos (!...?)
-            <br />
-            <input value="4" type="checkbox" onChange={updateRule} checked={rules[4].active} />Longitud (8 a 16)
-            <br />
+        <>
+            <div className='form-check form-switch'>
+                <label className='label' htmlFor="id">Mayúsculas (A...Z)</label>
+                <input className='form-check-input' value="0" type="checkbox" onChange={updateRule} checked={rules[0].active} />
+            </div>
+            <div className='form-check form-switch'>
+                <label className='label' htmlFor="id">Minúsculas (a...z)</label>
+                <input className='form-check-input' value="1" type="checkbox" onChange={updateRule} checked={rules[1].active} />
+            </div>
+            <div className='form-check form-switch'>
+                <label className='label' htmlFor="id">Dígitos (0...9)</label>
+                <input className='form-check-input' value="2" type="checkbox" onChange={updateRule} checked={rules[2].active} />
+            </div>
+            <div className='form-check form-switch'>
+                <label className='label' htmlFor="id">Símbolos (!...?)</label>
+                <input className='form-check-input' value="3" type="checkbox" onChange={updateRule} checked={rules[3].active} />
+            </div>
+            <div className='form-check form-switch'>
+                <label className='label' htmlFor="id">Longitud (8 a 16)</label>
+                <input className='form-check-input' value="4" type="checkbox" onChange={updateRule} checked={rules[4].active} />
+            </div>
             <p id="error"></p>
-        </div>
+
+        </>
     )
 }
 
