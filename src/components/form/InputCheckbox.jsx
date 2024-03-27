@@ -108,10 +108,6 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
             <input value="4" type="checkbox" onChange={updateRule} checked={rules[4].active} />Longitud (8 a 16)
             <br />
             <p id="error"></p>
-            {/* <div>
-                <label>Regla resultante:</label>
-                <input type="text" contentEditable={false} value={ruleResult} readOnly={true} />
-            </div> */}
         </div>
     )
 }

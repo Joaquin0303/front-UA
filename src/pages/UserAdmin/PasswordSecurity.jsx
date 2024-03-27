@@ -27,7 +27,7 @@ const ModelDefinition = [
   },
   {
     fieldName: 'regla',
-    type: 'string',
+    type: 'checkbox',
   },
   {
     fieldName: 'activo',
@@ -147,7 +147,7 @@ const PasswordSecurity = () => {
       loadPasswordSecurity();
     }).catch(error => {
       alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
-  });
+    });
   }
 
   const onEdit = (data) => {
@@ -157,7 +157,7 @@ const PasswordSecurity = () => {
       loadPasswordSecurity();
     }).catch(error => {
       alert('¡Ups! Ocurrió un error. Inténtelo de nuevo o inicie sesión nuevamente');
-  });
+    });
   }
 
   const onRemove = () => { }
