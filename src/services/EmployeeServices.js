@@ -77,3 +77,15 @@ export const searchEmployee = async (numeroLegajo) => {
     })
     return result.data;
 }
+
+export const existsEmployeeWithPosition = async (positionId) => {
+    const result = await axios({
+        method: 'get',
+        url: host + '/ua/empleado/existeempleadoenpuesto/' + positionId
+    }).then(response => {
+        return response;
+    }).catch(error => {
+        throw error;
+    })
+    return result.data;
+}
