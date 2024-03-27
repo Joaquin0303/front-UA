@@ -156,6 +156,10 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
             result.error = true;
             result.validation.fechaIngreso = "Ingrese fecha de ingreso";
         }
+        if (data.position != null && !data.position) {
+            result.error = true;
+            result.validation.codigoPuesto = "El puesto seleccionado ya esta asignado a otro empleado."
+        }
         if (data.fechaIngreso && data.fechaIngreso.trim().length > 0) {
             if (data.fechaNacimiento && data.fechaNacimiento.trim().length > 0) {
                 const fn = parseInputDate(data.fechaNacimiento);
