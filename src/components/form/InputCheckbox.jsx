@@ -46,15 +46,21 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
 
     const createRule = () => {
         if (getRuleLength() > 0) {
-            let result = '^';
+            let resultPattern = '^';
+            let resultRule = '';
             rules.forEach(rule => {
-                if (rule.name.pattern)
-                    result += rule.name.pattern;
+                if (rule.name.pattern) {
+                    resultPattern += rule.name.pattern;
+                }
+                if (rule.name.rule) {
+                    resultRule += rule.name.rule + ", ";
+                }
             });
-            result += '$';
-            updateFormData('patron', result);
-            //updateFormData('regla', result);
-            setRuleResult(result);
+            resultPattern += '$';
+            resultRule = resultRule.slice(0, -2);
+            updateFormData('patron', resultPattern);
+            updateFormData('regla', resultRule);
+            setRuleResult(resultPattern);
         } else {
             updateFormData('patron', "");
             setRuleResult("");
@@ -102,10 +108,10 @@ const InputCheckbox = ({ validation, name, value, updateFormData, disabled, list
             <input value="4" type="checkbox" onChange={updateRule} checked={rules[4].active} />Longitud (8 a 16)
             <br />
             <p id="error"></p>
-            <div>
+            {/* <div>
                 <label>Regla resultante:</label>
                 <input type="text" contentEditable={false} value={ruleResult} readOnly={true} />
-            </div>
+            </div> */}
         </div>
     )
 }
