@@ -26,6 +26,7 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
                 if (!response) {
                     updateFormData(name, position);
                 } else {
+                    updateFormData(name, position);
                     setLocalValidation("El puesto seleccionado ya esta asignado a otro empleado.");
                     updateFormData('position', false);
                 }
