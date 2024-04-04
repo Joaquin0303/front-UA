@@ -9,6 +9,7 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
     const [positionList, setPositionList] = useState([]);
     const [positionListFiltered, setPositionListFiltered] = useState([]);
     const [originalPosition, setOriginalPosition] = useState(currentPositionId);
+    const [localValidation, setLocalValidation] = useState();
 
     const handleOnBlur = (e) => {
         if (!value || value.id == 0)
@@ -25,6 +26,7 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
                 if (!response) {
                     updateFormData(name, position);
                 } else {
+                    setLocalValidation("El puesto seleccionado ya esta asignado a otro empleado.");
                     updateFormData('position', false);
                 }
             })
@@ -40,6 +42,7 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
     const posSelectorChangeHandler = (e) => {
         setFieldValue(e.target.value);
         updateFormData('position', null);
+        setLocalValidation(null);
         const positionSelected = positionListFiltered.filter(p => p.descripcion.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0);
 
         if (positionSelected && positionSelected.length == 1) {
@@ -75,6 +78,7 @@ const InputPositionCode = ({ validation, name, value, disabled, updateFormData, 
             <label className='label' htmlFor="id">{i18n.t(name)}{mandatory && "*"}</label>
             <input onBlur={handleOnBlur} autoComplete="off" disabled={disabled} list="position-data-list" type="text" name={name} value={fieldValue} onChange={posSelectorChangeHandler} required={mandatory} />
             {validation && validation[name] && <div className="form-field-error-msg">{validation[name]}</div>}
+            {!validation && localValidation && <div className="form-field-error-msg">{localValidation}</div>}
             <datalist id="position-data-list">
                 {positionListFiltered && positionListFiltered.map((p, i) => {
                     return <option key={i} value={p.descripcion}></option>
