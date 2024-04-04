@@ -98,7 +98,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
             {!loading && pageConfiguration.tableConfiguration.hiddenRows && <PartialReportMessage formats={exportFormats} />}
 
             <div className='export-container' ref={targetRef}>
-                {!loading && reportDataList.length > 0 && (
+                {!loading && (
 
                     <Table tableConfiguration={pageConfiguration.tableConfiguration} dataList={reportDataList} />
 
