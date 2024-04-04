@@ -40,7 +40,7 @@ const ViewEmployee = ({ data, closeModal }) => {
     const createView1 = () => {
         return <>
             <div className="modal-title">Datos Mínimos</div>
-            {createCellInfo('Empleado', data['apellido'] + ' ' + data['segundoNombre'] + ' ' + data['nombre'] + ' (' + data['numeroLegajo'] + ')')}
+            {createCellInfo('Empleado', data['apellido'] + ' ' + (data['segundoNombre'] ? data['segundoNombre'] + ' ' : '') + data['nombre'] + ' (' + data['numeroLegajo'] + ')')}
             {createCellDataInfo('Estado', data['codigoEstadoEmpleado'], 'descripcion')}
             {createCellInfo('Nombre Preferido', data['nombrePreferido'])}
             {createCellInfo('Género', data['codigoGenero'].descripcion)}
