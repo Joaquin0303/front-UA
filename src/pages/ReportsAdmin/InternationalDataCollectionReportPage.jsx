@@ -26,7 +26,12 @@ const ModelDefinition = [
     {
         fieldName: 'startDate',
         type: 'calendar'
+    },
+    {
+        fieldName: 'termDate',
+        type: 'calendar'
     }
+
 ]
 
 const getFieldTypeByName = (fieldName) => {
@@ -197,9 +202,9 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (a.globalId < b.globalId) {
+    if (parseInt(a.globalId) < parseInt(b.globalId)) {
         return -1;
-    } else if (a.globalId > b.globalId) {
+    } else if (parseInt(a.globalId) > parseInt(b.globalId)) {
         return 1;
     } else {
         return 0;

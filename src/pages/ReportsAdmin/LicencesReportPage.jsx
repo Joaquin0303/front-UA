@@ -154,14 +154,13 @@ const pageConfiguration = {
 }
 
 const compare = (a, b) => {
-    if (a.numeroLegajo < b.numeroLegajo) {
+    if (parseInt(a.numeroLegajo) < parseInt(b.numeroLegajo)) {
         return -1;
-    } else if (a.numeroLegajo > b.numeroLegajo) {
+    } else if (parseInt(a.numeroLegajo) > parseInt(b.numeroLegajo)) {
         return 1;
     } else {
         return 0;
     }
-
 }
 
 const LicencesReportPage = ({ }) => {
