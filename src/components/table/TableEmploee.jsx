@@ -14,6 +14,16 @@ import { putDownLicenceModel } from "../../pages/EmployeesAdmin/LicenseHistoryPa
 
 const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
 
+    const [foundData, setFoundData] = useState();
+
+    useEffect(() => {
+        if (dataList && dataList.length > 0) {
+            setFoundData(true);
+        } else {
+            setFoundData(false);
+        }
+    }, [dataList]);
+
     const openLicenceModal = (emp) => {
         const licence = { ...LicenseModel };
         licence.empleado = emp;
@@ -44,65 +54,67 @@ const TableEmployee = ({ tableConfiguration, dataList, openModalForm }) => {
     }
 
     return (
-        <div className='table-wrapper' >
-            <table className='table' style={{ width: '80%' }}>
-                <thead>
-                    <tr>
-                        <th>Legajo</th>
-                        <th>Apellido</th>
-                        <th>Nombre</th>
-                        <th>País</th>
-                        <th>Puesto</th>
-                        <th>Dirección</th>
-                        <th>Gerencia</th>
-                        <th>Estado</th>
-                        <th style={{ width: '20%' }}>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {dataList.map((d, i) => {
-                        return <tr key={i} className={d.codigoEstadoEmpleado.id == 88 ? 'table-row-status-inactive' : ''} title={d.codigoEstadoEmpleado.id == 88 ? 'Inactivo' : 'Activo'}>
-                            <td className='first-column'>{d.numeroLegajo}</td>
-                            <td>{d.apellido}</td>
-                            <td>{d.nombre}</td>
-                            <td>{d.codigoPais.descripcion}</td>
-                            <td>{d.codigoPuesto.descripcion}</td>
-                            <td>{d.codigoPuesto.codigoDireccion.descripcion}</td>
-                            <td>{d.codigoPuesto.codigoGerencia ? d.codigoPuesto.codigoGerencia.descripcion : ''}</td>
-                            <td>{d.codigoEstadoEmpleado.descripcion}</td>
-                            <td className='expand'>
-                                <span className='actions'>
-                                    {<div title="Ver" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.VIEW, d); }}>
-                                        <IoEyeSharp />
-                                    </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Editar" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.EDIT, d); }}>
-                                        <BsFillPencilFill />
-                                    </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.PUTDOWN, d); }}>
-                                        <FaArrowDown />
-                                    </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); openLicenceModal(d); }}>
-                                        <TbLicense />
-                                    </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cargar Familia" onClick={(e) => { e.stopPropagation(); openAddFamilyModal(d); }}>
-                                        <MdFamilyRestroom />
-                                    </div>}
-                                    {d.codigoEstadoEmpleado.id == 87 && <div title="Cambio De Puesto" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.CHANGEPOSITION, d); }}>
-                                        <TbStatusChange />
-                                    </div>}
-                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Renovar Licencia" onClick={(e) => { e.stopPropagation(); openRenewLicenceModal(d); }}>
-                                        <TbLicense />
-                                    </div>}
-                                    {d.codigoEstadoEmpleado.id == 88 && <div title="Finalizar Licencia" onClick={(e) => { e.stopPropagation(); openPutdownLicenceModal(d); }}>
-                                        <TbLicenseOff />
-                                    </div>}
-                                </span>
-                            </td>
+        <>
+            <div className='table-wrapper' >
+                <table className='table' style={{ width: '80%' }}>
+                    <thead>
+                        <tr>
+                            <th>Legajo</th>
+                            <th>Apellido</th>
+                            <th>Nombre</th>
+                            <th>País</th>
+                            <th>Puesto</th>
+                            <th>Dirección</th>
+                            <th>Gerencia</th>
+                            <th>Estado</th>
+                            <th style={{ width: '20%' }}>Acciones</th>
                         </tr>
-                    })}
-                </tbody>
-            </table>
-        </div >
+                    </thead>
+                    <tbody>
+                        {dataList.map((d, i) => {
+                            return <tr key={i} className={d.codigoEstadoEmpleado.id == 88 ? 'table-row-status-inactive' : ''} title={d.codigoEstadoEmpleado.id == 88 ? 'Inactivo' : 'Activo'}>
+                                <td className='first-column'>{d.numeroLegajo}</td>
+                                <td>{d.apellido}</td>
+                                <td>{d.nombre}</td>
+                                <td>{d.codigoPais.descripcion}</td>
+                                <td>{d.codigoPuesto.descripcion}</td>
+                                <td>{d.codigoPuesto.codigoDireccion.descripcion}</td>
+                                <td>{d.codigoPuesto.codigoGerencia ? d.codigoPuesto.codigoGerencia.descripcion : ''}</td>
+                                <td>{d.codigoEstadoEmpleado.descripcion}</td>
+                                <td className='expand'>
+                                    <span className='actions'>
+                                        {<div title="Ver" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.VIEW, d); }}>
+                                            <IoEyeSharp />
+                                        </div>}
+                                        {d.codigoEstadoEmpleado.id == 87 && <div title="Editar" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.EDIT, d); }}>
+                                            <BsFillPencilFill />
+                                        </div>}
+                                        {d.codigoEstadoEmpleado.id == 87 && <div title="Dar de Baja" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.PUTDOWN, d); }}>
+                                            <FaArrowDown />
+                                        </div>}
+                                        {d.codigoEstadoEmpleado.id == 87 && <div title="Dar Licencia" onClick={(e) => { e.stopPropagation(); openLicenceModal(d); }}>
+                                            <TbLicense />
+                                        </div>}
+                                        {d.codigoEstadoEmpleado.id == 87 && <div title="Cargar Familia" onClick={(e) => { e.stopPropagation(); openAddFamilyModal(d); }}>
+                                            <MdFamilyRestroom />
+                                        </div>}
+                                        {d.codigoEstadoEmpleado.id == 87 && <div title="Cambio De Puesto" onClick={(e) => { e.stopPropagation(); openModalForm(MODAL_FORM.EMPLOYEEMODAL, TABLE_ACTIONS.CHANGEPOSITION, d); }}>
+                                            <TbStatusChange />
+                                        </div>}
+                                        {d.codigoEstadoEmpleado.id == 88 && <div title="Renovar Licencia" onClick={(e) => { e.stopPropagation(); openRenewLicenceModal(d); }}>
+                                            <TbLicense />
+                                        </div>}
+                                        {d.codigoEstadoEmpleado.id == 88 && <div title="Finalizar Licencia" onClick={(e) => { e.stopPropagation(); openPutdownLicenceModal(d); }}>
+                                            <TbLicenseOff />
+                                        </div>}
+                                    </span>
+                                </td>
+                            </tr>
+                        })}
+                    </tbody>
+                </table>
+            </div >
+        </>
     )
 }
 
