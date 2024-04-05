@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import '../../styles/abm.css'
 import { IoEyeSharp } from "react-icons/io5";
 import { BsFillPencilFill } from 'react-icons/bs'
