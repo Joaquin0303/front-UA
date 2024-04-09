@@ -35,7 +35,7 @@ const TableWithFilter = ({ filterDataModel, pageConfiguration, reportDataList, l
 
     useEffect(() => {
         setOriginalData(JSON.parse(JSON.stringify(filterDataModel)));
-        setFilter(filterDataModel);
+        setFilter(JSON.parse(JSON.stringify(filterDataModel)));
     }, [filterDataModel]);
 
     useEffect(() => {
