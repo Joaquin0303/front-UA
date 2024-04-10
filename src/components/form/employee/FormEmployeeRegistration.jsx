@@ -63,7 +63,7 @@ const FormEmployeeRegistration = ({ action, parameterList, data, closeModal, onS
                     if (e1.id > e2.id) return -1;
                     else return 1;
                 })[0];
-                let reingresar = confirm("¿Desea reingresar el empleado " + employee.apellido + " " + employee.nombre + " con número de legajo " + employee.numeroLegajo + "?");
+                let reingresar = confirm("¿Desea reingresar el empleado " + employee.apellido + " " + employee.nombre + "?");
                 if (reingresar) {
                     employee.codigoEstadoEmpleado = {
                         id: 87

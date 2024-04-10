@@ -19,6 +19,14 @@ const CellDynamicEmployee = ({ employee, fields }) => {
             return '';
     }
 
+    const getPositionFieldValue = (field) => {
+        console.log('position',)
+        if (emp && emp.codigoPuesto)
+            return emp.codigoPuesto[field];
+        else
+            return '';
+    }
+
     const buildCell = () => {
         if (fields.length > 1) {
             return (
@@ -31,11 +39,12 @@ const CellDynamicEmployee = ({ employee, fields }) => {
                 </td>
             )
         } else {
+            console.log('fields', fields);
             switch (fields[0]) {
                 case 'codigoPuesto':
                     return <CellPositionCode position={getFieldValue([fields[0]])} />
                 case 'codigoDireccion':
-                    return <CellParameter parameter={getFieldValue([fields[0]])} />
+                    return <CellParameter parameter={getPositionFieldValue([fields[0]])} />
                 case 'fechaEgreso':
                     return <CellDate value={getFieldValue([fields[0]])} />
                 default:
