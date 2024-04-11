@@ -180,6 +180,14 @@ form h2 {
     color: #000;
 }
 
+/*
 .form-group-login input[type=text]:focus {
+    -webkit-text-fill-color: #000;
+}
+*/
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
     -webkit-text-fill-color: #000;
 }
