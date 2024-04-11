@@ -338,15 +338,17 @@ const EmployeesPage = ({ }) => {
                 getEmployeeById(data.id).then(oldEmp => {
                     if (oldEmp.model.codigoPuesto.id != data.codigoPuesto.id) {
                         searchPositionChange(oldEmp.model.numeroLegajo).then(hp => {
-                            const fechaFinLastPuesto = parseToday();
+                            //const fechaFinLastPuesto = parseToday();
+                            const fechaFinDePuesto = parseInputDate(data.fechaInicioPuesto);
+                            fechaFinDePuesto.setDate(fechaFinDePuesto.getDate() - 1);
                             if (hp && hp.list) {
                                 // HAY UN PUESTO GUARDADO
                                 const lastPosition = hp.list.find(p => p.fechaFinPuesto == null);
-                                lastPosition.fechaFinPuesto = fechaFinLastPuesto;
+                                lastPosition.fechaFinPuesto = fechaFinDePuesto;
                                 updatePositionChange(lastPosition.id, lastPosition).then(r => {
                                 });
                             } else {
-                                addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, oldEmp.model.fechaIngresoReconocida, fechaFinLastPuesto, true).then(r => {
+                                addPositionChange(data.numeroLegajo, data.codigoPais, oldEmp.model.codigoOficina, oldEmp.model.codigoPuesto.codigoDireccion, oldEmp.model.codigoPuesto.codigoGerencia, oldEmp.model.codigoPuesto.codigoJefatura, oldEmp.model.codigoPuesto, oldEmp.model.fechaIngresoReconocida, fechaFinDePuesto, true).then(r => {
                                 });
                             }
                             addPositionChange(data.numeroLegajo, data.codigoPais, data.codigoOficina, data.codigoPuesto.codigoDireccion, data.codigoPuesto.codigoGerencia, data.codigoPuesto.codigoJefatura, data.codigoPuesto, data.fechaInicioPuesto, null, true).then(r => {

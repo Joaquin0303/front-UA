@@ -79,10 +79,10 @@ const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) =
             console.log('fechaInicioActualPuesto', fechaInicioActualPuesto);
             console.log('fechaInicioEmpleo', fechaInicioEmpleo);
 
-            if ((fechaInicioActualPuesto && fechaInicioActualPuesto > fechaInicioNuevoPuesto) || fechaInicioEmpleo > fechaInicioNuevoPuesto) {
+            if ((fechaInicioActualPuesto && fechaInicioActualPuesto >= fechaInicioNuevoPuesto) || fechaInicioEmpleo >= fechaInicioNuevoPuesto) {
                 result.error = true;
                 const limitDate = fechaInicioActualPuesto ? parseDate(currentPosition.fechaInicioPuesto) : parseDate(data.fechaIngresoReconocida);
-                result.validation.fechaInicioPuesto = "Ingrese una fecha mayor o igual a " + limitDate
+                result.validation.fechaInicioPuesto = "Ingrese una fecha mayor a " + limitDate
             }
         }
 
