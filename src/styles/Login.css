@@ -179,3 +179,7 @@ form h2 {
 .fa-eye {
     color: #000;
 }
+
+.form-group-login input[type=text] {
+    -webkit-text-fill-color: #000;
+}
