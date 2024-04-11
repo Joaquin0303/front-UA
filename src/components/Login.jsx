@@ -22,6 +22,10 @@ const Login = ({ setToken }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [focus, setFocus] = useState({
+        user: false,
+        password: false
+    });
 
     const createAccessToken = (login) => {
         const permissionIds = [];
@@ -91,6 +95,34 @@ const Login = ({ setToken }) => {
         }, 10000);
     }
 
+    const handleFocus = (e) => {
+        if (e.target.id === "login-user") {
+            setFocus((prevValues) => ({
+                ...prevValues,
+                user: true
+            }))
+        } else if (e.target.id === "password-user") {
+            setFocus((prevValues) => ({
+                ...prevValues,
+                password: true
+            }))
+        }
+    }
+
+    const handleBlur = (e) => {
+        if (e.target.id === "login-user") {
+            setFocus((prevValues) => ({
+                ...prevValues,
+                user: false,
+            }));
+        } else if (e.target.id === "password-user") {
+            setFocus((prevValues) => ({
+                ...prevValues,
+                password: false,
+            }));
+        }
+    }
+
     const isEdge = navigator.userAgent.includes("Edg");
 
     return (
@@ -113,18 +145,18 @@ const Login = ({ setToken }) => {
                             <h2>Iniciar Sesión</h2>
                             <div className="form-group-login">
                                 <label htmlFor="login-user">Nombre de Usuario</label>
-                                <input type="text" className="form-control" id="login-user" placeholder="Usuario" onChange={(e) => setUserName(e.target.value)} />
+                                <input type="text" className={`form-control ${focus.user ? 'input-highlight' : ''}`} id="login-user" placeholder="Usuario" onChange={(e) => setUserName(e.target.value)} onFocus={handleFocus} onBlur={handleBlur} />
                             </div>
                             {isEdge ?
                                 <div className="form-group-login">
                                     <label htmlFor="password-user">Contraseña</label>
-                                    <input type="password" className="form-control" id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
+                                    <input type="password" className={`form-control ${focus.password ? 'input-highlight' : ''}`} id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} onFocus={handleFocus} onBlur={handleBlur} />
                                 </div>
                                 :
                                 <div className="form-group-login">
                                     <label htmlFor="password-user">Contraseña</label>
                                     <div className='password-no-edge'>
-                                        <input type={showPassword ? "text" : "password"} className="form-control" id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
+                                        <input type={showPassword ? "text" : "password"} className={`form-control ${focus.password ? 'input-highlight' : ''}`} id="password-user" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} onFocus={handleFocus} onBlur={handleBlur} />
                                         <span className='p-viewer'>
                                             <FaEye className='eye-icon' onClick={() => setShowPassword(!showPassword)} />
                                         </span>
