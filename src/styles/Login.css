@@ -180,6 +180,6 @@ form h2 {
     color: #000;
 }
 
-.form-group-login input[type=text] {
+.form-group-login input[type=text]:focus {
     -webkit-text-fill-color: #000;
 }
