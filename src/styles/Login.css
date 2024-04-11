@@ -185,10 +185,10 @@ form h2 {
 }
 
 /*
-.form-group-login input[type=text]:focus {
+.form-group-login input[type=text] {
     -webkit-text-fill-color: #000;
 }
-*/
+
 
 /* input:-webkit-autofill,
 input:-webkit-autofill:hover,
