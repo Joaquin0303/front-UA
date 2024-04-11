@@ -314,9 +314,9 @@ input:disabled {
     height: 100px;
 }
 
-.form-group input[type=text] {
+/* .form-group input[type=text] {
     -webkit-text-fill-color: #000;
-}
+} */
 
 .search-div {
     display: flex;
