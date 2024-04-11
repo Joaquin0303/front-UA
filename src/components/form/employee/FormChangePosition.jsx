@@ -5,15 +5,30 @@ import InputPositionCode from "../InputPositionCode";
 import InputParameter from "../InputParameter";
 import '../../../styles/Modal.css'
 import InputDate from '../InputDate';
-import { parseInputDate, parseToday } from '../../../utils/Utils';
+import { parseDate, parseInputDate, parseToday } from '../../../utils/Utils';
+import { searchPositionChange } from '../../../services/PositionChangeServices';
 
 const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) => {
+    console.log('change data', data)
     const [validation, setValidation] = useState();
     const [formData, setFormData] = useState({ ...data, codigoDireccion: data.codigoPuesto.codigoDireccion });
+    const [currentPosition, setCurrentPosition] = useState();
+
+    useEffect(() => {
+        if (data.numeroLegajo)
+            searchPositionChange(data.numeroLegajo).then(positions => {
+                if (positions.codigo == "200") {
+                    setCurrentPosition(positions.list.find(p => p.fechaFinPuesto == null));
+                }
+            });
+    }, []);
+
     const updateFormData = (key, value) => {
         formData[key] = value;
         setFormData({ ...formData });
     }
+
+
 
     const submitForm = () => {
         try {
@@ -56,10 +71,18 @@ const FormChangePosition = ({ parameterList, data, closeModal, onSubmitForm }) =
             result.validation.codigoPuesto = "El puesto seleccionado ya esta asignado a otro empleado."
         }
         if (data.fechaInicioPuesto) {
-            const fechaInicioPuesto = parseInputDate(data.fechaInicioPuesto);
-            if (fechaInicioPuesto <= parseToday()) {
+            const fechaInicioNuevoPuesto = parseInputDate(data.fechaInicioPuesto);
+            const fechaInicioActualPuesto = currentPosition ? parseInputDate(currentPosition.fechaInicioPuesto) : null;
+            const fechaInicioEmpleo = parseInputDate(data.fechaIngresoReconocida);
+
+            console.log('fechaInicioNuevoPuesto', fechaInicioNuevoPuesto);
+            console.log('fechaInicioActualPuesto', fechaInicioActualPuesto);
+            console.log('fechaInicioEmpleo', fechaInicioEmpleo);
+
+            if ((fechaInicioActualPuesto && fechaInicioActualPuesto > fechaInicioNuevoPuesto) || fechaInicioEmpleo > fechaInicioNuevoPuesto) {
                 result.error = true;
-                result.validation.fechaInicioPuesto = "Ingrese una fecha mayor"
+                const limitDate = fechaInicioActualPuesto ? parseDate(currentPosition.fechaInicioPuesto) : parseDate(data.fechaIngresoReconocida);
+                result.validation.fechaInicioPuesto = "Ingrese una fecha mayor o igual a " + limitDate
             }
         }
 
