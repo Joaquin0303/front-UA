@@ -47,8 +47,8 @@ export const employmentHistoryReportService = async (filter) => {
             'pais': filter.pais,
             'idDireccion': filter.codigoDireccion ? filter.codigoDireccion.id : null,
             'estado': filter.estado,
-            'fechaIngresoDesde': filter.fechaDesde ? filter.fechaDesde : null,
-            'fechaIngresoHasta': filter.fechaHasta ? filter.fechaHasta : null
+            'fechaDesde': filter.fechaDesde ? filter.fechaDesde : null,
+            'fechaHasta': filter.fechaHasta ? filter.fechaHasta : null
         }
 
     }).then(response => {
