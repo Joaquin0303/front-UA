@@ -54,7 +54,7 @@ const DynamicFormV2 = ({ formConfiguration, data, closeModal, onSubmitForm, acti
 
     useEffect(() => {
         getParameters().then(result => {
-            setParameterList(result.list.filter(p => p.activo == ttue));
+            setParameterList(result.list.filter(p => p.activo == true));
         });
     }, []);
 
